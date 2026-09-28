@@ -1,0 +1,16 @@
+{
+  "fetchedAt": "2026-09-28",
+  "source": "https://agent-intel-36vh0a1e3d3.qoder.zone",
+  "readOnly": true,
+  "counts": {
+    "claude|overall": 1,
+    "claude|coding": 1
+  },
+  "corrections": [
+    {
+      "agent": "perplexity",
+      "note": "线上验证：Enterprise 档价格建议标注年付口径",
+      "at": "2026-09-22"
+    }
+  ]
+}

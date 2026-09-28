@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%A1%3C/text%3E%3C/svg%3E">
-<meta name="description" id="metaDesc" content="AI 智能体选型决策站：15 个主流智能体价格档案、场景榜单、两两对比、充值行情与价格变动大事记，每条数据带来源核实。">
+<meta name="description" id="metaDesc" content="AI 智能体选型决策站：23 个主流智能体价格档案、OpenLM Arena+ 基准榜单、两两对比、充值行情与价格变动大事记，每条数据带来源核实，每日更新。">
 <meta property="og:title" id="ogTitle" content="Agent 情报局 - AI 智能体排行·对比·价格情报">
 <meta property="og:description" id="ogDesc" content="决定用哪个智能体之前，先来这查一下。">
 <meta property="og:type" content="website">
@@ -114,6 +114,9 @@
     <nav id="nav"></nav>
   </div>
 </header>
+<div class="note" id="mirrorNote" style="display:none;max-width:1080px;margin:14px auto 0;padding:10px 14px;border:1px solid var(--line);border-radius:10px">
+  📄 这里是<b>只读镜像</b>（GitHub Pages）：正文内容与主站同步到 <b id="mirrorStamp"></b>，但投票、纠错等写入功能需要到主站。主站地址：<a href="https://agent-intel-36vh0a1e3d3.qoder.zone" target="_blank" rel="noopener" style="color:var(--gold)">agent-intel-36vh0a1e3d3.qoder.zone →</a>
+</div>
 <main id="app"></main>
 <div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
   <div class="modal" id="modalBox"></div>
@@ -124,6 +127,11 @@
 <script>
 const D = window.AGENTS_DATA;
 const EVENTS = [...D.events].sort((a,b)=>b.date.localeCompare(a.date)); // 页面上始终按日期倒序，data.js 插入顺序不限
+/* 主站（有 Functions 后端）与只读镜像（GitHub Pages，无后端）共用同一份前端：
+   镜像上票数/纠错走 community.json 静态快照展示真实数据，写入动作引导回主站，不假装投票成功。 */
+const MAIN_SITE = "https://agent-intel-36vh0a1e3d3.qoder.zone";
+const IS_MIRROR = !/(^|\.)qoder\.zone$/i.test(location.hostname);
+const mainLink = () => MAIN_SITE + "/" + (location.hash || "#home");
 const byId = id => D.agents.find(a=>a.id===id);
 const TABS = [["home","首页"],["rank","榜单"],["arena","基准榜"],["pick","帮我选"],["compare","对比"],["price","价格情报"],["profiles","档案"],["timeline","大事记"],["qa","问答"]];
 let cur = location.hash.slice(1) || "home";
@@ -146,12 +154,12 @@ function viewHome(){
   const evs = EVENTS.slice(0,3);
   const top = d => [...D.agents].map(a=>({a,s:D.scores[a.id][d]})).sort((x,y)=>y.s-x.s).slice(0,3);
   return `
-  <div class="stamp">情报截至 <b>${D.meta.dataUpdatedAt}</b> · 收录智能体 ${D.agents.length} 个 · 已核实事件 ${D.events.length} 条</div>
+  ${stampHTML()}
   ${D.benchmarks ? `<h2>🏆 ${D.benchmarks.sourceName} · 产品排行（本站榜单默认排序依据）</h2>
   <div class="card"><table style="margin:0">${D.benchmarks.models.slice(0,5).map((m,i)=>{const a=byId(m.agent);return `<tr><td class="rank ${i<3?'top':''}">${i<3?MEDAL[i]:i+1}</td>
   <td><a onclick="go('rank')" style="cursor:pointer;color:var(--text)"><b>${a?a.name:m.agent}</b></a> <span class="ev-sum">${m.model} · Coding Elo ${m.coding}</span></td>
   <td class="score-num" style="text-align:right">${m.elo}</td></tr>`;}).join("")}</table>
-  <div class="ev-sum" style="margin-top:8px">本表行序 = Arena+ 页面默认顺序，完整 12 席与七维评分在榜单页 · <a href="${D.benchmarks.source}" target="_blank" rel="noopener">打开源榜 ↗</a> · <a onclick="go('rank')" style="cursor:pointer">查看完整榜单 →</a> · <a onclick="go('arena')" style="cursor:pointer">全量 ${D.arena?D.arena.rows.length:0} 模型快照 →</a></div></div>` : ''}
+  <div class="ev-sum" style="margin-top:8px">本表行序 = Arena+ 页面默认顺序，完整 ${D.benchmarks.models.length} 席与七维评分在榜单页 · <a href="${D.benchmarks.source}" target="_blank" rel="noopener">打开源榜 ↗</a> · <a onclick="go('rank')" style="cursor:pointer">查看完整榜单 →</a> · <a onclick="go('arena')" style="cursor:pointer">全量 ${D.arena?D.arena.rows.length:0} 模型快照 →</a></div></div>` : ''}
   <h2>按场景选</h2>
   <div class="grid g3">${[
     ["💻","写代码 / 编程","编码榜：模型 Coding Elo 换算",  "coding"],
@@ -327,9 +335,11 @@ function viewRank(){
   </div></div>`;}).join("")}
   ${rows.length?'':'<div class="note">没有匹配的智能体</div>'}</div>
   ${isElo?"":benchTableHTML()}
-  <div class="note">${VOTES.offline
+  <div class="note">${VOTES.readonly
+    ? `📄 只读镜像：票数为 ${VOTES.snapshotAt||"最新"} 主站真实统计快照，写入（投票/纠错）请<a href="${MAIN_SITE}/#rank" target="_blank" rel="noopener">回主站</a>。`
+    : VOTES.offline
     ? '⚠ 投票服务暂不可达，当前为本地模式：票数只记在你这台设备上。'
-    : `🗳 人气投票按当前排序维度（${D.dimensions[curDim]}）计票，每人每智能体每维度一票；编辑部榜单不受投票影响。`}</div>`;
+    : `🗳 人气投票按当前排序维度（${D.dimensions[curDim]||"综合"}）计票，每人每智能体每维度一票；编辑部榜单不受投票影响。`}</div>`;
 }
 
 /* ---------- 模型基准（OpenLM Arena+） ---------- */
@@ -358,23 +368,27 @@ function benchTableHTML(){
 
 /* ---------- 基准榜（Arena+ 全量快照，行序=源页面） ---------- */
 let arenaQuery = "";
+let arenaShown = 60;
 function viewArena(){
   const A = D.arena;
   if(!A || !A.rows || !A.rows.length) return `<div class="note">基准榜快照数据尚未加载。</div>`;
   const model2agent = {}; ((D.benchmarks&&D.benchmarks.models)||[]).forEach(m=>{ model2agent[m.model]=m.agent; });
   const q = arenaQuery.trim().toLowerCase();
   const idx = A.rows.map((_,i)=>i).filter(i=> !q || A.rows[i][0].toLowerCase().includes(q) || A.rows[i][7].toLowerCase().includes(q));
-  return `<div class="stamp">${A.sourceName} 全量模型榜快照 · 共 ${A.rows.length} 行 · 抓取于 ${A.fetchedAt}（行序 = 源页面默认顺序，未重排）· 源榜：<a href="${A.source}" target="_blank" rel="noopener">openlm.ai/chatbot-arena ↗</a></div>
-  <input class="search arenasearch" placeholder="🔍 筛选：模型 / 机构…（如 claude、Moonshot）" value="${arenaQuery}"
-    oninput="arenaQuery=this.value;render();document.querySelector('.arenasearch').focus()" />
-  <div class="card" style="padding:0;overflow:auto"><table class="matrix">
-  <tr><th class="rank">#</th>${A.cols.map(c=>`<th${c==="Model"?' style="min-width:170px"':''}>${c}</th>`).join("")}<th></th></tr>
-  ${idx.map(i=>{const r=A.rows[i];const ag=model2agent[r[0]];return `<tr><td class="rank ${i<3?'top':''}">${i+1}</td>
+  const shown = idx.slice(0, arenaShown); /* 322 行一次性渲染在低端机上会卡，首屏 60 行，其余按需展开 */
+  const rowHTML = i => {const r=A.rows[i];const ag=model2agent[r[0]];return `<tr><td class="rank ${i<3?'top':''}">${i+1}</td>
     <td><b>${r[0]}</b></td>${r.slice(1,7).map(v=>`<td class="s">${v||'<span class="ev-sum">—</span>'}</td>`).join("")}
     <td class="ev-sum">${r[7]}</td><td class="ev-sum">${r[8]}</td>
-    <td>${ag?`<button class="btn ghost" onclick="openAgent('${ag}')">档案</button>`:''}</td></tr>`;}).join("")}
+    <td>${ag?`<button class="btn ghost" onclick="openAgent('${ag}')">档案</button>`:''}</td></tr>`;};
+  return `<div class="stamp">${A.sourceName} 全量模型榜快照 · 共 ${A.rows.length} 行 · 抓取于 ${A.fetchedAt}（行序 = 源页面默认顺序，未重排）· 源榜：<a href="${A.source}" target="_blank" rel="noopener">openlm.ai/chatbot-arena ↗</a></div>
+  <input class="search arenasearch" placeholder="🔍 筛选：模型 / 机构…（如 claude、Moonshot）" value="${arenaQuery}"
+    oninput="arenaQuery=this.value;arenaShown=60;render();document.querySelector('.arenasearch').focus()" />
+  <div class="card" style="padding:0;overflow:auto"><table class="matrix">
+  <tr><th class="rank">#</th>${A.cols.map(c=>`<th${c==="Model"?' style="min-width:170px"':''}>${c}</th>`).join("")}<th></th></tr>
+  ${shown.map(rowHTML).join("")}
   ${idx.length?'':'<tr><td colspan="11" style="text-align:center;color:var(--muted)">没有匹配的模型</td></tr>'}
-  </table></div>
+  </table>
+  ${idx.length>shown.length?`<div style="text-align:center;padding:12px"><button class="btn ghost" onclick="arenaShown+=120;render()">显示更多（已显 ${shown.length} / 共 ${idx.length} 行）</button></div>`:`${idx.length>60?'<div class="ev-sum" style="text-align:center;padding:8px">已显示全部 '+idx.length+' 行</div>':''}`}</div>
   <div class="note">"—" 表示源页面该行该列无数据（多为榜尾旧视觉模型）。本站榜单页的默认顺序与"编码"维度分即取自本表（每产品取旗舰模型一行；编码分 = (Coding Elo − 1300) ÷ 28.2）。</div>`;
 }
 
@@ -392,19 +406,30 @@ function suitHTML(id){
 const staleDays = a => Math.floor((Date.now() - new Date(a.verifiedAt + "T00:00:00").getTime()) / 864e5);
 const staleTag = a => staleDays(a) > 14 ? `<span class="delta new" style="color:#e6b45a" title="该档案超过 14 天未复核，价格可能已变动">⚠️ ${staleDays(a)} 天未核实</span>` : "";
 
+/* 三处日期戳同屏自检：内容更新 / 基准核实 / 榜单快照——任一滞后，用户一眼就能看到 */
+function stampHTML(){
+  const b = D.benchmarks ? D.benchmarks.verifiedAt : "—";
+  const ar = D.arena ? D.arena.fetchedAt : "—";
+  const same = b === ar && b === D.meta.dataUpdatedAt;
+  const lag = (label, d) => d === D.meta.dataUpdatedAt ? `${label} ${d}` : `<span style="color:#e6b45a">${label} ${d}（滞后）</span>`;
+  return `<div class="stamp">情报截至 <b>${D.meta.dataUpdatedAt}</b> · ${lag("基准核实", b)} · ${lag("榜单快照", ar)} ${same ? "✓ 三者同步" : ""} · 收录智能体 ${D.agents.length} 个 · 已核实事件 ${D.events.length} 条</div>`;
+}
+
 /* 社区人气榜：汇总各维度票数取前 5 */
 function popBoardHTML(){
   const t = {}; for(const k in VOTES.counts){ const id = k.split("|")[0]; t[id] = (t[id]||0) + VOTES.counts[k]; }
   const list = Object.entries(t).sort((a,b)=>b[1]-a[1]).slice(0,5);
   if(!list.length) return `<div class="note">人气投票刚上线，票数还在冷启动——看到合适的智能体，去<a onclick="go('rank')" style="cursor:pointer">榜单页</a>投一票。</div>`;
   return `<div class="card" style="padding:0;overflow:auto"><table class="matrix"><tr><th class="rank">#</th><th>智能体</th><th>社区票（全维度合计）</th><th></th></tr>
-  ${list.map(([id,n],i)=>{const a=byId(id);return `<tr><td class="rank ${i<3?'top':''}">${i<3?MEDAL[i]:i+1}</td><td><b>${a.name}</b><div class="ev-sum">${a.tagline}</div></td><td class="s">👍 ${n}</td><td><button class="btn ghost" onclick="openAgent('${id}')">档案</button></td></tr>`;}).join("")}</table></div>`;
+  ${list.map(([id,n],i)=>{const a=byId(id);return `<tr><td class="rank ${i<3?'top':''}">${i<3?MEDAL[i]:i+1}</td><td><b>${a.name}</b><div class="ev-sum">${a.tagline}</div></td><td class="s">${VOTES.readonly?`<a class="votebtn" href="${MAIN_SITE}/#rank" target="_blank" rel="noopener" title="只读镜像：真实票数快照 ${VOTES.snapshotAt}">👍 ${n} ↗</a>`:`👍 ${n}`}</td><td><button class="btn ghost" onclick="openAgent('${id}')">档案</button></td></tr>`;}).join("")}</table>
+  <div class="ev-sum" style="padding:8px 12px">${VOTES.readonly?`票数为 ${VOTES.snapshotAt||"最新"} 主站真实统计（只读快照）· <a href="${MAIN_SITE}/#rank" target="_blank" rel="noopener">到主站投票 →</a>`:"票数全站累计，每人每维度一票"}</div></div>`;
 }
 
 /* ---------- 社区人气投票 ---------- */
 const VKEY = "agent-intel-voter";
 const VLOCAL = "agent-intel-votes-local";
-let VOTES = { counts:{}, mine:[], offline:false, loaded:false, pending:{} };
+let VOTES = { counts:{}, mine:[], offline:false, loaded:false, pending:{}, readonly:false, snapshotAt:"" };
+let CORR = []; /* 社区纠错：主站实时读取，镜像读 community.json 快照 */
 function voterId(){
   let v = localStorage.getItem(VKEY);
   if(!v || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v)){
@@ -418,6 +443,19 @@ function localMine(){ try{ const s=JSON.parse(localStorage.getItem(VLOCAL)||"[]"
 function applyTally(j){ VOTES.counts=j.counts||{}; if(Array.isArray(j.mine)) VOTES.mine=j.mine; VOTES.offline=false; VOTES.loaded=true; }
 function applyLocalMine(){ VOTES.mine=localMine(); VOTES.counts={}; VOTES.mine.forEach(k=>{ VOTES.counts[k]=(VOTES.counts[k]||0)+1; }); VOTES.offline=true; VOTES.loaded=true; }
 async function loadVotes(){
+  if(IS_MIRROR){
+    /* 镜像站没有 Functions 后端：票数/纠错读 community.json 静态快照（主站真实数据，只读） */
+    try{
+      const r = await fetch(`community.json?v=${D.meta.dataUpdatedAt}`, {cache:"no-store"});
+      if(!r.ok) throw 0;
+      const j = await r.json();
+      if(!j || typeof j.counts !== "object") throw 0;
+      VOTES.counts = j.counts; VOTES.mine = localMine(); VOTES.loaded = true;
+      VOTES.readonly = true; VOTES.snapshotAt = j.fetchedAt || "";
+      CORR = Array.isArray(j.corrections) ? j.corrections : [];
+    }catch{ VOTES.readonly = true; applyLocalMine(); }
+    if(cur==="rank"||cur==="qa") render(); return;
+  }
   try{
     const r = await fetch(`/functions/v1/app?action=tally&voter=${voterId()}`, {credentials:"same-origin"});
     if(!r.ok) throw 0;
@@ -425,12 +463,18 @@ async function loadVotes(){
     if(!j || j.ok!==true || typeof j.counts!=="object") throw 0;
     applyTally(j);
   }catch{ applyLocalMine(); }
-  if(cur==="rank") render();
+  try{
+    const rc = await fetch("/functions/v1/app?action=corrections", {credentials:"same-origin"});
+    const jc = await rc.json();
+    if(rc.ok && jc.ok && Array.isArray(jc.items)) CORR = jc.items.map(i=>({agent:i.agent_id, note:(i.note||"").trim(), at:(i.created_at||"").slice(0,10)}));
+  }catch{ /* 纠错读不到不影响主流程 */ }
+  if(cur==="rank"||cur==="qa") render();
 }
 function voteCell(id, dim){
   const key = id+"|"+dim;
   const n = VOTES.counts[key]||0;
   const did = VOTES.mine.includes(key) || VOTES.offline && localMine().includes(key);
+  if(VOTES.readonly) return `<a class="votebtn" href="${MAIN_SITE}/#rank" target="_blank" rel="noopener" title="本页是只读镜像，票数为 ${VOTES.snapshotAt||"最新"} 主站真实统计；想投票请到主站">👍 ${n} ↗</a>`;
   const dis = VOTES.pending[key] ? " disabled" : "";
   return `<button class="votebtn${did?' did':''}"${dis} onclick="castVote('${id}','${dim}')" title="为${D.dimensions[dim]||'综合'}维度投票">👍 ${n}</button>`;
 }
@@ -438,6 +482,7 @@ async function castVote(id, dim){
   dim = dim || "overall";
   const key = id+"|"+dim;
   if(VOTES.pending[key]) return;
+  if(VOTES.readonly){ window.open(MAIN_SITE+"/#rank","_blank","noopener"); return; }
   VOTES.pending[key] = true; render();
   if(VOTES.offline){
     const m = localMine();
@@ -550,7 +595,19 @@ function viewQA(){
       <span class="ev-sum" style="font-size:12px">依据：${x.basis}</span>
       <button class="btn ${voted[i]?'':'ghost'}" style="padding:4px 14px;font-size:13px" onclick="voteQA(${i})">👍 有用 ${v}</button>
     </div></div>`}).join("")}
-  <div class="note">问题来自社群高频提问的结构化改写；答案基于本站已核实数据，价格变动后可能过期，以档案页核实日期为准。</div>`;
+  <div class="note">问题来自社群高频提问的结构化改写；答案基于本站已核实数据，价格变动后可能过期，以档案页核实日期为准。</div>
+  ${corrHTML()}`;
+}
+/* 社区纠错流水：主站实时读 corrections 表，镜像读 community.json 快照，两处同源 */
+function corrHTML(){
+  if(!CORR.length) return "";
+  const src = VOTES.readonly ? `只读镜像快照（${VOTES.snapshotAt||D.meta.dataUpdatedAt}）` : "实时";
+  return `<h2 style="margin-top:26px">🛠 社区纠错 <span class="ev-sum" style="font-size:12px">（${CORR.length} 条 · ${src}）</span></h2>
+  <div class="card" style="padding:0;overflow:auto"><table>
+  <tr><th style="min-width:90px">智能体</th><th>反馈内容</th><th style="min-width:80px">日期</th></tr>
+  ${CORR.map(c=>{const a=byId(c.agent);return `<tr><td><b>${a?a.name:c.agent}</b></td><td class="ev-sum">${c.note}</td><td class="ev-sum">${c.at}</td></tr>`;}).join("")}
+  </table></div>
+  <div class="note">纠错是公开流水，处理结果会写回对应档案并在大事记里留痕。发现写错的地方，欢迎在<a onclick="go('profiles')" style="cursor:pointer">档案页</a>底部提交。</div>`;
 }
 function voteQA(i){
   const v=JSON.parse(localStorage.getItem("qaVotes")||"{}");
@@ -598,6 +655,12 @@ async function submitReport(id){
   const note = document.getElementById("reportNote").value.trim();
   const msg = document.getElementById("reportMsg");
   if (note.length < 2) { msg.textContent = "请至少写几个字"; return; }
+  if (VOTES.readonly) {
+    /* 镜像不能写库：不假装"已提交"，把内容带到主站纠错入口 */
+    msg.innerHTML = `本镜像为只读，提交需要到主站 → <a href="${MAIN_SITE}/#agent-${id}" target="_blank" rel="noopener" style="color:var(--gold)">在主站提交这条纠错</a>`;
+    window.open(MAIN_SITE + "/#agent-" + id, "_blank", "noopener");
+    return;
+  }
   const saveLocal = () => {
     const key = "agent-intel-reports";
     const m = JSON.parse(localStorage.getItem(key) || "[]");
@@ -657,6 +720,7 @@ function render(){
   renderNav();
   const app = document.getElementById("app");
   app.innerHTML = {home:viewHome,rank:viewRank,arena:viewArena,pick:viewPick,compare:viewCompare,price:viewPrice,profiles:viewProfiles,timeline:viewTimeline,qa:viewQA}[cur]();
+  if(IS_MIRROR) document.getElementById("mirrorNote").style.display = "block";
 }
 try{ const s=JSON.parse(localStorage.getItem("cmp")); if(Array.isArray(s)&&s.length) cmpSel=new Set(s); }catch(e){}
 
@@ -696,6 +760,7 @@ function setSEO(t, d){
 }
 route();
 window.addEventListener("hashchange", route);
+if(IS_MIRROR){ const ms=document.getElementById("mirrorStamp"); if(ms) ms.textContent=D.meta.dataUpdatedAt; }
 loadVotes();
 // SEO：运行时注入结构化数据（Google 会执行 JS 抓取）
 try{

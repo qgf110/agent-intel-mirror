@@ -997,6 +997,16 @@ window.AGENTS_DATA = {
     relayVerify: {
       // 本站自行双源核实后的状态（id → {status:"verified", at:"YYYY-MM-DD", note:"…"}）。留空 = 待核，由日更任务逐家补实。
     },
+    extra: [
+      // 种子源之外、由本站用户提报/自行发现的条目；字段与 seed.providers 同构，双源核实后写入 relayVerify。日更/周更任务对此区只读不改。
+      { id: "omwai", name: "Omwai API", url: "https://www.omwai.xyz", section: "china", type: "mixed", status: "unverified",
+        payment: [], models: ["openai", "anthropic"], modelCount: null, providerCount: null,
+        entityRegistered: "unknown", supportsStream: "unknown", supportsTools: "unknown",
+        seedLastVerified: null, seedVerifiedBy: null, riskFlags: ["user_submitted"],
+        note: "new-api 部署实例；官网公开 /api/pricing 可见 Claude Opus 4.6 倍率 2.5/5、缓存 0.1，分组名含 aws-bedrock / Kiro / Antigravity 等，多上游混跑迹象（mixed）。2026-09-28 由用户提报收录，暂无独立第二来源，待双源核实。",
+        pricingApi: "https://www.omwai.xyz/api/pricing", pricePid: null, priceStats: null, extraSource: true,
+        sources: ["https://www.omwai.xyz/api/pricing"] },
+    ],
     /* RELAY-SEED-BEGIN */
     seed: {
      "source": "https://github.com/howardpen9/awesome-ai-api-proxy",

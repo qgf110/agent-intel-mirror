@@ -603,7 +603,7 @@ function relayCard(R,p){
   const pay = (p.payment||[]).map(x=>R.paymentLabels[x]||x).join(" / ") || "支付方式未收录";
   return `<div class="card agentcard" style="cursor:default">
     <h3 style="font-size:15px"><a href="${p.url}" target="_blank" rel="noopener nofollow">${p.name} ↗</a></h3>
-    <div style="margin:6px 0">${relayTypeBadge(R,p)}${p.status!=="active"?`<span class="pill" style="color:var(--up)">${p.status==="inactive"?"已停摆":"状态未核实"}</span>`:""}${p.entityRegistered===true?'<span class="pill" style="color:var(--down)">有注册主体</span>':""}</div>
+    <div style="margin:6px 0">${relayTypeBadge(R,p)}${p.status!=="active"?`<span class="pill" style="color:var(--up)">${p.status==="inactive"?"已停摆":"状态未核实"}</span>`:""}${p.entityRegistered===true?'<span class="pill" style="color:var(--down)">有注册主体</span>':""}${p.extraSource?'<span class="pill" style="color:#d9a13a">用户提报</span>':""}</div>
     <div class="ev-sum" style="min-height:34px">${p.note||""}</div>
     <div style="margin-top:6px" class="ev-sum">💳 ${pay}${p.modelCount?` · 🧩 ${p.modelCount} 模型`:""}${p.priceStats?` · 📊 报价 ${p.priceStats.models} 模型（${p.priceStats.capturedAt}）`:""}</div>
     <div style="margin-top:6px">${relayVerifyTag(R,p)}${p.pricingApi?`<a href="${p.pricingApi}" target="_blank" rel="noopener nofollow" class="pill" style="color:var(--gold)">公开价目↗</a>`:""}</div>
@@ -614,13 +614,14 @@ function viewRelay(){
   if(!S || !S.providers || !S.providers.length) return `<div class="note">中转站数据未生成：请运行 node dev/gen-relay.cjs。</div>`;
   const q = rQuery.trim().toLowerCase();
   const match = p => !q || (p.name+" "+p.url+" "+(p.note||"")).toLowerCase().includes(q);
-  const bySec = s => S.providers.filter(p=>p.section===s && match(p));
+  const ALL = (R.extra||[]).concat(S.providers);
+  const bySec = s => ALL.filter(p=>p.section===s && match(p));
   const china = bySec("china"), global = bySec("global"), selfhost = bySec("selfhost"), tools = bySec("tools");
   // 比价矩阵：列 = 有报价快照的站点，OpenRouter（授权聚合层）作参考价列
   const priceCols = [];
   S.anchorModels.forEach(a=>a.rows.forEach(r=>{ if(!priceCols.includes(r.pid)) priceCols.push(r.pid); }));
   priceCols.sort((x,y)=> (x==="openrouter"?-1:0) - (y==="openrouter"?-1:0));
-  const pidName = pid => { const p = S.providers.find(x=>x.pricePid===pid); return p?p.name:pid; };
+  const pidName = pid => { const p = ALL.find(x=>x.pricePid===pid); return p?p.name:pid; };
   const compact = (list) => `<div class="card" style="padding:0;overflow:auto"><table>
     <tr><th>站点</th><th>类型</th><th>状态</th><th>支付</th><th>主体</th><th>流式/工具</th><th>备注</th></tr>
     ${list.map(p=>`<tr><td><a href="${p.url}" target="_blank" rel="noopener nofollow"><b>${p.name}</b> ↗</a></td>
@@ -629,7 +630,7 @@ function viewRelay(){
     <td class="ev-sum">${p.entityRegistered===true?"已公开":p.entityRegistered===false?"无":"未知"}</td>
     <td class="ev-sum">${p.supportsStream===true?"✓":"?"} / ${p.supportsTools===true?"✓":p.supportsTools===false?"✗":"?"}</td>
     <td class="ev-sum" style="font-size:12.5px">${p.note||""}</td></tr>`).join("")}</table></div>`;
-  return `<div class="stamp">收录 ${S.providers.length} 条目 · 种子源 <a href="${S.source}" target="_blank" rel="noopener">awesome-ai-api-proxy ↗</a>（源方复核 ${S.sourceLastReviewed}）· 报价快照 ${S.priceSnapshot}（${S.priceRecordCount} 条）· 种子抓取 ${S.fetchedAt}</div>
+  return `<div class="stamp">收录 ${ALL.length} 条目 · 种子源 <a href="${S.source}" target="_blank" rel="noopener">awesome-ai-api-proxy ↗</a>（源方复核 ${S.sourceLastReviewed}）· 报价快照 ${S.priceSnapshot}（${S.priceRecordCount} 条）· 种子抓取 ${S.fetchedAt}</div>
   <div class="note" style="border-left:3px solid var(--gold)">${R.policy}</div>
   <div class="ev-sum" style="margin:8px 0">${Object.entries(R.typeLabels).map(([k,t])=>`<span class="pill" style="color:${RELAY_TONE[t.tone]||"inherit"}" title="${t.note}">${t.label}</span>`).join(" ")}</div>
   <input class="search" placeholder="🔍 筛选：站点名 / 备注…（如 云雾、发票、逆向）" value="${rQuery}"

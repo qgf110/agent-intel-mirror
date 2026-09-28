@@ -1,7 +1,11 @@
-# Agent 情报局 · 静态镜像
+# Agent 情报局 · 只读镜像
 
-本仓库是 [https://agent-intel-36vh0a1e3d3.qoder.zone](https://agent-intel-36vh0a1e3d3.qoder.zone) 的**只读静态镜像**，用于主站发布通道（Qoder Sites）故障期间保证内容可公开访问。
+本仓库是主站 [https://agent-intel-36vh0a1e3d3.qoder.zone](https://agent-intel-36vh0a1e3d3.qoder.zone) 的**只读静态镜像**，作用是当主站发布通道（Qoder Sites）不可用时，已核实内容仍有公开可访问的入口。
 
-- 内容来源：主站项目 `public/` 目录，由 `dev/gen-landing.mjs` 从 `data.js` 生成，请勿在本仓库直接编辑。
-- 本镜像**不含**社区投票与纠错后端（`/functions/*` 不在静态文件中），相应按钮在此不可用。
+- 内容来源：主站项目 `public/` 目录，由 `dev/gen-landing.mjs` 从 `data.js` 生成，再由主站仓库的 post-commit 钩子自动同步到这里。**请勿在本仓库直接编辑**，改动会在下次同步时被覆盖。
+- 数据一致性：`data.js` 与本仓库逐字节同源；`community.json`（票数与社区纠错）由同步钩子每次从主站后端读接口现抓，因此这里的**人气榜与纠错流水是全站真实数据**，不是空壳。
+- 本镜像**没有写入能力**：投票、提交纠错的按钮会明确提示并引导回主站操作（静态托管无法承载 Functions 后端）。
+- 各页 `rel="canonical"` 均指向主站域名，镜像不参与搜索排名竞争。
 - 主站恢复发布后，以主站地址为准。
+
+情报截至日期见首页顶部日期戳（内容更新 / 基准核实 / 榜单快照三项对齐即为最新）。

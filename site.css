@@ -1,0 +1,18 @@
+:root{--bg:#0f1117;--card:#181b25;--ink:#e8eaf0;--mut:#9aa2b5;--gold:#d8b45a;--line:#2a2f3d;--ok:#5fbf7a;--bad:#d97a7a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:860px;margin:0 auto;padding:24px 18px 64px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:22px}
+.brand{font-weight:800;color:var(--ink);font-size:18px}
+.nav a{margin-left:14px;color:var(--mut);font-size:14px}
+h1{font-size:26px;margin:.2em 0 .1em}h2{font-size:19px;margin:1.6em 0 .5em;color:var(--gold);border-left:3px solid var(--gold);padding-left:9px}
+.tag{color:var(--mut)}.stamp{color:var(--mut);font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:15px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}th{background:#12141c;color:var(--gold)}
+.pill{display:inline-block;background:#22283a;border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin:2px 4px 2px 0;font-size:13px}
+ul{margin:.4em 0;padding-left:1.2em}li{margin:.25em 0}
+.pro{color:var(--ok)}.con{color:var(--bad)}
+.btn{display:inline-block;background:var(--gold);color:#111;border-radius:8px;padding:8px 16px;font-weight:700;margin-top:10px}
+footer{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;color:var(--mut);font-size:13px}
+.score{font-variant-numeric:tabular-nums;color:var(--gold);font-weight:700}

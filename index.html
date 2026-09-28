@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%A1%3C/text%3E%3C/svg%3E">
+<meta name="description" id="metaDesc" content="AI 智能体选型决策站：15 个主流智能体价格档案、场景榜单、两两对比、充值行情与价格变动大事记，每条数据带来源核实。">
+<meta property="og:title" id="ogTitle" content="Agent 情报局 - AI 智能体排行·对比·价格情报">
+<meta property="og:description" id="ogDesc" content="决定用哪个智能体之前，先来这查一下。">
+<meta property="og:type" content="website">
+<title>Agent 情报局 · 决定用哪个智能体之前，先来这查一下</title>
+<style>
+  :root{
+    --bg:#0b0e14; --panel:#121722; --panel2:#171e2c; --line:#232c3f;
+    --text:#e6ebf4; --muted:#8b97ab; --accent:#4f8cff; --gold:#f5c451;
+    --up:#ff6b6b; --down:#3ddc97; --tag:#1f2a3d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;line-height:1.6}
+  a{color:var(--accent);text-decoration:none}
+  header{position:sticky;top:0;z-index:10;background:rgba(11,14,20,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .head-inner{max-width:1080px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .logo{font-size:20px;font-weight:800;letter-spacing:.5px}
+  .logo em{color:var(--accent);font-style:normal}
+  .slogan{font-size:12px;color:var(--muted)}
+  nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+  nav button{background:none;border:1px solid transparent;color:var(--muted);font-size:14px;padding:7px 14px;border-radius:8px;cursor:pointer}
+  nav button:hover{color:var(--text)}
+  nav button.on{background:var(--panel2);color:var(--text);border-color:var(--line);font-weight:700}
+  main{max-width:1080px;margin:0 auto;padding:24px 20px 80px}
+  .stamp{font-size:12px;color:var(--muted);margin-bottom:16px}
+  .stamp b{color:var(--gold)}
+  h2{font-size:18px;margin:28px 0 12px;display:flex;align-items:center;gap:8px}
+  h2::before{content:"";width:4px;height:18px;background:var(--accent);border-radius:2px;display:inline-block}
+  .grid{display:grid;gap:12px}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .ev-date{font-size:12px;color:var(--muted)}
+  .ev-tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;background:var(--tag);color:var(--accent);margin-left:6px}
+  .ev-title{font-weight:700;margin:4px 0}
+  .ev-sum{font-size:13px;color:var(--muted)}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:600;font-size:13px;background:var(--panel2)}
+  tr:hover td{background:rgba(79,140,255,.05)}
+  .rank{font-weight:800;color:var(--muted);width:36px}
+  .rank.top{color:var(--gold)}
+  .bar{height:6px;background:var(--tag);border-radius:3px;overflow:hidden;min-width:80px}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,#2f6fe0,var(--accent));border-radius:3px}
+  .pill{display:inline-block;font-size:11px;background:var(--tag);color:var(--muted);border-radius:8px;padding:1px 8px;margin:2px 4px 0 0}
+  .dimtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+  .dimtabs button{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:6px 14px;border-radius:16px;font-size:13px;cursor:pointer}
+  .dimtabs button.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700}
+  .agentcard{cursor:pointer;transition:border-color .15s}
+  .agentcard:hover{border-color:var(--accent)}
+  .agentcard h3{font-size:16px}
+  .region{font-size:11px;padding:1px 8px;border-radius:8px;margin-left:8px;vertical-align:2px}
+  .region.国内{background:rgba(61,220,151,.15);color:var(--down)}
+  .region.海外{background:rgba(79,140,255,.15);color:var(--accent)}
+  .plans li{list-style:none;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;display:flex;gap:10px;flex-wrap:wrap}
+  .plans b{min-width:88px}
+  .price{color:var(--gold);font-weight:700}
+  .cmp-pick{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
+  .cmp-pick label{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:5px 14px;font-size:13px;cursor:pointer;user-select:none}
+  .cmp-pick input{display:none}
+  .cmp-pick input:checked+span{color:var(--accent);font-weight:700}
+  .cmp-pick label:has(input:checked){border-color:var(--accent);background:rgba(79,140,255,.08)}
+  .btn{background:var(--accent);border:none;color:#fff;padding:8px 20px;border-radius:8px;font-size:14px;cursor:pointer}
+  .btn.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--text)}
+  .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:20;padding:30px 16px;overflow:auto}
+  .modal{max-width:720px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .m-close{float:right;cursor:pointer;color:var(--muted);font-size:20px}
+  ul.clean{padding-left:18px;font-size:13.5px;color:var(--muted)}
+  .good li::marker{color:var(--down)} .bad li::marker{color:var(--up)}
+  .note{font-size:12px;color:var(--muted);background:var(--panel2);border-left:3px solid var(--gold);padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0}
+  .search{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:10px 14px;border-radius:10px;font-size:14px;margin-bottom:14px;outline:none}
+  .search:focus{border-color:var(--accent)}
+  .hotcmp{display:flex;gap:8px;flex-wrap:wrap}
+  .hotcmp button{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:16px;padding:6px 14px;font-size:13px;cursor:pointer}
+  .hotcmp button:hover{border-color:var(--accent)}
+  .score-num{font-weight:800;color:var(--gold)}
+  .delta{font-size:12px;font-weight:800}
+  .delta.up{color:var(--down)} .delta.down{color:var(--up)} .delta.flat{color:var(--muted)} .delta.new{color:var(--accent);font-weight:400;font-size:11px}
+  table.matrix{font-size:13.5px}
+  table.matrix th,table.matrix td{padding:8px 9px}
+  th.sortable{cursor:pointer;user-select:none;white-space:nowrap}
+  th.sortable:hover{color:var(--text)}
+  th .arr{color:var(--accent);font-size:11px;margin-left:2px}
+  th.act{color:var(--gold)!important}
+  td.s{font-weight:700;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+  td.s.act{color:var(--gold)}
+  .ranksearch{margin-bottom:12px}
+  @media(max-width:760px){ table.matrix .dimcell:not(.act){display:none} th,td{padding:8px 7px} .head-inner{gap:10px}
+    .deskon{display:none!important} .mobrank{display:flex!important} }
+  .mobrank{display:none;flex-direction:column;gap:10px}
+  .mobcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .mobcard .top-row{display:flex;align-items:center;gap:8px}
+  .scene{cursor:pointer;transition:border-color .15s}
+  .scene:hover{border-color:var(--gold)}
+  .vote-td{white-space:nowrap}
+  .votebtn{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:14px;padding:3px 12px;font-size:13px;cursor:pointer;font-weight:700}
+  .votebtn:hover{border-color:var(--gold);color:var(--gold)}
+  .votebtn.did{background:rgba(245,196,81,.15);border-color:var(--gold);color:var(--gold);cursor:default}
+  .votebtn[disabled]{opacity:.5;cursor:wait}
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:20px;text-align:center;font-size:12px;color:var(--muted)}
+  @media(max-width:640px){nav{margin-left:0}}
+</style>
+</head>
+<body>
+<header>
+  <div class="head-inner">
+    <div class="logo">Agent<em>情报局</em></div>
+    <div class="slogan" id="slogan"></div>
+    <nav id="nav"></nav>
+  </div>
+</header>
+<main id="app"></main>
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalBox"></div>
+</div>
+<footer id="foot"></footer>
+
+<script src="data.js?v=20260928"></script>
+<script>
+const D = window.AGENTS_DATA;
+const EVENTS = [...D.events].sort((a,b)=>b.date.localeCompare(a.date)); // 页面上始终按日期倒序，data.js 插入顺序不限
+const byId = id => D.agents.find(a=>a.id===id);
+const TABS = [["home","首页"],["rank","榜单"],["arena","基准榜"],["pick","帮我选"],["compare","对比"],["price","价格情报"],["profiles","档案"],["timeline","大事记"],["qa","问答"]];
+let cur = location.hash.slice(1) || "home";
+let curDim = D.benchmarks ? "elo" : "coding"; // 默认顺序 = 基准榜页默认的 Arena Elo 顺序
+let pQuery = "";
+let cmpSel = new Set(D.popularComparisons[0]);
+
+document.getElementById("slogan").textContent = D.meta.slogan;
+document.getElementById("foot").innerHTML =
+  `数据核实截至 <b style="color:var(--gold)">${D.meta.dataUpdatedAt}</b> · ${D.meta.disclaimer}<br>${D.meta.exchangeRate}<br><a href="/about.html">榜单方法论 · 数据口径 · 广告与联盟披露政策</a> · <a href="/weekly.html">每周简报归档</a>`;
+
+function renderNav(){
+  document.getElementById("nav").innerHTML = TABS.map(([k,n])=>
+    `<button class="${k===cur?'on':''}" onclick="go('${k}')">${n}</button>`).join("");
+}
+function go(k){ cur=k; if(SEO[k]) setSEO(...SEO[k]); location.hash=k; render(); }
+
+/* ---------- 首页 ---------- */
+function viewHome(){
+  const evs = EVENTS.slice(0,3);
+  const top = d => [...D.agents].map(a=>({a,s:D.scores[a.id][d]})).sort((x,y)=>y.s-x.s).slice(0,3);
+  return `
+  <div class="stamp">情报截至 <b>${D.meta.dataUpdatedAt}</b> · 收录智能体 ${D.agents.length} 个 · 已核实事件 ${D.events.length} 条</div>
+  ${D.benchmarks ? `<h2>🏆 ${D.benchmarks.sourceName} · 产品排行（本站榜单默认排序依据）</h2>
+  <div class="card"><table style="margin:0">${D.benchmarks.models.slice(0,5).map((m,i)=>{const a=byId(m.agent);return `<tr><td class="rank ${i<3?'top':''}">${i<3?MEDAL[i]:i+1}</td>
+  <td><a onclick="go('rank')" style="cursor:pointer;color:var(--text)"><b>${a?a.name:m.agent}</b></a> <span class="ev-sum">${m.model} · Coding Elo ${m.coding}</span></td>
+  <td class="score-num" style="text-align:right">${m.elo}</td></tr>`;}).join("")}</table>
+  <div class="ev-sum" style="margin-top:8px">本表行序 = Arena+ 页面默认顺序，完整 12 席与七维评分在榜单页 · <a href="${D.benchmarks.source}" target="_blank" rel="noopener">打开源榜 ↗</a> · <a onclick="go('rank')" style="cursor:pointer">查看完整榜单 →</a> · <a onclick="go('arena')" style="cursor:pointer">全量 ${D.arena?D.arena.rows.length:0} 模型快照 →</a></div></div>` : ''}
+  <h2>按场景选</h2>
+  <div class="grid g3">${[
+    ["💻","写代码 / 编程","编码榜：模型 Coding Elo 换算",  "coding"],
+    ["🤖","自主执行任务","Agent 能力：长任务完成度",       "agent"],
+    ["📋","办公 / 文档处理","写作、表格、PPT 辅助",         "office"],
+    ["🎨","生图 / 音视频","多模态创作能力",                 "multimodal"],
+    ["💰","预算有限看性价比","$20/¥50 档谁最值",            "value"],
+    ["","不想折腾网络","国内直连可达性榜",                "access"]
+  ].map(([ic,t,d,k])=>`<div class="card scene" onclick="curDim='${k}';sortDesc=true;go('rank')">
+    <b>${ic} ${t}</b><div class="ev-sum" style="margin-top:4px">${d} →</div></div>`).join("")}</div>
+  <div class="note" style="margin-top:2px">拿不准？<a onclick="go('pick')" style="cursor:pointer">回答 3 个问题，帮你选 →</a></div>
+  <h2>社区人气榜</h2>${popBoardHTML()}
+  ${D.weekly && D.weekly.length ? `<h2>本周情报简报 · ${D.weekly[0].date}</h2>
+  <div class="card"><ul class="clean">${D.weekly[0].items.map(i=>`<li>${i}</li>`).join("")}</ul>
+  <div class="ev-sum" style="margin-top:8px">每周五自动核实更新 · <a onclick="go('timeline')" style="cursor:pointer">查看历史简报 →</a></div></div>` : ''}
+  <h2>今日情报 · 最新事件</h2>
+  <div class="grid g3">${evs.map(evCard).join("")}</div>
+  <h2>三大榜首速览</h2>
+  <div class="grid g3">
+    ${rankSnapshot("编码最强","coding",top("coding"))}
+    ${rankSnapshot("自主执行最强","agent",top("agent"))}
+    ${rankSnapshot("性价比最高","value",top("value"))}
+  </div>
+  <h2>大家在比什么</h2>
+  <div class="hotcmp">${D.popularComparisons.map(p=>
+    `<button onclick="quickCmp('${p[0]}','${p[1]}')">${byId(p[0]).name} vs ${byId(p[1]).name}</button>`).join("")}</div>
+  <h2>价格快照（入门付费档）</h2>
+  <div class="grid g3">${D.agents.map(a=>`
+    <div class="card" style="display:flex;justify-content:space-between;align-items:center">
+      <div><b>${a.name}</b><div class="ev-sum">${a.billing||D.billing[a.id]}</div></div>
+      <div class="price" style="text-align:right">${a.plans[1]?.price||"免费"}</div>
+    </div>`).join("")}</div>
+  <button class="btn" style="margin-top:10px" onclick="go('price')">完整价格情报 →</button>
+  <div class="note">${D.scoreMethod}</div>`;
+}
+function evCard(e){
+  return `<div class="card"><div class="ev-date">${e.date}<span class="ev-tag">${e.tag}</span></div>
+  <div class="ev-title">${e.title}</div><div class="ev-sum">${e.summary}</div>
+  <div class="ev-sum" style="margin-top:6px">${e.agents.map(id=>`<span class="pill">${byId(id).name}</span>`).join("")}
+  <a href="${e.source}" target="_blank" style="font-size:12px">来源 ↗</a></div></div>`;
+}
+function rankSnapshot(title,dim,list){
+  return `<div class="card"><b style="color:var(--gold)">${title}</b>
+  <table style="margin-top:8px">${list.map((x,i)=>`<tr><td class="rank ${i===0?'top':''}">${i+1}</td>
+  <td><a onclick="openAgent('${x.a.id}')" style="cursor:pointer">${x.a.name}</a></td>
+  <td class="score-num" style="text-align:right">${x.s.toFixed(1)}</td></tr>`).join("")}</table>
+  <button class="btn ghost" style="margin-top:8px;width:100%" onclick="go('rank')">查看完整榜单</button></div>`;
+}
+
+/* ---------- 帮我选（三问 quiz） ---------- */
+const USE = {coding:["💻 写代码/编程", "coding"], agent:["🤖 自主执行任务（Agent）", "agent"], office:["📋 办公问答/文档处理", "office"], multimodal:["🎨 生图/视频/语音", "multimodal"], research:["🔍 搜索研究/查资料溯源", "context"]};
+const BUD = {free:["不想花钱，免费档就行", 0], low:["每月 ≤ ¥50", 50], mid:["每月 ≤ ¥150（$20 档）", 150], any:["预算不限，好用就行", Infinity]};
+const ACC = {cn:["必须国内直连、人民币支付", 1], any:["网络环境/海外支付都能搞定", 0]};
+let pzStep = 0, pzAns = {use:"coding", budget:"mid", access:"any"};
+const priceCNY = s => {
+  const usd = /\$|usd/i.test(s), cny = /¥|元|cny|rmb/i.test(s);
+  if (!usd && !cny) return Infinity; // 纯文字价（"低价档/见 App"）无法量化
+  const m = s.match(/(\d+(?:[.,]\d+)?)/); if (!m) return Infinity;
+  const v = parseFloat(m[1].replace(",", "."));
+  return usd ? v * 7.1 : v;
+};
+const minPaid = a => Math.min(...a.plans.filter(p => !/免费|\$0\b|¥0\b|^0/.test(p.price)).map(p => priceCNY(p.price)), Infinity);
+const hasFree = a => a.plans.some(p => /免费|\$0\b|¥0\b|零/.test(p.price));
+function pickSet(k, v){ pzAns[k] = v; }
+function pickNext(){ pzStep++; render(); }
+function pickBack(){ pzStep = Math.max(0, pzStep - 1); render(); }
+function pickRestart(){ pzStep = 0; render(); }
+function recommend(){
+  const dim = USE[pzAns.use][1], cap = BUD[pzAns.budget][1];
+  let pool = D.agents.filter(a => {
+    if (pzAns.access === "cn" && !a.region.startsWith("国内")) return false;
+    if (pzAns.budget === "free") return hasFree(a);
+    return minPaid(a) <= cap;
+  });
+  if (!pool.length) pool = D.agents.filter(a => pzAns.access !== "cn" || a.region.startsWith("国内"));
+  const scored = pool.map(a => {
+    const s = D.scores[a.id];
+    return {a, r: 0.65*s[dim] + 0.2*s.value + 0.15*s.access};
+  }).sort((x, y) => y.r - x.r);
+  return scored.slice(0, 3);
+}
+function viewPick(){
+  const Q = [["use","第一问 · 你主要拿它干什么？",USE],["budget","第二问 · 每月预算多少？",BUD],["access","第三问 · 国内使用条件？",ACC]];
+  if (pzStep < 3){
+    const [k, title, opts] = Q[pzStep];
+    return `<h2>帮我选 · 三问定推荐</h2>
+    <div class="card"><b style="color:var(--gold)">${title}</b>
+    <div style="display:grid;gap:8px;margin-top:12px">${Object.entries(opts).map(([v,[label]])=>
+      `<button class="btn ${pzAns[k]===v?'':'ghost'}" style="${pzAns[k]===v?'border-color:var(--gold)':''};text-align:left" onclick="pickSet('${k}','${v}')">${label}</button>`).join("")}</div>
+    <div style="margin-top:14px;display:flex;gap:8px">${pzStep?`<button class="btn ghost" onclick="pickBack()">← 上一问</button>`:""}<button class="btn" onclick="pickNext()">${pzStep===2?"看推荐 →":"下一问 →"}</button></div>
+    <div class="ev-sum" style="margin-top:10px">${"●".repeat(pzStep+1)}${"○".repeat(2-pzStep)} 推荐基于编辑部 7 维评分 + 已核实价格，不掺杂任何推广。</div></div>`;
+  }
+  const res = recommend();
+  return `<h2>你的推荐 · ${USE[pzAns.use][0]} / ${BUD[pzAns.budget][0]} / ${ACC[pzAns.access][0]}</h2>
+  ${res.map((x,i)=>`<div class="card" style="margin-bottom:10px">
+    <b style="font-size:16px">${i===0?"🏆 ":" "}${x.a.name}</b><span class="region ${x.a.region.startsWith('国内')?'国内':'海外'}">${x.a.region}</span>
+    <div class="ev-sum">${x.a.vendor} · ${x.a.tagline}</div>
+    <div style="margin-top:8px;font-size:13px">理由：${USE[pzAns.use][1]&&D.dimensions[USE[pzAns.use][1]]}评分 <b class="score-num">${D.scores[x.a.id][USE[pzAns.use][1]].toFixed(1)}</b>/10，性价比 ${D.scores[x.a.id].value.toFixed(1)}，国内可达性 ${D.scores[x.a.id].access.toFixed(1)}；入门付费档 <b>${x.a.plans[1]?.price||"免费"}</b>（${x.a.billing||D.billing[x.a.id]}），使用门槛 ${x.a.access.difficulty}/5。</div>
+    <div style="margin-top:10px;display:flex;gap:8px"><button class="btn ghost" onclick="openAgent('${x.a.id}')">看档案</button>
+    ${i>0?`<button class="btn ghost" onclick="quickCmp('${res[0].a.id}','${x.a.id}')">和首选比一比</button>`:""}</div></div>`).join("")}
+  <div style="display:flex;gap:8px;margin-top:6px"><button class="btn" onclick="pickRestart()">重新回答</button>
+  <button class="btn ghost" onclick="go('rank')">看完整榜单</button></div>
+  <div class="note">推荐是编辑部的启发式（用途维度 65% + 性价比 20% + 可达性 15%），不构成唯一答案；重度的选择请看 <a onclick="go('compare')" style="cursor:pointer">对比页</a> 逐项核对。</div>`;
+}
+
+/* ---------- 榜单 ---------- */
+let rankQuery = "";
+let sortDesc = true;
+const MEDAL = ["🥇","🥈","🥉"];
+function setSort(k){ if(curDim===k){ sortDesc=!sortDesc; } else { curDim=k; sortDesc=true; } render(); }
+window.setSort = setSort;
+function viewRank(){
+  const isElo = curDim === "elo";
+  const avg = a => Object.values(D.scores[a.id]).reduce((x,y)=>x+y,0)/7;
+  const full = [...D.agents].map(a=>{const m=benchOf(a.id);return {a, s: isElo ? (m?m.elo:-1) : D.scores[a.id][curDim], elo: m?m.elo:null, bi: isElo?benchIdx(a.id):-1};});
+  if(isElo){
+    // 名次 = 基准表收录顺序（即 Arena+ 页面默认顺序）；未收录者沉底，组内按七维均分排
+    full.sort((x,y)=> (x.bi<0?1e9:x.bi)-(y.bi<0?1e9:y.bi) || avg(y.a)-avg(x.a));
+  } else {
+    full.sort((x,y)=> sortDesc ? y.s-x.s : x.s-y.s);
+  }
+  const rankOf = {}; full.forEach((x,i)=> rankOf[x.a.id]=i);
+  const hist = (!isElo && D.rankHistory && D.rankHistory.length>1) ? D.rankHistory[1].snapshot[curDim] : null;
+  const prevDate = (D.rankHistory && D.rankHistory.length>1) ? D.rankHistory[1].date : null;
+  const badge = id => {
+    if(isElo) return benchOf(id) ? '<span class="delta flat">基准</span>' : '<span class="delta new">编辑分</span>';
+    if(!hist) return D.rankHistory && D.rankHistory.length ? '<span class="delta new">首期</span>' : '';
+    const hp = hist.indexOf(id);
+    if(hp < 0) return '<span class="delta new">新上榜</span>'; // 上期快照未收录
+    const dp = hp - rankOf[id];
+    if(dp>0) return `<span class="delta up">▲${dp}</span>`;
+    if(dp<0) return `<span class="delta down">▼${-dp}</span>`;
+    return '<span class="delta flat">—</span>';
+  };
+  const q = rankQuery.trim().toLowerCase();
+  const rows = full.filter(x=> !q || (x.a.name+x.a.vendor+x.a.models.join("")+x.a.tagline).toLowerCase().includes(q));
+  const arrow = k => curDim===k ? (sortDesc?" ▾":" ▴") : " ↕";
+  const stamp = isElo
+    ? `默认顺序 = ${D.benchmarks?D.benchmarks.sourceName+' 页面默认行序（按旗舰模型上榜名次）':'编辑部评分'} · 未收录于基准榜的产品沉底按编辑分排 · 数据截至 <b>${D.meta.dataUpdatedAt}</b> · 点列头/页签切换排序`
+    : `编码列按 ${D.benchmarks ? D.benchmarks.sourceName + ' 基准换算（下表可查）' : '编辑部评分'} · 其余为编辑部评分 · 数据截至 <b>${D.meta.dataUpdatedAt}</b> · 点击列头排序${hist?` · 变动对比上期 ${prevDate}`:' · 变动列为首期基线'}`;
+  return `<div class="stamp">${stamp}</div>
+  <input class="search ranksearch" placeholder="🔍 筛选：名称 / 厂商 / 模型…（如 claude、字节）" value="${rankQuery}"
+    oninput="rankQuery=this.value;render();document.querySelector('.ranksearch').focus()" />
+  <div class="dimtabs">${D.benchmarks?`<button class="${isElo?'on':''}" onclick="setSort('elo')">综合基准</button>`:''}${Object.entries(D.dimensions).map(([k,n])=>
+    `<button class="${k===curDim?'on':''}" onclick="setSort('${k}')">${n}</button>`).join("")}</div>
+  ${isElo?benchTableHTML():""}
+  <div class="card deskon" style="padding:0;overflow:auto"><table class="matrix">
+  <tr><th class="rank">#</th><th style="min-width:150px">智能体</th><th>厂商</th>
+  ${D.benchmarks?`<th class="sortable" onclick="setSort('elo')" title="按基准榜页面默认行序排序">Arena Elo<span class="arr">${arrow('elo')}</span></th>`:''}
+  ${Object.entries(D.dimensions).map(([k,n])=>`<th class="sortable dimcell${curDim===k?' act':''}" onclick="setSort('${k}')" title="按${n}排序">${n}<span class="arr">${arrow(k)}</span></th>`).join("")}
+  <th>变动</th><th>人气</th><th></th></tr>
+  ${rows.map((x,i)=>{const r=rankOf[x.a.id];const sep = isElo && x.elo==null && rows[i-1] && rows[i-1].elo!=null;return `${sep?`<tr><td colspan="14" style="background:#12141c;color:var(--muted);font-size:12px;padding:6px 10px">↓ 以下未以自研模型收录于基准榜，按编辑部评分排列</td></tr>`:''}<tr><td class="rank ${r<3?'top':''}">${r<3?MEDAL[r]:r+1}</td>
+    <td><b>${x.a.name}</b><span class="region ${x.a.region.startsWith('国内')?'国内':'海外'}">${x.a.region}</span><div class="ev-sum">${x.a.tagline}</div></td>
+    <td class="ev-sum">${x.a.vendor}</td>
+    ${D.benchmarks?`<td class="s">${x.elo??'<span class=ev-sum>—</span>'}</td>`:''}
+    ${Object.keys(D.dimensions).map(k=>{const s=D.scores[x.a.id][k];return `<td class="s dimcell${curDim===k?' act':''}">${s.toFixed(1)}</td>`;}).join("")}
+    <td>${badge(x.a.id)}${staleTag(x.a)}</td>
+    <td class="vote-td">${voteCell(x.a.id, isElo?"overall":curDim)}</td>
+    <td><button class="btn ghost" onclick="openAgent('${x.a.id}')">档案</button></td></tr>`;}).join("")}
+  ${rows.length?'':'<tr><td colspan="14" style="text-align:center;color:var(--muted)">没有匹配的智能体</td></tr>'}
+  </table></div>
+  <div class="mobrank">${rows.map((x,i)=>{const r=rankOf[x.a.id];return `
+  <div class="mobcard"><div class="top-row">
+    <span class="rank ${r<3?'top':''}" style="min-width:26px">${r<3?MEDAL[r]:r+1}</span>
+    <b>${x.a.name}</b><span class="region ${x.a.region.startsWith('国内')?'国内':'海外'}">${x.a.region}</span>
+    <span style="margin-left:auto;text-align:right"><span class="score-num" style="color:var(--gold);font-weight:800">${isElo?(x.elo??'—'):D.scores[x.a.id][curDim].toFixed(1)}</span>
+    <div class="ev-sum">${isElo?'Arena Elo':D.dimensions[curDim]}</div></span>
+  </div>
+  <div class="ev-sum" style="margin-top:4px">${x.a.tagline}</div>
+  <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center">
+    ${voteCell(x.a.id, isElo?"overall":curDim)}
+    <span>${badge(x.a.id)}${staleTag(x.a)} <button class="btn ghost" onclick="openAgent('${x.a.id}')">档案</button></span>
+  </div></div>`;}).join("")}
+  ${rows.length?'':'<div class="note">没有匹配的智能体</div>'}</div>
+  ${isElo?"":benchTableHTML()}
+  <div class="note">${VOTES.offline
+    ? '⚠ 投票服务暂不可达，当前为本地模式：票数只记在你这台设备上。'
+    : `🗳 人气投票按当前排序维度（${D.dimensions[curDim]}）计票，每人每智能体每维度一票；编辑部榜单不受投票影响。`}</div>`;
+}
+
+/* ---------- 模型基准（OpenLM Arena+） ---------- */
+const benchOf = id => (D.benchmarks && D.benchmarks.models || []).find(m => m.agent === id);
+/* 基准表 models 数组顺序 = Arena+ 页面默认显示顺序（页面按内部精确分排，显示值舍入后可能不严格递减，故按名次排而非 Elo 数值排） */
+const benchIdx = id => ((D.benchmarks && D.benchmarks.models) || []).findIndex(m => m.agent === id);
+function benchLine(id){
+  if(!D.benchmarks) return "";
+  const m = benchOf(id);
+  return m
+    ? `<div class="ev-sum" style="margin-top:6px">📐 ${m.model} @ ${D.benchmarks.sourceName}：Arena Elo <b>${m.elo}</b> · Coding Elo <b>${m.coding}</b> · AAII <b>${m.aaii}</b>（编码分由此换算）· <a href="${D.benchmarks.source}" target="_blank" rel="noopener">来源↗</a></div>`
+    : `<div class="ev-sum" style="margin-top:6px">📐 编码分为编辑部评分：该产品未以自研模型收录于 ${D.benchmarks.sourceName}。</div>`;
+}
+function benchTableHTML(){
+  if(!D.benchmarks) return "";
+  const B = D.benchmarks;
+  return `<h2 style="margin-top:22px">🏆 ${B.sourceName} · 产品排行（上方榜单默认顺序 = 本表行序）</h2>
+  <div class="stamp">源榜：<a href="${B.source}" target="_blank" rel="noopener">openlm.ai/chatbot-arena ↗</a> · <a onclick="go('arena')" style="cursor:pointer">本榜全量快照（${D.arena?D.arena.rows.length:0} 行）→</a> · 核实于 ${B.verifiedAt} · 榜单"编码"维度 = (Coding Elo − 1300) ÷ 28.2 换算</div>
+  <div class="card" style="padding:0;overflow:auto"><table class="matrix">
+  <tr><th>产品</th><th>已上榜旗舰模型</th><th>Arena Elo</th><th>Coding Elo</th><th>AAII</th></tr>
+  ${B.models.map(m=>{const a=byId(m.agent);return `<tr><td><a onclick="openAgent('${m.agent}')" style="cursor:pointer;color:var(--fg)"><b>${a?a.name:m.agent}</b></a></td>
+  <td>${m.model}</td><td>${m.elo}</td><td><b>${m.coding}</b></td><td>${m.aaii}</td></tr>`;}).join("")}
+  </table></div>
+  <div class="note">未列入：Cursor / Copilot / Trae / Devin / Manus / 扣子 / Perplexity / Poe / 腾讯元器（组装型或平台型产品，无自研上榜模型）、讯飞星火（该榜未收录）——其编码分保留编辑部口径。</div>`;
+}
+
+/* ---------- 基准榜（Arena+ 全量快照，行序=源页面） ---------- */
+let arenaQuery = "";
+function viewArena(){
+  const A = D.arena;
+  if(!A || !A.rows || !A.rows.length) return `<div class="note">基准榜快照数据尚未加载。</div>`;
+  const model2agent = {}; ((D.benchmarks&&D.benchmarks.models)||[]).forEach(m=>{ model2agent[m.model]=m.agent; });
+  const q = arenaQuery.trim().toLowerCase();
+  const idx = A.rows.map((_,i)=>i).filter(i=> !q || A.rows[i][0].toLowerCase().includes(q) || A.rows[i][7].toLowerCase().includes(q));
+  return `<div class="stamp">${A.sourceName} 全量模型榜快照 · 共 ${A.rows.length} 行 · 抓取于 ${A.fetchedAt}（行序 = 源页面默认顺序，未重排）· 源榜：<a href="${A.source}" target="_blank" rel="noopener">openlm.ai/chatbot-arena ↗</a></div>
+  <input class="search arenasearch" placeholder="🔍 筛选：模型 / 机构…（如 claude、Moonshot）" value="${arenaQuery}"
+    oninput="arenaQuery=this.value;render();document.querySelector('.arenasearch').focus()" />
+  <div class="card" style="padding:0;overflow:auto"><table class="matrix">
+  <tr><th class="rank">#</th>${A.cols.map(c=>`<th${c==="Model"?' style="min-width:170px"':''}>${c}</th>`).join("")}<th></th></tr>
+  ${idx.map(i=>{const r=A.rows[i];const ag=model2agent[r[0]];return `<tr><td class="rank ${i<3?'top':''}">${i+1}</td>
+    <td><b>${r[0]}</b></td>${r.slice(1,7).map(v=>`<td class="s">${v||'<span class="ev-sum">—</span>'}</td>`).join("")}
+    <td class="ev-sum">${r[7]}</td><td class="ev-sum">${r[8]}</td>
+    <td>${ag?`<button class="btn ghost" onclick="openAgent('${ag}')">档案</button>`:''}</td></tr>`;}).join("")}
+  ${idx.length?'':'<tr><td colspan="11" style="text-align:center;color:var(--muted)">没有匹配的模型</td></tr>'}
+  </table></div>
+  <div class="note">"—" 表示源页面该行该列无数据（多为榜尾旧视觉模型）。本站榜单页的默认顺序与"编码"维度分即取自本表（每产品取旗舰模型一行；编码分 = (Coding Elo − 1300) ÷ 28.2）。</div>`;
+}
+
+/* 适合谁/不适合谁：由七维编辑分自动推导（前二/后二），非手工文案 */
+const DIMUSE = {coding:"重度写码", agent:"自主执行/长任务", office:"办公文档与写作", multimodal:"生图/音视频创作", context:"长文精读与研究", value:"预算有限、看重价格", access:"免翻墙国内直连"};
+function suitHTML(id){
+  const ent = Object.entries(D.scores[id]).sort((x,y)=>y[1]-x[1]);
+  const top = ent.slice(0,2), bot = ent.slice(-2);
+  const bad = bot.filter(([,v])=>v<7.5);
+  return `<div class="ev-sum">✅ 适合：${top.map(([k,v])=>`${DIMUSE[k]}（${v.toFixed(1)} 分）`).join("、")}</div>
+  <div class="ev-sum">⚠️ 不适合：${bad.length?bad.map(([k,v])=>`${DIMUSE[k]}（${v.toFixed(1)} 分）`).join("、"):"短板不明显（按编辑部口径）"}</div>`;
+}
+
+/* 超 14 天未核实黄标：以档案 verifiedAt 距今天数计 */
+const staleDays = a => Math.floor((Date.now() - new Date(a.verifiedAt + "T00:00:00").getTime()) / 864e5);
+const staleTag = a => staleDays(a) > 14 ? `<span class="delta new" style="color:#e6b45a" title="该档案超过 14 天未复核，价格可能已变动">⚠️ ${staleDays(a)} 天未核实</span>` : "";
+
+/* 社区人气榜：汇总各维度票数取前 5 */
+function popBoardHTML(){
+  const t = {}; for(const k in VOTES.counts){ const id = k.split("|")[0]; t[id] = (t[id]||0) + VOTES.counts[k]; }
+  const list = Object.entries(t).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  if(!list.length) return `<div class="note">人气投票刚上线，票数还在冷启动——看到合适的智能体，去<a onclick="go('rank')" style="cursor:pointer">榜单页</a>投一票。</div>`;
+  return `<div class="card" style="padding:0;overflow:auto"><table class="matrix"><tr><th class="rank">#</th><th>智能体</th><th>社区票（全维度合计）</th><th></th></tr>
+  ${list.map(([id,n],i)=>{const a=byId(id);return `<tr><td class="rank ${i<3?'top':''}">${i<3?MEDAL[i]:i+1}</td><td><b>${a.name}</b><div class="ev-sum">${a.tagline}</div></td><td class="s">👍 ${n}</td><td><button class="btn ghost" onclick="openAgent('${id}')">档案</button></td></tr>`;}).join("")}</table></div>`;
+}
+
+/* ---------- 社区人气投票 ---------- */
+const VKEY = "agent-intel-voter";
+const VLOCAL = "agent-intel-votes-local";
+let VOTES = { counts:{}, mine:[], offline:false, loaded:false, pending:{} };
+function voterId(){
+  let v = localStorage.getItem(VKEY);
+  if(!v || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v)){
+    v = (crypto.randomUUID ? crypto.randomUUID() : "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+      .replace(/[xy]/g, c => { const r = Math.random()*16|0; return (c==="x"?r:(r&3|8)).toString(16); }));
+    localStorage.setItem(VKEY, v);
+  }
+  return v;
+}
+function localMine(){ try{ const s=JSON.parse(localStorage.getItem(VLOCAL)||"[]"); return Array.isArray(s)?s:[]; }catch{ return []; } }
+function applyTally(j){ VOTES.counts=j.counts||{}; if(Array.isArray(j.mine)) VOTES.mine=j.mine; VOTES.offline=false; VOTES.loaded=true; }
+function applyLocalMine(){ VOTES.mine=localMine(); VOTES.counts={}; VOTES.mine.forEach(k=>{ VOTES.counts[k]=(VOTES.counts[k]||0)+1; }); VOTES.offline=true; VOTES.loaded=true; }
+async function loadVotes(){
+  try{
+    const r = await fetch(`/functions/v1/app?action=tally&voter=${voterId()}`, {credentials:"same-origin"});
+    if(!r.ok) throw 0;
+    const j = await r.json();
+    if(!j || j.ok!==true || typeof j.counts!=="object") throw 0;
+    applyTally(j);
+  }catch{ applyLocalMine(); }
+  if(cur==="rank") render();
+}
+function voteCell(id, dim){
+  const key = id+"|"+dim;
+  const n = VOTES.counts[key]||0;
+  const did = VOTES.mine.includes(key) || VOTES.offline && localMine().includes(key);
+  const dis = VOTES.pending[key] ? " disabled" : "";
+  return `<button class="votebtn${did?' did':''}"${dis} onclick="castVote('${id}','${dim}')" title="为${D.dimensions[dim]||'综合'}维度投票">👍 ${n}</button>`;
+}
+async function castVote(id, dim){
+  dim = dim || "overall";
+  const key = id+"|"+dim;
+  if(VOTES.pending[key]) return;
+  VOTES.pending[key] = true; render();
+  if(VOTES.offline){
+    const m = localMine();
+    if(!m.includes(key)){ m.push(key); localStorage.setItem(VLOCAL, JSON.stringify(m)); }
+    applyLocalMine(); delete VOTES.pending[key]; render(); return;
+  }
+  try{
+    const r = await fetch("/functions/v1/app?action=vote", {
+      method:"POST", credentials:"same-origin",
+      headers:{"content-type":"application/json"},
+      body: JSON.stringify({agent:id, dim, voter:voterId()}),
+    });
+    const j = await r.json();
+    if(!j || j.ok!==true || typeof j.counts!=="object") throw 0;
+    applyTally(j);
+  }catch{
+    // 结果未知：不重放写入，只刷新统计对账
+    VOTES.offline = true;
+    await loadVotes();
+  }
+  delete VOTES.pending[key]; render();
+}
+window.castVote = castVote;
+
+function chip(a){
+  return Object.entries(D.dimensions).map(([k,n])=>{
+    const s = D.scores[a.id][k];
+    return `<tr><td>${n}</td><td><div class="bar"><i style="width:${s*10}%"></i></div> ${s.toFixed(1)}</td></tr>`;
+  }).join("");
+}
+
+/* ---------- 对比 ---------- */
+function viewCompare(){
+  const sel = [...cmpSel].map(byId).filter(Boolean);
+  return `<div class="stamp">勾选 2-3 个智能体进行横向对比（选择会自动保存）</div>
+  <div class="cmp-pick">${D.agents.map(a=>
+    `<label><input type="checkbox" ${cmpSel.has(a.id)?'checked':''} onchange="toggleCmp('${a.id}')"><span>${a.name}</span></label>`).join("")}</div>
+  ${sel.length<2 ? '<div class="note">至少选择 2 个。</div>' :
+  `<div class="card" style="padding:0;overflow:auto"><table>
+    <tr><th style="min-width:110px"></th>${sel.map(a=>`<th><b style="color:var(--text);font-size:15px">${a.name}</b><div class="ev-sum">${a.vendor}</div></th>`).join("")}</tr>
+    <tr><td>定位</td>${sel.map(a=>`<td class="ev-sum">${a.tagline}</td>`).join("")}</tr>
+    <tr><td>最新模型</td>${sel.map(a=>`<td>${a.models.join("、")}</td>`).join("")}</tr>
+    <tr><td>入门付费</td>${sel.map(a=>`<td class="price">${a.plans[1]?.price||"—"}</td>`).join("")}</tr>
+    <tr><td>最高档</td>${sel.map(a=>`<td class="price">${a.plans[a.plans.length-1].price}</td>`).join("")}</tr>
+    <tr><td>免费档</td>${sel.map(a=>`<td class="ev-sum">${a.plans[0].note}</td>`).join("")}</tr>
+    <tr><td>国内可达性</td>${sel.map(a=>`<td>${'★'.repeat(Math.round(a.access.difficulty/1.25))||'★'} <span class="ev-sum">${a.access.difficulty<=2?'直连可用':'需网络环境+海外支付'}</span></td>`).join("")}</tr>
+    <tr><td>优势</td>${sel.map(a=>`<td><ul class="clean good">${a.strengths.slice(0,2).map(x=>`<li>${x}</li>`).join("")}</ul></td>`).join("")}</tr>
+    <tr><td>短板</td>${sel.map(a=>`<td><ul class="clean bad">${a.weaknesses.slice(0,2).map(x=>`<li>${x}</li>`).join("")}</ul></td>`).join("")}</tr>
+    ${Object.entries(D.dimensions).map(([k,n])=>`<tr><td>${n}评分</td>${sel.map(a=>`<td class="score-num">${D.scores[a.id][k].toFixed(1)}</td>`).join("")}</tr>`).join("")}
+  </table></div>`}`;
+}
+function toggleCmp(id){
+  cmpSel.has(id) ? cmpSel.delete(id) : (cmpSel.size<3 ? cmpSel.add(id) : alert("V1 最多同时对比 3 个"));
+  localStorage.setItem("cmp", JSON.stringify([...cmpSel]));
+  render();
+}
+function quickCmp(a,b){ location.hash = "cmp-"+a+"-"+b; }
+
+/* ---------- 档案 ---------- */
+function viewProfiles(){
+  const qs = pQuery.trim().toLowerCase();
+  const list = D.agents.filter(a=>!qs || (a.name+a.vendor+a.tagline+a.models.join("")).toLowerCase().includes(qs));
+  return `<div class="stamp">点击卡片查看完整档案与来源；价格核实截至 ${D.meta.dataUpdatedAt}</div>
+  <input class="search" placeholder="搜索：名称 / 厂商 / 模型 / 定位…（如 claude、字节、Fable）" value="${pQuery}"
+    oninput="pQuery=this.value;render();document.querySelector('.search').focus()" />
+  ${list.length? `<div class="grid g3">${list.map(a=>`
+    <div class="card agentcard" onclick="openAgent('${a.id}')">
+      <h3>${a.name}<span class="region ${a.region.startsWith('国内')?'国内':'海外'}">${a.region}</span></h3>
+      <div class="ev-sum">${a.vendor} · ${a.tagline}</div>
+      <div style="margin-top:8px">${a.models.map(m=>`<span class="pill">${m}</span>`).join("")}</div>
+      <div style="margin-top:10px" class="price">入门 ${a.plans[1]?.price||"免费"}</div>
+    </div>`).join("")}</div>` : '<div class="note">没有匹配的智能体。</div>'}`;
+}
+
+/* ---------- 价格情报 ---------- */
+function viewPrice(){
+  return `<div class="stamp">订阅矩阵 + API 已核实价格点 + 充值行情 · 截至 ${D.meta.dataUpdatedAt}</div>
+  <h2>订阅价格矩阵（${D.agents.length} 个智能体）</h2>
+  <div class="card" style="padding:0;overflow:auto"><table>
+  <tr><th>智能体</th><th>计费模式</th><th>免费档说明</th><th>入门付费</th><th>中间档</th><th>最高档</th><th>国内门槛</th></tr>
+  ${D.agents.map(a=>{const p=a.plans;const mid=p.length>3?p.slice(1,p.length-1).map(x=>`${x.name} ${x.price}`).join("<br>"):(p[1]?`${p[1].name} ${p[1].price}`:"—");
+  return `<tr><td><b>${a.name}</b><div class="ev-sum"><span class="region ${a.region.startsWith('国内')?'国内':'海外'}">${a.region}</span></div></td>
+  <td>${D.billing[a.id]||"—"}</td><td class="ev-sum">${p[0].note}</td>
+  <td class="price">${p[1]?.price||"无付费档"}</td><td style="font-size:12.5px">${mid}</td>
+  <td class="price">${p[p.length-1].price}</td><td>${a.access.difficulty<=2?'<span style="color:var(--down)">直连</span>':'<span style="color:var(--up)">需海外支付</span>'}</td></tr>`}).join("")}
+  </table></div>
+  <h2>API 已核实价格点（每百万 tokens）</h2>
+  <div class="card" style="padding:0;overflow:auto"><table>
+  <tr><th>厂商</th><th>模型/口径</th><th>输入</th><th>输出</th><th></th></tr>
+  ${D.apiPrices.map(r=>`<tr><td>${r.vendor}</td><td><b>${r.model}</b></td><td>${r.input}</td><td>${r.output}</td>
+  <td><a href="${r.source}" target="_blank" style="font-size:12px">来源↗</a></td></tr>`).join("")}
+  </table></div>
+  <div class="note">${D.apiNote}</div>
+  <h2>充值 / 支付行情</h2>
+  ${D.paymentNotes.map(n=>`<div class="card" style="margin-bottom:10px"><b>${n.title}</b><div class="ev-sum" style="margin-top:4px">${n.detail}</div></div>`).join("")}
+  <h2>近期价格变动</h2>
+  ${EVENTS.filter(e=>e.tag==="定价").map(evCard).join("")}`;
+}
+
+/* ---------- 问答 ---------- */
+function viewQA(){
+  const voted = JSON.parse(localStorage.getItem("qaVotes")||"{}");
+  return `<div class="stamp">编辑部精选问答（V2 开放社区提问）· 点"有用"投票暂存于你的浏览器</div>
+  ${D.qa.map((x,i)=>{const v=x.votes+(voted[i]?1:0);
+  return `<div class="card" style="margin-bottom:12px">
+    <div>${x.tags.map(t=>`<span class="ev-tag">${t}</span>`).join("")}</div>
+    <div class="ev-title" style="font-size:15px">Q：${x.q}</div>
+    <div class="ev-sum" style="margin:6px 0">${x.a}</div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span class="ev-sum" style="font-size:12px">依据：${x.basis}</span>
+      <button class="btn ${voted[i]?'':'ghost'}" style="padding:4px 14px;font-size:13px" onclick="voteQA(${i})">👍 有用 ${v}</button>
+    </div></div>`}).join("")}
+  <div class="note">问题来自社群高频提问的结构化改写；答案基于本站已核实数据，价格变动后可能过期，以档案页核实日期为准。</div>`;
+}
+function voteQA(i){
+  const v=JSON.parse(localStorage.getItem("qaVotes")||"{}");
+  v[i]?delete v[i]:v[i]=1;
+  localStorage.setItem("qaVotes",JSON.stringify(v));
+  render();
+}
+function openAgent(id){
+  const a = byId(id);
+  document.getElementById("modalBox").innerHTML = `
+    <span class="m-close" onclick="closeModal()">✕</span>
+    <h2 style="margin-top:0">${a.name}<span class="region ${a.region.startsWith('国内')?'国内':'海外'}">${a.region}</span></h2>
+    <div class="ev-sum">${a.vendor} · ${a.tagline} · 核实于 ${a.verifiedAt} ${staleTag(a)}</div>
+    <h2>订阅 / 价格</h2><ul class="plans">${a.plans.map(p=>
+      `<li><b>${p.name}</b><span class="price">${p.price}</span><span class="ev-sum">${p.note}</span></li>`).join("")}</ul>
+    ${a.apiNote?`<div class="note">${a.apiNote}</div>`:""}
+    <h2>价格变动史</h2>${priceHistHTML(a.id)}
+    <h2>国内使用门槛</h2><div class="ev-sum">${a.access.need}<br>${a.access.note}</div>
+    <h2>适合谁</h2>${suitHTML(a.id)}
+    <h2>优势</h2><ul class="clean good">${a.strengths.map(x=>`<li>${x}</li>`).join("")}</ul>
+    <h2>短板</h2><ul class="clean bad">${a.weaknesses.map(x=>`<li>${x}</li>`).join("")}</ul>
+    <h2>评分</h2><table>${chip(a)}</table>${benchLine(a.id)}
+    <h2>来源</h2><div class="ev-sum">${a.sources.map((s,i)=>`<a href="${s}" target="_blank" style="display:block;font-size:12px">[${i+1}] ${s}</a>`).join("")}</div>
+    <div class="ev-sum" style="margin-top:8px">档案直达：<a href="#agent-${a.id}" onclick="setTimeout(closeModal,300)">#agent-${a.id}</a>（可复制分享）</div>
+    <div class="note" style="margin-top:10px">🛠 价格/额度有出入？<a href="#" style="color:var(--gold)" onclick="toggleReport('${a.id}');return false">提交纠错</a><span id="reportedTag" style="display:none;color:#7fd18f"> · 你已反馈，每周核实时处理</span></div>
+    <div id="reportBox" style="display:none;margin-top:8px">
+      <textarea id="reportNote" maxlength="500" rows="3" placeholder="例如：Plus 档已涨到 $25/月，见官网定价页…" style="width:100%;box-sizing:border-box;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:8px;font-size:13px"></textarea>
+      <div style="margin-top:6px;display:flex;gap:8px;align-items:center">
+        <button class="btn" onclick="submitReport('${a.id}')">发送反馈</button>
+        <span id="reportMsg" class="ev-sum"></span>
+      </div>
+    </div>
+    <button class="btn" style="margin-top:14px" onclick="quickCmp('${a.id}', [...D.agents.map(x=>x.id)].find(x=>x!=='${a.id}'))">和别的比比 →</button>`;
+  document.getElementById("modalBg").style.display="block";
+  const RLOCAL = "agent-intel-reports";
+  const mine = JSON.parse(localStorage.getItem(RLOCAL) || "[]");
+  if (Array.isArray(mine) && mine.includes(id)) document.getElementById("reportedTag").style.display = "inline";
+}
+function toggleReport(id){
+  const box = document.getElementById("reportBox");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+  if (box.style.display === "block") document.getElementById("reportNote").focus();
+}
+async function submitReport(id){
+  const note = document.getElementById("reportNote").value.trim();
+  const msg = document.getElementById("reportMsg");
+  if (note.length < 2) { msg.textContent = "请至少写几个字"; return; }
+  const saveLocal = () => {
+    const key = "agent-intel-reports";
+    const m = JSON.parse(localStorage.getItem(key) || "[]");
+    if (!m.includes(id)) m.push(id);
+    localStorage.setItem(key, JSON.stringify(m));
+    document.getElementById("reportedTag").style.display = "inline";
+  };
+  try {
+    const r = await fetch("/functions/v1/app?action=report", {
+      method: "POST", credentials: "same-origin",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ agent: id, voter: voterId(), note }),
+    });
+    const j = await r.json();
+    if (!r.ok || !j.ok) throw 0;
+    saveLocal(); msg.textContent = "✅ 已提交，谢谢你";
+  } catch {
+    saveLocal(); msg.textContent = "已记录在本地（离线模式），编辑周报时可见";
+  }
+}
+function priceHistHTML(id){
+  const evs = EVENTS.filter(e => e.agents && e.agents.includes(id) && /定价|额度|政策/.test(e.tag));
+  const ph = (D.priceHistory || {})[id];
+  let spark = "";
+  if (Array.isArray(ph) && ph.length >= 2 && ph.every(p => typeof p.v === "number")) {
+    const unit = ph[0].unit || "";
+    const vs = ph.map(p => p.v), min = Math.min(...vs), max = Math.max(...vs), span = max - min || 1;
+    const pts = vs.map((v, i) => `${(i / (vs.length - 1)) * 150 + 4},${32 - ((v - min) / span) * 26}`).join(" ");
+    spark = `<svg width="158" height="38" style="vertical-align:middle"><polyline points="${pts}" fill="none" stroke="var(--gold)" stroke-width="2"/>
+      <circle cx="${pts.split(" ").pop().split(",")[0]}" cy="${pts.split(" ").pop().split(",")[1]}" r="2.5" fill="var(--gold)"/></svg>
+      <span class="ev-sum"> ${vs[0]}→${vs[vs.length-1]}${unit}（${ph[0].date} 至今 ${ph.length} 个点位）</span><br>`;
+  }
+  if (!evs.length && !spark) return `<div class="ev-sum">暂无定价/额度类事件记录</div>`;
+  return spark + evs.map(e =>
+    `<div style="margin:4px 0"><span class="ev-sum" style="white-space:nowrap">${e.date}</span> <span class="ev-tag">${e.tag}</span> ${e.title}
+     <a href="${e.source}" target="_blank" style="font-size:12px">来源↗</a></div>`).join("") +
+    `<div class="ev-sum" style="margin-top:4px;font-size:11px">自动聚合自大事记（定价/额度/政策类），每周核实时补充价格点位数据。</div>`;
+}
+function closeModal(){ document.getElementById("modalBg").style.display="none"; }
+
+/* ---------- 大事记 ---------- */
+function viewTimeline(){
+  return `<div class="stamp">只收录会改变选型决策的事件：定价、额度、政策、重大产品/公司变动</div>
+  <div class="card" style="padding:0"><table>
+  <tr><th>日期</th><th>类型</th><th>事件</th><th>涉及</th></tr>
+  ${EVENTS.map(e=>`<tr><td style="white-space:nowrap">${e.date}</td><td><span class="ev-tag">${e.tag}</span></td>
+    <td><b>${e.title}</b><div class="ev-sum">${e.summary} <a href="${e.source}" target="_blank" style="font-size:12px">来源↗</a></div></td>
+    <td>${e.agents.map(id=>`<span class="pill" style="cursor:pointer" onclick="openAgent('${id}')">${byId(id).name}</span>`).join("")}</td></tr>`).join("")}
+  </table></div>
+  ${D.weekly && D.weekly.length ? `<h2>每周简报存档</h2>${D.weekly.map(w=>`
+  <div class="card" style="margin-bottom:10px"><b style="color:var(--gold)">${w.date}</b> <span class="ev-tag">${w.note||''}</span>
+  <ul class="clean" style="margin-top:6px">${w.items.map(i=>`<li>${i}</li>`).join("")}</ul></div>`).join("")}` : ''}`;
+}
+
+/* ---------- 渲染 ---------- */
+function render(){
+  renderNav();
+  const app = document.getElementById("app");
+  app.innerHTML = {home:viewHome,rank:viewRank,arena:viewArena,pick:viewPick,compare:viewCompare,price:viewPrice,profiles:viewProfiles,timeline:viewTimeline,qa:viewQA}[cur]();
+}
+try{ const s=JSON.parse(localStorage.getItem("cmp")); if(Array.isArray(s)&&s.length) cmpSel=new Set(s); }catch(e){}
+
+/* 深链路由：#agent-{id} 档案、#cmp-{a}-{b} 对比，其余为页签 */
+function route(){
+  const h = location.hash.slice(1);
+  if(h.startsWith("agent-")){
+    const a = byId(h.slice(6));
+    if(a){ cur="profiles"; setSEO(`${a.name} 价格·评测·档案`, `${a.tagline}。入门 ${a.plans[1]?.price||"免费"}，含订阅档位、国内使用门槛与来源核实。`); render(); openAgent(a.id); return; }
+  }
+  if(h.startsWith("cmp-")){
+    const ids = h.slice(4).split("-").filter(byId);
+    if(ids.length>=2){ cur="compare"; cmpSel=new Set(ids.slice(0,3));
+      const ns = [...cmpSel].map(id=>byId(id).name);
+      setSEO(ns.join(" vs ") + " 对比", `${ns.join(" 与 ")}的价格、额度、能力与国内使用门槛横向对比。`); render(); return; }
+  }
+  cur = TABS.some(t=>t[0]===h) ? h : "home";
+  setSEO(...SEO[cur]);
+  render();
+}
+const SEO = {
+  home:     ["AI 智能体排行·对比·价格情报","决定用哪个智能体之前，先来这查一下。最新定价、榜单与事件，条条有来源。"],
+  rank:     ["智能体榜单 - 编码·执行·性价比·可达性","按场景给主流 AI 智能体排座次的编辑部榜单。"],
+  arena:    ["OpenLM Chatbot Arena+ 全量快照 - 基准榜","322 个模型的 Arena Elo / Coding / Vision / AAII / MMLU-Pro / ARC-AGI 完整排行快照，行序与源页面一致。"],
+  pick:     ["帮我选 - 三问推荐智能体","按用途、预算和国内可达性三个问题，从 23 个已核实档案中给出推荐及理由。"],
+  compare:  ["智能体对比 - 价格·额度·能力横评","任选 2-3 个智能体横向对比订阅价格、免费额度、能力评分与国内使用门槛。"],
+  price:    ["智能体价格情报 - 订阅矩阵·API价格·充值行情","23 个主流智能体的订阅价、API 每百万 token 报价与国内支付/代充行情，全部标注核实日期。"],
+  profiles: ["智能体档案库","每个智能体的档位价格、模型、额度规则、使用门槛与来源链接。"],
+  timeline: ["AI 智能体大事记 - 涨价·政策·发布事件线","只收录会改变选型决策的事件时间线。"],
+  qa:       ["智能体精选问答","\"$20 预算选谁\"\"不翻墙最强组合\"等高频决策问题的数据化回答。"]
+};
+function setSEO(t, d){
+  document.title = t + " · Agent 情报局";
+  document.getElementById("metaDesc").content = d;
+  document.getElementById("ogTitle").content = t;
+  document.getElementById("ogDesc").content = d;
+}
+route();
+window.addEventListener("hashchange", route);
+loadVotes();
+// SEO：运行时注入结构化数据（Google 会执行 JS 抓取）
+try{
+  const ld = {"@context":"https://schema.org","@type":"ItemList","name":"Agent 情报局 · AI 智能体榜单",
+    "itemListElement":D.agents.map((a,i)=>({"@type":"ListItem","position":i+1,"item":{"@type":"SoftwareApplication",
+      "name":a.name,"applicationCategory":"AI 智能体","description":a.tagline,
+      "publisher":{"@type":"Organization","name":a.vendor},"offers":{"@type":"Offer","price":"0","priceCurrency":a.region.startsWith("国内")?"CNY":"USD"}}}))};
+  const sc=document.createElement("script"); sc.type="application/ld+json";
+  sc.textContent=JSON.stringify(ld); document.head.appendChild(sc);
+}catch(e){}
+</script>
+</body>
+</html>

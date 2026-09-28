@@ -969,6 +969,1276 @@ window.AGENTS_DATA = {
     { vendor: "行情", model: "海外模型中转（社区实测）", input: "约为官方价 7%-30%", output: "含稳定性与合规风险", source: "https://blog.fulitimes.com/claude-chatgpt-subscription-vs-relay-pricing-2026/" }
   ],
 
+  /* ---------------- 中转站情报（种子源：awesome-ai-api-proxy；种子区重生成：node dev/gen-relay.cjs [抓取日YYYY-MM-DD]） ---------------- */
+  relay: {
+    policy: "本节是情报目录与风险提示，不是推荐：中转/中继站普遍没有上游模型厂商的书面授权，使用可能违反上游服务条款（封号、数据暴露风险），暴雷无追偿。本站不接中转类联盟链接，收录条目一律标注通道类型与核验状态。",
+    typeLabels: {
+      "official-relay": { label: "官方 key 转发", tone: "ok", note: "宣称转发官方 API key，可信度相对最高（仍以自核为准）" },
+      "mixed": { label: "混合通道", tone: "warn", note: "官方与其他来源混用，稳定性逐家不同" },
+      "reverse": { label: "逆向通道", tone: "bad", note: "由网页客户端逆向而来，最便宜、最不稳定，随时可能失效" },
+      "aggregator": { label: "多上游聚合", tone: "info", note: "在多个上游/线路间路由，价格随上游浮动" },
+      "gateway-oss": { label: "开源网关（自建）", tone: "ok", note: "自己部署，数据与账单完全自控" },
+      "observability": { label: "带日志分析的网关", tone: "info", note: "偏观测/管理用途" },
+      "comparison": { label: "比价/监测工具", tone: "info", note: "不卖额度，只做多站报价墙与价差监测" },
+      "list": { label: "名单/目录", tone: "info", note: "静态收录列表" }
+    },
+    sectionLabels: {
+      china: "中国大陆中转站", global: "海外聚合与网关", selfhost: "自建替代（开源）", tools: "比价与监测工具"
+    },
+    paymentLabels: { alipay: "支付宝", wechat: "微信支付", "enterprise-invoice": "企业发票", stripe: "Stripe", crypto: "加密货币", usdt: "USDT" },
+    guide: [
+      { t: "先看通道类型，再看价格", d: "同一模型逆向通道价可能低于官方一成，但随时可能掉线或被上游封禁；在意稳定性就优先选标 official-relay / aggregator 且核验日期新的条目。" },
+      { t: "只充一两个月用得完的量", d: "中转站运营者多为个人或境外主体，公开注册主体信息缺失（目录中 entity_registered=unknown 即此意）；大额储值站一旦“跑路”没有任何追偿，觉得好用也小额多次充值。" },
+      { t: "找公开价目接口", d: "基于 new-api 框架搭建的中转站通常有公开 /api/pricing，倍率与折扣随时可复核；只有营销截图没有可查价目表的站，信任度打折。" },
+      { t: "防“偷换模型”", d: "宣称 Opus 的线路未必真是 Opus。可用几道固定问题抽测，对照本站基准榜与官方价目做性价比核查，质量明显异常即为换料信号。" },
+      { t: "敏感数据不走中转", d: "中转商位于请求链路上，输入输出对其完全可见；代码、客户资料、公司内部数据不要经未签协议的中转通道传输。" },
+      { t: "企业采购先确认发票与合同", d: "目录中支持对公发票的条目很少（payment 含 enterprise-invoice 者可查）；需要报销入账的，先确认开票主体与服务协议，别用个人储值抵公司账。" }
+    ],
+    relayVerify: {
+      // 本站自行双源核实后的状态（id → {status:"verified", at:"YYYY-MM-DD", note:"…"}）。留空 = 待核，由日更任务逐家补实。
+    },
+    /* RELAY-SEED-BEGIN */
+    seed: {
+     "source": "https://github.com/howardpen9/awesome-ai-api-proxy",
+     "sourceFiles": {
+      "providers": "https://raw.githubusercontent.com/howardpen9/awesome-ai-api-proxy/main/data/providers.yaml",
+      "prices": "https://raw.githubusercontent.com/howardpen9/awesome-ai-api-proxy/main/data/prices.latest.json"
+     },
+     "sourceLastReviewed": "2026-07-12",
+     "priceSnapshot": "2026-08-16",
+     "priceRecordCount": 3464,
+     "fetchedAt": "2026-09-28",
+     "providers": [
+      {
+       "id": "bltcy",
+       "name": "柏拉图 AI (bltcy)",
+       "url": "https://api.bltcy.ai",
+       "section": "china",
+       "type": "mixed",
+       "status": "active",
+       "payment": [
+        "alipay",
+        "wechat"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "midjourney",
+        "suno",
+        "luma",
+        "deepseek",
+        "grok",
+        "gemini",
+        "qwen"
+       ],
+       "modelCount": 1043,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": true,
+       "supportsTools": "unknown",
+       "seedLastVerified": "2026-06-07",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "Azure 通道；主打最低价。new-api fork，1000+ 模型横跨 25+ 分组；`/api/pricing` 公开 default 分组倍率。",
+       "pricingApi": "https://api.bltcy.ai/api/pricing",
+       "pricePid": "bltcy",
+       "priceStats": {
+        "records": 1375,
+        "models": 5,
+        "capturedAt": "2026-08-16"
+       }
+      },
+      {
+       "id": "uiuiapi",
+       "name": "UiUiAPI",
+       "url": "https://uiuiapi.com",
+       "section": "china",
+       "type": "official-relay",
+       "status": "active",
+       "payment": [
+        "alipay",
+        "wechat"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini"
+       ],
+       "modelCount": 311,
+       "providerCount": 30,
+       "entityRegistered": "unknown",
+       "supportsStream": true,
+       "supportsTools": true,
+       "seedLastVerified": "2026-06-07",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "宣称官方渠道 + 官方倍率；约便宜 49%（宣称），311 模型。new-api `/api/pricing` 公开于 api1 子域名。",
+       "pricingApi": "https://api1.uiuiapi.com/api/pricing",
+       "pricePid": "uiuiapi",
+       "priceStats": {
+        "records": 666,
+        "models": 6,
+        "capturedAt": "2026-08-16"
+       }
+      },
+      {
+       "id": "yunwu",
+       "name": "云雾 API (YUNWU)",
+       "url": "https://yunwu.ai",
+       "section": "china",
+       "type": "mixed",
+       "status": "active",
+       "payment": [
+        "alipay",
+        "wechat"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "deepseek",
+        "midjourney"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": true,
+       "supportsTools": "unknown",
+       "seedLastVerified": "2026-05-26",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "主打高速稳定；社区常列为头部站。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "closeai-asia",
+       "name": "CloseAI",
+       "url": "https://www.closeai-asia.com",
+       "section": "china",
+       "type": "official-relay",
+       "status": "active",
+       "payment": [
+        "alipay",
+        "wechat",
+        "enterprise-invoice"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": true,
+       "supportsStream": true,
+       "supportsTools": true,
+       "seedLastVerified": "2026-05-26",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "提供对公发票；自称亚洲最大企业级中转。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "rcouyi",
+       "name": "No.1-API",
+       "url": "https://api.rcouyi.com",
+       "section": "china",
+       "type": "aggregator",
+       "status": "active",
+       "payment": [
+        "alipay",
+        "wechat"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "qwen",
+        "hunyuan"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": true,
+       "supportsTools": "unknown",
+       "seedLastVerified": "2026-05-26",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "一站式聚合 + 中转平台。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "xuanshuapi",
+       "name": "玄枢API (XuanShu API)",
+       "url": "https://www.xuanshuapi.com",
+       "section": "china",
+       "type": "mixed",
+       "status": "unverified",
+       "payment": [
+        "enterprise-invoice"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": true,
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "根路径提供 Anthropic Messages 与 Gemini v1beta，/v1 下提供 OpenAI Responses 与 Chat Completions；模型可见性与价格按 Key 和分组在控制台配置。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "dmxapi",
+       "name": "DMXAPI",
+       "url": "https://dmxapi.cn",
+       "section": "china",
+       "type": "mixed",
+       "status": "unverified",
+       "payment": [
+        "alipay",
+        "wechat"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "no_entity"
+       ],
+       "note": "社区收录；官网未独立核实。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "gptgod",
+       "name": "GPTGOD",
+       "url": "https://gptgod.online",
+       "section": "china",
+       "type": "reverse",
+       "status": "unverified",
+       "payment": [
+        "alipay"
+       ],
+       "models": [
+        "openai",
+        "anthropic"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "reverse_channel",
+        "no_entity"
+       ],
+       "note": "逆向；便宜，稳定性无保证。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "mkeai",
+       "name": "MKEAI",
+       "url": "https://mkeai.com",
+       "section": "china",
+       "type": "mixed",
+       "status": "unverified",
+       "payment": [
+        "alipay",
+        "wechat"
+       ],
+       "models": [
+        "openai",
+        "deepseek"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "no_entity"
+       ],
+       "note": "社区论坛 + 中转混合；主推 DeepSeek。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "teamorouter",
+       "name": "TeamoRouter",
+       "url": "https://teamorouter.com",
+       "section": "china",
+       "type": "mixed",
+       "status": "unverified",
+       "payment": [
+        "alipay",
+        "wechat"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "deepseek"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "兼容 OpenAI／Anthropic／Gemini 的网关；支付宝与微信支付；运营方宣称多上游路由，并有 Claude Code／Codex 配置教程与 gpt-6-astra 支持。",
+       "pricingApi": "https://teamorouter.com/pricing",
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "wappkit",
+       "name": "Wappkit API",
+       "url": "https://api.wappkit.com",
+       "section": "china",
+       "type": "mixed",
+       "status": "unverified",
+       "payment": [],
+       "models": [
+        "openai",
+        "anthropic"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "new-api OpenAI 兼容网关，公开 `/api/pricing`；分组为 Codex／Claude-Code 号池（无扁平 default 组）。",
+       "pricingApi": "https://api.wappkit.com/api/pricing",
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "wawazz",
+       "name": "wawazz.xyz",
+       "url": "https://wawazz.xyz",
+       "section": "china",
+       "type": "mixed",
+       "status": "unverified",
+       "payment": [
+        "wechat"
+       ],
+       "models": [
+        "openai",
+        "anthropic"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted",
+        "prices_too_cheap"
+       ],
+       "note": "OpenAI 兼容 `/v1`；微信支付；运营方宣称 GPT 可低至官方价 0.07 倍。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "atlascloud",
+       "name": "Atlas Cloud",
+       "url": "https://www.atlascloud.ai",
+       "section": "global",
+       "type": "aggregator",
+       "status": "active",
+       "payment": [
+        "card"
+       ],
+       "models": [
+        "deepseek",
+        "qwen",
+        "moonshot",
+        "anthropic",
+        "grok",
+        "kling",
+        "minimax",
+        "bytedance",
+        "vidu",
+        "openai",
+        "google"
+       ],
+       "modelCount": 118,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": true,
+       "supportsTools": true,
+       "seedLastVerified": "2026-06-07",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "多模态聚合平台；图像/视频模型多（Grok Imagine、Kling、ByteDance、Vidu）。公开 OpenAI 兼容 `/v1/models` 含 cache-read 计价。",
+       "pricingApi": "https://api.atlascloud.ai/v1/models",
+       "pricePid": "atlascloud",
+       "priceStats": {
+        "records": 404,
+        "models": 5,
+        "capturedAt": "2026-08-16"
+       }
+      },
+      {
+       "id": "openrouter",
+       "name": "OpenRouter",
+       "url": "https://openrouter.ai",
+       "section": "global",
+       "type": "aggregator",
+       "status": "active",
+       "payment": [
+        "card",
+        "crypto"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "google",
+        "meta",
+        "mistral"
+       ],
+       "modelCount": 400,
+       "providerCount": 60,
+       "entityRegistered": true,
+       "supportsStream": true,
+       "supportsTools": true,
+       "seedLastVerified": "2026-06-07",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "官方授权路由，加价约 5%；400+ 模型、60+ 供应商。ARR 据报约 $5M（2025-05）→ 约 $50M（2026 初）。公开 `/api/v1/models` JSON。",
+       "pricingApi": "https://openrouter.ai/api/v1/models",
+       "pricePid": "openrouter",
+       "priceStats": {
+        "records": 807,
+        "models": 8,
+        "capturedAt": "2026-08-16"
+       }
+      },
+      {
+       "id": "relaydance",
+       "name": "Relaydance",
+       "url": "https://relaydance.com",
+       "section": "global",
+       "type": "mixed",
+       "status": "active",
+       "payment": [
+        "alipay",
+        "wechat",
+        "card"
+       ],
+       "models": [
+        "grok",
+        "doubao",
+        "seedance"
+       ],
+       "modelCount": 22,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": true,
+       "supportsTools": "unknown",
+       "seedLastVerified": "2026-06-07",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "基于 new-api 的中文界面海外站，主打 xAI Grok + 字节跳动 Doubao。`/api/pricing` 公开倍率计价（model_ratio × $2/1M tokens）。",
+       "pricingApi": "https://relaydance.com/api/pricing",
+       "pricePid": "relaydance",
+       "priceStats": {
+        "records": 68,
+        "models": 1,
+        "capturedAt": "2026-08-16"
+       }
+      },
+      {
+       "id": "aimlapi",
+       "name": "AIMLAPI",
+       "url": "https://aimlapi.com",
+       "section": "global",
+       "type": "aggregator",
+       "status": "active",
+       "payment": [
+        "card",
+        "crypto"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "google",
+        "meta"
+       ],
+       "modelCount": 400,
+       "providerCount": null,
+       "entityRegistered": true,
+       "supportsStream": true,
+       "supportsTools": "unknown",
+       "seedLastVerified": "2026-05-26",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "400+ 模型，$20 起预付；支持加密货币暗示绕支付障碍。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "helicone",
+       "name": "Helicone",
+       "url": "https://helicone.ai",
+       "section": "global",
+       "type": "observability",
+       "status": "active",
+       "payment": [],
+       "models": [
+        "openai",
+        "anthropic"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": true,
+       "supportsStream": true,
+       "supportsTools": true,
+       "seedLastVerified": "2026-05-26",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "LLM 可观测性网关；日志/成本分析。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "litellm",
+       "name": "LiteLLM",
+       "url": "https://litellm.ai",
+       "section": "global",
+       "type": "gateway-oss",
+       "status": "active",
+       "payment": [],
+       "models": [
+        "openai",
+        "anthropic",
+        "google",
+        "azure",
+        "bedrock"
+       ],
+       "modelCount": null,
+       "providerCount": 100,
+       "entityRegistered": true,
+       "supportsStream": true,
+       "supportsTools": true,
+       "seedLastVerified": "2026-05-26",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "开源网关（100+ 供应商）+ 企业版。自托管，自带 Key。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "ai-router",
+       "name": "AI Router",
+       "url": "https://ai-router.dev",
+       "section": "global",
+       "type": "mixed",
+       "status": "unverified",
+       "payment": [
+        "card",
+        "crypto",
+        "alipay",
+        "wechat"
+       ],
+       "models": [
+        "openai"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "OpenAI 兼容 ChatGPT API 中转（`api.ai-router.dev/v1`）；控制台密钥与用量追踪、日／周套餐；英／中／俄／波斯语页面。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "allrouter",
+       "name": "AllRouter",
+       "url": "https://allrouter.ai",
+       "section": "global",
+       "type": "aggregator",
+       "status": "unverified",
+       "payment": [
+        "alipay",
+        "wechat"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "moonshot",
+        "zhipu",
+        "gemma",
+        "deepseek"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "兼容 OpenAI 与 Anthropic 的聚合网关；支持支付宝与微信支付；运营方宣称 Kimi K3 为 Moonshot 官方牌价。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "aiapi-pro",
+       "name": "NovAI",
+       "url": "https://aiapi-pro.com",
+       "section": "global",
+       "type": "aggregator",
+       "status": "unverified",
+       "payment": [
+        "card",
+        "crypto"
+       ],
+       "models": [
+        "deepseek",
+        "qwen",
+        "moonshot",
+        "zhipu",
+        "doubao",
+        "minimax",
+        "hunyuan",
+        "seedance"
+       ],
+       "modelCount": 38,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": true,
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "OpenAI 兼容聚合网关，整合中国前沿模型（DeepSeek、Qwen、GLM、Kimi、MiniMax、Doubao、Hunyuan），同一 `/v1` 端点另含图像与视频生成；`/v1/models` 公开模型清单，定价页列每 token 价格。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "quicksilverpro",
+       "name": "QuickSilver Pro",
+       "url": "https://quicksilverpro.io",
+       "section": "global",
+       "type": "aggregator",
+       "status": "unverified",
+       "payment": [
+        "card"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "deepseek",
+        "qwen",
+        "moonshotai",
+        "zhipuai",
+        "minimax",
+        "meta",
+        "xai"
+       ],
+       "modelCount": 39,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": true,
+       "supportsTools": true,
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "OpenAI 兼容网关；单一密钥涵盖前沿与开源模型（Claude、GPT、Gemini、DeepSeek、Qwen、Kimi、GLM）。按量计费。公开 `/pricing.json`。运营方自称 MachineFi Labs。",
+       "pricingApi": "https://quicksilverpro.io/pricing.json",
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "routescope",
+       "name": "RouteScope",
+       "url": "https://www.routescope.ai",
+       "section": "global",
+       "type": "aggregator",
+       "status": "unverified",
+       "payment": [
+        "card",
+        "crypto"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "统一网关，将 100+ 模型转成 OpenAI／Claude／Gemini 兼容 API；按量预付额度。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "sandbase",
+       "name": "SandBase",
+       "url": "https://sandbase.ai",
+       "section": "global",
+       "type": "aggregator",
+       "status": "unverified",
+       "payment": [
+        "card"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "deepseek",
+        "qwen",
+        "meta",
+        "mistral"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "统一 API，OpenAI 兼容端点涵盖多家模型供应商，另有 tool API 与托管 agent。运营方未亲自验证线上 API。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "tokens-forge",
+       "name": "Tokens Forge",
+       "url": "https://tokens-forge.com",
+       "section": "global",
+       "type": "aggregator",
+       "status": "unverified",
+       "payment": [
+        "card",
+        "wechat"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "OpenAI 兼容多模型 API 网关；GPT／Claude／Gemini 类模型分官方额度与路由钱包余额。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "unorouter",
+       "name": "UnoRouter",
+       "url": "https://unorouter.ai",
+       "section": "global",
+       "type": "aggregator",
+       "status": "unverified",
+       "payment": [
+        "card"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini"
+       ],
+       "modelCount": 212,
+       "providerCount": 31,
+       "entityRegistered": "unknown",
+       "supportsStream": true,
+       "supportsTools": true,
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "建于 new-api 网关之上。单一密钥跨多上游，按延迟路由并具故障转移；自动识别 OpenAI／Anthropic／Gemini 格式。按量计费并提供免费模型层；亦支持角色扮演客户端（SillyTavern、Janitor.AI、RisuAI、Chub）。",
+       "pricingApi": "https://api.unorouter.ai/api/pricing",
+       "pricePid": "unorouter",
+       "priceStats": {
+        "records": 144,
+        "models": 5,
+        "capturedAt": "2026-08-16"
+       }
+      },
+      {
+       "id": "new-api",
+       "name": "new-api",
+       "url": "https://github.com/Calcium-Ion/new-api",
+       "section": "selfhost",
+       "type": "gateway-oss",
+       "status": "active",
+       "payment": [],
+       "models": [],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": false,
+       "supportsStream": true,
+       "supportsTools": true,
+       "seedLastVerified": "2026-05-26",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "One-API 的 fork，多了几种通道类型；同样自托管、自带 key。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "one-api",
+       "name": "One-API",
+       "url": "https://github.com/songquanpeng/one-api",
+       "section": "selfhost",
+       "type": "gateway-oss",
+       "status": "active",
+       "payment": [],
+       "models": [],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": false,
+       "supportsStream": true,
+       "supportsTools": true,
+       "seedLastVerified": "2026-05-26",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "流行的 Go 多厂商网关；多数中转站的底层 OSS 模板。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "a3m-router",
+       "name": "A3M Router",
+       "url": "https://github.com/Das-rebel/a3m-router",
+       "section": "selfhost",
+       "type": "gateway-oss",
+       "status": "unverified",
+       "payment": [],
+       "models": [
+        "openai",
+        "anthropic",
+        "google",
+        "deepseek",
+        "groq",
+        "mistral",
+        "xai",
+        "cohere"
+       ],
+       "modelCount": null,
+       "providerCount": 47,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "MIT TypeScript OpenAI-compatible multi-provider router (parallel ensemble); self-hosted — you supply keys. npm: adaptive-memory-multi-model-router.",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "aiapipk",
+       "name": "中轉站競技場 (AI API PK)",
+       "url": "https://www.aiapipk.com",
+       "section": "tools",
+       "type": "comparison",
+       "status": "active",
+       "payment": [],
+       "models": [],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": "2026-05-26",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "约 40 家站点的 OpenAI / 逆向 / Claude / DeepSeek 报价墙。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "mn-api-unmaintained",
+       "name": "awesome-ai-proxy (mn-api, unmaintained)",
+       "url": "https://github.com/mn-api/awesome-ai-proxy",
+       "section": "tools",
+       "type": "list",
+       "status": "inactive",
+       "payment": [],
+       "models": [],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": "2026-05-26",
+       "seedVerifiedBy": "maintainer",
+       "riskFlags": [],
+       "note": "最早的清单（约 31 家）。**2026 年起已停更** —— 本仓库延续这一工作。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "china-ai-arbitrage",
+       "name": "China AI Arbitrage",
+       "url": "https://www.china-ai-arbitrage.xyz",
+       "section": "tools",
+       "type": "comparison",
+       "status": "unverified",
+       "payment": [],
+       "models": [],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "60+ 中国 AI 平台的价格与额度比价、LLM API 中转站排名、每日更新的免费额度追踪。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "coderplan",
+       "name": "CoderPlan",
+       "url": "https://coderplan.ai",
+       "section": "tools",
+       "type": "official-relay",
+       "status": "unverified",
+       "payment": [
+        "alipay",
+        "wechat"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "google",
+        "deepseek",
+        "xai"
+       ],
+       "modelCount": 50,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": true,
+       "supportsTools": true,
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted",
+        "no_entity"
+       ],
+       "note": "社区投稿；宣称 50+ 模型，含 OpenAI/Anthropic/Google/DeepSeek/xAI。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      }
+     ],
+     "anchorModels": [
+      {
+       "model": "claude-opus-4.8",
+       "rows": [
+        {
+         "pid": "atlascloud",
+         "in": 5,
+         "out": 25,
+         "cacheRead": 0.5,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "openrouter",
+         "in": 2.5,
+         "out": 12.5,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "unorouter",
+         "in": 5,
+         "out": 25,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        }
+       ]
+      },
+      {
+       "model": "claude-sonnet-4.6",
+       "rows": [
+        {
+         "pid": "atlascloud",
+         "in": 3,
+         "out": 15,
+         "cacheRead": 0.3,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "bltcy",
+         "in": 3,
+         "out": 15,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "openrouter",
+         "in": 1.5,
+         "out": 7.5,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "relaydance",
+         "in": 3.75,
+         "out": 18.75,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "uiuiapi",
+         "in": 3,
+         "out": 15,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "unorouter",
+         "in": 3,
+         "out": 15,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        }
+       ]
+      },
+      {
+       "model": "gpt-5.4",
+       "rows": [
+        {
+         "pid": "atlascloud",
+         "in": 2.5,
+         "out": 15,
+         "cacheRead": 0.25,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "bltcy",
+         "in": 2.5,
+         "out": 15,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "openrouter",
+         "in": 1.25,
+         "out": 7.5,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        }
+       ]
+      },
+      {
+       "model": "gpt-5.5-pro",
+       "rows": [
+        {
+         "pid": "openrouter",
+         "in": 15,
+         "out": 90,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        }
+       ]
+      },
+      {
+       "model": "gemini-3-flash",
+       "rows": [
+        {
+         "pid": "atlascloud",
+         "in": 1.5,
+         "out": 9,
+         "cacheRead": 0.15,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "openrouter",
+         "in": 0.75,
+         "out": 4.5,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "uiuiapi",
+         "in": 0.5,
+         "out": 3,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "unorouter",
+         "in": 0.5,
+         "out": 3,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        }
+       ]
+      },
+      {
+       "model": "deepseek-v3",
+       "rows": [
+        {
+         "pid": "bltcy",
+         "in": 2,
+         "out": 2,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "openrouter",
+         "in": 0.2574,
+         "out": 1.0287,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "uiuiapi",
+         "in": 2,
+         "out": 8,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "unorouter",
+         "in": 2,
+         "out": 8,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        }
+       ]
+      },
+      {
+       "model": "deepseek-r1",
+       "rows": [
+        {
+         "pid": "bltcy",
+         "in": 4,
+         "out": 16,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "openrouter",
+         "in": 0.7,
+         "out": 2.5,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "uiuiapi",
+         "in": 4,
+         "out": 16,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        },
+        {
+         "pid": "unorouter",
+         "in": 4,
+         "out": 16,
+         "cacheRead": null,
+         "captured": "2026-08-16"
+        }
+       ]
+      }
+     ]
+    },
+    /* RELAY-SEED-END */
+  },
+
   /* ---------------- 计费模式标签（用于价格矩阵） ---------------- */
   billing: { chatgpt:"订阅", claude:"订阅+积分", gemini:"订阅", manus:"积分制", deepseek:"免费+API", kimi:"订阅+Token Plan", glm:"会员+订阅(Coding Plan)", doubao:"订阅(新开)", cursor:"订阅+额度", copilot:"Credits 额度", trae:"积分制", qianwen:"订阅(三档)", devin:"订阅", coze:"积分制", wenxin:"会员+API", perplexity:"订阅+API", yuanbao:"完全免费（无内购）", hailuo:"订阅+按量", stepfun:"Credit 套餐+按量", xinghuo:"垂类会员+Token Plan", grok:"订阅(四档)", poe:"订阅(五档点数制)", yuanqi:"免费（收费政策未公开）" },
 

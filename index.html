@@ -135,7 +135,7 @@ const MAIN_SITE = "https://agent-intel-36vh0a1e3d3.qoder.zone";
 const IS_MIRROR = !/(^|\.)qoder\.zone$/i.test(location.hostname);
 const mainLink = () => MAIN_SITE + "/" + (location.hash || "#home");
 const byId = id => D.agents.find(a=>a.id===id);
-const TABS = [["home","首页"],["rank","榜单"],["arena","基准榜"],["pick","帮我选"],["compare","对比"],["price","价格情报"],["profiles","档案"],["timeline","大事记"],["qa","问答"]];
+const TABS = [["home","首页"],["rank","榜单"],["arena","基准榜"],["pick","帮我选"],["compare","对比"],["price","价格情报"],["relay","中转站"],["profiles","档案"],["timeline","大事记"],["qa","问答"]];
 let cur = location.hash.slice(1) || "home";
 let curDim = D.benchmarks ? "elo" : "coding"; // 默认顺序 = 基准榜页默认的 Arena Elo 顺序
 let pQuery = "";
@@ -195,6 +195,7 @@ function viewHome(){
       <div class="price" style="text-align:right">${a.plans[1]?.price||"免费"}</div>
     </div>`).join("")}</div>
   <button class="btn" style="margin-top:10px" onclick="go('price')">完整价格情报 →</button>
+  <button class="btn ghost" style="margin-top:10px" onclick="go('relay')">API 中转站情报 · 报价对照 →</button>
   <div class="note">${D.scoreMethod}</div>`;
 }
 function evCard(e){
@@ -584,6 +585,75 @@ function viewPrice(){
   ${EVENTS.filter(e=>e.tag==="定价").map(evCard).join("")}`;
 }
 
+/* ---------- 中转站情报 ---------- */
+let rQuery = "";
+const RELAY_TONE = { ok:"var(--down)", warn:"#d9a13a", bad:"var(--up)", info:"#7aa2d9" };
+function relayPretty(m){ return String(m||"").split("-").map(x=>/^\d/.test(x)?x:x.charAt(0).toUpperCase()+x.slice(1)).join(" "); }
+function relayMoney(x){ return x==null?"—":"$"+x; }
+function relayTypeBadge(R,p){
+  const t = R.typeLabels[p.type]; if(!t) return "";
+  return `<span class="pill" style="border-color:${RELAY_TONE[t.tone]||"var(--line)"};color:${RELAY_TONE[t.tone]||"inherit"}" title="${t.note}">${t.label}</span>`;
+}
+function relayVerifyTag(R,p){
+  const v = R.relayVerify && R.relayVerify[p.id];
+  if(v && v.status==="verified") return `<span class="pill" style="color:var(--down)">本站已核 ${v.at}</span>`;
+  return `<span class="pill" style="color:#d9a13a">本站待二次核实${p.seedLastVerified?`（源方核于 ${p.seedLastVerified}）`:""}</span>`;
+}
+function relayCard(R,p){
+  const pay = (p.payment||[]).map(x=>R.paymentLabels[x]||x).join(" / ") || "支付方式未收录";
+  return `<div class="card agentcard" style="cursor:default">
+    <h3 style="font-size:15px"><a href="${p.url}" target="_blank" rel="noopener nofollow">${p.name} ↗</a></h3>
+    <div style="margin:6px 0">${relayTypeBadge(R,p)}${p.status!=="active"?`<span class="pill" style="color:var(--up)">${p.status==="inactive"?"已停摆":"状态未核实"}</span>`:""}${p.entityRegistered===true?'<span class="pill" style="color:var(--down)">有注册主体</span>':""}</div>
+    <div class="ev-sum" style="min-height:34px">${p.note||""}</div>
+    <div style="margin-top:6px" class="ev-sum">💳 ${pay}${p.modelCount?` · 🧩 ${p.modelCount} 模型`:""}${p.priceStats?` · 📊 报价 ${p.priceStats.models} 模型（${p.priceStats.capturedAt}）`:""}</div>
+    <div style="margin-top:6px">${relayVerifyTag(R,p)}${p.pricingApi?`<a href="${p.pricingApi}" target="_blank" rel="noopener nofollow" class="pill" style="color:var(--gold)">公开价目↗</a>`:""}</div>
+  </div>`;
+}
+function viewRelay(){
+  const R = D.relay, S = R.seed;
+  if(!S || !S.providers || !S.providers.length) return `<div class="note">中转站数据未生成：请运行 node dev/gen-relay.cjs。</div>`;
+  const q = rQuery.trim().toLowerCase();
+  const match = p => !q || (p.name+" "+p.url+" "+(p.note||"")).toLowerCase().includes(q);
+  const bySec = s => S.providers.filter(p=>p.section===s && match(p));
+  const china = bySec("china"), global = bySec("global"), selfhost = bySec("selfhost"), tools = bySec("tools");
+  // 比价矩阵：列 = 有报价快照的站点，OpenRouter（授权聚合层）作参考价列
+  const priceCols = [];
+  S.anchorModels.forEach(a=>a.rows.forEach(r=>{ if(!priceCols.includes(r.pid)) priceCols.push(r.pid); }));
+  priceCols.sort((x,y)=> (x==="openrouter"?-1:0) - (y==="openrouter"?-1:0));
+  const pidName = pid => { const p = S.providers.find(x=>x.pricePid===pid); return p?p.name:pid; };
+  const compact = (list) => `<div class="card" style="padding:0;overflow:auto"><table>
+    <tr><th>站点</th><th>类型</th><th>状态</th><th>支付</th><th>主体</th><th>流式/工具</th><th>备注</th></tr>
+    ${list.map(p=>`<tr><td><a href="${p.url}" target="_blank" rel="noopener nofollow"><b>${p.name}</b> ↗</a></td>
+    <td>${relayTypeBadge(R,p)}</td><td class="ev-sum">${p.status==="active"?"活跃":p.status}</td>
+    <td class="ev-sum">${(p.payment||[]).map(x=>R.paymentLabels[x]||x).join(" / ")||"—"}</td>
+    <td class="ev-sum">${p.entityRegistered===true?"已公开":p.entityRegistered===false?"无":"未知"}</td>
+    <td class="ev-sum">${p.supportsStream===true?"✓":"?"} / ${p.supportsTools===true?"✓":p.supportsTools===false?"✗":"?"}</td>
+    <td class="ev-sum" style="font-size:12.5px">${p.note||""}</td></tr>`).join("")}</table></div>`;
+  return `<div class="stamp">收录 ${S.providers.length} 条目 · 种子源 <a href="${S.source}" target="_blank" rel="noopener">awesome-ai-api-proxy ↗</a>（源方复核 ${S.sourceLastReviewed}）· 报价快照 ${S.priceSnapshot}（${S.priceRecordCount} 条）· 种子抓取 ${S.fetchedAt}</div>
+  <div class="note" style="border-left:3px solid var(--gold)">${R.policy}</div>
+  <div class="ev-sum" style="margin:8px 0">${Object.entries(R.typeLabels).map(([k,t])=>`<span class="pill" style="color:${RELAY_TONE[t.tone]||"inherit"}" title="${t.note}">${t.label}</span>`).join(" ")}</div>
+  <input class="search" placeholder="🔍 筛选：站点名 / 备注…（如 云雾、发票、逆向）" value="${rQuery}"
+    oninput="rQuery=this.value;render();document.querySelector('.search').focus()" />
+  <h2>${R.sectionLabels.china}（${china.length}）</h2>
+  ${china.length?`<div class="grid g3">${china.map(p=>relayCard(R,p)).join("")}</div>`:'<div class="note">没有匹配的条目。</div>'}
+  <h2>中转站报价对照（每百万 tokens，USD）</h2>
+  <div class="card" style="padding:0;overflow:auto"><table>
+    <tr><th>锚点模型</th>${priceCols.map(pid=>`<th>${pidName(pid)}${pid==="openrouter"?"（参考价）":""}</th>`).join("")}</tr>
+    ${S.anchorModels.filter(a=>a.rows.length).map(a=>{ const m={}; a.rows.forEach(r=>m[r.pid]=r);
+      return `<tr><td><b>${relayPretty(a.model)}</b></td>${priceCols.map(pid=>{const r=m[pid];return `<td class="s">${r?relayMoney(r.in)+" / "+relayMoney(r.out):"—"}</td>`;}).join("")}</tr>`;}).join("")}
+  </table></div>
+  <div class="ev-sum">输入 / 输出 价，快照抓取于 ${S.priceSnapshot}；OpenRouter 为授权聚合层行情参考，不等于厂商官网牌价；"—" = 该站此模型未收录。折扣口径 = 对照本站<a onclick="go('price')" style="cursor:pointer">价格情报</a>页官方已核价点自行换算，本站不代算。</div>
+  <h2>${R.sectionLabels.global}（${global.length}）</h2>
+  ${global.length?compact(global):'<div class="note">没有匹配的条目。</div>'}
+  <h2>${R.sectionLabels.selfhost}（${selfhost.length}）</h2>
+  ${selfhost.length?compact(selfhost):""}
+  <h2>${R.sectionLabels.tools}（${tools.length}）</h2>
+  ${tools.length?compact(tools):""}
+  <h2>避坑指南</h2>
+  ${R.guide.map(g=>`<div class="card" style="margin-bottom:10px"><b>${g.t}</b><div class="ev-sum" style="margin-top:4px">${g.d}</div></div>`).join("")}
+  <div class="note">"本站待二次核实"指条目尚未走完本站双源核实流程（日更任务逐家补实）；源方 last_verified 仅代表 awesome-ai-api-proxy 维护者复核时间。静态可分享版：<a href="/relay.html">/relay.html</a>。</div>`;
+}
+
 /* ---------- 问答 ---------- */
 function viewQA(){
   const voted = JSON.parse(localStorage.getItem("qaVotes")||"{}");
@@ -721,7 +791,7 @@ function viewTimeline(){
 function render(){
   renderNav();
   const app = document.getElementById("app");
-  app.innerHTML = {home:viewHome,rank:viewRank,arena:viewArena,pick:viewPick,compare:viewCompare,price:viewPrice,profiles:viewProfiles,timeline:viewTimeline,qa:viewQA}[cur]();
+  app.innerHTML = {home:viewHome,rank:viewRank,arena:viewArena,pick:viewPick,compare:viewCompare,price:viewPrice,relay:viewRelay,profiles:viewProfiles,timeline:viewTimeline,qa:viewQA}[cur]();
   if(IS_MIRROR) document.getElementById("mirrorNote").style.display = "block";
 }
 try{ const s=JSON.parse(localStorage.getItem("cmp")); if(Array.isArray(s)&&s.length) cmpSel=new Set(s); }catch(e){}
@@ -750,6 +820,7 @@ const SEO = {
   pick:     ["帮我选 - 三问推荐智能体","按用途、预算和国内可达性三个问题，从 23 个已核实档案中给出推荐及理由。"],
   compare:  ["智能体对比 - 价格·额度·能力横评","任选 2-3 个智能体横向对比订阅价格、免费额度、能力评分与国内使用门槛。"],
   price:    ["智能体价格情报 - 订阅矩阵·API价格·充值行情","23 个主流智能体的订阅价、API 每百万 token 报价与国内支付/代充行情，全部标注核实日期。"],
+  relay:    ["API 中转站情报目录 - 通道类型·报价对照·避坑指南","30+ 家 AI API 中转/聚合站与自建网关的收录目录：通道类型、支付方式、注册主体、报价快照与风险提示，只做情报不做推荐。"],
   profiles: ["智能体档案库","每个智能体的档位价格、模型、额度规则、使用门槛与来源链接。"],
   timeline: ["AI 智能体大事记 - 涨价·政策·发布事件线","只收录会改变选型决策的事件时间线。"],
   qa:       ["智能体精选问答","\"$20 预算选谁\"\"不翻墙最强组合\"等高频决策问题的数据化回答。"]

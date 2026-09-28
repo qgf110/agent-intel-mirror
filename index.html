@@ -595,18 +595,23 @@ function relayTypeBadge(R,p){
   return `<span class="pill" style="border-color:${RELAY_TONE[t.tone]||"var(--line)"};color:${RELAY_TONE[t.tone]||"inherit"}" title="${t.note}">${t.label}</span>`;
 }
 function relayVerifyTag(R,p){
+  if(p.private) return `<span class="pill" style="color:var(--mut)" title="私有/邀请制渠道，无公开价目，本站不做双源核实">私有渠道 · 不核实</span>`;
   const v = R.relayVerify && R.relayVerify[p.id];
   if(v && v.status==="verified") return `<span class="pill" style="color:var(--down)">本站已核 ${v.at}</span>`;
   return `<span class="pill" style="color:#d9a13a">本站待二次核实${p.seedLastVerified?`（源方核于 ${p.seedLastVerified}）`:""}</span>`;
+}
+function relayFlags(R,p){
+  return (p.riskFlags||[]).map(f=>{const l=(R.flagLabels||{})[f];return l?`<span class="pill" style="color:var(--up)">${l}</span>`:"";}).join("");
 }
 function relayCard(R,p){
   const pay = (p.payment||[]).map(x=>R.paymentLabels[x]||x).join(" / ") || "支付方式未收录";
   return `<div class="card agentcard" style="cursor:default">
     <h3 style="font-size:15px"><a href="${p.url}" target="_blank" rel="noopener nofollow">${p.name} ↗</a></h3>
-    <div style="margin:6px 0">${relayTypeBadge(R,p)}${p.status!=="active"?`<span class="pill" style="color:var(--up)">${p.status==="inactive"?"已停摆":"状态未核实"}</span>`:""}${p.entityRegistered===true?'<span class="pill" style="color:var(--down)">有注册主体</span>':""}${p.extraSource?'<span class="pill" style="color:#d9a13a">用户提报</span>':""}</div>
+    <div style="margin:6px 0">${relayTypeBadge(R,p)}${p.status!=="active"?`<span class="pill" style="color:var(--up)">${p.status==="inactive"?"已停摆/已失效":"状态未核实"}</span>`:""}${p.entityRegistered===true?'<span class="pill" style="color:var(--down)">有注册主体</span>':""}${p.extraSource?'<span class="pill" style="color:#d9a13a">用户提报</span>':""}${relayFlags(R,p)}</div>
     <div class="ev-sum" style="min-height:34px">${p.note||""}</div>
     <div style="margin-top:6px" class="ev-sum">💳 ${pay}${p.modelCount?` · 🧩 ${p.modelCount} 模型`:""}${p.priceStats?` · 📊 报价 ${p.priceStats.models} 模型（${p.priceStats.capturedAt}）`:""}</div>
     <div style="margin-top:6px">${relayVerifyTag(R,p)}${p.pricingApi?`<a href="${p.pricingApi}" target="_blank" rel="noopener nofollow" class="pill" style="color:var(--gold)">公开价目↗</a>`:""}</div>
+    ${p.sources&&p.sources.length?`<div class="ev-sum" style="margin-top:6px;font-size:12px">核验证据：${p.sources.map((s,i)=>`<a href="${s}" target="_blank" rel="noopener">[${i+1}]↗</a>`).join(" ")}</div>`:""}
   </div>`;
 }
 function viewRelay(){
@@ -652,7 +657,7 @@ function viewRelay(){
   ${tools.length?compact(tools):""}
   <h2>避坑指南</h2>
   ${R.guide.map(g=>`<div class="card" style="margin-bottom:10px"><b>${g.t}</b><div class="ev-sum" style="margin-top:4px">${g.d}</div></div>`).join("")}
-  <div class="note">"本站待二次核实"指条目尚未走完本站双源核实流程（日更任务逐家补实）；源方 last_verified 仅代表 awesome-ai-api-proxy 维护者复核时间。静态可分享版：<a href="/relay.html">/relay.html</a>。</div>`;
+  <div class="note">"本站待二次核实"指条目尚未走完本站双源核实流程（日更任务逐家补实）；源方 last_verified 仅代表 awesome-ai-api-proxy 维护者复核时间。标"私有渠道"的条目是社群/邀请制渠道（不公开注册、无公开价目），本站只做可达性与注册状态实测、不做双源核实，也不纳入报价对照。静态可分享版：<a href="/relay.html">/relay.html</a>。</div>`;
 }
 
 /* ---------- 问答 ---------- */

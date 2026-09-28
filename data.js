@@ -986,6 +986,11 @@ window.AGENTS_DATA = {
       china: "中国大陆中转站", global: "海外聚合与网关", selfhost: "自建替代（开源）", tools: "比价与监测工具"
     },
     paymentLabels: { alipay: "支付宝", wechat: "微信支付", "enterprise-invoice": "企业发票", stripe: "Stripe", crypto: "加密货币", usdt: "USDT" },
+    flagLabels: {
+      no_entity: "无公开注册主体", reverse_channel: "逆向通道", operator_submitted: "运营方自报",
+      user_submitted: "用户提报", private_channel: "私有渠道（非公开可注册）",
+      registration_closed: "注册已关闭", unreachable: "当前不可达"
+    },
     guide: [
       { t: "先看通道类型，再看价格", d: "同一模型逆向通道价可能低于官方一成，但随时可能掉线或被上游封禁；在意稳定性就优先选标 official-relay / aggregator 且核验日期新的条目。" },
       { t: "只充一两个月用得完的量", d: "中转站运营者多为个人或境外主体，公开注册主体信息缺失（目录中 entity_registered=unknown 即此意）；大额储值站一旦“跑路”没有任何追偿，觉得好用也小额多次充值。" },
@@ -999,6 +1004,7 @@ window.AGENTS_DATA = {
     },
     extra: [
       // 种子源之外、由本站用户提报/自行发现的条目；字段与 seed.providers 同构，双源核实后写入 relayVerify。日更/周更任务对此区只读不改。
+      // private:true = 社群私有/邀请制渠道（非公开可注册中转站），前端与静态页单独标"私有渠道"，不参与报价对照与比价。
       { id: "omwai", name: "Omwai API", url: "https://www.omwai.xyz", section: "china", type: "mixed", status: "unverified",
         payment: [], models: ["openai", "anthropic"], modelCount: null, providerCount: null,
         entityRegistered: "unknown", supportsStream: "unknown", supportsTools: "unknown",
@@ -1006,6 +1012,22 @@ window.AGENTS_DATA = {
         note: "new-api 部署实例；官网公开 /api/pricing 可见 Claude Opus 4.6 倍率 2.5/5、缓存 0.1，分组名含 aws-bedrock / Kiro / Antigravity 等，多上游混跑迹象（mixed）。2026-09-28 由用户提报收录，暂无独立第二来源，待双源核实。",
         pricingApi: "https://www.omwai.xyz/api/pricing", pricePid: null, priceStats: null, extraSource: true,
         sources: ["https://www.omwai.xyz/api/pricing"] },
+
+      { id: "yiqinuo", name: "模型聚合（yiqinuo）", url: "https://www.yiqinuo.cn", section: "china", type: "aggregator", status: "active",
+        private: true, payment: [], models: ["openai"], modelCount: null, providerCount: null,
+        entityRegistered: "unknown", supportsStream: "unknown", supportsTools: "unknown",
+        seedLastVerified: null, seedVerifiedBy: null, riskFlags: ["user_submitted", "private_channel", "registration_closed"],
+        note: "社群私有渠道（截图来源：群公告称其为\"模型聚合渠道·新\"，含 GPT-5.5/5.6）。站活着（解析至腾讯云 118.89.79.21），首页为 new-api 类网关；但前端配置 registration_enabled=false、invitation_code_enabled=false——注册与邀请码均已关闭，只服务既有用户；/api/pricing 返 404，无公开价目可核。2026-09-28 实测。",
+        pricingApi: null, pricePid: null, priceStats: null, extraSource: true,
+        sources: ["https://www.yiqinuo.cn/", "https://dns.google/resolve?name=www.yiqinuo.cn&type=A"] },
+
+      { id: "rvrcc", name: "Liyi 渠道（rvrcc）", url: "https://api.rvrcc.com", section: "china", type: "mixed", status: "inactive",
+        private: true, payment: [], models: ["openai"], modelCount: null, providerCount: null,
+        entityRegistered: "unknown", supportsStream: "unknown", supportsTools: "unknown",
+        riskFlags: ["user_submitted", "private_channel", "unreachable"], seedLastVerified: null, seedVerifiedBy: null,
+        note: "社群私有渠道（截图来源：群公告称其为\"Liyi 渠道·老\"，含 GPT-5.5/5.6）。2026-09-28 实测 api.rvrcc.com 在 Google 与 Cloudflare 公共 DNS 均返回 NXDOMAIN（无解析记录，链接打不开）；主域 rvrcc.com 仍注册中（GoDaddy DNS）。正在用的人需要换出口。",
+        pricingApi: null, pricePid: null, priceStats: null, extraSource: true,
+        sources: ["https://dns.google/resolve?name=api.rvrcc.com&type=A", "https://cloudflare-dns.com/dns-query?name=api.rvrcc.com&type=A"] },
     ],
     /* RELAY-SEED-BEGIN */
     seed: {

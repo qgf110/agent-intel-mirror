@@ -521,7 +521,7 @@ window.AGENTS_DATA = {
       { agent: "deepseek", model: "DeepSeek-V4.1-Flash", elo: 1503, coding: 1557, aaii: 43 },
       { agent: "wenxin",   model: "ERNIE-5.1",          elo: 1475, coding: 1495, aaii: 40 },
       { agent: "doubao",   model: "Seed2.0 Pro",        elo: 1466, coding: 1495, aaii: 39 },
-      { agent: "hailuo",   model: "MiniMax-M3",         elo: 1452, coding: 1485, aaii: 39 },
+      { agent: "hailuo",   model: "Minimax-M3",         elo: 1452, coding: 1485, aaii: 39 },
       { agent: "yuanbao",  model: "Hunyuan-Hy3",        elo: 1422, coding: 1448, aaii: 35 },
       { agent: "stepfun",  model: "Step-3.5-Flash",     elo: 1387, coding: 1433, aaii: 31 }
     ]

@@ -410,19 +410,20 @@ window.AGENTS_DATA = {
       id: "grok", name: "Grok", vendor: "xAI", region: "海外",
       tagline: "四档订阅价差大、按 Arena 基准编码分 9.3，实时信息是招牌",
       models: ["Grok-4.7（2026-09-21 发布）", "Grok 4 / 4 Heavy", "Grok Imagine"],
-      verifiedAt: "2026-09-23",
+      verifiedAt: "2026-10-02",
       plans: [
-        { name: "Free", price: "¥0", note: "官网仅注明\"网页与 App 可免费试用\"，具体次数上限未公示 → 未核实" },
-        { name: "SuperGrok Lite", price: "$10/月", note: "入门付费档（App Store 内购清单确证，© xAI Inc.）" },
-        { name: "SuperGrok", price: "$30/月", note: "主流档；Grok Bot 已扩展至全部 SuperGrok 计划（2026-08-26 官方）" },
-        { name: "SuperGrok Plus", price: "$100/月", note: "高档；另有 $5-$100 加量积分包" },
-        { name: "SuperGrok Heavy", price: "$300/月", note: "顶配档" }
+        { name: "Free", price: "$0", note: "官方定价页 2026-10-02 直抓原文仅\"Get to know Grok and its capabilities for free within generous limits\"，无任何条数/时长数字；grok.com 结构化数据也只标 price=0（Auto/Fast 可用，Expert/Heavy 需升级）→ 免费档具体额度仍未核实" },
+        { name: "SuperGrok Lite", price: "$10/月", note: "价格来源为 App Store 内购清单（© xAI Inc.）；2026-10-02 官方 x.ai/pricing 对比表列出该档但**未公示月费**（页面仅渲染 Free $0 / SuperGrok $30 / Plus $100）→ 数字为内购口径，非官方页确证" },
+        { name: "SuperGrok", price: "$30/月", note: "官方定价页 2026-10-02 直抓确证（\"SuperGrok | $30 | /month\"，含 Grok 4.6 模型、Grok Bot、更高额度）；Grok Bot 已扩展至全部 SuperGrok 计划（2026-08-26 官方）" },
+        { name: "SuperGrok Plus", price: "$100/月", note: "官方定价页 2026-10-02 直抓确证（$100/month，1080p 视频生成 + 显著更高用量）；另有 $5-$100 加量积分包" },
+        { name: "SuperGrok Heavy", price: "$300/月", note: "价格来源为 App Store 内购清单；2026-10-02 官方定价页该档转 \"Contact/Get Heavy\" 未公示月费 → 未核实" }
       ],
       apiNote: "Grok 4.7 API 官方公告价 $2/$6 每百万 tokens（输入/输出，2026-09-21）",
       access: { difficulty: 5, need: "网络环境 + 海外支付卡", note: "另有第三方称 2026-07-25 印度区涨至 ₹2900/月，未见官方英文页佐证 → 未核实" },
       strengths: ["Grok-4.7 以 Coding Elo 1563 排 Arena+ 第 8，编码分 9.3 进第一梯队", "订阅档位从 $10 到 $300 梯度最全", "X 生态实时信息 + Imagine 图像视频生成"],
       weaknesses: ["免费档限制不透明（未核实）", "国内直连不可用、支付门槛高", "API 输出价 $6/M 高于 Grok 4.5 时代"],
       sources: [
+        "https://x.ai/pricing",
         "https://apps.apple.com/us/app/grok-ai/id6670324846",
         "https://x.ai/news/grok-4",
         "https://x.ai/news/grok-4-7",
@@ -456,9 +457,9 @@ window.AGENTS_DATA = {
       id: "yuanqi", name: "腾讯元器", vendor: "腾讯", region: "国内",
       tagline: "微信/QQ 生态的智能体创建平台，C 端收费政策未公开",
       models: ["混元 Hy3（2026-07-06 发布）/ Hy4 preview（2026-08-28）", "可挂第三方模型"],
-      verifiedAt: "2026-09-23",
+      verifiedAt: "2026-10-02",
       plans: [
-        { name: "创建/使用", price: "免费（当前）", note: "官方无公开的 C 端收费政策页 → 是否永久免费未核实；仅有用户协议页" }
+        { name: "创建/使用", price: "免费（当前）", note: "2026-10-02 复查 yuanqi.tencent.com 首页与 /guide 使用指南页，仍无任何 C 端收费、会员或积分条目，也未找到官方\"永久免费\"承诺 → 是否长期免费未核实；仅见用户协议页" }
       ],
       apiNote: "底层能力走腾讯云混元计费（与元器平台分开）：Hunyuan-a13b 输入 ¥0.5/输出 ¥2；Hy3 输入 ¥1/输出 ¥4/缓存命中 ¥0.25 每百万 tokens；第三方模型限时免费已于 2026-03-13 结束",
       access: { difficulty: 1, need: "微信/QQ 账号直接登录", note: "国内直连无障碍" },
@@ -481,7 +482,7 @@ window.AGENTS_DATA = {
   scores: {
     chatgpt:  { coding: 9.5, agent: 8.7, office: 9.3, multimodal: 9.0, context: 7.5, value: 7.0, access: 2.0 },
     claude:   { coding: 9.8, agent: 9.0, office: 8.8, multimodal: 7.5, context: 9.3, value: 5.5, access: 2.0 },
-    gemini:   { coding: 9.3, agent: 7.8, office: 9.0, multimodal: 9.5, context: 9.6, value: 8.5, access: 2.5 },
+    gemini:   { coding: 9.6, agent: 7.8, office: 9.0, multimodal: 9.5, context: 9.6, value: 8.5, access: 2.5 },
     manus:    { coding: 5.5, agent: 8.8, office: 7.5, multimodal: 7.0, context: 7.0, value: 6.0, access: 3.5 },
     deepseek: { coding: 9.1, agent: 7.0, office: 7.8, multimodal: 6.5, context: 8.5, value: 9.6, access: 9.8 },
     kimi:     { coding: 9.3, agent: 7.6, office: 8.2, multimodal: 7.0, context: 9.0, value: 8.8, access: 9.6 },
@@ -516,11 +517,11 @@ window.AGENTS_DATA = {
     verifiedAt: "2026-10-02",
     models: [
       { agent: "claude",   model: "Claude Opus 5.5",    elo: 1526, coding: 1575, aaii: 58 },
+      { agent: "gemini",   model: "Gemini-4-Argon",     elo: 1525, coding: 1570, aaii: 53 },
       { agent: "chatgpt",  model: "GPT-6 Astra",        elo: 1520, coding: 1568, aaii: 53 },
       { agent: "grok",     model: "Grok-4.7",           elo: 1507, coding: 1563, aaii: 47 },
       { agent: "kimi",     model: "Kimi-K3",            elo: 1506, coding: 1562, aaii: 46 },
       { agent: "qianwen",  model: "Qwen3.8-Max",        elo: 1506, coding: 1560, aaii: 45 },
-      { agent: "gemini",   model: "Gemini-3.8-Flash",   elo: 1505, coding: 1561, aaii: 45 },
       { agent: "glm",      model: "GLM-5.3",            elo: 1505, coding: 1560, aaii: 45 },
       { agent: "deepseek", model: "DeepSeek-V4.1-Flash", elo: 1503, coding: 1557, aaii: 43 },
       { agent: "wenxin",   model: "ERNIE-5.1",          elo: 1475, coding: 1495, aaii: 40 },
@@ -871,6 +872,15 @@ window.AGENTS_DATA = {
 
   /* ---------------- 排名历史（每期快照，最新在前；页面用倒数两条算 ↑↓） ---------------- */
   rankHistory: [
+    { date: "2026-10-02", note: "Gemini 席位由 3.8-Flash 换为新旗舰 Gemini-4-Argon（Coding Elo 1561→1570），编码维重排", snapshot: {
+      coding: ["claude","gemini","chatgpt","grok","kimi","glm","qianwen","cursor","deepseek","devin","copilot","trae","poe","doubao","wenxin","hailuo","manus","yuanbao","coze","xinghuo","stepfun","yuanqi","perplexity"],
+      agent: ["claude","manus","chatgpt","cursor","coze","stepfun","devin","gemini","kimi","grok","yuanqi","qianwen","copilot","deepseek","glm","hailuo","perplexity","trae","doubao","poe","wenxin","xinghuo","yuanbao"],
+      office: ["chatgpt","gemini","xinghuo","claude","doubao","qianwen","kimi","coze","grok","yuanbao","deepseek","wenxin","glm","manus","poe","yuanqi","copilot","cursor","perplexity","stepfun","trae","devin","hailuo"],
+      multimodal: ["gemini","chatgpt","hailuo","doubao","grok","qianwen","stepfun","claude","coze","poe","wenxin","glm","kimi","manus","xinghuo","yuanbao","deepseek","yuanqi","copilot","cursor","trae","devin","perplexity"],
+      context: ["gemini","claude","kimi","stepfun","qianwen","deepseek","glm","hailuo","chatgpt","cursor","devin","doubao","grok","copilot","coze","manus","poe","trae","wenxin","xinghuo","perplexity","yuanqi","yuanbao"],
+      value: ["deepseek","doubao","qianwen","stepfun","yuanbao","kimi","wenxin","coze","gemini","poe","glm","copilot","xinghuo","yuanqi","devin","trae","chatgpt","perplexity","grok","cursor","hailuo","manus","claude"],
+      access: ["yuanbao","deepseek","doubao","qianwen","wenxin","yuanqi","coze","glm","kimi","trae","xinghuo","hailuo","stepfun","copilot","manus","cursor","devin","poe","gemini","chatgpt","claude","grok","perplexity"]
+    } },
     { date: "2026-09-23", note: "编码维度改按 Arena+ 基准校准；新收录 5 档案起参与排名", snapshot: {
       coding: ["claude","chatgpt","gemini","kimi","glm","qianwen","cursor","deepseek","devin","copilot","trae","doubao","wenxin","hailuo","manus","yuanbao","coze","xinghuo","stepfun","perplexity"],
       agent: ["claude","manus","chatgpt","cursor","coze","stepfun","devin","gemini","kimi","qianwen","copilot","deepseek","glm","hailuo","perplexity","trae","doubao","wenxin","xinghuo","yuanbao"],
@@ -1018,6 +1028,11 @@ window.AGENTS_DATA = {
       bltcy: { status: "verified", at: "2026-09-30", note: "官网 /api/pricing 直抓成功（2026-09-30，返回 default 分组倍率表约 418KB）；独立社区来源：少数派 sspai 论坛\"中转站实时比价工具\"帖有用户自述已用柏拉图一年多（https://meta.appinn.net/t/topic/79735）。两源一致仅证明\"站点存活、公开报价、有长期使用者\"，不构成质量或兑付背书。" },
       uiuiapi: { status: "verified", at: "2026-10-02", note: "双源：①种子仓库 awesome-ai-api-proxy 条目（type=official-relay、status=active、maintainer 于 2026-06-07 实测，并在 2026-08-16 快照抓到 666 条 high-confidence 报价）；②独立社区目录 frank36512/aiapi（GitHub，2026-10-02 直抓）自列\"300+ 大模型聚合、3.7 元/美元汇率、可开发票\"。10-02 实测站点 200、公开 new-api 价目接口 https://api1.uiuiapi.com/api/pricing 返回 366 个模型（default 分组），已收录 claude-opus-5-5 / gpt-6.1-sol（模型倍率 37.5），尚未收录 gemini-4-argon。注：社区目录属推广性质，\"官方倍率/汇率/可发票\"为自述口径未核；本次仅证明存活、报价公开可复核、被两份独立目录收录。" },
       "closeai-asia": { status: "verified", at: "2026-10-02", note: "双源：①种子仓库条目（type=official-relay、status=active、maintainer 于 2026-05-26 实测，entity_registered=true、支持企业发票）；②独立社区目录 frank36512/aiapi（2026-10-02 直抓）亦收录（\"亚洲最大企业级 AI 中转、支持企业发票\"）。10-02 实测站点 200、/pricing 页面 200（32KB 静态可读）。注：种子 2026-08-16 价格快照无本站记录，报价无法机器复核，\"100% 官转\"属自述；本次仅证明存活与公开价目页可读。" },
+      yunwu: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开价目接口 https://yunwu.ai/api/pricing 返回 384 条（new-api 结构、倍率字段可复核，已收录 qwen3.8-max x6、claude-fable-5 x5、deepseek-v4-pro x4.5，未见 gemini-4-argon）；②独立来源两份——GitHub 社区目录 frank36512/aiapi（列\"0.5 元/美元、500+ 模型、国内直连\"，另收备用域 yunwuai.cc）与第三方测评页 EggStriker（2026-08-11，明示\"不以稳定性为卖点，适合测试不宜生产\"）。注：种子标 type=mixed；第三方直接提示稳定性需自测，本站不作质量背书。V2EX 相关帖发在 promotions 节点属官方推广，不计入独立源；简书\"云雾 APP 诈骗\"为同名兼职资金盘，与本站无关（同名混淆，勿误判红旗）。" },
+      rcouyi: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开价目接口 https://api.rcouyi.com/api/pricing 返回 797 条（含 claude-opus-5-5 x2、claude-fable-5-1 x5、deepseek-v4-flash x0.5 等，供应商字段可读）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-16，\"一站式聚合中转、接口文档完善、可直连、价格中等\"）。未检索到跑路或退款纠纷，但社区讨论与 GitHub 曝光度都很低，独立佐证单薄，标\"单一第三方源\"持续观察。" },
+      relaydance: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开价目接口 https://relaydance.com/api/pricing 返回 45 条（auto_groups=default；以 doubao-seedance 系列视频模型为主，如 seedance-2-0-480p x4.375，另有 claude-fable-5 x6.25）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-15，\"转战视频生成中转，Seedance 2.0/2.5 一站式，价格中等\"）。appinn 的中转站评测帖现已 404 无法复核，Linux.do/V2EX/论坛无用户讨论。价目可读证明存活，但覆盖面窄（45 条）且独立佐证单薄，持续观察。" },
+      atlascloud: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开模型接口 https://api.atlascloud.ai/v1/models 返回 200（71KB，data 数组含 Qwen3-235B-A22B-Instruct-2507 等可复核条目）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-15，\"图像/视频生成聚合 300+ 模型、按秒计费、国内需代理\"）。未见跑路或退款投诉（搜索结果多为自家博客，不计）。注：本站定位偏图像/视频生成聚合，与文本中转目录不完全同类，比价时注意。" },
+      openrouter: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开接口 https://openrouter.ai/api/v1/models 返回 464 个模型（含 claude-opus-5-5 两条线路，尚无 gemini-4-argon），价目与路由可在站内报价页逐项复核；②独立来源两份——GitHub 社区目录 zzsting88/relayAPI（\"所有网站里 OpenRouter 最先开始这个模式\"）与每日经济新闻行业起底（2026-05-12，估值 13 亿美元，同时警示全行业封号跑路/降智/倒卖数据风险）。本站本身无跑路案例，属目录中最成熟的一家；常见抱怨是国内直连不稳定。冲突闭合（10-02）：09-30 挂待核的原因是种子注\"加价约 5%\"与官方 FAQ\"推理零加价\"看似矛盾，10-02 直抓 https://openrouter.ai/docs/faq 确认官方原文为不对上游供应商价格加价，收费只在充值环节（Stripe 手续费 5.5%、单笔最低 $0.80；加密货币充值 5%；BYOK 5%）→ 种子那句\"加价约 5%\"指的是充值手续费而非模型倍率，两源口径实为一致，待核结论撤销，改记 verified（种子区原文不改）。" },
     },
     extra: [
       // 种子源之外、由本站用户提报/自行发现的条目；字段与 seed.providers 同构，双源核实后写入 relayVerify。日更/周更任务对此区只读不改。
@@ -2330,12 +2345,13 @@ window.AGENTS_DATA = {
   /* ---------------- 每周简报（自动核实任务每周五插入一条，最新在前） ---------------- */
   weekly: [
     { date: "2026-10-02", note: "谷歌加入前沿竞争：三家同周换代，一处旧口径闭环", items: [
-      "基准同步到 10-02：Arena+ 当日重抓 325 行（较上轮 +1），新增行 Gemini 4 Argon 按页面原样列在第 2（Arena Elo 1525、Coding 1570、AAII 53）；榜首 Claude Opus 5.5 小幅下修（1528→1526、Coding 1576→1575、AAII 58 不变），编码维度换算分仍为 9.8 不动；GPT-6.1 Sol 的 ARC-AGI 由 92.6 修正为 94.2；因插入一行，第 2 行起全部页面行序整体后移一位，MiMo-V2.6-Pro / Kimi-K3 / Qwen3.8-Max / GLM-5.3 四行 ✅ 标记照原样保留。产品榜不做重排，Argon 是否取代 Gemini-3.8-Flash 的站内席位交周五全量判定",
+      "基准同步到 10-02：Arena+ 当日重抓 325 行（较上轮 +1），新增行 Gemini 4 Argon 按页面原样列在第 2（Arena Elo 1525、Coding 1570、AAII 53）；榜首 Claude Opus 5.5 小幅下修（1528→1526、Coding 1576→1575、AAII 58 不变），编码维度换算分仍为 9.8 不动；GPT-6.1 Sol 的 ARC-AGI 由 92.6 修正为 94.2；因插入一行，第 2 行起全部页面行序整体后移一位，MiMo-V2.6-Pro / Kimi-K3 / Qwen3.8-Max / GLM-5.3 四行 ✅ 标记照原样保留。周五全量判定已落地：Gemini 站内席位由 3.8-Flash 换为 Argon，编码维换算分 9.3→9.6，自模区序变为 Claude Opus 5.5(9.8) > Gemini-4-Argon(9.6) > GPT-6 Astra(9.5) > Grok-4.7 与 Kimi-K3 并列 9.3（按页面序 Grok 在前）> Qwen3.8-Max 与 GLM-5.3 并列 9.2 > DeepSeek-V4.1-Flash(9.1)；其余 12 席逐席复核后仍是各在档厂商的页面最强行，未换席；7 维 23 档案序已重算并落 rankHistory",
       "谷歌 Gemini 4 Argon 发布（09-30）：网易与新浪两独立来源，API 初始报价 $2/$10、缓存输入称享 95% 折扣、单次输出上限自 6.4 万提到 100 万 token；现阶段仅经 Fairwind 计划向受信任网络安全防御机构定向开放，本站 10-02 直抓官方定价文档未见 argon 条目，与\"未公开商用\"一致。搜狐提示\"推广价 $2/$10 期后或涨至 $4/$20\"及更高单任务输出量——单源口径，标未核实",
       "OpenAI 订阅口径闭环：09-30 标注\"待周五\"的 $500 档与额度收紧，经 36 氪与软餐双源确认为 Pro 200 以原价重开、改按 API 美元额度计量且可购总额下调（\"20X 变 10X\"），另设 $500/月顶层档（报道名 Pro 500 / Pro Max 500 不一，含独占最高优先级 Astra、最大上下文记忆、100GB 存储）；Astra 单价未动。chatgpt.com/pricing 二次直抓（1MB）仍无静态价签，档位金额与额度数字继续标未核实",
-      "中转站维护：种子源 last_reviewed 2026-07-12、报价快照 2026-08-16（3464 条）无变动，未重生成；本站双源核实累计 3 家——新增 UiUiAPI（种子条目 maintainer 06-07 实测 + 社区目录 frank36512/aiapi 收录 + 公开 /api/pricing 366 模型直抓成功）与 CloseAI（种子条目 maintainer 05-26 实测、entity_registered=true + 同一社区目录收录，但价格快照无本站记录故报价无法机器复核）。两家公开价目已收录 claude-opus-5-5 与 gpt-6.1-sol，尚无 gemini-4-argon。仅证存活与报价可复核，不做质量或兑付背书",
-      "本窗口（09-30 至今，含国庆周末）未见中转站暴雷/跑路/停服信号；另记一条观察：多源报道 DeepSeek 开源昇腾版 TileLang 及配套算子库（10-02），因报道未给出仓库地址与任何量化指标，暂不入事件表，交周五复核",
-      "发布状态：主站线上 data.js 仍为 09-28 版本，本地已领先 09-30 与本轮 10-02 两天内容；本会话未挂载 Qoder Sites 发布通道，无法代发，需普通会话执行部署。只读镜像由提交钩子自动同步（见 dev/mirror-sync.log）",
+      "中转站维护（双源核实累计 8 家）：种子侧无变动——两份种子源重下后 MD5 与仓内文件一致（last_reviewed 2026-07-12、报价快照 2026-08-16 共 3464 条），故未跑 gen-relay 重生成。上午日更已核 UiUiAPI（公开 /api/pricing 366 模型）与 CloseAI（价目页 200，但价格快照无本站记录，报价无法机器复核）；下午全量再核 5 家：云雾 yunwu（公开 /api/pricing 384 条，qwen3.8-max x6 / claude-fable-5 x5 / deepseek-v4-pro x4.5，独立佐证为 GitHub 社区目录 + 第三方测评 2026-08-11，后者明示\"适合测试不宜生产\"；另记简书\"云雾 APP 诈骗\"系同名资金盘，与本站无关，不误判红旗）、rcouyi（/api/pricing 797 条）、relaydance（45 条，以豆包 Seedance 视频模型为主，原 appinn 评测帖现已 404）、atlascloud（/v1/models 返回 200，定位偏图像/视频聚合）、openrouter（/api/v1/models 464 个模型）。其中 rcouyi、relaydance、atlascloud 独立佐证各仅一份第三方测评页，站内已标\"单一第三方源\"持续观察。09-30 挂待核的 openrouter 冲突本轮闭合：官方 FAQ 直抓为\"不对上游供应商价格加价\"，收费在充值环节（信用卡 5.5%、单笔最低 $0.80；加密货币 5%；自带 Key 5%），源方那句\"加价约 5%\"指的是充值手续费而非模型倍率，两源口径实为一致，故改记 verified（种子区原文不动）。各家价目已收录 claude-opus-5-5 与 gpt-6.1-sol，尚无 gemini-4-argon。仅证存活与报价可复核，不做质量或兑付背书",
+      "本窗口（09-30 至今，含国庆周末）未见中转站暴雷/跑路/停服信号；私有渠道巡检结论无变化——yiqinuo 站点可达但 new-api 前端配置 registration_enabled 与 invitation_code_enabled 均为 false（10-02 实测），维持\"关闭注册\"；rvrcc 域名经 Google 与 Cloudflare DoH 双查仍无 A 记录，维持\"已失效\"；用户提报的 omwai 仍无独立第二来源，该区种子提报条目只读未改。已核条目抽查 bltcy、uiuiapi 与站内记录口径一致，未降级。另记一条观察：多源报道 DeepSeek 开源昇腾版 TileLang 及配套算子库（10-02），因报道未给出仓库地址与任何量化指标，暂不入事件表，待有可核数据再收",
+      "档案核实（本轮三处重点）：Grok——官方 x.ai/pricing 10-02 直抓仅渲染 Free $0 / SuperGrok $30 / Plus $100 三档，SuperGrok Lite 的 $10 只出现在 App Store 内购清单（© xAI Inc.），已在该档注明\"数字为内购口径、非官方页确证\"；Free 档官方文案为\"generous limits\"但未给具体次数，额度维持未核实。元器——复查 yuanqi.tencent.com 首页与 /guide 仍无 C 端收费/会员/积分条目，也未检索到官方\"永久免费\"承诺，C 端收费政策维持未核实。Poe 五档点数制、智谱清言会员价复核后与 09-25 入档口径一致，不动。候选新收录：Arena+ 上 Meta（Muse Spark）、小米 MiMo、美团 LongCat、Mistral 有在榜强模型但站内无对应产品档案，本轮按\"宁缺毋假\"未建档，待官方定价可核后再扩",
+      "发布状态：主站线上 data.js 此前停在 09-28 版本，本地 09-30 与 10-02 两天积压内容随本轮一并补发；本轮 Qoder Sites 发布通道已恢复挂载，生成物经 gen-landing 重跑、render-test 10 页签 × 双主机通过。只读镜像由提交钩子自动同步（见 dev/mirror-sync.log）",
     ] },
 
     { date: "2026-09-30", note: "两家厂商同周换代，一处旧口径被官方页推翻", items: [

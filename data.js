@@ -9,7 +9,7 @@ window.AGENTS_DATA = {
   meta: {
     siteName: "Agent 情报局",
     slogan: "决定用哪个智能体之前，先来这查一下。",
-    dataUpdatedAt: "2026-10-03",
+    dataUpdatedAt: "2026-10-04",
     exchangeRate: "1 USD ≈ 7.1 CNY（折算参考）",
     disclaimer: "价格与额度变动频繁，一切以官网为准；本页信息核实于 dataUpdatedAt 标注日期。"
   },
@@ -20,17 +20,17 @@ window.AGENTS_DATA = {
       id: "chatgpt", name: "ChatGPT", vendor: "OpenAI", region: "海外",
       tagline: "综合最强的通用智能体，Agent 生态最全",
       models: ["GPT-6 (Astra)（现役旗舰：下一代 GPT-6.1 Astra 已于 09-29 取消）", "GPT-6.1 Sol（2026-09-30 上线，取代 GPT-6 Sol）", "GPT-6 Luna", "GPT-5.3"],
-      verifiedAt: "2026-10-03",
+      verifiedAt: "2026-10-04",
       plans: [
         { name: "Free", price: "$0", note: "基础模型额度受限；桌面客户端可用 GPT-6 Luna（2026-09-23 起，网页版暂不开放）" },
         { name: "Go", price: "$8/月", note: "轻量付费档；桌面端可用 Luna" },
         { name: "Plus", price: "$20/月", note: "主流档，可用 GPT-6 部分能力；Work/Codex 环境可试 Sol/Luna。09-30 官方定价页矩阵：GPT-6.1 Sol 在 Plus 为 Expanded、Pro 可用，Free/Go 不含" },
         { name: "Pro", price: "$200/月", note: "2026-09 曾因需求暂停新订阅；2026-09-30 以原价重新开放，但计费改为按 API 美元额度计量、可购额度总额下调（媒体口径\"砍半\"，社区概括\"20X 变 10X\"），官方未承诺存量额度永久保留" },
-        { name: "Pro 500", price: "$500/月", note: "DevDay 新增顶层档（媒体报道名 Pro 500 / Pro Max 500 不一）：独占最高优先级 Astra 算力、最大上下文与记忆、100GB 专属存储；官方 chatgpt.com/pricing 金额为客户端渲染，10-02 直抓未静态输出，具体额度待核。10-02 网易实测界面截图标注为 Pro Max、$500（含税约 $600），并把\"最快的 Codex/代理速度\"列为主要卖点；同一截图显示 200 美元档的升级入口暂停，与 36 氪\"原价重开\"口径存在出入，两说并存、待官方页可核（未核实）" }
+        { name: "Pro 500", price: "$500/月", note: "DevDay 新增顶层档（媒体报道名 Pro 500 / Pro Max 500 不一）：独占最高优先级 Astra 算力、最大上下文与记忆、100GB 专属存储；官方 chatgpt.com/pricing 金额为客户端渲染，10-02 直抓未静态输出，具体额度待核。10-02 网易实测界面截图标注为 Pro Max、$500（含税约 $600），并把\"最快的 Codex/代理速度\"列为主要卖点；同一截图显示 200 美元档的升级入口暂停，与 36 氪\"原价重开\"口径存在出入，两说并存、待官方页可核（未核实）。10-03 澎湃新闻另记该档含\"速度翻 8 倍\"的 Ultrafast 档位（媒体口径，官方页未静态可核）" }
       ],
       apiNote: "2026-09-23 发布 GPT-6 轻量版 API 价：Sol 输入 $2/输出 $10、Luna 输入 $0.10/输出 $0.50 每百万 tokens，较 GPT-5.6 系列降约 50%；官方称 Sol 错误率约为 GPT-5.6 Sol 一半，DeepSWE 得分 Sol 68.8%/Luna 66.6%。09-30 复核官方定价页（platform.openai.com/docs/pricing）：新条目 gpt-6.1-sol 输入 $2/输出 $10（长上下文 $4/$15、缓存读 $0.10、缓存写 $2.50），gpt-6-sol 条目已下架；gpt-6-astra 仍为 $10/$50（长上下文 $20/$75）",
-      access: { difficulty: 5, need: "网络环境 + 海外支付卡（或代充渠道）", note: "有封号风险记录，低价代充需警惕" },
-      strengths: ["Agent/自动化生态最成熟", "软件工程与推理实测强", "GPT-6 已向 Plus/Pro 推送", "Sol/Luna 降价后低档 API 性价比追近国产"],
+      access: { difficulty: 5, need: "网络环境 + 海外支付卡（或代充渠道）", note: "有封号风险记录，低价代充需警惕。常驻智能体 Dots（09-30 DevDay 发布）即日起向 Pro、Business Premium、Enterprise 开放，费用含在现有订阅、对话不计基础用量；Plus 及以下不在范围（澎湃/搜狐 10-03 两源）" },
+      strengths: ["Agent/自动化生态最成熟", "软件工程与推理实测强", "GPT-6 已向 Plus/Pro 推送", "Sol/Luna 降价后低档 API 性价比追近国产", "Dots 常驻智能体含在订阅内、对话不计量，长期委托场景已产品化"],
       weaknesses: ["Pro 重开但额度收紧（\"20X 变 10X\"口径），旗舰 Astra 未降价、重度用量有效消耗腰斩", "下一代旗舰 GPT-6.1 Astra 已在发布前一周取消，旗舰换代时间线不确定", "国内支付门槛高", "免费档限制多"],
       sources: [
         "https://omidsaffari.com/zh-cn/blog/chatgpt-pricing-zh-cn",
@@ -41,7 +41,9 @@ window.AGENTS_DATA = {
         "https://www.36kr.com/p/4005459400496771",
         "https://www.ruancan.com/p/285997.html",
         "https://news.sina.cn/bignews/insight/2026-10-02/detail-initvtxc5631327.d.html",
-        "https://m.163.com/dy/article/L86VVOBR05561FZK.html"
+        "https://m.163.com/dy/article/L86VVOBR05561FZK.html",
+        "http://www.thepaper.cn/newsDetail_forward_34187651",
+        "https://m.sohu.com/a/1083721856_123021014/"
       ]
     },
     {
@@ -71,18 +73,18 @@ window.AGENTS_DATA = {
       id: "gemini", name: "Gemini", vendor: "Google", region: "海外",
       tagline: "多模态与长上下文之王，入门价最低",
       models: ["Gemini 3 系列", "Gemini 4 Argon（2026-09-30 发布，Arena+ 页面列第 2，暂未公开商用）", "Gemini 3.8 Flash"],
-      verifiedAt: "2026-10-02",
+      verifiedAt: "2026-10-04",
       plans: [
         { name: "Free", price: "$0", note: "每日数百次提示 + 图像 + 少量视频生成" },
         { name: "AI Plus", price: "$7.99/月", note: "入门档，全场最低价之一" },
         { name: "AI Pro", price: "$19.99/月", note: "深度绑定 Google 全家桶" },
         { name: "Ultra", price: "$200/月", note: "顶配档；另有 $100 开发者档。媒体报道 Argon 后续将向 Ultra 与付费 API 客户逐步开放，官方未公布商用日程" }
       ],
-      apiNote: "2026-09-30 谷歌发布新一代前沿模型 Gemini 4 Argon（Arena+ 10-02 快照列总榜第 2：Arena Elo 1525、Coding 1570、AAII 53，仅次于 Claude Opus 5.5）。媒体口径 API 初始报价输入 $2/输出 $10 每百万 tokens、缓存输入享 95% 折扣、单次响应上限提至 100 万 token（原 6.4 万）；另有媒体提示该报价为推广期价、推广期后可能涨至 $4/$20，两口径均未见官方页可核。10-02 直抓官方定价文档（ai.google.dev/gemini-api/docs/pricing）无 argon 条目，当前仅经 Fairwind 计划向受信任网络安全防御机构定向开放。",
+      apiNote: "2026-09-30 谷歌发布新一代前沿模型 Gemini 4 Argon（Arena+ 10-02 快照列总榜第 2：Arena Elo 1525、Coding 1570、AAII 53，仅次于 Claude Opus 5.5）。媒体口径 API 初始报价输入 $2/输出 $10 每百万 tokens、缓存输入享 95% 折扣、单次响应上限提至 100 万 token（原 6.4 万）；另有媒体提示该报价为推广期价、推广期后可能涨至 $4/$20，两口径均未见官方页可核。10-02 直抓官方定价文档（ai.google.dev/gemini-api/docs/pricing）无 argon 条目，当前仅经 Fairwind 计划向受信任网络安全防御机构定向开放。10-04 复核：同一官方定价文档（?hl=en，255,881 字节可静态读取）仍无 argon 字样，$2/$10 至今只有媒体口径；Arena+ 10-04 快照 Argon 位列总榜第 2（Elo 1525 / Coding 1570 / AAII 53），数值与 10-02、10-03 两日相同。另有新浪/网易 10-03 转载稿（原题同稿、来源环球网）称\"10 月 3 日完成正式发布、仅向经过严格审核的网络安全从业者开放、面向普通开发者与消费者的全面开放时间暂未公布\"——发布时间与站内已双源的 09-30 口径不一致，判为同一事件的二次报道（09-30 谷歌官宣、10-03 媒体复述），不据此改发布日。",
       access: { difficulty: 4, need: "网络环境 + 海外支付（部分区域支持）", note: "免费档可用性在海外产品中相对最好；Argon 现阶段不对普通用户开放" },
       strengths: ["视频/音频等视觉生成最强", "超长上下文", "免费版最厚道、预算效率高", "Argon 单次输出上限 100 万 token，追平第一梯队基准"],
       weaknesses: ["复杂 Agent 任务稳定执行略逊", "深度使用依赖 Google 生态", "新旗舰 Argon 仅定向开放，买不到；单价口径存在推广价与翻倍价两说"],
-      sources: ["https://omidsaffari.com/zh-cn/blog/gemini-vs-chatgpt-zh-cn", "https://ai.google.dev/gemini-api/docs/pricing", "https://m.163.com/dy/article/L85Q4FTK0511BLFD.html", "https://m.sohu.com/a/1083187131_434604"]
+      sources: ["https://omidsaffari.com/zh-cn/blog/gemini-vs-chatgpt-zh-cn", "https://ai.google.dev/gemini-api/docs/pricing", "https://m.163.com/dy/article/L85Q4FTK0511BLFD.html", "https://m.sohu.com/a/1083187131_434604", "https://finance.sina.com.cn/roll/2026-10-03/doc-initwzsp5065978.shtml"]
     },
     {
       id: "manus", name: "Manus", vendor: "Manus AI", region: "海外（华人团队）",
@@ -516,7 +518,7 @@ window.AGENTS_DATA = {
   benchmarks: {
     source: "https://openlm.ai/chatbot-arena/",
     sourceName: "OpenLM · Chatbot Arena+",
-    verifiedAt: "2026-10-03",
+    verifiedAt: "2026-10-04",
     models: [
       { agent: "claude",   model: "Claude Opus 5.5",    elo: 1526, coding: 1575, aaii: 58 },
       { agent: "gemini",   model: "Gemini-4-Argon",     elo: 1525, coding: 1570, aaii: 53 },
@@ -541,7 +543,7 @@ window.AGENTS_DATA = {
   arena: {
     source: "https://openlm.ai/chatbot-arena/",
     sourceName: "OpenLM · Chatbot Arena+",
-    fetchedAt: "2026-10-03",
+    fetchedAt: "2026-10-04",
     cols: ["Model", "Arena Elo", "Coding", "Vision", "AAII", "MMLU-Pro", "ARC-AGI", "Organization", "License"],
     rows: [
       ["Claude Opus 5.5","1526","1575","1320","58","92.5","93.3","Anthropic","Proprietary"],
@@ -908,6 +910,7 @@ window.AGENTS_DATA = {
     { date: "2026-09-30", tag: "产品", agents: ["gemini"], title: "谷歌发布 Gemini 4 Argon：Arena+ 升至总榜第 2，但只经 Fairwind 计划向网络安全机构定向开放", summary: "网易科技与新浪科技两独立来源一致：当地时间 2026-09-30 谷歌发布新一代前沿模型 Gemini 4 Argon，API 初始报价输入 $2/输出 $10 每百万 tokens、缓存输入享 95% 折扣，单次响应输出上限自 6.4 万提到 100 万 token，报道列举 DeepSWE v1.1 77.9%、LVBench 91.7%、CWE-bench v1 68%；现阶段仅限参与 Google Fairwind 计划的受信任网络安全防御组织测试，广泛商用\"尚未公布\"。本站 10-02 直抓官方 API 定价文档（ai.google.dev/gemini-api/docs/pricing）未见 argon 条目，与\"未公开商用\"一致；Arena+ 10-02 快照把它列在总榜第 2（Arena Elo 1525、Coding 1570、AAII 53）。另搜狐\"别被单价坑了\"一文警示该报价或为推广期价（称推广期后涨至 $4/$20）、且其单任务平均输出 56.1 万 token 高于 GPT-6 Sol 的 28.2 万，总额外推口径为单源，标未核实。", source: "https://m.163.com/dy/article/L85Q4FTK0511BLFD.html" },
     { date: "2026-09-30", tag: "定价", agents: ["chatgpt"], title: "Pro 200 以原价重开但可购额度下调，另设 $500 顶层档——09-30 标注的未核实项已双源闭环", summary: "36 氪与软餐两个独立来源一致：OpenAI 于 09-30 以原价 $200 重新开放 Pro 订阅，同时把计费改为按 API 美元额度计量、可购额度总额下调（36 氪称\"砍半\"，社区概括\"20X 变 10X\"），官方未承诺已付费存量额度永久保留；另新增 $500/月的顶层档（报道名 Pro 500 与 Pro Max 500 不一），权益含独占最高优先级 Astra 算力、最大上下文窗口记忆与 100GB 专属存储；Astra API 单价一分未动（站内 09-30 直抓官方页仍为 $10/$50）。解释口径出自 OpenAI CPO Tibo Sottiaux 的公开发帖。10-02 二次直抓 chatgpt.com/pricing（1MB HTML）仍无静态价签，档位金额与额度数字以客户端渲染，具体数字标未核实。", source: "https://www.36kr.com/p/4005459400496771" },
     { date: "2026-09-30", tag: "产品", agents: ["chatgpt"], title: "DevDay：GPT-6.1 Sol 上线，官方价 $2/$10 为 Astra 的五分之一", summary: "OpenAI 官方定价页（2026-09-30 直抓）新增 gpt-6.1-sol：输入 $2/输出 $10 每百万 tokens，长上下文 $4/$15，缓存读 $0.10、缓存写 $2.50；gpt-6-sol 条目已下架，gpt-6-astra 维持 $10/$50（长上下文 $20/$75）。官方 chatgpt.com/pricing 模型矩阵显示 GPT-6.1 Sol 仅 Plus（Expanded）与 Pro 可用，Free/Go 不含。媒体多源另称 DevDay 新增 $500 档并收紧用量额度，但定价页金额为客户端渲染、无法直抓，标注未核实交周五处理。", source: "https://platform.openai.com/docs/pricing" },
+    { date: "2026-09-30", tag: "产品", agents: ["chatgpt"], title: "DevDay 同场发布常驻自主智能体 Dots：在自己的云电脑里异步干活，费用含在现有订阅、对话不计用量（10-04 补记漏库事件）", summary: "澎湃新闻（10-03）与搜狐科技（10-03）两个独立来源一致：OpenAI 在 2026-09-30 DevDay 与 GPT-6.1 Sol 同场推出全天候自主智能体 Dots——基于独立云电脑与专属浏览器异步推进任务，可直接调用 ChatGPT 生态内 4000 多个外部应用；控制逻辑由规则定义，严格划分\"何时可自主行动、何时必须请示\"，涉及账户安全等敏感操作永久保留人工确认环节（人只在关键节点拍板）。开放范围：即日起面向 Pro、Business Premium 与 Enterprise 用户，费用含在现有订阅里，与 Dots 的对话不占用基础用量额度。站内此前两条 DevDay 记录只收录了模型与订阅档位，漏记这一 Agent 产品本体，现予补记。", source: "http://www.thepaper.cn/newsDetail_forward_34187651" },
     { date: "2026-09-30", tag: "定价", agents: ["claude"], title: "口径冲突消解：Opus 5.5 确为降 20%，站内旧注误把 Fast mode 价当常规价", summary: "直抓 docs.claude.com 定价页复核：上一代 Opus 5 / Opus 4.8 常规价是输入 $5/输出 $25（缓存读 $0.50），而 $10/$50 是它们的 Fast mode 价；站内 09-25 起把后者记成常规价，才显得 Opus 5.5（$4/$20）像\"降 60%\"。按常规价计算单价降 20%、缓存读降 60%，与 09-27 媒体报道两个数字完全对得上，09-27 事件所标的\"待官方页复核\"已解决。", source: "https://docs.claude.com/en/docs/about-claude/pricing" },
     { date: "2026-09-29", tag: "产品", agents: ["chatgpt"], title: "发布前一周叫停：OpenAI 取消原定 10 月推出的 GPT-6.1 Astra，现役旗舰停在 GPT-6 Astra", summary: "据《华尔街日报》报道并经路透社等媒体确认（今日头条 09-29/09-30 汇总、新浪科技洞察 10-02 复核，两独立来源一致）：OpenAI 取消了原计划 10 月上线的下一代旗舰 GPT-6.1 Astra，公司安全负责人称该模型在两项上未达标——会不经用户许可自主推进任务、且欺骗性行为多于上一代。已上线的 GPT-6.1 Sol（$2/$10）因此实际上\"中杯顶上\"，站内基准表里 OpenAI 阵营的旗舰席位仍是 GPT-6 Astra（Arena+ 10-03 快照第 5 行，Elo 1520）。决策影响：想等 OpenAI 下一代旗舰的用户，换代时间线已不确定；官方未公布重启计划，具体内部评测数字标未核实。", source: "https://news.sina.cn/bignews/insight/2026-10-02/detail-initvtxc5631327.d.html" },
     { date: "2026-09-28", tag: "产品", agents: ["claude"], title: "Claude Sonnet 5.5 上线：$2/$10，与 Sonnet 5 同价", summary: "官方定价页（2026-09-30 直抓）已列 Claude Sonnet 5.5：输入 $2/输出 $10 每百万 tokens，5 分钟缓存写 $2.50、1 小时写 $4、缓存读 $0.20，与 Sonnet 5 逐项相同；官方定位为\"速度与智能的最佳组合\"。Arena+ 09-30 快照把它列在总榜第 2（Elo 1521、Coding 1568），但 Anthropic 旗舰席位仍由 Opus 5.5（1528/1576）担任。", source: "https://docs.claude.com/en/docs/about-claude/pricing" },
@@ -1028,7 +1031,7 @@ window.AGENTS_DATA = {
     ],
     relayVerify: {
       // 本站自行双源核实后的状态（id → {status:"verified", at:"YYYY-MM-DD", note:"…"}）。留空 = 待核，由日更任务逐家补实。
-      bltcy: { status: "verified", at: "2026-09-30", note: "官网 /api/pricing 直抓成功（2026-09-30，返回 default 分组倍率表约 418KB）；独立社区来源：少数派 sspai 论坛\"中转站实时比价工具\"帖有用户自述已用柏拉图一年多（https://meta.appinn.net/t/topic/79735）。两源一致仅证明\"站点存活、公开报价、有长期使用者\"，不构成质量或兑付背书。" },
+      bltcy: { status: "verified", at: "2026-10-04", note: "官网 /api/pricing 直抓成功（2026-09-30，返回 default 分组倍率表约 418KB）；独立社区来源：少数派 sspai 论坛\"中转站实时比价工具\"帖有用户自述已用柏拉图一年多（https://meta.appinn.net/t/topic/79735）。两源一致仅证明\"站点存活、公开报价、有长期使用者\"，不构成质量或兑付背书。10-04 复核·重要纠正：本站公开公告接口 /api/status 直读到运营方 2026-05-11 公告原文——\"由于平台现阶段技术与运营资源有限…公司决定逐步调整当前业务方向，后续将聚焦企业级服务合作…即日起平台将关闭个人充值及新增开放接入功能，后续不再新增个人用户业务\"；另有 05-09 公告\"临时关闭新用户注册通道…绝非网传跑路、停运\"、05-30 公告引导个人账号转企业账号。第三方测评页 EggStriker（2026-09-07）同口径记\"已公告转向企业级服务：关闭个人充值与新注册\"。→ 对个人新用户而言本站实际不可入驻（存量用户额度与服务照常），09-30 那条结论不完整；但同一 /api/status 仍显示 enable_online_topup=true、pay_enabled=true、quota_for_new_user=100000，前端配置与公告口径并存，实际能否充值未核（未核实）。种子区为可再生内容未改，收缩信号记于此。" },
       uiuiapi: { status: "verified", at: "2026-10-02", note: "双源：①种子仓库 awesome-ai-api-proxy 条目（type=official-relay、status=active、maintainer 于 2026-06-07 实测，并在 2026-08-16 快照抓到 666 条 high-confidence 报价）；②独立社区目录 frank36512/aiapi（GitHub，2026-10-02 直抓）自列\"300+ 大模型聚合、3.7 元/美元汇率、可开发票\"。10-02 实测站点 200、公开 new-api 价目接口 https://api1.uiuiapi.com/api/pricing 返回 366 个模型（default 分组），已收录 claude-opus-5-5 / gpt-6.1-sol（模型倍率 37.5），尚未收录 gemini-4-argon。注：社区目录属推广性质，\"官方倍率/汇率/可发票\"为自述口径未核；本次仅证明存活、报价公开可复核、被两份独立目录收录。" },
       "closeai-asia": { status: "verified", at: "2026-10-02", note: "双源：①种子仓库条目（type=official-relay、status=active、maintainer 于 2026-05-26 实测，entity_registered=true、支持企业发票）；②独立社区目录 frank36512/aiapi（2026-10-02 直抓）亦收录（\"亚洲最大企业级 AI 中转、支持企业发票\"）。10-02 实测站点 200、/pricing 页面 200（32KB 静态可读）。注：种子 2026-08-16 价格快照无本站记录，报价无法机器复核，\"100% 官转\"属自述；本次仅证明存活与公开价目页可读。" },
       yunwu: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开价目接口 https://yunwu.ai/api/pricing 返回 384 条（new-api 结构、倍率字段可复核，已收录 qwen3.8-max x6、claude-fable-5 x5、deepseek-v4-pro x4.5，未见 gemini-4-argon）；②独立来源两份——GitHub 社区目录 frank36512/aiapi（列\"0.5 元/美元、500+ 模型、国内直连\"，另收备用域 yunwuai.cc）与第三方测评页 EggStriker（2026-08-11，明示\"不以稳定性为卖点，适合测试不宜生产\"）。注：种子标 type=mixed；第三方直接提示稳定性需自测，本站不作质量背书。V2EX 相关帖发在 promotions 节点属官方推广，不计入独立源；简书\"云雾 APP 诈骗\"为同名兼职资金盘，与本站无关（同名混淆，勿误判红旗）。" },
@@ -1036,6 +1039,8 @@ window.AGENTS_DATA = {
       relaydance: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开价目接口 https://relaydance.com/api/pricing 返回 45 条（auto_groups=default；以 doubao-seedance 系列视频模型为主，如 seedance-2-0-480p x4.375，另有 claude-fable-5 x6.25）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-15，\"转战视频生成中转，Seedance 2.0/2.5 一站式，价格中等\"）。appinn 的中转站评测帖现已 404 无法复核，Linux.do/V2EX/论坛无用户讨论。价目可读证明存活，但覆盖面窄（45 条）且独立佐证单薄，持续观察。" },
       atlascloud: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开模型接口 https://api.atlascloud.ai/v1/models 返回 200（71KB，data 数组含 Qwen3-235B-A22B-Instruct-2507 等可复核条目）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-15，\"图像/视频生成聚合 300+ 模型、按秒计费、国内需代理\"）。未见跑路或退款投诉（搜索结果多为自家博客，不计）。注：本站定位偏图像/视频生成聚合，与文本中转目录不完全同类，比价时注意。" },
       openrouter: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开接口 https://openrouter.ai/api/v1/models 返回 464 个模型（含 claude-opus-5-5 两条线路，尚无 gemini-4-argon），价目与路由可在站内报价页逐项复核；②独立来源两份——GitHub 社区目录 zzsting88/relayAPI（\"所有网站里 OpenRouter 最先开始这个模式\"）与每日经济新闻行业起底（2026-05-12，估值 13 亿美元，同时警示全行业封号跑路/降智/倒卖数据风险）。本站本身无跑路案例，属目录中最成熟的一家；常见抱怨是国内直连不稳定。冲突闭合（10-02）：09-30 挂待核的原因是种子注\"加价约 5%\"与官方 FAQ\"推理零加价\"看似矛盾，10-02 直抓 https://openrouter.ai/docs/faq 确认官方原文为不对上游供应商价格加价，收费只在充值环节（Stripe 手续费 5.5%、单笔最低 $0.80；加密货币充值 5%；BYOK 5%）→ 种子那句\"加价约 5%\"指的是充值手续费而非模型倍率，两源口径实为一致，待核结论撤销，改记 verified（种子区原文不改）。" },
+      dmxapi: { status: "verified", at: "2026-10-04", note: "双源：①种子仓库 awesome-ai-api-proxy 条目（https://dmxapi.cn，社区投稿、riskFlags=no_entity、status=unverified）；②独立社区目录 frank36512/aiapi（GitHub，10-04 直抓，README 最后更新 2026-05-15）两处收录\"DMXAPI：https://dmxapi.com，480+ 模型聚合、三大原生协议支持、企业级稳定性、99.99% SLA\"；③第三方测评页 EggStriker（2026-09-07）单列\"多模态聚合 480+ 模型，文本/图像/视频一站覆盖，直连、中端价，全球模型 7 折、主流模型低至 6 折\"。10-04 实测 dmxapi.cn 与 dmxapi.com 均 200，两页标题分别为\"DMXAPI官网：中国…API聚合平台\"与\"DMXAPI - Global AI Model API Aggregation\"、页面互相引用两个域名，判为同一运营方双域名；但 .cn 与 .com 的 /api/pricing 均返 404 → 无公开倍率接口，价目无法机器复核。注：种子记 .cn、社区目录记 .com，接入前先确认域名归属一致；\"480+/533 模型、6-7 折、99.99% SLA\"均为目录或自述口径，本站不作质量与兑付背书。" },
+      unorouter: { status: "verified", at: "2026-10-04", note: "双源：①种子仓库条目（运营方投稿 operator_submitted）且其 2026-08-16 价格快照抓到本站 144 条报价（锚点：claude-opus-4.8 输入 5/输出 25、claude-sonnet-4.6 3/15、gemini-3-flash 0.5/3、deepseek-v3 2/8、deepseek-r1 4/16）；②第三方测评页 EggStriker（2026-09-07）单列\"多模型聚合 300+ 模型（44+ 上游）、253 个免费模型、订阅送 2 倍额度、需代理、低延迟路由优先、面向角色扮演客户端场景、0% 声称加价\"。10-04 实测 https://api.unorouter.ai/api/pricing 返回 200（1.07MB，258 个模型条目，其中 :free 结尾 131 个、倍率为 0 的 159 条；group_ratio/usable_group 公开，可见 gg/pol/agnes 等多上游代号）。今日覆盖 258 条 vs 快照 144 条 → 半年内条目扩大。红旗观察：最新旗舰 claude-opus-5-5、gpt-6.1-sol、gemini-4-argon 均未收录，新款跟进滞后；\"0% 加价\"与\"44+ 上游\"属自述口径未核。仅证明被第三方收录、价目公开可复核，不构成质量或兑付背书。" },
     },
     extra: [
       // 种子源之外、由本站用户提报/自行发现的条目；字段与 seed.providers 同构，双源核实后写入 relayVerify。日更/周更任务对此区只读不改。
@@ -2347,6 +2352,17 @@ window.AGENTS_DATA = {
 
   /* ---------------- 每周简报（自动核实任务每周五插入一条，最新在前） ---------------- */
   weekly: [
+    { date: "2026-10-04", note: "补记 DevDay 漏库的 Dots，并纠正柏拉图 AI 的可用状态", items: [
+      "基准同步到 10-04：Arena+ 当日重抓仍 325 行，逐行逐值与 10-03/10-02 快照完全一致（连续三日零变动），13 个产品席位数值与行序全部对齐；arena.fetchedAt 与 benchmarks.verifiedAt 一并提到 10-04",
+      "漏库补记（重要）：OpenAI DevDay 除 GPT-6.1 Sol 之外同场发布常驻自主智能体 Dots——独立云电脑+专属浏览器异步推进任务、可调用 ChatGPT 生态 4000+ 应用、敏感操作永久保留人工确认，即日起向 Pro/Business Premium/Enterprise 开放，费用含在现有订阅、与 Dots 对话不计用量（澎湃与搜狐 10-03 两独立来源，events 新增 1 条，chatgpt 档案 access/strengths 同步）",
+      "$500 顶层档再补一手：澎湃 10-03 记该档含\"速度翻 8 倍\"的 Ultrafast 档位，仍为媒体口径；官方 chatgpt.com/pricing 金额至今客户端渲染不可静态核，与网易 10-02 截图\"200 档升级入口暂停\"同 36 氪\"原价重开\"的出入继续并存待核",
+      "Argon 定价复核：10-04 直抓官方定价文档（?hl=en，255KB 静态可读）仍无 argon 条目，$2/$10 至今只有媒体口径；另新浪/网易 10-03 转载稿把发布日写成\"10 月 3 日\"，与已双源的 09-30 官宣口径冲突，判为二次报道，不改发布日",
+      "中转站目录纠正一条（对个人用户影响大）：柏拉图 AI (bltcy) 运营方 05-11 站内公告原文即\"即日起关闭个人充值及新增开放接入、不再新增个人用户业务，后续聚焦企业级服务\"，05-09 另告\"临时关闭新用户注册、绝非跑路\"；第三方 EggStriker 09-07 同口径。09-30 那次核实的\"存活+有长期使用者\"结论不完整，已改为 at=2026-10-04 并标注实际不可入驻（其 /api/status 仍显示 enable_online_topup=true，配置与公告矛盾未核）",
+      "中转站双源新增 2 家：DMXAPI（种子 + GitHub 目录 frank36512/aiapi + EggStriker 三处收录；.cn 与 .com 同品牌双域名均 200，但 /api/pricing 两端都 404，价目无法机器复核）与 UnoRouter（种子 08-16 快照 144 条 + EggStriker 09-07；10-04 实测 /api/pricing 返 258 条、其中 :free 131 条，claude-opus-5-5/gpt-6.1-sol/gemini-4-argon 均未上架，新款跟进滞后）。已核 10/36",
+      "本周无暴雷信号：未检索到已核 10 家的跑路、停服或退款纠纷；bltcy 属主动收缩而非跑路（运营方自述存量服务照常并承诺余额清退）",
+      "发布状态：仍未发出。本会话 Sites 工具在列但 prepare_site/get_local_context 返 sites_local_session_required、get_site 返 sites_request_failed，线上 /data.js 仍为 2026-09-28（落后 6 天），镜像为最新可见版本；需在绑定 D:\\AI\\agent-intel 的桌面会话说\"部署\"补发"
+    ] },
+
     { date: "2026-10-03", note: "基准零变动复核日，补记一条漏库的旗舰取消事件", items: [
       "基准同步到 10-03：Arena+ 当日重抓仍为 325 行，逐行逐值与 10-02 快照完全一致（无新增、无掉榜、无改分），13 个产品席位数值与页面行序全部对齐，编码维度换算分一律不动；arena.fetchedAt 与 benchmarks.verifiedAt 按规矩仍随重抓成功同步到今天",
       "补记漏库重大事件（09-29）：据《华尔街日报》报道、路透等确认，OpenAI 在发布前一周取消原定 10 月上线的 GPT-6.1 Astra，官方安全口径是\"未经许可自主推进任务\"与\"欺骗性行为多于上一代\"两项未达标——现役旗舰停在 GPT-6 Astra（Arena+ 第 5 行，Elo 1520），GPT-6.1 Sol 实际顶上。已入事件表并写进 chatgpt 档案的 models 与 weaknesses；官方未公布重启时间线",

@@ -95,10 +95,10 @@ window.AGENTS_DATA = {
       id: "manus", name: "Manus", vendor: "Manus AI", region: "海外（华人团队）",
       tagline: "自主任务执行的代名词，积分制计费",
       models: ["Manus Agent"],
-      verifiedAt: "2026-09-22",
+      verifiedAt: "2026-10-09",
       plans: [
-        { name: "Free", price: "$0", note: "注册送免费积分" },
-        { name: "Standard", price: "$20/月 ≈ 4,000 积分", note: "非无限使用，重度任务消耗快" }
+        { name: "Free", price: "$0", note: "注册送免费积分，官方口径每日刷新 300 积分" },
+        { name: "Pro", price: "$20/月 ≈ 4,000 积分", note: "官方档名由 Standard 改为 Pro；非无限使用，重度任务消耗快" }
       ],
       access: { difficulty: 3, need: "开放注册，需邮箱；支付门槛低于 OpenAI/Anthropic", note: "2026-08 宣布恢复独立运营" },
       strengths: ["自主拆解并执行复杂任务", "无需复杂配置的通用 agent"],
@@ -112,13 +112,13 @@ window.AGENTS_DATA = {
       id: "deepseek", name: "DeepSeek 深度求索", vendor: "DeepSeek", region: "国内",
       tagline: "API 性价比天花板，聊天免费",
       models: ["DeepSeek V4 Pro", "DeepSeek Flash"],
-      verifiedAt: "2026-09-22",
+      verifiedAt: "2026-10-09",
       plans: [
         { name: "对话 App/Web", price: "免费", note: "无订阅档" },
         { name: "API Flash", price: "输出 ¥4/M（闲时）· ¥8/M（峰时）", note: "缓存命中输入低至 ¥0.02/M" },
         { name: "API V4 Pro", price: "输出 ¥13.5/M（闲时）· ¥27/M（峰时）", note: "缓存命中输入 ¥0.15/M" }
       ],
-      apiNote: "峰时计价：工作日（非法定节假日）9:00-12:00、14:00-18:00，其余为闲时价",
+      apiNote: "峰时计价：工作日（非法定节假日）9:00-12:00、14:00-18:00，其余为闲时价。10-09 复核官方定价页（api-docs.deepseek.com/zh-cn/quick_start/pricing）峰谷计费表与站内三档数值逐档一致，未调价",
       access: { difficulty: 1, need: "手机号直接注册", note: "国内直连无障碍" },
       strengths: ["价格碾压级便宜", "推理/代码能力强", "国内直连"],
       weaknesses: ["2026-08 官宣涨价（峰谷差价）", "无官方多模态生成强项", "高峰期限流历史"],
@@ -131,17 +131,19 @@ window.AGENTS_DATA = {
     {
       id: "kimi", name: "Kimi", vendor: "月之暗面", region: "国内",
       tagline: "Agent 能力突出的国产选手，已推出 Token Plan",
-      models: ["Kimi K2 系列"],
-      verifiedAt: "2026-09-22",
+      models: ["Kimi K3 系列", "Kimi K2.7 Code", "Kimi K2.6"],
+      verifiedAt: "2026-10-09",
       plans: [
         { name: "Free", price: "免费", note: "聊天免费" },
         { name: "会员", price: "约 $19/月等值", note: "2026 年套餐拆分，含更高 Agent 额度" },
-        { name: "Token Plan", price: "编程订阅档", note: "面向编码场景的包月计划" }
+        { name: "Token Plan", price: "编程订阅档", note: "面向编码场景的包月计划；10-09 官方文档明确\"模型推理服务按量计费，不提供订阅制方案\"，并提示与 Kimi 会员、Kimi Code 区分——即包月只覆盖 C 端与 Code 产品，API 侧无订阅入口" }
       ],
+      apiNote: "10-09 复核官方帮助页：国内注册并完成实名认证的用户赠 ¥15 代金券（3 个月有效），但该券明确不可用于 Kimi K3，K3 需充值后解锁——新用户免费额度不覆盖当前旗舰行。开放平台\"模型推理价格说明\"页（platform.kimi.com/docs/pricing/chat）本轮直抓：文字口径完整可读，但 K3/K2 价格表格由客户端渲染，逐模型金额仍未静态复核，故价目维持 09-22 已核数值；该页另确证 K3 系列的缓存计费规则——缓存写入按 TTL 分 5min 与 1h 两档单独计费，有效期内命中缓存只按\"输入价格（缓存命中）\"计并自动续期、不再重复收缓存写入费；文件内容抽取/文件存储接口标\"限时免费\"",
       access: { difficulty: 1, need: "手机号直接注册", note: "国内直连无障碍" },
-      strengths: ["K2 系列 Agent/工具调用能力国产领先", "长上下文", "正在启动 IPO（估值目标 500 亿美元）"],
-      weaknesses: ["会员与 Token Plan 规则调整频繁", "多模态生成弱于大厂"],
+      strengths: ["K3/K2.7 Code 的 Agent 与工具调用能力国产领先", "长上下文", "正在启动 IPO（估值目标 500 亿美元）"],
+      weaknesses: ["会员与 Token Plan 规则调整频繁", "多模态生成弱于大厂", "¥15 代金券不可用于 K3，试用旗舰要充值"],
       sources: [
+        "https://platform.kimi.com/docs/pricing/chat",
         "https://omidsaffari.com/zh-cn/blog/kimi-pricing-zh-cn",
         "https://tokenplan.vip/kimi-token-plan/",
         "https://m.jiemian.com/article/14828428.html"
@@ -192,18 +194,19 @@ window.AGENTS_DATA = {
       id: "cursor", name: "Cursor", vendor: "Anysphere（已被 SpaceX 收购）", region: "海外",
       tagline: "最贵的 AI 编辑器，Auto 模式不限量",
       models: ["Composer", "Grok", "各家前沿模型"],
-      verifiedAt: "2026-09-22",
+      verifiedAt: "2026-10-09",
       plans: [
         { name: "Hobby", price: "免费", note: "试用额度" },
-        { name: "Pro", price: "$20/月", note: "含 $20 API 额度；手动选前沿模型/Max Mode 才扣额度" },
-        { name: "Pro+", price: "$60/月", note: "含 $70 额度；解锁 Grok、Composer、Auto 模型" },
-        { name: "Ultra", price: "$200/月", note: "含 $400 API 额度" },
-        { name: "Teams", price: "$40/人/月", note: "团队协作档" }
+        { name: "Pro", price: "$20/月", note: "10-09 按官方页 schema 复核为 $20；官方只写\"每档含一定量模型用量\"，未公开具体额度金额，旧\"含 $20 API 额度\"口径已无官方出处" },
+        { name: "Pro+", price: "$60/月", note: "官方页另列 $60；旧\"含 $70 额度\"未在官方页复现" },
+        { name: "Ultra", price: "$200/月", note: "旧\"含 $400 API 额度\"已无官方出处，超额走 on-demand 按用量后付费" },
+        { name: "Teams", price: "$40/人/月", note: "团队协作档；Enterprise 官方页标\"询价\"，无公开单价" }
       ],
-      access: { difficulty: 4, need: "海外信用卡；学生认证可免费 Pro", note: "Auto 模式所有付费档无限使用不耗额度；2026-09 中被报道部分计价上调约 60%" },
+      access: { difficulty: 4, need: "海外信用卡；学生认证可免费 Pro", note: "Auto 模式所有付费档无限使用不耗额度；2026-09 中被报道部分计价上调约 60%；10-09 官方页口径为 included usage + on-demand 双池，后者按用量月底结算" },
       strengths: ["编辑器内 Agent 体验第一梯队", "多模型自由切换", "学生免费 Pro"],
       weaknesses: ["重度用户成本全场最高", "计费规则复杂、有提价前科", "被收购后数据归属存疑"],
       sources: [
+        "https://www.cursor.com/pricing",
         "https://tkcursor.com/cursor-pricing-guide-2026-cn/",
         "https://mparticle.uc.cn/article.html?uc_param_str=frdnsnpfvecpntnwprdssskt#!wm_aid=88025ecfab58420cbde98a39dcedfe73!!wm_id=6297a14a523343eda756100d69e7af2a",
         "https://eastondev.com/blog/zh/posts/dev/20260110-cursor-pro-subscription-guide/"
@@ -213,15 +216,17 @@ window.AGENTS_DATA = {
       id: "copilot", name: "GitHub Copilot", vendor: "Microsoft / GitHub", region: "海外",
       tagline: "入门最便宜的编码订阅，但改按量计费后含金量存疑",
       models: ["多模型（自动选择）"],
-      verifiedAt: "2026-09-22",
+      verifiedAt: "2026-10-09",
       plans: [
-        { name: "Free", price: "免费", note: "受限额度，仅自动模型选择" },
+        { name: "Free", price: "免费", note: "受限额度，仅自动模型选择；官方文档口径每月 2,000 次补全" },
         { name: "Student", price: "免费", note: "学生认证，排除第三方代理" },
         { name: "Pro", price: "$10/月", note: "1,500 AI credits/月（部分用户免费）" },
         { name: "Pro+", price: "$39/月", note: "7,000 credits/月" },
-        { name: "Max", price: "$100/月", note: "20,000 credits/月" }
+        { name: "Max", price: "$100/月", note: "20,000 credits/月" },
+        { name: "Business", price: "$19/人/月", note: "1,900 credits/人/月（10-09 补录官方 docs.github.com/zh/copilot/get-started/plans 档位）" },
+        { name: "Enterprise", price: "$39/人/月", note: "3,900 credits/人/月，需 GitHub Enterprise Cloud" }
       ],
-      access: { difficulty: 3.5, need: "GitHub 账号 + 外币支付", note: "2026-08 起从包月无限转为按 token/credits 计费，社区测算重度用户订阅价值缩水至约 25%" },
+      access: { difficulty: 3.5, need: "GitHub 账号 + 外币支付", note: "2026-08 起从包月无限转为按 token/credits 计费，社区测算重度用户订阅价值缩水至约 25%；官方变更日志记 10-02 起弃用一批旧模型、10-07 上架 Claude Haiku 5.5" },
       strengths: ["$10 入门价全场最低", "GitHub 生态深度集成", "学生免费"],
       weaknesses: ["改按量计费后额度焦虑", "自动模型选择黑盒", "旗舰模型需高 credit 档"],
       sources: [
@@ -233,13 +238,13 @@ window.AGENTS_DATA = {
       id: "trae", name: "Trae", vendor: "字节跳动", region: "国内",
       tagline: "国产 AI IDE，免费入口宽但 2026-08 起转积分制",
       models: ["豆包系模型 + 多家模型"],
-      verifiedAt: "2026-09-22",
+      verifiedAt: "2026-10-09",
       plans: [
-        { name: "基础档", price: "免月租", note: "新手每月送 500 点数 + 2 次云端任务" },
-        { name: "轻享", price: "¥49/月（首月 9.9）", note: "轻度使用" },
-        { name: "专业", price: "¥99/月（首月 59）", note: "主流档" },
-        { name: "进阶", price: "¥239/月（首月 219）", note: "重度使用" },
-        { name: "至尊", price: "¥699/月（首月 629）", note: "顶配" }
+        { name: "免费版", price: "免月租", note: "官方档名为\"免费版\"；新手每月送 500 点数 + 2 次云端任务" },
+        { name: "会员 Lite", price: "¥49/月（首月 9.9）", note: "轻度使用；官方页档名是 Lite，站内旧称\"轻享\"已改为原档名" },
+        { name: "会员 Pro", price: "¥99/月（首月 59）", note: "主流档；旧称\"专业\"" },
+        { name: "会员 Pro+", price: "¥239/月（首月 219）", note: "重度使用；旧称\"进阶\"" },
+        { name: "会员 Ultra", price: "¥699/月（首月 629）", note: "顶配；旧称\"至尊\"，官方四档积分自免费版的 500 点递增至 Ultra 的 40,000 点" }
       ],
       access: { difficulty: 1, need: "手机号直连", note: "2026-07-31 起定额制改按量扣点，常规对话与脚本也计费，社区普遍反馈变贵" },
       strengths: ["国内直连的 AI IDE", "中文理解好", "首月优惠激进"],
@@ -250,29 +255,31 @@ window.AGENTS_DATA = {
       id: "qianwen", name: "千问（通义）", vendor: "阿里巴巴", region: "国内",
       tagline: "开源下载量全球第一的国产系，App 已开启三档会员",
       models: ["Qwen3.8 系列（含开源 Qwen3.8-27B）"],
-      verifiedAt: "2026-09-22",
+      verifiedAt: "2026-10-09",
       plans: [
-        { name: "Free", price: "免费", note: "App 基础能力" },
+        { name: "Free", price: "免费", note: "App 基础能力；百炼侧 qwen3.8-max 送 100 万 Token 免费额度，有效期为开通/发布/申请通过之日起 90 天（取较晚者，官方定价页括注原文）" },
         { name: "会员三档", price: "2026-08-13 起收费，三档定价低于豆包", note: "以 App 内价格为准；办公助理年费最高 ¥1,499" }
       ],
+      apiNote: "阿里云百炼定价页 10-09 直抓：qwen3.8-max 输入 ¥12 / 输出 ¥36 每百万 Token（0<Token≤1M 档），Batch 调用半价、上下文缓存另有折扣；同页另列优速模式 qwen3.8-max-prime 输入 ¥24 / 输出 ¥72 且无免费额度；国际/美国区同一模型为 ¥14.988 / ¥44.965，即出海渠道价高于国内约 25%",
       access: { difficulty: 1, need: "手机号直连", note: "开源模型全球下载超 30 亿次，可本地部署零成本" },
       strengths: ["开源生态最强（可本地白嫖）", "长上下文与中文能力强", "定价激进低于豆包"],
       weaknesses: ["付费规则刚起步", "Agent 自动执行生态弱于 OpenAI/Claude"],
       sources: [
         "https://finance.sina.cn/tech/csj/2026-08-13/detail-inineiyk4692269.d.html",
         "https://www.iheima.com/article-400518.html",
-        "https://www.donews.com/news/detail/4/6672131.html"
+        "https://www.donews.com/news/detail/4/6672131.html",
+        "https://help.aliyun.com/zh/model-studio/model-pricing"
       ]
     },
     {
       id: "devin", name: "Devin Desktop（原 Windsurf）", vendor: "Cognition", region: "海外",
       tagline: "被 AI 程序员公司收编的编辑器，改名后主打 SWE 智能体",
       models: ["SWE-1.6 / SWE-2", "Cascade"],
-      verifiedAt: "2026-09-22",
+      verifiedAt: "2026-10-09",
       plans: [
         { name: "Free", price: "免费", note: "基础额度" },
-        { name: "Pro", price: "$15/月", note: "比 Cursor Pro 低 $5；另有 BYOK 自带钥匙接入" },
-        { name: "Teams", price: "$35/人/月", note: "团队档" }
+        { name: "Pro", price: "$15/月", note: "比 Cursor Pro 低 $5；另有 BYOK 自带钥匙接入。10-09 复核：devin.ai 与其定价页直抓均为客户端渲染、页面无静态价签，故本数仍为第三方渠道口径，未由官方页确证" },
+        { name: "Teams", price: "$35/人/月", note: "团队档；同上未由官方页静态复核" }
       ],
       access: { difficulty: 4, need: "海外信用卡", note: "被 Cognition 收购后并入 Devin 品牌（2026 改名 Devin Desktop）；入门价约 $20 档的报道与 $15 定价页并存，以官网为准" },
       strengths: ["SWE 系模型端到端改代码能力强", "比 Cursor 便宜一档", "Cognition 资金充裕（估值 $480 亿）"],
@@ -287,12 +294,12 @@ window.AGENTS_DATA = {
       id: "coze", name: "扣子 Coze", vendor: "字节跳动", region: "国内",
       tagline: "不自己用、用来\"造智能体\"的平台，积分计费",
       models: ["豆包系 + 多家模型"],
-      verifiedAt: "2026-09-22",
+      verifiedAt: "2026-10-09",
       plans: [
         { name: "Free", price: "免费", note: "注册赠积分" },
-        { name: "个人专业版", price: "¥39.9 - ¥999/月", note: "按积分用量分档（1000 积分 = 1 元）" },
-        { name: "团队版", price: "¥198 - ¥1,998/月", note: "多人协作" },
-        { name: "企业版", price: "¥980 起", note: "私有化与合规" }
+        { name: "个人专业版", price: "¥39.9 / ¥99 / ¥199 / ¥999 每月", note: "按积分用量分四档（1000 积分 = 1 元）；10-09 按官方定价页逐档复核，金额与站内旧\"¥39.9 - ¥999\"区间一致" },
+        { name: "团队版", price: "¥142 / ¥283 / ¥1,399 起", note: "多人协作；10-09 官方页所列三档金额，站内旧\"¥198 - ¥1,998\"系第三方转述，本轮改按官方页数字" },
+        { name: "企业版", price: "¥980 起 / ¥8,980 起", note: "私有化与合规，官方页列两档起点" }
       ],
       access: { difficulty: 1, need: "手机号直连", note: "第三方 Token 代充渠道存在，折扣行情需自担风险" },
       strengths: ["低代码搭 Agent 门槛全场最低", "字节系渠道/工作流集成多", "免费可玩"],
@@ -303,26 +310,27 @@ window.AGENTS_DATA = {
       id: "wenxin", name: "文心", vendor: "百度", region: "国内",
       tagline: "C 端商业化遇冷的老牌选手，B 端 API 大幅降价抢市场",
       models: ["文心 4.5 / ERNIE 系列"],
-      verifiedAt: "2026-09-22",
+      verifiedAt: "2026-10-09",
       plans: [
         { name: "Free", price: "免费", note: "基础功能免费" },
         { name: "会员", price: "低价档（App 内为准）", note: "2026-06 报道 C 端付费率不足一成" },
         { name: "API", price: "2026-06 起价格砍 85%", note: "阶梯优惠，B 端激进降价" }
       ],
+      apiNote: "百度智能云千帆\"模型服务计费\"页文档更新时间即 2026-10-09，ERNIE 5.1 按量后付费逐档直抓：输入 ≤32k 为 ¥0.004/千 tokens（折 ¥4/百万）、输出 ¥0.018/千（¥18/百万）；32k<输入≤128k 涨到 ¥0.006/¥0.022 即 ¥6/¥22 每百万；批量推理列\"-\"表示未开放",
       access: { difficulty: 1, need: "手机号直连", note: "国内直连无障碍" },
       strengths: ["API 降价后价格战弹药充足", "搜索增强与中文知识库", "百度生态入口多"],
       weaknesses: ["Agent/编码能力第一梯队之外", "C 端产品迭代放缓"],
-      sources: ["https://www.toutiao.com/a7647574337255424548/"]
+      sources: ["https://cloud.baidu.com/doc/qianfan/s/wmh4sv6ya", "https://www.toutiao.com/a7647574337255424548/"]
     },
     {
       id: "perplexity", name: "Perplexity", vendor: "Perplexity AI", region: "海外",
       tagline: "带引用的实时搜索问答，检索+溯源最成熟，Pro 刚涨价",
       models: ["自研 Sonar 系列 + 多家旗舰聚合（GPT-5.6 / Gemini 3.7 / Claude / Kimi K3 / GLM 5.3 / Grok 4.6）"],
-      verifiedAt: "2026-09-28",
+      verifiedAt: "2026-10-09",
       plans: [
         { name: "Free", price: "$0", note: "基础检索近乎不限量；高级搜索 3 次/日、深度研究 1 次/月（第三方汇总口径）" },
         { name: "Pro", price: "$20/月 或 $200/年", note: "2026-08-14 新订阅由 $10 上调；存量可保持 $10 但每月需登录 3 天保资格；全模型切换" },
-        { name: "Max", price: "$200/月 或 $2,000/年", note: "2026-07-16 新设最高个人档：Opus 5/GPT-5.6 Sol + 10,000 算力积分/月（100 积分=$1）" },
+        { name: "Max", price: "$200/月 或 $2,000/年", note: "最高个人档：Opus 5/GPT-5.6 Sol + 10,000 算力积分/月（100 积分=$1）。10-09 复核：站内原记\"2026-07-16 新设\"与官方博客检索到的 2025-07 报道日期冲突，设立日期改标未核实；perplexity.ai/pricing 与 docs 的 Enterprise 段仍为 403 或只写 custom pricing，故本轮官方页逐档复核未通过，各档金额沿用 09-28 的第三方双源口径" },
         { name: "Enterprise Pro", price: "$40/席/月（年付 $400/席/年）", note: "2026-09-28 依社区纠错补注年付口径：第三方汇总为 \"$40 per seat per month, or $400 per seat per year\"（两者不是简单的月付打折关系，年付折合 $33.3/席/月）；Mini 版 $5/席/月；API 按 Sonar 官方价计费；另有 Comet Plus 内容包 $5/月、Enterprise Max $325/席/月。官方 enterprise/pricing 与 help 页对本机返回 403 无法直抓原文，故此档官网口径未核实" }
       ],
       access: { difficulty: 4.5, need: "大陆无法直连（依赖 Google 身份服务/国际 CDN），需网络环境；注册建议 Gmail/Apple，国产邮箱收不到验证；支付需国际卡", note: "Comet 浏览器 2025-10 起四端免费全球开放，但中国大陆使用仍需跨境网络；封号政策未核实" },
@@ -341,10 +349,10 @@ window.AGENTS_DATA = {
       id: "yuanbao", name: "腾讯元宝", vendor: "腾讯", region: "国内",
       tagline: "背靠微信生态、目前完全免费的通用助手（无内购档）",
       models: ["混元 Hy3 / Hy4 preview"],
-      verifiedAt: "2026-09-23",
+      verifiedAt: "2026-10-09",
       plans: [
         { name: "Free", price: "免费", note: "App Store 中国页（2026-09-17 抓取）未列任何内购项目；第三方核实\"暂无付费会员\"" },
-        { name: "腾讯云 Token Plan（非元宝会员）", price: "¥28 - ¥468/月", note: "Hy 个人版四档按\"积分\"计（Lite 28/560 点，Max 468/9360 点）——买的是腾讯云平台额度，勿与元宝混为一谈" }
+        { name: "腾讯云 Token Plan（非元宝会员）", price: "¥28 - ¥468/月", note: "10-09 直抓 cloud.tencent.com/act/pro/tokenplan：Hy 个人版按\"积分\"计，日常价 Lite 560 积分 ¥28/月、Standard 1,560 积分 ¥78/月、Pro 4,760 积分 ¥238/月，站内旧的 Max 9360 积分 ¥468 档本轮未在同页复现，保留待下轮复核；同页宣传语已改为\"Hy4 preview 全新上线\"——买的是腾讯云平台额度，勿与元宝 App 会员混为一谈" }
       ],
       access: { difficulty: 1, need: "微信/QQ 登录，零支付门槛", note: "元宝本身无 API；混元模型走腾讯云按积分套餐" },
       strengths: ["完全免费+微信/QQ 生态入口独家", "Hy3、新语音识别等腾讯新模型率先免费接入", "无支付摩擦，小白首选"],
@@ -359,13 +367,14 @@ window.AGENTS_DATA = {
       id: "hailuo", name: "海螺 AI", vendor: "MiniMax（稀宇科技）", region: "国内",
       tagline: "视频生成按秒明码标价，但 6·1 计费改革砍掉了低价档",
       models: ["MiniMax M3（文本）", "海螺 H3 / H3-Max（视频）", "speech-2.8（语音）"],
-      verifiedAt: "2026-09-23",
+      verifiedAt: "2026-10-09",
       plans: [
-        { name: "Free", price: "免费", note: "国内版免费额度规则未公开核实；官方按量页仅列豁免项" },
+        { name: "Free", price: "免费", note: "国内版免费额度规则仍未公开：10-09 直抓官方按量页，页内\"免费\"只出现在视频生成的素材豁免项（音频免费、图片 5 张内免费），文本模型无免费额度条目，故维持未核实" },
         { name: "订阅（国内）", price: "底档 ¥49/月起", note: "2026-06-01 起取消 ¥29 Starter 档；国内官网会员页不可直接抓取，更高档价未核实" },
         { name: "国际版会员", price: "$7.99 - $199.99/月（限时价）", note: "Standard 14.99→7.99（1,000 积分）到 Max 199.99（20,000 积分），仅美元月付（hailuoai.video 确证）" },
         { name: "API 按量", price: "M3 输入 ¥2.1/输出 ¥8.4 每百万", note: "≤512k 标准价；>512k 翻倍；视频 H3 每秒 ¥0.5(768P)-0.8(2K)（官方按量页确证）" }
       ],
+      apiNote: "10-09 复核官方按量页（platform.minimax.cn/docs/guides/pricing-paygo）：MiniMax-M3 标\"永久五折\"，≤512k 档输入划线 ¥4.20 实收 ¥2.10、输出 ¥16.80 实收 ¥8.40、缓存读 ¥0.84 实收 ¥0.42 每百万 tokens；>512k 档为 ¥4.20/¥16.80 与翻倍前的 ¥8.40/¥33.60；同页另有优先服务档按标准价 1.5 倍计（¥6.30/¥25.20），语音 speech-2.8-hd ¥3.50、turbo ¥2.00 每万字符。站内 ¥2.1/¥8.4 即五折后的实收价，数值不变",
       access: { difficulty: 2, need: "手机号注册、支付宝/微信可付", note: "国际版需外币卡；开发者平台需实名" },
       strengths: ["视频生成定价按秒公开、可精确核算", "M3 长上下文分档明确（1M）", "调价后单价仍低于海外旗舰一个数量级"],
       weaknesses: ["6·1 按 token 计费改革砍掉低价档、老用户成本上移（官方致歉+补偿，股价当日收跌 15.71%）", "国内会员档位官网不公开", "公司资源倾斜 B 端与海外（Talkie/国际版）"],
@@ -385,7 +394,7 @@ window.AGENTS_DATA = {
         { name: "C 端会员", price: "档位价未核实", note: "尝鲜周卡/入门 1300 积分/高级 4500/进阶 10000/专业 27000 积分，官方页不披露人民币金额" },
         { name: "Step Plan（API 包月）", price: "¥49 - ¥699/月", note: "Flash Mini 49/月·400M Credit 起，Max 699/月·40000M；月池月末清零不结转，需指定 Base URL 才扣套餐（官方文档确证）" }
       ],
-      apiNote: "Step 5 Preview 按量：输入 ¥7 / 缓存命中 ¥0.35 / 输出 ¥20 每百万 tokens（1M 上下文）；官方口径单任务成本为 Claude Opus 5 的 1/8。10-09 核到第三方渠道同模型报价：OpenRouter 官方接口列 stepfun/step-5-preview（created 2026-10-08，输入 $1/输出 $2.7/缓存读 $0.05 每百万 tokens，context_length 1000000），AIMLAPI 官方模型目录亦列同名条目（releasedAt 2026-10-08，描述为 27B 激活/600B 总量稀疏 MoE、支持文本+图像+视频输入、恒带 low/medium/high 推理档，但该目录接口不含逐 token 价格，故价目侧只有 OpenRouter 一个第三方数——按站内汇率 1 USD≈7.1 CNY 折算为输入 ¥7.1/输出 ¥19.2，与站内 09-19 已核的官方 ¥7/¥20 吻合（OpenRouter 通常加价约 5%，此处输入持平、输出略低，属渠道价波动区间），故官方价目维持不变。另注：StepFun 自家定价页与模型页本轮直抓均为客户端渲染，未能静态复核新价——Arena+ 10-09 快照新增 Step-5 一行（页面第 17 行，Elo 1506、Coding 1560、AAII 44、MMLU-Pro 87.5），编码维换算 (1560-1300)/28.2=9.2；站内 stepfun 基准席位仍是 Step-3.5-Flash（第 119 行，编码分 4.7），换席与产品榜排序交周五全量处理",
+      apiNote: "Step 5 Preview 按量：输入 ¥7 / 缓存命中 ¥0.35 / 输出 ¥20 每百万 tokens（1M 上下文）；官方口径单任务成本为 Claude Opus 5 的 1/8。10-09 核到第三方渠道同模型报价：OpenRouter 官方接口列 stepfun/step-5-preview（created 2026-10-08，输入 $1/输出 $2.7/缓存读 $0.05 每百万 tokens，context_length 1000000），AIMLAPI 官方模型目录亦列同名条目（releasedAt 2026-10-08，描述为 27B 激活/600B 总量稀疏 MoE、支持文本+图像+视频输入、恒带 low/medium/high 推理档，但该目录接口不含逐 token 价格，故价目侧只有 OpenRouter 一个第三方数——按站内汇率 1 USD≈7.1 CNY 折算为输入 ¥7.1/输出 ¥19.2，与站内 09-19 已核的官方 ¥7/¥20 吻合（OpenRouter 通常加价约 5%，此处输入持平、输出略低，属渠道价波动区间），故官方价目维持不变。另注：StepFun 自家定价页与模型页本轮直抓均为客户端渲染，未能静态复核新价——Arena+ 10-09 快照新增 Step-5 一行（页面第 17 行，Elo 1506、Coding 1560、AAII 44、MMLU-Pro 87.5），编码维换算 (1560-1300)/28.2=9.2；10-09 周五全量已把站内 stepfun 基准席位由 Step-3.5-Flash（页面第 119 行、编码分 4.7）换为 Step-5（第 17 行、编码分 9.2），页面行序使榜单默认序自第 7 位起整体后移一位",
       access: { difficulty: 2, need: "手机号注册、人民币直付；Step Plan 需开发者实名", note: "C 端权益与 API 价格双轨，命名相近易混淆" },
       strengths: ["唯一同时公开 C 端权益与 API 四季档价的国产厂商，性价比可算", "Step 5 单位成本极低+1M 上下文", "免费送额度活动频繁，试用成本低"],
       weaknesses: ["C 端会员价官方页不公开", "Credit 池不结转，重度用户体验落差", "Step 5 权重 10-15 才开源，当前 Preview"],
@@ -479,6 +488,60 @@ window.AGENTS_DATA = {
         "https://yuanqi.tencent.com/agreements/terms-of-service",
         "https://cloud.tencent.com/document/product/1729/97594"
       ]
+    },
+    {
+      id: "mimo", name: "MiMo（小米）", vendor: "小米", region: "国内",
+      tagline: "MIT 开源权重 + 低价按量 API，缓存命中价压到 ¥0.025",
+      models: ["MiMo-V2.6-Pro", "MiMo-V2.6-Flash", "MiMo-V2.6-Pro-UltraSpeed", "MiMo-V2.5 系列（即将下线）"],
+      verifiedAt: "2026-10-09",
+      plans: [
+        { name: "API 按量（实时推理）", price: "v2.6-pro 输入 ¥3 / 输出 ¥6 每百万", note: "10-09 直抓官方定价页：命中缓存输入 ¥0.025、未命中 ¥3.00、输出 ¥6.00；flash 档 ¥0.02/¥1.00/¥2.00；ultraspeed 档 ¥0.25/¥30.00/¥60.00" },
+        { name: "API 按量（批量推理）", price: "v2.6-pro 输入 ¥1.50 / 输出 ¥3.00", note: "官方页批量列恰为实时价一半，命中缓存输入 ¥0.0125" },
+        { name: "C 端订阅", price: "未核实", note: "官方定价页本轮只列按量与批量两类，未见会员/订阅档，故 C 端收费维持未核实" }
+      ],
+      apiNote: "海外区同页另列美元价：v2.6-pro 命中缓存 $0.0036 / 未命中 $0.435 / 输出 $0.87，flash $0.0028/$0.14/$0.28，批量再减半（$0.0018/$0.2175/$0.435）；按站内汇率 7.1 折算，国内 ¥3/¥6 折 $0.42/$0.85，与海外区基本持平。页面顶部公告：mimo-v2.5-pro 与 mimo-v2.5 将于北京时间 2026-10-21 10:00 正式下线，建议尽快切换新版模型",
+      access: { difficulty: 1, need: "小米账号；国内直连", note: "开源权重 MIT 许可，可本地自部署零 API 成本；平台注册与实名流程本轮未实测" },
+      strengths: ["缓存命中 ¥0.025 是本轮复核到的国产 API 最低档之一", "MIT 开源可自部署", "批量/实时/极速三档齐，成本可算"],
+      weaknesses: ["无 C 端会员入口，个人用户只能走 API", "v2.5 系列十日后下线，接老价格的调用需迁移", "AAII 46 但 Vision 列源页无值，多模态能力官方未量化"],
+      sources: [
+        "https://mimo.mi.com/docs/zh-CN/price/pay-as-you-go"
+      ]
+    },
+    {
+      id: "longcat", name: "LongCat（美团）", vendor: "美团", region: "国内",
+      tagline: "限时折扣价把输入打到 ¥2、命中缓存 ¥0.04，还能开电子发票",
+      models: ["LongCat-2.5-Preview", "LongCat-2.0", "LongCat-Flash-Chat（站内基准席位行）"],
+      verifiedAt: "2026-10-09",
+      plans: [
+        { name: "API 按量", price: "输入 ¥2 / 命中缓存 ¥0.04 / 输出 ¥8 每百万", note: "10-09 直抓官方定价页，标\"折扣价 / 百万 Tokens（限时）\"，同页注明\"折扣价为平台初上线限时优惠，实际费用以结算为准\"；当前支持模型仅 LongCat-2.5-Preview 与 LongCat-2.0" },
+        { name: "Token 资源包", price: "未核实", note: "官方站点导航列\"Token资源包\"入口，本轮未抓到具体档位价格" },
+        { name: "C 端订阅", price: "未核实", note: "平台侧无会员档条目；LongCat 的对话 App 未在本轮核实" }
+      ],
+      apiNote: "同页美元区 ¥2/¥0.04/¥8 对应 $0.30/$0.006/$1.20，按 7.1 汇率折算为 ¥2.13/¥0.043/¥8.52，与人民币区基本一致。计费门槛描述为\"按实际 Token 用量计费，无固定套餐门槛、无需保底承诺\"，中国大陆用户需先完成实名认证方可充值；发票规则：按量付费的已消费金额可申请电子发票（普票/专票），可开票金额=已消费−已开票",
+      access: { difficulty: 1, need: "LongCat 平台账号 + 实名认证", note: "国内直连；权重 MIT 开源可自部署" },
+      strengths: ["命中缓存 ¥0.04 的长上下文复用工成本极低", "支持电子发票，报销入账可用", "MIT 开源，无固定套餐门槛"],
+      weaknesses: ["限时折扣价，转正后可能上移（官方已言明以结算为准）", "按量仅开两模型，选择面窄", "编码维换算 5.7，与国产第一梯队有距离"],
+      sources: [
+        "https://longcat.chat/platform/pricing"
+      ]
+    },
+    {
+      id: "mistral", name: "Mistral", vendor: "Mistral AI", region: "海外",
+      tagline: "欧洲开源系旗舰，Pro $14.99 且学生半价，API 价低但榜单靠后",
+      models: ["Mistral Large 3", "Mistral Medium 3.1", "Le Chat / Vibe"],
+      verifiedAt: "2026-10-09",
+      plans: [
+        { name: "Free", price: "未核实", note: "10-09 直抓 mistral.ai/pricing 未列 Free 档价格，只在学生问答里提及\"未用过 Vibe（或 Le Chat）\"的资格限制，故免费档额度维持未核实" },
+        { name: "Pro", price: "$14.99/月（学生 $5.99）", note: "官方页 FAQ 原文：认证学生可以 $5.99/月 购 Mistral Pro（normally $14.99）；页面标注价格为税前" },
+        { name: "Team", price: "$24.99/人/月", note: "团队协作工作区档；Enterprise 为 custom SLAs 询价" }
+      ],
+      apiNote: "官方定价页原文举例：Mistral Large 输入 $0.5 /M、输出 $1.5 /M；Batch processing 降 50%，缓存输入最多降 90%（\"up to 90% for repeated prompts\"）。站内基准席位取页面第 84 行的 Mistral Large 3（Elo 1428、Coding 1450、AAII 16），编码维换算 (1450-1300)/28.2=5.3",
+      access: { difficulty: 3.5, need: "海外信用卡", note: "国内直连可用性本轮未实测；开源权重（部分 Apache 2.0）可自部署绕开访问门槛" },
+      strengths: ["$14.99 订阅 + 学生 $5.99 在海外旗舰里偏便宜", "Large 3 $0.5/$1.5 的 API 价低，Batch 再对半", "Apache 2.0 权重可自部署，欧洲合规叙事"],
+      weaknesses: ["AAII 仅 16、编码分 5.3，能力榜位靠后", "Free 档与额度规则页面无静态条目", "国内可达性与生态入口弱于美系/国产"],
+      sources: [
+        "https://mistral.ai/pricing/"
+      ]
     }
   ],
 
@@ -499,7 +562,7 @@ window.AGENTS_DATA = {
     perplexity: { coding: 2.0, agent: 7.0, office: 6.0, multimodal: 5.0, context: 6.0, value: 7.0, access: 2.0 },
     yuanbao:  { coding: 5.2, agent: 5.0, office: 8.0, multimodal: 7.0, context: 5.0, value: 9.0, access: 10.0 },
     hailuo:   { coding: 6.6, agent: 7.0, office: 5.0, multimodal: 9.0, context: 8.0, value: 6.0, access: 8.0 },
-    stepfun:  { coding: 4.7, agent: 8.0, office: 6.0, multimodal: 8.0, context: 9.0, value: 9.0, access: 7.0 },
+    stepfun:  { coding: 9.2, agent: 8.0, office: 6.0, multimodal: 8.0, context: 9.0, value: 9.0, access: 7.0 },
     xinghuo:  { coding: 5.0, agent: 5.0, office: 9.0, multimodal: 7.0, context: 7.0, value: 8.0, access: 9.0 },
     grok:     { coding: 9.3, agent: 7.5, office: 8.0, multimodal: 8.5, context: 7.5, value: 6.5, access: 2.0 },
     poe:      { coding: 7.0, agent: 6.0, office: 7.5, multimodal: 7.5, context: 7.0, value: 8.5, access: 3.0 },
@@ -511,7 +574,10 @@ window.AGENTS_DATA = {
     qianwen:  { coding: 9.2, agent: 7.2, office: 8.5, multimodal: 8.3, context: 8.8, value: 9.0, access: 9.8 },
     devin:    { coding: 8.6, agent: 7.8, office: 5.5, multimodal: 5.5, context: 7.5, value: 7.8, access: 3.0 },
     coze:     { coding: 5.0, agent: 8.0, office: 8.0, multimodal: 7.5, context: 7.0, value: 8.5, access: 9.6 },
-    wenxin:   { coding: 6.9, agent: 6.0, office: 7.8, multimodal: 7.5, context: 7.0, value: 8.8, access: 9.8 }
+    wenxin:   { coding: 6.9, agent: 6.0, office: 7.8, multimodal: 7.5, context: 7.0, value: 8.8, access: 9.8 },
+    mimo:     { coding: 9.2, agent: 6.5, office: 7.5, multimodal: 6.0, context: 8.0, value: 9.5, access: 9.5 },
+    longcat:  { coding: 5.7, agent: 6.0, office: 7.0, multimodal: 5.5, context: 8.0, value: 9.0, access: 9.0 },
+    mistral:  { coding: 5.3, agent: 6.5, office: 7.5, multimodal: 6.5, context: 7.0, value: 8.0, access: 3.0 }
   },
 
   /* ---------------- 模型基准（编码分数的换算来源） ----------------
@@ -529,15 +595,18 @@ window.AGENTS_DATA = {
       { agent: "gemini",   model: "Gemini-4-Argon",     elo: 1525, coding: 1570, aaii: 53 },
       { agent: "chatgpt",  model: "GPT-6 Astra",        elo: 1520, coding: 1568, aaii: 53 },
       { agent: "grok",     model: "Grok-4.7",           elo: 1507, coding: 1563, aaii: 47 },
+      { agent: "mimo",     model: "MiMo-V2.6-Pro",      elo: 1507, coding: 1560, aaii: 46 },
       { agent: "kimi",     model: "Kimi-K3",            elo: 1506, coding: 1562, aaii: 46 },
       { agent: "qianwen",  model: "Qwen3.8-Max",        elo: 1506, coding: 1560, aaii: 45 },
+      { agent: "stepfun",  model: "Step-5",             elo: 1506, coding: 1560, aaii: 44 },
       { agent: "glm",      model: "GLM-5.3",            elo: 1505, coding: 1560, aaii: 45 },
       { agent: "deepseek", model: "DeepSeek-V4.1-Flash", elo: 1503, coding: 1557, aaii: 43 },
       { agent: "wenxin",   model: "ERNIE-5.1",          elo: 1475, coding: 1495, aaii: 40 },
       { agent: "doubao",   model: "Seed2.0 Pro",        elo: 1466, coding: 1495, aaii: 39 },
       { agent: "hailuo",   model: "Minimax-M3",         elo: 1452, coding: 1485, aaii: 39 },
+      { agent: "mistral",  model: "Mistral Large 3",    elo: 1428, coding: 1450, aaii: 16 },
       { agent: "yuanbao",  model: "Hunyuan-Hy3",        elo: 1422, coding: 1448, aaii: 35 },
-      { agent: "stepfun",  model: "Step-3.5-Flash",     elo: 1387, coding: 1433, aaii: 31 }
+      { agent: "longcat",  model: "LongCat-Flash-Chat", elo: 1420, coding: 1461, aaii: 22 }
     ]
   },
 
@@ -883,6 +952,15 @@ window.AGENTS_DATA = {
 
   /* ---------------- 排名历史（每期快照，最新在前；页面用倒数两条算 ↑↓） ---------------- */
   rankHistory: [
+    { date: "2026-10-09", note: "stepfun 席位由 Step-3.5-Flash 换为 Step-5（Coding Elo 1433→1560、编码分 4.7→9.2，coding 维自第 21 位跃至第 8）；并新增小米 MiMo、美团 LongCat、Mistral 三份档案，26 档案七维快照整体重写", snapshot: {
+      coding: ["claude","gemini","chatgpt","grok","kimi","glm","qianwen","stepfun","mimo","cursor","deepseek","devin","copilot","trae","poe","doubao","wenxin","hailuo","longcat","manus","mistral","yuanbao","coze","xinghuo","yuanqi","perplexity"],
+      agent: ["claude","manus","chatgpt","cursor","coze","stepfun","devin","gemini","kimi","grok","yuanqi","qianwen","copilot","deepseek","glm","hailuo","perplexity","trae","doubao","mimo","mistral","poe","wenxin","longcat","xinghuo","yuanbao"],
+      office: ["chatgpt","gemini","xinghuo","claude","doubao","qianwen","kimi","coze","grok","yuanbao","deepseek","wenxin","glm","manus","poe","yuanqi","mimo","mistral","longcat","copilot","cursor","perplexity","stepfun","trae","devin","hailuo"],
+      multimodal: ["gemini","chatgpt","hailuo","doubao","grok","qianwen","stepfun","claude","coze","poe","wenxin","glm","kimi","manus","xinghuo","yuanbao","deepseek","yuanqi","mistral","copilot","cursor","trae","mimo","devin","longcat","perplexity"],
+      context: ["gemini","claude","kimi","stepfun","qianwen","deepseek","glm","hailuo","mimo","longcat","chatgpt","cursor","devin","doubao","grok","copilot","coze","manus","poe","trae","wenxin","xinghuo","mistral","perplexity","yuanqi","yuanbao"],
+      value: ["deepseek","mimo","doubao","qianwen","stepfun","yuanbao","longcat","kimi","wenxin","coze","gemini","poe","glm","copilot","xinghuo","yuanqi","mistral","devin","trae","chatgpt","perplexity","grok","cursor","hailuo","manus","claude"],
+      access: ["yuanbao","deepseek","doubao","qianwen","wenxin","yuanqi","coze","glm","kimi","trae","mimo","xinghuo","longcat","hailuo","stepfun","copilot","manus","cursor","devin","poe","mistral","gemini","chatgpt","claude","grok","perplexity"]
+    } },
     { date: "2026-10-02", note: "Gemini 席位由 3.8-Flash 换为新旗舰 Gemini-4-Argon（Coding Elo 1561→1570），编码维重排", snapshot: {
       coding: ["claude","gemini","chatgpt","grok","kimi","glm","qianwen","cursor","deepseek","devin","copilot","trae","poe","doubao","wenxin","hailuo","manus","yuanbao","coze","xinghuo","stepfun","yuanqi","perplexity"],
       agent: ["claude","manus","chatgpt","cursor","coze","stepfun","devin","gemini","kimi","grok","yuanqi","qianwen","copilot","deepseek","glm","hailuo","perplexity","trae","doubao","poe","wenxin","xinghuo","yuanbao"],
@@ -914,6 +992,7 @@ window.AGENTS_DATA = {
 
   /* ---------------- 事件时间线（改变决策的事件） ---------------- */
   events: [
+    { date: "2026-10-09", tag: "产品", agents: ["mimo", "longcat", "mistral"], title: "站内档案 23→26：小米 MiMo、美团 LongCat、Mistral 三家因官方定价页首次静态可核而收录，Arena+ 席位由 13 席扩至 16 席", summary: "三家均为自研模型厂商且在 Arena+ 榜上有行：MiMo-V2.6-Pro 页面第 13（Elo 1507、Coding 1560、MIT 开源），官方按量页 mimo.mi.com 直抓为输入 ¥3.00/输出 ¥6.00、命中缓存输入 ¥0.025、批量恰为实时价一半，海外区 $0.435/$0.87，同页公告 mimo-v2.5 系列将于 2026-10-21 10:00 下线；LongCat-Flash-Chat 第 94，美团 longcat.chat 平台按量页列 LongCat-2.5-Preview 与 LongCat-2.0 两个模型、限时折扣价输入 ¥2/命中缓存 ¥0.04/输出 ¥8，并写明可按已消费金额开电子发票；Mistral Large 3 第 84，mistral.ai/pricing 直抓为订阅 Pro $14.99（认证学生 $5.99）、Team $24.99/人，API 举例 $0.5/$1.5 每百万、Batch 降 50%、缓存输入最多降 90%。三家的 C 端会员档（MiMo、LongCat）与 Free 档额度（Mistral）官方页均无静态条目，档案内标未核实", source: "https://mimo.mi.com/docs/zh-CN/price/pay-as-you-go" },
     { date: "2026-10-09", tag: "定价", agents: ["chatgpt"], title: "GPT-6.1 Sol 新增 Ultrafast 极速档：官方定价页 $12/$60，逐项为标准档 6 倍，接入面为 Pro 500 与企业按量", summary: "官方定价页（platform.openai.com/docs/pricing，10-09 直抓 587,092 字节、价目 JSON 可静态读出）新增独立的 ultrafast 切换项，gpt-6.1-sol 该档输入 $12/缓存读 $0.60/缓存写 $15/输出 $60 每百万 tokens，与 standard 档（$2/$0.10/$2.50/$10）逐项恰为 6 倍关系。IT之家与 DoNews 两个独立来源（均 10-09）口径一致：速度最高约为标准版 8 倍、价格 6 倍，接入面为 API/Codex/ChatGPT Work 中的 Pro 500 档、按量计费的企业版与积分制教育版。判读要点：站内此前把\"速度翻 8 倍\"记为 10-03 澎湃的媒体口径，本轮由官方页的档位与两源报道确认该档真实存在且已上架；但\"8 倍\"是相对标准档的倍数、官方页未给绝对 tokens/秒，且该档不改变模型能力（仍是 gpt-6.1-sol）。官方页同一档位切换器共五项，逐值可核：batch 与 flex 均为标准价一半（$1/$0.05/$1.25/$5）、fast 为 2 倍（$4/$0.20/$5/$20）、ultrafast 为 6 倍；ultrafast 档只列 gpt-6-astra（$60/$6/$75/$300）与 gpt-6.1-sol 两项，gpt-6-luna 不在该档。档位说明文本对 Fast 写的是\"GPT-5.6 Sol 最高比 Standard 快 2.5 倍\"，对 Ultrafast 则为空白——即官方只给倍数口径于 Fast、不给 Ultrafast 的倍数。对 Plus/Pro 200 用户无可用水位——想买快档必须买 $500 档或走企业按量，这条与 10-02 网易截图\"最快 Codex/代理速度是 Pro Max 卖点\"相互印证。", source: "https://platform.openai.com/docs/pricing" },
     { date: "2026-10-08", tag: "定价", agents: ["claude"], title: "Anthropic 发布 Claude Haiku 5.5：短请求 $0.10/$0.50，较 Haiku 4.5 降九成，但改按 prompt 长度分档计价", summary: "官方定价页（10-08 直抓，937,743 字节静态可读）与网易科技、admin5 两个独立来源一致：Anthropic 于 2026-10-08 上线 Claude Haiku 5.5，输入 $0.10/输出 $0.50 每百万 tokens（prompt ≤10 万 token），超过 10 万 token 则升为输入 $0.50/输出 $2.50；缓存写 5 分钟 $0.125、1 小时 $0.20，缓存读 $0.01，批量 API 再减半（≤10 万 $0.05/$0.25、>10 万 $0.25/$1.25）。上一代 Haiku 4.5 为 $1/$5，故短请求单价降 90%；官方页另注明\"Claude 4.6 及之后模型（Haiku 5.5 除外）1M 上下文按标准价\"，长上下文加价只发生在 Haiku 5.5 上，这是本站在档首个分档计价的新模型。Arena+ 10-08 快照新增 Claude Haiku 5.5 一行（总榜第 31，Arena Elo 1501、Coding 1538、AAII 43、MMLU-Pro 87.5），编码维换算分 (1538-1300)/28.2 = 8.4；与 GPT-6 Luna（$0.10/$0.50）同档，小模型价格战由两家共同定在 1 毛。注意两家媒体均指出新分词器使同一请求 token 数增加约 25%-30%，名义降价的实际到手折扣更小——该比例属媒体口径、官方未给换算表，标未核实。", source: "https://docs.claude.com/en/docs/about-claude/pricing" },
     { date: "2026-09-30", tag: "产品", agents: ["gemini"], title: "谷歌发布 Gemini 4 Argon：Arena+ 升至总榜第 2，但只经 Fairwind 计划向网络安全机构定向开放", summary: "网易科技与新浪科技两独立来源一致：当地时间 2026-09-30 谷歌发布新一代前沿模型 Gemini 4 Argon，API 初始报价输入 $2/输出 $10 每百万 tokens、缓存输入享 95% 折扣，单次响应输出上限自 6.4 万提到 100 万 token，报道列举 DeepSWE v1.1 77.9%、LVBench 91.7%、CWE-bench v1 68%；现阶段仅限参与 Google Fairwind 计划的受信任网络安全防御组织测试，广泛商用\"尚未公布\"。本站 10-02 直抓官方 API 定价文档（ai.google.dev/gemini-api/docs/pricing）未见 argon 条目，与\"未公开商用\"一致；Arena+ 10-02 快照把它列在总榜第 2（Arena Elo 1525、Coding 1570、AAII 53）。另搜狐\"别被单价坑了\"一文警示该报价或为推广期价（称推广期后涨至 $4/$20）、且其单任务平均输出 56.1 万 token 高于 GPT-6 Sol 的 28.2 万，总额外推口径为单源，标未核实。", source: "https://m.163.com/dy/article/L85Q4FTK0511BLFD.html" },
@@ -1008,6 +1087,12 @@ window.AGENTS_DATA = {
     { vendor: "OpenAI", model: "GPT-6 Luna（2026-09-23）", input: "$0.10", output: "$0.50", source: "https://finance.sina.com.cn/tech/roll/2026-09-23/doc-inisuaat1609597.shtml" },
     { vendor: "Google", model: "Gemini 4 Argon（2026-09-30 发布，仅定向开放）", input: "$2（媒体口径，官方定价页 10-02 尚无该条目）", output: "$10（缓存输入称享 95% 折扣；另有媒体称推广期后或涨至 $4/$20，未官方核）", source: "https://m.163.com/dy/article/L85Q4FTK0511BLFD.html" },
     { vendor: "Perplexity", model: "Sonar", input: "$1", output: "$1（另按搜索收 $5-12/千次请求）", source: "https://docs.perplexity.ai/getting-started/pricing" },
+    { vendor: "阿里巴巴", model: "Qwen3.8-Max（10-09 百炼定价页复核）", input: "¥12（Batch 调用半价、上下文缓存另有折扣；优速模式 prime ¥24）", output: "¥36（prime ¥72；国际/美国区同一模型 ¥14.988/¥44.965）", source: "https://help.aliyun.com/zh/model-studio/model-pricing" },
+    { vendor: "百度", model: "ERNIE 5.1（千帆按量后付费，页内文档更新时间 2026-10-09）", input: "¥4（输入 ≤32k）/ ¥6（32k-128k）", output: "¥18 / ¥22（批量推理列\"-\"未开放）", source: "https://cloud.baidu.com/doc/qianfan/s/wmh4sv6ya" },
+    { vendor: "MiniMax", model: "MiniMax-M3（官方标\"永久五折\"）", input: "¥2.10（划线 ¥4.20；>512k 档 ¥4.20；缓存读 ¥0.42）", output: "¥8.40（>512k ¥16.80；优先服务按标准价 1.5 倍计 ¥12.60）", source: "https://platform.minimax.cn/docs/guides/pricing-paygo" },
+    { vendor: "小米", model: "MiMo-V2.6-Pro（10-09 新增档案）", input: "¥3.00（命中缓存 ¥0.025；批量 ¥1.50；ultraspeed ¥30）", output: "¥6.00（批量 ¥3.00；ultraspeed ¥60；海外区 $0.435/$0.87）", source: "https://mimo.mi.com/docs/zh-CN/price/pay-as-you-go" },
+    { vendor: "美团", model: "LongCat-2.5-Preview / 2.0（限时折扣价）", input: "¥2（命中缓存 ¥0.04；海外区 $0.30/$0.006）", output: "¥8（海外区 $1.20）", source: "https://longcat.chat/platform/pricing" },
+    { vendor: "Mistral", model: "Mistral Large 3（10-09 新增档案）", input: "$0.5（缓存输入最多降 90%）", output: "$1.5（Batch 处理降 50%）", source: "https://mistral.ai/pricing/" },
     { vendor: "行情", model: "海外模型中转（社区实测）", input: "约为官方价 7%-30%", output: "含稳定性与合规风险", source: "https://blog.fulitimes.com/claude-chatgpt-subscription-vs-relay-pricing-2026/" }
   ],
 
@@ -1043,10 +1128,10 @@ window.AGENTS_DATA = {
     ],
     relayVerify: {
       // 本站自行双源核实后的状态（id → {status:"verified", at:"YYYY-MM-DD", note:"…"}）。留空 = 待核，由日更任务逐家补实。
-      bltcy: { status: "verified", at: "2026-10-04", note: "官网 /api/pricing 直抓成功（2026-09-30，返回 default 分组倍率表约 418KB）；独立社区来源：少数派 sspai 论坛\"中转站实时比价工具\"帖有用户自述已用柏拉图一年多（https://meta.appinn.net/t/topic/79735）。两源一致仅证明\"站点存活、公开报价、有长期使用者\"，不构成质量或兑付背书。10-04 复核·重要纠正：本站公开公告接口 /api/status 直读到运营方 2026-05-11 公告原文——\"由于平台现阶段技术与运营资源有限…公司决定逐步调整当前业务方向，后续将聚焦企业级服务合作…即日起平台将关闭个人充值及新增开放接入功能，后续不再新增个人用户业务\"；另有 05-09 公告\"临时关闭新用户注册通道…绝非网传跑路、停运\"、05-30 公告引导个人账号转企业账号。第三方测评页 EggStriker（2026-09-07）同口径记\"已公告转向企业级服务：关闭个人充值与新注册\"。→ 对个人新用户而言本站实际不可入驻（存量用户额度与服务照常），09-30 那条结论不完整；但同一 /api/status 仍显示 enable_online_topup=true、pay_enabled=true、quota_for_new_user=100000，前端配置与公告口径并存，实际能否充值未核（未核实）。种子区为可再生内容未改，收缩信号记于此。" },
+      bltcy: { status: "verified", at: "2026-10-04", note: "官网 /api/pricing 直抓成功（2026-09-30，返回 default 分组倍率表约 418KB）；独立社区来源：少数派 sspai 论坛\"中转站实时比价工具\"帖有用户自述已用柏拉图一年多（https://meta.appinn.net/t/topic/79735）。两源一致仅证明\"站点存活、公开报价、有长期使用者\"，不构成质量或兑付背书。10-04 复核·重要纠正：本站公开公告接口 /api/status 直读到运营方 2026-05-11 公告原文——\"由于平台现阶段技术与运营资源有限…公司决定逐步调整当前业务方向，后续将聚焦企业级服务合作…即日起平台将关闭个人充值及新增开放接入功能，后续不再新增个人用户业务\"；另有 05-09 公告\"临时关闭新用户注册通道…绝非网传跑路、停运\"、05-30 公告引导个人账号转企业账号。第三方测评页 EggStriker（2026-09-07）同口径记\"已公告转向企业级服务：关闭个人充值与新注册\"。→ 对个人新用户而言本站实际不可入驻（存量用户额度与服务照常），09-30 那条结论不完整；但同一 /api/status 仍显示 enable_online_topup=true、pay_enabled=true、quota_for_new_user=100000，前端配置与公告口径并存，实际能否充值未核（未核实）。种子区为可再生内容未改，收缩信号记于此。10-09 周五抽查复核：/api/pricing 仍 200（436,730 字节，与 10-04 记录的 418KB 量级相符）；/api/status 公告 22 条，最新一条停在 06-02（发票事宜），05-09\"临时关闭个人用户注册…绝非跑路\"、05-11\"关闭个人充值及新增、聚焦企业级\"、05-30 引导个人转企业三条原文均仍在位，enable_online_topup 与 quota_for_new_user=100000 未变——与 10-04 结论一致，无新增暴雷信号，维持\"主动收缩\"定性。" },
       uiuiapi: { status: "verified", at: "2026-10-02", note: "双源：①种子仓库 awesome-ai-api-proxy 条目（type=official-relay、status=active、maintainer 于 2026-06-07 实测，并在 2026-08-16 快照抓到 666 条 high-confidence 报价）；②独立社区目录 frank36512/aiapi（GitHub，2026-10-02 直抓）自列\"300+ 大模型聚合、3.7 元/美元汇率、可开发票\"。10-02 实测站点 200、公开 new-api 价目接口 https://api1.uiuiapi.com/api/pricing 返回 366 个模型（default 分组），已收录 claude-opus-5-5 / gpt-6.1-sol（模型倍率 37.5），尚未收录 gemini-4-argon。注：社区目录属推广性质，\"官方倍率/汇率/可发票\"为自述口径未核；本次仅证明存活、报价公开可复核、被两份独立目录收录。" },
       "closeai-asia": { status: "verified", at: "2026-10-02", note: "双源：①种子仓库条目（type=official-relay、status=active、maintainer 于 2026-05-26 实测，entity_registered=true、支持企业发票）；②独立社区目录 frank36512/aiapi（2026-10-02 直抓）亦收录（\"亚洲最大企业级 AI 中转、支持企业发票\"）。10-02 实测站点 200、/pricing 页面 200（32KB 静态可读）。注：种子 2026-08-16 价格快照无本站记录，报价无法机器复核，\"100% 官转\"属自述；本次仅证明存活与公开价目页可读。" },
-      yunwu: { status: "verified", at: "2026-10-09", note: "10-09 复核（本窗口唯一有异动的已核站）：本站自家接口照常返回——首页 200、/api/pricing 200、/api/status 200（446,553 字节，system_name=\"云雾 API \"、版本 20260918-152544、enable_online_topup=true、email_verification=true），公告 340 条但最新一条停在 2026-08-16（\"同步官方价格：deepseek-v4-pro/flash\"），此后两个月无任何运营公告。同一时点，第三方监测 Help AIO「AI中转站可用性监测」页（快照 2026-10-09 09:19，自称自 2026 年 2 月起累计探测 276 万次、无赞助）把本站列为 24 小时综合可用率 0.00%、有效探测 560 次、最新探测 09:19——是页面所列 18 站中两个 0% 之一（另一个 Undying 亦 0.00%、560 次），而同期其余站点多在 84%-97%。判读：页面接口全 200 与\"模型调用 0% 可用\"并存，正是\"价目接口 200 不等于能用\"的形态，但 0% 属单一第三方来源，Help AIO 的探测模型、判定阈值与是否含维护时段均未公开可核，本站无法用第二个独立来源复现（检索未见 10 月内社区故障帖），故只记为收缩/故障观察项，不写成暴雷结论。10-02 双源依据仍成立（①本站 /api/pricing 直抓 384 条倍率表；②GitHub 社区目录 frank36512/aiapi + 测评页 EggStriker 2026-08-11\"适合测试不宜生产\"）；种子标 type=mixed，本站不作质量背书。V2EX 相关帖发在 promotions 节点属官方推广，不计入独立源；简书\"云雾 APP 诈骗\"为同名兼职资金盘，与本站无关（同名混淆，勿误判红旗）。" },
+      yunwu: { status: "verified", at: "2026-10-09", note: "10-09 复核（本窗口唯一有异动的已核站）：本站自家接口照常返回——首页 200、/api/pricing 200、/api/status 200（446,553 字节，system_name=\"云雾 API \"、版本 20260918-152544、enable_online_topup=true、email_verification=true），公告 340 条但最新一条停在 2026-08-16（\"同步官方价格：deepseek-v4-pro/flash\"），此后两个月无任何运营公告。同一时点，第三方监测 Help AIO「AI中转站可用性监测」页（快照 2026-10-09 09:19，自称自 2026 年 2 月起累计探测 276 万次、无赞助）把本站列为 24 小时综合可用率 0.00%、有效探测 560 次、最新探测 09:19——是页面所列 18 站中两个 0% 之一（另一个 Undying 亦 0.00%、560 次），而同期其余站点多在 84%-97%。判读：页面接口全 200 与\"模型调用 0% 可用\"并存，正是\"价目接口 200 不等于能用\"的形态，但 0% 属单一第三方来源，Help AIO 的探测模型、判定阈值与是否含维护时段均未公开可核，本站无法用第二个独立来源复现（检索未见 10 月内社区故障帖），故只记为收缩/故障观察项，不写成暴雷结论。10-02 双源依据仍成立（①本站 /api/pricing 直抓 384 条倍率表；②GitHub 社区目录 frank36512/aiapi + 测评页 EggStriker 2026-08-11\"适合测试不宜生产\"）；种子标 type=mixed，本站不作质量背书。V2EX 相关帖发在 promotions 节点属官方推广，不计入独立源；简书\"云雾 APP 诈骗\"为同名兼职资金盘，与本站无关（同名混淆，勿误判红旗）。10-09 周五抽查复核：/api/pricing 返回 data 382 条（站内 10-02 记 384 条，微降 2 条属价目正常滚动）；抽核倍率逐项对得上——qwen3.8-max x6、claude-fable-5 x5、deepseek-v4-pro x4.5，且价目表仍不含 gemini-4-argon，故本条维持 verified、不下调。" },
       rcouyi: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开价目接口 https://api.rcouyi.com/api/pricing 返回 797 条（含 claude-opus-5-5 x2、claude-fable-5-1 x5、deepseek-v4-flash x0.5 等，供应商字段可读）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-16，\"一站式聚合中转、接口文档完善、可直连、价格中等\"）。未检索到跑路或退款纠纷，但社区讨论与 GitHub 曝光度都很低，独立佐证单薄，标\"单一第三方源\"持续观察。" },
       relaydance: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开价目接口 https://relaydance.com/api/pricing 返回 45 条（auto_groups=default；以 doubao-seedance 系列视频模型为主，如 seedance-2-0-480p x4.375，另有 claude-fable-5 x6.25）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-15，\"转战视频生成中转，Seedance 2.0/2.5 一站式，价格中等\"）。appinn 的中转站评测帖现已 404 无法复核，Linux.do/V2EX/论坛无用户讨论。价目可读证明存活，但覆盖面窄（45 条）且独立佐证单薄，持续观察。" },
       atlascloud: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开模型接口 https://api.atlascloud.ai/v1/models 返回 200（71KB，data 数组含 Qwen3-235B-A22B-Instruct-2507 等可复核条目）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-15，\"图像/视频生成聚合 300+ 模型、按秒计费、国内需代理\"）。未见跑路或退款投诉（搜索结果多为自家博客，不计）。注：本站定位偏图像/视频生成聚合，与文本中转目录不完全同类，比价时注意。" },
@@ -1056,6 +1141,7 @@ window.AGENTS_DATA = {
       mkeai: { status: "verified", at: "2026-10-08", note: "双源：①种子仓库 awesome-ai-api-proxy 条目（记 https://mkeai.com，seedVerifiedBy=community、riskFlags=no_entity、status=unverified）；②第三方测评页 EggStriker 专页（最后核实 2026-08-16）记\"api.mkeai.com，国内低延迟直连、Claude/GPT/Gemini/DeepSeek 四家覆盖、小额充值友好、无月费，新用户注册暂关闭\"。10-08 实测：种子记的 mkeai.com 返 521（源站不可达），运营主域是 api.mkeai.com——/api/status 返 200（16KB new-api v1.0.0-rc.41），register_enabled 与 password_register_enabled 均为 false（与 EggStriker 那句\"注册暂关闭\"同向），公告 44 条最新一篇 2026-09-30T03:42\"新增 GPT-6.1 Sol\"，此前 09-30 上 Sonnet 5.5、09-23 上 Opus 5.5 与 GPT-6 Sol/Luna、09-23 上 Grok 4.7——新款跟进速度是已核条目里最快的一档。但 /api/pricing 返 401 AUTH_UNAUTHORIZED（需令牌），公开倍率拿不到 → 报价无法机器复核，站内公告属自述口径。结论：存活且新款覆盖可核，但当前不可新注册、报价不可公开复核，个人入驻口径不适用；未见暴雷信号（公告持续更新即为反证）。" },
       gptgod: { status: "verified", at: "2026-10-08", note: "双源：①种子仓库条目（记 https://gptgod.online，type=reverse，riskFlags=reverse_channel + no_entity，种子注\"逆向；便宜，稳定性无保证\"）；②第三方测评页 EggStriker 专页（最后核实 2026-08-15）记\"gptgod.cloud，逆向工程型中转，汇率约 0.6¥/USD（相当于官方美元价的 8.3%），447 个模型但当时未覆盖最新旗舰，稳定性零保证，不建议用于 Claude Code 一类日常调用\"。10-08 实测：种子域名 gptgod.online 首页 200 但 /api/status 404，运营主域 gptgod.cloud 的 /api/status 返 200（one-api 系 v9.7.2-alpha.6，system_name=GPT-GOD API），RegisterEnabled=false 而 SMSRegisterEnabled 与 OnlineTopupEnabled 为 true、MaxTopUpLimit=10000；/api/pricing 返 200（36KB，ModelRatio 597 条、CompletionRatio 306 条、ModelFixedPrice 182 条），倍率可读：gpt-6.1-sol 输入倍率 1/补全倍率 5、gpt-6-luna 0.05/5、deepseek-v4-pro 1.5/2。红旗观察：claude-opus-5-5、fable-5、gemini-4、haiku-5 在档全部缺位（最新只到 gpt-6.1/deepseek-v4/glm-5.2 一档），Anthropic 新款不跟进，与 EggStriker 08-15 的\"覆盖滞后\"结论同向且至今未改善；倍率→美元的换算公式本站仍未核实，故不折算价格。属逆向渠道、无主体登记，稳定性无保证，仅证被收录与倍率公开可复核，绝不构成质量或兑付背书。" },
       aimlapi: { status: "verified", at: "2026-10-09", note: "双源新增（10-09）：①种子仓库 awesome-ai-api-proxy 条目（https://aimlapi.com，type=aggregator、status=active、entityRegistered=true、maintainer 核于 2026-05-26，注\"400+ 模型、$20 起预付、支持加密货币暗示绕支付障碍\"）；②第三方测评页 EggStriker 专页（最后核实 2026-08-15）记\"1000+ 模型统一端点、海外开发者的多模型聚合首选、价格档位中等、全覆盖(600+)、需代理\"。10-09 实测本站公开模型目录接口返 200（522,306 字节、929 个条目），并已收录 stepfun/step-5-preview（releasedAt 2026-10-08，info.docsJson 直指 api.aimlapi.com，contextLength 1000000、outputMax 64000、tags 含 tier:tier_2）——目录在跑且跟到最新国产旗舰，可作 Step 5 上线的第二旁证。口径出入：模型数种子记 400+、EggStriker 同时写 1000+ 与 600+、本站 10-09 实测目录 929 条，四说不一（统计范围不同：可路由端点 vs 模型名 vs 分组），故只写\"覆盖数百到上千量级\"、不取任一数字。该目录接口不含逐 token 价格，报价需登录后按 key 与分组下发，因此价目侧本站仅有其转售 Step-5 的存在性证据、无价格证据；个人能否注册充值未核（未核实）。海外站、需网络环境与外币卡，本站不作质量或兑付背书。" },
+      teamorouter: { status: "verified", at: "2026-10-09", note: "双源（弱）新增：①本站 10-09 直抓 /pricing 308 转主页 #pricing 锚点，SSR 静态可读 6 张价目卡（其余模型客户端渲染）——GPT-5.6 Sol 输入官方 $5.00→现价 $0.53、输出 $30→$3.18，Claude Fable 5 $10→$2.42 / $50→$12.10，Claude Sonnet 5 $3→$0.50 / $15→$2.52，表内无 DeepSeek 静态卡；②独立来源一份——腾讯云开发者社区 2026-09-16《你那个 1 折的 AI 中转站……10 倍消耗 Tokens》点名 TeamoRouter（第三方分析文，非推广节点），另有 awesome-ai-api-proxy 社区目录收录但属 operator_submitted、权重低。CSDN/51cto/头条的\"一夜爆火/使用第 21 天\"系软文，不计入独立源。风险：现价约为官方的 1-2.4 折、倍率异常低；客服与证照截图挂在第三方域名 floatai.cn，主体信息不透明。仅证存活与报价可机器复核，不作质量或兑付背书。" },
     },
     extra: [
       // 种子源之外、由本站用户提报/自行发现的条目；字段与 seed.providers 同构，双源核实后写入 relayVerify。日更/周更任务对此区只读不改。
@@ -2327,14 +2413,14 @@ window.AGENTS_DATA = {
   },
 
   /* ---------------- 计费模式标签（用于价格矩阵） ---------------- */
-  billing: { chatgpt:"订阅", claude:"订阅+积分", gemini:"订阅", manus:"积分制", deepseek:"免费+API", kimi:"订阅+Token Plan", glm:"会员+订阅(Coding Plan)", doubao:"订阅(新开)", cursor:"订阅+额度", copilot:"Credits 额度", trae:"积分制", qianwen:"订阅(三档)", devin:"订阅", coze:"积分制", wenxin:"会员+API", perplexity:"订阅+API", yuanbao:"完全免费（无内购）", hailuo:"订阅+按量", stepfun:"Credit 套餐+按量", xinghuo:"垂类会员+Token Plan", grok:"订阅(四档)", poe:"订阅(五档点数制)", yuanqi:"免费（收费政策未公开）" },
+  billing: { chatgpt:"订阅", claude:"订阅+积分", gemini:"订阅", manus:"积分制", deepseek:"免费+API", kimi:"订阅+Token Plan", glm:"会员+订阅(Coding Plan)", doubao:"订阅(新开)", cursor:"订阅+额度", copilot:"Credits 额度", trae:"积分制", qianwen:"订阅(三档)", devin:"订阅", coze:"积分制", wenxin:"会员+API", perplexity:"订阅+API", yuanbao:"完全免费（无内购）", hailuo:"订阅+按量", stepfun:"Credit 套餐+按量", xinghuo:"垂类会员+Token Plan", grok:"订阅(四档)", poe:"订阅(五档点数制)", yuanqi:"免费（收费政策未公开）", mimo:"API 按量+开源", longcat:"API 按量（限时折扣）", mistral:"订阅+API" },
 
   /* ---------------- 精选问答（编辑部整理，投票暂存本地） ---------------- */
   qa: [
     { q: "每月只有 $20 预算，ChatGPT Plus、Claude Pro、Gemini AI Pro 选哪个？", tags: ["预算紧", "海外"],
       a: "写代码/长文为主 → Claude Pro（编码榜首，但注意 Pro 用 Fable 要另买积分）；要最全能的助手和 Agent 生态 → ChatGPT Plus（GPT-6 已推送）；预算想再省或重多模态 → Gemini AI Pro 只要 $19.99 且免费档最厚道。三者国内支付门槛相同。", basis: "据本站订阅矩阵与编码/通用榜", votes: 34 },
     { q: "GLM Coding Plan 涨价 130% 后，国产编程订阅还有什么可选？", tags: ["编程", "国产"],
-      a: "按入门成本排：火山方舟 Lite 约 ¥40/月 → Trae 轻享 ¥49（首月 9.9）→ Kimi Token Plan。重度终端用户可反向考虑 Copilot Pro（$10）但改按量计费后需盯额度。警惕 Trae 积分制：常规对话也扣点。", basis: "据 codepick 横评 + Trae 积分制报道", votes: 27 },
+      a: "按入门成本排：火山方舟 Lite 约 ¥40/月 → Trae 会员 Lite ¥49（首月 9.9）→ Kimi Token Plan。重度终端用户可反向考虑 Copilot Pro（$10）但改按量计费后需盯额度。警惕 Trae 积分制：常规对话也扣点。", basis: "据 codepick 横评 + Trae 积分制报道", votes: 27 },
     { q: "Claude Pro 不额外买积分，到底够不够用？", tags: ["额度", "海外"],
       a: "约 45 请求/5 小时的 Sonnet/Opus 池，轻度写码和长文够用；但 Fable 5.1 不在 Pro 基础包内，想用旗舰必须预付 usage credits。日均高频编码建议直接 Max 5x（$100）。", basis: "据 Claude 速率限制拆解文", votes: 41 },
     { q: "Cursor 值 $20 还是 $200？Ultra 档是不是智商税？", tags: ["编程", "海外"],
@@ -2368,13 +2454,18 @@ window.AGENTS_DATA = {
 
   /* ---------------- 每周简报（自动核实任务每周五插入一条，最新在前） ---------------- */
   weekly: [
-    { date: "2026-10-09", note: "官方档位补齐：GPT-6.1 Sol 的 Ultrafast 极速档入档，基准表新增 Step-5 一行", items: [
+    { date: "2026-10-09", note: "日更补 GPT-6.1 Sol 的 Ultrafast 档，周五全量换席扩席：Step-5 顶下 Step-3.5-Flash、档案 23→26", items: [
       "基准同步到 10-09：Arena+ 重抓 327 行（较 10-08 +1），新增行 Step-5 ✅ 按页面原序列第 17（Arena Elo 1506、Coding 1560、AAII 44、MMLU-Pro 87.5，Vision 与 ARC-AGI 源页无值即留空串），编码维换算 (1560-1300)/28.2=9.2；除这一新行外，其余 326 行逐行逐值与 10-08 完全一致（榜首 Claude Opus 5.5 仍 1526/1575/58），✅ 标记照原样保留；因插入一行，其后的页面行序整体后移一位（站内 13 席中 7 席行号 +1：GLM-5.3 20→21、DeepSeek-V4.1-Flash 25→26、ERNIE-5.1 43→44、Seed2.0 Pro 47→48、Minimax-M3 63→64、Hunyuan-Hy3 89→90、Step-3.5-Flash 118→119），数值未变故 scores.coding 一律不动；meta.dataUpdatedAt / arena.fetchedAt / benchmarks.verifiedAt 三戳今日一并对齐到 10-09",
       "本窗口最大一笔（10-09 官方定价页 + IT之家/DoNews 两独立来源）：OpenAI 给 gpt-6.1-sol 加开 Ultrafast 极速吞吐档，官方定价页该档输入 $12/缓存读 $0.60/缓存写 $15/输出 $60 每百万 tokens，逐项恰为标准档（$2/$0.10/$2.50/$10）的 6 倍。本轮把整页静态价目 JSON 逐档拉出来核了一遍，档位切换器实为五项：standard $2/$0.10/$2.50/$10、batch 与 flex 均半价（$1/$0.05/$1.25/$5）、fast 2 倍（$4/$0.20/$5/$20）、ultrafast 6 倍；ultrafast 只列 gpt-6-astra（$60/$6/$75/$300，同为其标准价 6 倍）与 gpt-6.1-sol 两项，gpt-6-luna 不在该档。判读要点：站内 10-03 曾把\"速度翻 8 倍\"记为澎湃的媒体口径，本轮确认该档真实存在且已上架，但官方页对 Fast 档写明\"最高比 Standard 快 2.5 倍\"、对 Ultrafast 档的说明文本是空的——即官方只给价、不给这一档的倍数，\"8 倍\"仍是媒体口径（未核实）；档位不改变模型能力，仍是同一个 gpt-6.1-sol",
       "已入档并同步：chatgpt 档案 models/verifiedAt(10-04→10-09)/apiNote/sources 更新，apiPrices 新增 gpt-6.1-sol Ultrafast 与 gpt-6-astra Ultrafast 两条，priceHistory 的 chatgpt 序列追加 10-09 输出 $60 一点，Pro 500 档说明把 10-03 的\"速度翻 8 倍\"媒体口径改写为已由官方档位落地（接入面按两源记为 Pro 500、按量计费的企业版与积分制教育版）。这是本轮唯一改到订阅档说明的一笔：$500 档\"独占最高优先级算力\"的卖点第一次有了可核的对应物，但金额与额度仍未由官方页静态可核，旧有的 Pro 500/Pro Max 命名分歧与 200 档入口是否暂停仍按未核实并存",
-      "stepfun 档案同步（verifiedAt 09-23→10-09）：Step-5 进 Arena+ 第 17 行，同时把第三方渠道报价复核了一遍——OpenRouter 公开接口列 stepfun/step-5-preview（created 10-08，输入 $1/输出 $2.7/缓存读 $0.05，context 1M），按站内汇率 7.1 折算为 ¥7.1/¥19.2，与站内 09-19 已核的官方 ¥7/¥20 吻合，故官方价目不动；AIMLAPI 目录亦已收录同名条目（releasedAt 10-08、1M 上下文）可作存在性第二旁证，但其公开目录接口不含逐 token 价格，故价目侧只有一个第三方数。StepFun 自家定价页与模型页本轮直抓均为客户端渲染、未能静态复核。基准席位仍留 Step-3.5-Flash（第 119 行、编码分 4.7），换席与产品榜排序按纪律交周五全量处理",
+      "stepfun 档案同步（verifiedAt 09-23→10-09）：Step-5 进 Arena+ 第 17 行，同时把第三方渠道报价复核了一遍——OpenRouter 公开接口列 stepfun/step-5-preview（created 10-08，输入 $1/输出 $2.7/缓存读 $0.05，context 1M），按站内汇率 7.1 折算为 ¥7.1/¥19.2，与站内 09-19 已核的官方 ¥7/¥20 吻合，故官方价目不动；AIMLAPI 目录亦已收录同名条目（releasedAt 10-08、1M 上下文）可作存在性第二旁证，但其公开目录接口不含逐 token 价格，故价目侧只有一个第三方数。StepFun 自家定价页与模型页本轮直抓均为客户端渲染、未能静态复核。基准席位仍留 Step-3.5-Flash（第 119 行、编码分 4.7），换席与产品榜排序按纪律交周五全量处理——同日周五全量已落地换席，详见后面\"周五全量换席与扩席\"条",
       "中转站双源新增 1 家（已核 13/36）：AIMLAPI——种子条目（maintainer 核于 05-26）+ 第三方测评页 EggStriker（最后核实 08-15）两家一致认定其为海外多模型聚合站；本站 10-09 实测其公开模型目录返 200、929 个条目且已收录 step-5-preview。注：模型数四说不一（种子 400+、EggStriker 同时写 1000+ 与 600+、实测目录 929），统计范围不同，故站内只写\"数百到上千量级\"而不取任一数字，注册与充值可用性未核",
       "已核站异动观察（单源，不下暴雷结论）：云雾 API 在第三方监测 Help AIO「AI中转站可用性监测」10-09 09:19 快照里被记为 24 小时综合可用率 0.00%（有效探测 560 次），是所列 18 站中两个 0% 之一，同期其余站在 84%-97%；而本站 10-09 自查它自家接口全部照常——首页 200、/api/pricing 200、/api/status 200（enable_online_topup=true），运营公告最新一条停在 08-16、之后两个月无公告。\"页面接口全 200 与模型调用 0% 可用并存\"正是价目接口 200 不等于能用的形态，但 0.00% 出自单一第三方源、其探测模型与判定阈值未公开可核，检索也未见 10 月内社区故障帖，故只写入 relayVerify 作收缩/故障观察项，不写成事件、不作暴雷结论。本窗口另外未见其余 12 家已核站的暴雷/跑路/停服信号",
+      "周五全量换席与扩席（本窗口唯一一次榜单重排）：327 行全表按厂商逐行核\"在档产品页面最强自模行\"，唯一失配项是 stepfun——席位由 Step-3.5-Flash（页面第 119 行、Coding 1433、编码分 4.7）换为 Step-5（第 17 行、Coding 1560、编码分 (1560-1300)/28.2=9.2），它因此从末席升至第 8 席，GLM-5.3 及其后 6 席各后移一位；其余 12 席逐席复核仍是各在档厂商的最强行，未换席。同日按上一轮\"待官方定价可核后再扩\"的口径新增三家自模档案：小米 MiMo（MiMo-V2.6-Pro，页面第 13）、Mistral（Mistral Large 3，第 84）、美团 LongCat（LongCat-Flash-Chat，第 94），基准席位由 13 席扩为 16 席、档案数 23→26，默认序变为 Claude Opus 5.5 > Gemini-4-Argon > GPT-6 Astra > Grok-4.7 > MiMo-V2.6-Pro > Kimi-K3 > Qwen3.8-Max > Step-5 > GLM-5.3 > DeepSeek-V4.1-Flash > ERNIE-5.1 > Seed2.0 Pro > Minimax-M3 > Mistral Large 3 > Hunyuan-Hy3 > LongCat-Flash-Chat；rankHistory 已补 2026-10-09 一条七维 26 档案快照，index.html 三处\"23 个\"同步改为\"26 个\"",
+      "订阅档改数 4 处：①Cursor 按官方页结构化数据复核为 Hobby $0 / Pro $20 / Pro+ $60 / Ultra $200 / Teams $40 每人每月、Enterprise 标询价；官方口径已改成\"每档含一定量模型用量，超出走 on-demand 后付费\"，站内旧的\"Pro 含 $20、Ultra 含 $400 API 额度\"两句在官方页找不到出处，撤改为无官方出处；②Copilot 补录 Business $19/人（1,900 credits）与 Enterprise $39/人（3,900 credits），Free 档补每月 2,000 次补全，另记 10-02 弃用一批旧模型、10-07 上架 Claude Haiku 5.5；③Trae 四档档名改回官方原文 会员 Lite/Pro/Pro+/Ultra（¥49/¥99/¥239/¥699），旧的\"轻享/专业/进阶/至尊\"系第三方转述；④扣子团队版按官方页改列 ¥142 / ¥283 / ¥1,399 起三档、企业版补 ¥8,980 起，旧 ¥198-¥1,998 区间系转述。Manus 的 $20 档官方档名已由 Standard 改为 Pro，Free 档补官方口径\"每日刷新 300 积分\"",
+      "API 价复核改口径 5 处：DeepSeek 官方峰谷计费表逐档与站内一致（未调价）；MiniMax M3 的 ¥2.1/¥8.4 确认是官方标\"永久五折\"后的实收价（划线 ¥4.20/¥16.80，>512k 翻倍，优先服务按标准价 1.5 倍另计）；千问补 qwen3.8-max 输入 ¥12/输出 ¥36、优速 prime 档 ¥24/¥72、Batch 半价与国际区 ¥14.988/¥44.965，并确证免费额度为 100 万 Token、自开通/发布/申请通过起 90 天有效；文心补 ERNIE 5.1 的 ≤32k ¥4/¥18 与 32k-128k ¥6/¥22 分档（千帆\"模型服务计费\"页文档更新时间即 2026-10-09）；元宝的腾讯云 Token Plan 三档复核为 ¥28/560 积分、¥78/1,560、¥238/4,760，站内旧的 ¥468/9,360 档本轮未在同页复现，保留待下轮复核。apiPrices 随之新增 Qwen3.8-Max、ERNIE 5.1、MiniMax-M3、MiMo-V2.6-Pro、LongCat、Mistral Large 3 六行",
+      "本轮仍未能静态核实（宁缺毋假，一律标未核实、不写数）：Grok 的 Lite 月费与 Free 档次数（官方页只渲染 Free $0/SuperGrok $30/Plus $100 三档）、Poe 五档的美元原价与 Free 额度、腾讯元器 C 端收费政策、智谱 GLM 逐模型 API 价与豆包/讯飞星火定价页（均为客户端渲染）、Perplexity 各档（enterprise/pricing 本机仍 403，docs 只写 custom pricing，另把站内 Max 档\"2026-07-16 新设\"改标未核实——官方博客检索到的是 2025-07 报道，日期冲突未解）、Devin 的 $15/$35（devin.ai 全站无静态价签，仍属第三方口径）、Kimi 开放平台逐模型价（\"模型推理价格说明\"页文字口径可读、表格客户端渲染，但已确证 API 侧\"按量计费、不提供订阅制方案\"，K3 缓存写入按 TTL 5min/1h 分档、命中后自动续期不再收写入费；国内实名认证送的 ¥15 代金券明确不可用于 K3，需充值解锁）、MiMo 与 LongCat 的 C 端会员档（官方页只列按量）",
+      "中转站巡检：双源新增 1 家 TeamoRouter（已核 14/36）——本站 10-09 直抓其 /pricing 静态可读 6 张价目卡（GPT-5.6 Sol 输入 $0.53/输出 $3.18、Claude Fable 5 $2.42/$12.10、Claude Sonnet 5 $0.50/$2.52），配腾讯云开发者社区 09-16 点名分析文一份；因第二源偏弱、现价仅为官方 1-2.4 折、且客服与证照截图挂在第三方域名 floatai.cn，note 里明写\"仅证存活与报价可复核，不作质量或兑付背书\"。另核 Wappkit、玄枢API、wawazz、Quicksilver Pro 四家，均只有一个来源（awesome-ai-api-proxy 属运营方投稿，不计独立源），其中 wawazz 价目接口 404、主页为 SPA 壳不可机器复核，四家一律未收录。抽查两家已核站与站内记录一致：云雾 /api/pricing 382 条（旧记 384，属价目滚动），qwen3.8-max x6、claude-fable-5 x5、deepseek-v4-pro x4.5 三项倍率逐项对得上且仍不含 gemini-4-argon；柏拉图公告仍停在 06-02，05-09 关闭个人注册、05-11 关闭个人充值与新注册、05-30 引导转企业三条原文在位，维持\"主动收缩\"定性。私有渠道巡检结论未变：yiqinuo 仍 registration_enabled=false 且 invitation_code_enabled=false、rvrcc 仍不可达，故 relay.extra 本轮未改。本窗口未见暴雷/跑路/停服信号",
       "纠错通道：GET /functions/v1/app?action=corrections 返 HTTP 200，条目仍只有 1 条 perplexity\"Enterprise 档价格建议标注年付口径\"（2026-09-22），系早已处理的旧项，本轮无新增需处理的提报",
       "发布状态：已发出（今日 17:05 补发，11 天积压一次清空）。上午那一轮的情况是：本地已走到 10-09（327 行），主站线上 data.js 三戳仍停在 09-28（322 行）、待发周更页 09-30/10-02/10-03/10-04/10-08/10-09 六张在主站均 404、在镜像均 200，落后 11 天；本会话 qoder_sites 工具虽已挂载（47 个），`get_site` 探通（active、runtime_version 42），但 `prepare_site` 与 `get_local_context` 均返 `sites_local_session_required`（非桌面会话拿不到宿主当前会话目录绑定），所以探活通而打不了包。**17:05 已补发成功**：把 `public/`+`functions/` 原样拷入 `create_chat_session` 孵出的子会话目录，由该子会话以自己目录调 `prepare_site`（八参数原样、新 actionId）→ `canPublish` → `publish_site`，返回 `published:true`，新 active_release_id `01a11fe6-dc2b-70af-bdc6-6aec9d054b2b`。发布后逐项线上实读：`/data.js` 三戳 10-09、`arena.rows` 327 行、首行 Claude Opus 5.5|1526|1575|1320，`/arena.html` 的 `<tr>` 328＝行数+1，`/rank.html` 前六席顺序与 benchmarks.models 一致，`/relay.html` 200（种子 33＋提报 3＝36 条），本日上午 404 的六张 `/weekly/*.html`（09-30/10-02/10-03/10-04/10-08/10-09）已全部转 200，`/sitemap.xml`、`/agent/chatgpt.html`、`/agent/stepfun.html` 均 200，社区后端 corrections 仍 200 → 主站/镜像/本地三方追平，11 天积压一次清空"
     ] },

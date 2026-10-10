@@ -9,7 +9,7 @@ window.AGENTS_DATA = {
   meta: {
     siteName: "Agent 情报局",
     slogan: "决定用哪个智能体之前，先来这查一下。",
-    dataUpdatedAt: "2026-10-09",
+    dataUpdatedAt: "2026-10-10",
     exchangeRate: "1 USD ≈ 7.1 CNY（折算参考）",
     disclaimer: "价格与额度变动频繁，一切以官网为准；本页信息核实于 dataUpdatedAt 标注日期。"
   },
@@ -53,14 +53,14 @@ window.AGENTS_DATA = {
       id: "claude", name: "Claude", vendor: "Anthropic", region: "海外",
       tagline: "编码与长文推理首选，额度规则最复杂",
       models: ["Opus 5.5（2026-09-22/23 发布，基准榜首）", "Fable 5.1", "Mythos 5.1", "Sonnet 5.5（2026-09-28 上线，$2/$10 与 Sonnet 5 同价）", "Haiku 5.5（2026-10-08 上线，按 prompt 长度分档 $0.10/$0.50 与 $0.50/$2.50）"],
-      verifiedAt: "2026-10-08",
+      verifiedAt: "2026-10-10",
       plans: [
-        { name: "Free", price: "$0", note: "不含 Fable 访问" },
-        { name: "Pro", price: "$20/月 或 $200/年", note: "基础档不覆盖 Fable，需预付 usage credits；约 45 请求/5小时" },
-        { name: "Max 5x", price: "$100/月", note: "Fable 内置额度，占周额度上限一半" },
-        { name: "Max 20x", price: "$200/月", note: "重度用户档" }
+        { name: "Free", price: "$0", note: "不含 Fable 访问；10-10 直抓官方功能矩阵：Claude Design/Slides/Docs 三行在 Free 列均为 Yes（10-09 去 beta 转正），Dashboards 与 Motion 两行均为 No" },
+        { name: "Pro", price: "$20/月 或 $200/年", note: "基础档不覆盖 Fable，需预付 usage credits；约 45 请求/5小时；官方矩阵 Claude Dashboards (beta) 列为 Yes、Claude Motion (beta) 列为 No" },
+        { name: "Max 5x", price: "$100/月", note: "Fable 内置额度，占周额度上限一半；Dashboards (beta) Yes、Motion (beta) No（个人四档 Motion 全 No）" },
+        { name: "Max 20x", price: "$200/月", note: "重度用户档；同样只到 Dashboards (beta)，Motion (beta) 需 Team/Enterprise" }
       ],
-      apiNote: "官方文档现价（docs.claude.com，2026-09-30 直抓复核）：Opus 5.5 输入 $4/输出 $20 每百万 tokens（5 分钟缓存写 $5、1 小时写 $8、缓存读 $0.20），Fast mode 加倍为 $8/$40；上一代 Opus 5 / Opus 4.8 常规价为 $5/$25（缓存读 $0.50），$10/$50 是它们的 Fast mode 价——站内旧注把 Fast mode 价误作常规价，才显出\"降 60%\"的假冲突。按常规价对比，Opus 5.5 单价降 20%、缓存读降 60%，与 09-27 媒体报道完全一致，该冲突就此消解。另 Sonnet 5.5（2026-09-28 上线）$2/$10，与 Sonnet 5 同价（缓存读 $0.20）。10-08 官方定价页直抓新增 Haiku 5.5，是本站在档首个按 prompt 长度分档计价的新模型：≤10 万 token 输入 $0.10/输出 $0.50，>10 万 token 输入 $0.50/输出 $2.50（缓存写 5 分钟 $0.125、1 小时 $0.20，缓存读 $0.01；批量 API ≤10 万 $0.05/$0.25、>10 万 $0.25/$1.25）。对照上一代 Haiku 4.5 的 $1/$5，短请求输入降 90%、输出降 90%；官方页同时注明\"Claude 4.6 及之后模型（Haiku 5.5 除外）在 1M 上下文下仍按标准价\"，即长上下文不再额外加价、只有 Haiku 5.5 走分档价。两家媒体（网易 10-08、admin5 10-08）另指出新分词器使同一请求的 token 数增加约 25%-30%，实际账单降幅小于名义单价降幅——该比例属媒体口径、官方未给换算表，标未核实",
+      apiNote: "官方文档现价（docs.claude.com，2026-09-30 直抓复核）：Opus 5.5 输入 $4/输出 $20 每百万 tokens（5 分钟缓存写 $5、1 小时写 $8、缓存读 $0.20），Fast mode 加倍为 $8/$40；上一代 Opus 5 / Opus 4.8 常规价为 $5/$25（缓存读 $0.50），$10/$50 是它们的 Fast mode 价——站内旧注把 Fast mode 价误作常规价，才显出\"降 60%\"的假冲突。按常规价对比，Opus 5.5 单价降 20%、缓存读降 60%，与 09-27 媒体报道完全一致，该冲突就此消解。另 Sonnet 5.5（2026-09-28 上线）$2/$10，与 Sonnet 5 同价（缓存读 $0.20）。10-08 官方定价页直抓新增 Haiku 5.5，是本站在档首个按 prompt 长度分档计价的新模型：≤10 万 token 输入 $0.10/输出 $0.50，>10 万 token 输入 $0.50/输出 $2.50（缓存写 5 分钟 $0.125、1 小时 $0.20，缓存读 $0.01；批量 API ≤10 万 $0.05/$0.25、>10 万 $0.25/$1.25）。对照上一代 Haiku 4.5 的 $1/$5，短请求输入降 90%、输出降 90%；官方页同时注明\"Claude 4.6 及之后模型（Haiku 5.5 除外）在 1M 上下文下仍按标准价\"，即长上下文不再额外加价、只有 Haiku 5.5 走分档价。两家媒体（网易 10-08、admin5 10-08）另指出新分词器使同一请求的 token 数增加约 25%-30%，实际账单降幅小于名义单价降幅——该比例属媒体口径、官方未给换算表，标未核实。10-10 另直抓官方订阅定价页 claude.com/pricing（1,242,021 字节，功能矩阵可静态读出）核对 10-09 的\"转正/新 beta\"公告：个人档矩阵（Free/Pro/Max 5x/Max 20x 四列）里 Claude Design、Claude Slides、Claude Docs 三行四列全为 Yes，Claude Dashboards (beta) 为 No/Yes/Yes/Yes，Claude Motion (beta) 四列全为 No；Team/Enterprise (self-serve)/Enterprise (sales-assisted) 三列则这五项全为 Yes。故媒体所称\"所有套餐均可使用、包括免费版\"对应的是 Docs/Slides/Design 三项转正，Motion 仍只在团队与企业档——官方新闻室页（10-10 直抓，最新条目日期为 10-08）未见 10-09 独立公告稿，可用性判定以定价页矩阵原值为准",
       access: { difficulty: 5, need: "网络环境 + 海外支付卡", note: "5 小时滚动窗口 + 周上限双重限额；美区推理有 1.1× 附加费；日本账户 9/10 后充值积分 6 个月过期" },
       strengths: ["编码智能体公认第一梯队", "全线 1M token 上下文", "缓存读取价格大降 75%（$0.25/M）"],
       weaknesses: ["额度规则复杂、Pro 用 Fable 需额外买积分", "价格偏贵", "国内支付门槛高"],
@@ -69,6 +69,8 @@ window.AGENTS_DATA = {
         "https://claude.com/pricing",
         "https://m.163.com/dy/article/L8NJ5EIH0511BLFD.html",
         "https://m.admin5.com/article/20261008/16704238.shtml",
+        "https://www.chinastarmarket.cn/detail/2499950",
+        "https://m.163.com/dy/article/L8QFELDP0556703U.html",
         "https://leedu.ac.cn/article/claude-pro-max-5x-20x-comparison/",
         "https://zhangwenbao.com/claude-rate-limits.html",
         "https://omidsaffari.com/zh-cn/blog/claude-code-pricing-2026-zh-cn"
@@ -78,18 +80,18 @@ window.AGENTS_DATA = {
       id: "gemini", name: "Gemini", vendor: "Google", region: "海外",
       tagline: "多模态与长上下文之王，入门价最低",
       models: ["Gemini 3 系列", "Gemini 4 Argon（2026-09-30 发布，Arena+ 页面列第 2，暂未公开商用）", "Gemini 3.8 Flash"],
-      verifiedAt: "2026-10-04",
+      verifiedAt: "2026-10-10",
       plans: [
         { name: "Free", price: "$0", note: "每日数百次提示 + 图像 + 少量视频生成" },
         { name: "AI Plus", price: "$7.99/月", note: "入门档，全场最低价之一" },
         { name: "AI Pro", price: "$19.99/月", note: "深度绑定 Google 全家桶" },
         { name: "Ultra", price: "$200/月", note: "顶配档；另有 $100 开发者档。媒体报道 Argon 后续将向 Ultra 与付费 API 客户逐步开放，官方未公布商用日程" }
       ],
-      apiNote: "2026-09-30 谷歌发布新一代前沿模型 Gemini 4 Argon（Arena+ 10-02 快照列总榜第 2：Arena Elo 1525、Coding 1570、AAII 53，仅次于 Claude Opus 5.5）。媒体口径 API 初始报价输入 $2/输出 $10 每百万 tokens、缓存输入享 95% 折扣、单次响应上限提至 100 万 token（原 6.4 万）；另有媒体提示该报价为推广期价、推广期后可能涨至 $4/$20，两口径均未见官方页可核。10-02 直抓官方定价文档（ai.google.dev/gemini-api/docs/pricing）无 argon 条目，当前仅经 Fairwind 计划向受信任网络安全防御机构定向开放。10-04 复核：同一官方定价文档（?hl=en，255,881 字节可静态读取）仍无 argon 字样，$2/$10 至今只有媒体口径；Arena+ 10-04 快照 Argon 位列总榜第 2（Elo 1525 / Coding 1570 / AAII 53），数值与 10-02、10-03 两日相同。另有新浪/网易 10-03 转载稿（原题同稿、来源环球网）称\"10 月 3 日完成正式发布、仅向经过严格审核的网络安全从业者开放、面向普通开发者与消费者的全面开放时间暂未公布\"——发布时间与站内已双源的 09-30 口径不一致，判为同一事件的二次报道（09-30 谷歌官宣、10-03 媒体复述），不据此改发布日。",
+      apiNote: "2026-09-30 谷歌发布新一代前沿模型 Gemini 4 Argon（Arena+ 10-02 快照列总榜第 2：Arena Elo 1525、Coding 1570、AAII 53，仅次于 Claude Opus 5.5）。媒体口径 API 初始报价输入 $2/输出 $10 每百万 tokens、缓存输入享 95% 折扣、单次响应上限提至 100 万 token（原 6.4 万）；另有媒体提示该报价为推广期价、推广期后可能涨至 $4/$20，两口径均未见官方页可核。10-02 直抓官方定价文档（ai.google.dev/gemini-api/docs/pricing）无 argon 条目，当前仅经 Fairwind 计划向受信任网络安全防御机构定向开放。10-04 复核：同一官方定价文档（?hl=en，255,881 字节可静态读取）仍无 argon 字样，$2/$10 至今只有媒体口径；Arena+ 10-04 快照 Argon 位列总榜第 2（Elo 1525 / Coding 1570 / AAII 53），数值与 10-02、10-03 两日相同。另有新浪/网易 10-03 转载稿（原题同稿、来源环球网）称\"10 月 3 日完成正式发布、仅向经过严格审核的网络安全从业者开放、面向普通开发者与消费者的全面开放时间暂未公布\"——发布时间与站内已双源的 09-30 口径不一致，判为同一事件的二次报道（09-30 谷歌官宣、10-03 媒体复述），不据此改发布日。10-10 另记企业侧新品（不改动本档案个人订阅档）：谷歌云在 Gemini at Work 2026 发布会推出\"通用工作智能体\"Gemini agent，A5站长网（10-09 20:18）与 CITNews 转 DoNews（10-09 09:19，正文写\"10月8日消息\"）两独立来源口径一致——定位单一入口的工作 Agent（问答/知识型工作/图文视频生成/写并跑代码，原则是\"给目标而非逐步指令\"），可在 Gmail、Drive、Docs、Slides、Sheets、Chat、Calendar 内直接操作，入口覆盖 Web/iOS/Android/Windows/Mac/CLI 及微软365与 Slack，模型不绑定自家（可在 Gemini 系列与 Anthropic Claude 系列间动态选择，配 Smart Routing 按效果/速度/成本分派），企业可给\"同事 Agent\"配独立邮箱、日历与存储并列入通讯录；当前为（私有）预览，先向 Workspace 特定 Business 与 Enterprise 方案开放，官方未公布定价页可核的价签。两源发布日口径相差一天（10-08 与 10-09），站内按报道日 10-09 记；10-10 在官方域名检索未取到可直抓的公告稿，故\"支持 Claude 模型\"\"预览范围\"均标为媒体转述官方口径",
       access: { difficulty: 4, need: "网络环境 + 海外支付（部分区域支持）", note: "免费档可用性在海外产品中相对最好；Argon 现阶段不对普通用户开放" },
       strengths: ["视频/音频等视觉生成最强", "超长上下文", "免费版最厚道、预算效率高", "Argon 单次输出上限 100 万 token，追平第一梯队基准"],
       weaknesses: ["复杂 Agent 任务稳定执行略逊", "深度使用依赖 Google 生态", "新旗舰 Argon 仅定向开放，买不到；单价口径存在推广价与翻倍价两说"],
-      sources: ["https://omidsaffari.com/zh-cn/blog/gemini-vs-chatgpt-zh-cn", "https://ai.google.dev/gemini-api/docs/pricing", "https://m.163.com/dy/article/L85Q4FTK0511BLFD.html", "https://m.sohu.com/a/1083187131_434604", "https://finance.sina.com.cn/roll/2026-10-03/doc-initwzsp5065978.shtml"]
+      sources: ["https://omidsaffari.com/zh-cn/blog/gemini-vs-chatgpt-zh-cn", "https://ai.google.dev/gemini-api/docs/pricing", "https://m.163.com/dy/article/L85Q4FTK0511BLFD.html", "https://m.sohu.com/a/1083187131_434604", "https://finance.sina.com.cn/roll/2026-10-03/doc-initwzsp5065978.shtml", "https://m.admin5.com/article/20261009/16704371.shtml", "https://www.citnews.com.cn/news/222514"]
     },
     {
       id: "manus", name: "Manus", vendor: "Manus AI", region: "海外（华人团队）",
@@ -238,18 +240,23 @@ window.AGENTS_DATA = {
       id: "trae", name: "Trae", vendor: "字节跳动", region: "国内",
       tagline: "国产 AI IDE，免费入口宽但 2026-08 起转积分制",
       models: ["豆包系模型 + 多家模型"],
-      verifiedAt: "2026-10-09",
+      verifiedAt: "2026-10-10",
       plans: [
-        { name: "免费版", price: "免月租", note: "官方档名为\"免费版\"；新手每月送 500 点数 + 2 次云端任务" },
-        { name: "会员 Lite", price: "¥49/月（首月 9.9）", note: "轻度使用；官方页档名是 Lite，站内旧称\"轻享\"已改为原档名" },
-        { name: "会员 Pro", price: "¥99/月（首月 59）", note: "主流档；旧称\"专业\"" },
-        { name: "会员 Pro+", price: "¥239/月（首月 219）", note: "重度使用；旧称\"进阶\"" },
-        { name: "会员 Ultra", price: "¥699/月（首月 629）", note: "顶配；旧称\"至尊\"，官方四档积分自免费版的 500 点递增至 Ultra 的 40,000 点" }
+        { name: "免费版", price: "免月租", note: "官方定价页档名\"免费 Free\"：¥0、每月 500 积分、2 个云端任务同时执行（10-10 直抓 www.trae.cn/pricing，静态可读）" },
+        { name: "会员 Lite", price: "¥49/月（官方页标首月优惠低至 ¥39）", note: "2,000 积分/月；站内旧值\"首月 9.9\"系第三方转述，10-10 在官方定价页未能复现，按官方页改记 ¥39" },
+        { name: "会员 Pro", price: "¥99/月（官方页标首月优惠低至 ¥69）", note: "4,000 积分/月、10 个云端任务；站内旧值\"首月 59\"同样未能复现，改记官方 ¥69" },
+        { name: "会员 Pro+", price: "¥239/月（首月低至 ¥219）", note: "12,000 积分/月；官方页与站内旧值一致" },
+        { name: "会员 Ultra", price: "¥699/月（首月低至 ¥629）", note: "顶配 40,000 积分/月、20 个云端任务、新模型优先使用；官方五档积分 500 / 2,000 / 4,000 / 12,000 / 40,000，四档会员签到另多得 3000 积分" }
       ],
+      apiNote: "10-10 直抓官方定价页（www.trae.cn/pricing，静态可读）逐档复核：个人方案五档，月费 ¥0/¥49/¥99/¥239/¥699 与站内记录一致，两处首月促销价（Lite、Pro）按官方页改正；四个会员档均写\"模型折扣：Seed-2.1 2.5 折，GLM、DeepSeek-V4.1 5 折\"与高峰期优先响应。同日另核官方文档 10-09 公告：TraeWork 与 TraeCode 融合升级为全新 TRAE，一个入口、Agent 模式与 IDE 模式切换、覆盖桌面/Web/移动三端——定价页档位与金额未见因合并变动",
       access: { difficulty: 1, need: "手机号直连", note: "2026-07-31 起定额制改按量扣点，常规对话与脚本也计费，社区普遍反馈变贵" },
       strengths: ["国内直连的 AI IDE", "中文理解好", "首月优惠激进"],
       weaknesses: ["积分制下成本不可预测", "免费额度缩水", "深度能力逊于 Claude/Cursor"],
-      sources: ["https://blog.csdn.net/heng_llh/article/details/163377039"]
+      sources: [
+        "https://www.trae.cn/pricing",
+        "https://docs.trae.cn/work_traework-to-traecode-data-migration",
+        "https://blog.csdn.net/heng_llh/article/details/163377039"
+      ]
     },
     {
       id: "qianwen", name: "千问（通义）", vendor: "阿里巴巴", region: "国内",
@@ -528,19 +535,20 @@ window.AGENTS_DATA = {
     {
       id: "mistral", name: "Mistral", vendor: "Mistral AI", region: "海外",
       tagline: "欧洲开源系旗舰，Pro $14.99 且学生半价，API 价低但榜单靠后",
-      models: ["Mistral Large 3", "Mistral Medium 3.1", "Le Chat / Vibe"],
-      verifiedAt: "2026-10-09",
+      models: ["Mistral Large 3", "Mistral Medium 3.1", "Le Chat / Vibe", "Mistral Large 4（10-06 公开预览，非官方简称 ML4、官方代号 le Chonk）"],
+      verifiedAt: "2026-10-10",
       plans: [
-        { name: "Free", price: "未核实", note: "10-09 直抓 mistral.ai/pricing 未列 Free 档价格，只在学生问答里提及\"未用过 Vibe（或 Le Chat）\"的资格限制，故免费档额度维持未核实" },
-        { name: "Pro", price: "$14.99/月（学生 $5.99）", note: "官方页 FAQ 原文：认证学生可以 $5.99/月 购 Mistral Pro（normally $14.99）；页面标注价格为税前" },
+        { name: "Free", price: "未核实", note: "10-10 再直抓 mistral.ai/pricing：Free 卡有静态权益文本（\"Your personal AI agent for everyday tasks\"、web 与移动端可用、Limited messages and web searches、Limited coding sessions、Basic image generation and editing、100+ connectors），但页面只写\"受限\"不给数字额度，也未标 ¥/$0 价签，故免费档额度维持未核实" },
+        { name: "Pro", price: "$14.99/月（学生 $5.99）", note: "官方页 FAQ 原文：认证学生可以 $5.99/月 购 Mistral Pro（normally $14.99）；页面标注价格为税前。10-10 补记权益列表：标准 Pro 卡内含 \"$25.5 /mo in API credits\"，同一卡片的学生切换态（Education plan）写 \"$15 /mo in API credits\"，即月费之外另给可按量抵扣的 API 额度" },
         { name: "Team", price: "$24.99/人/月", note: "团队协作工作区档；Enterprise 为 custom SLAs 询价" }
       ],
-      apiNote: "官方定价页原文举例：Mistral Large 输入 $0.5 /M、输出 $1.5 /M；Batch processing 降 50%，缓存输入最多降 90%（\"up to 90% for repeated prompts\"）。站内基准席位取页面第 84 行的 Mistral Large 3（Elo 1428、Coding 1450、AAII 16），编码维换算 (1450-1300)/28.2=5.3",
+      apiNote: "官方定价页原文举例：Mistral Large 输入 $0.5 /M、输出 $1.5 /M；Batch processing 降 50%，缓存输入最多降 90%（\"up to 90% for repeated prompts\"）。站内基准席位取页面第 84 行的 Mistral Large 3（Elo 1428、Coding 1450、AAII 16），编码维换算 (1450-1300)/28.2=5.3。10-06 官方博客（mistral.ai/news/mistral-large-4，datePublished 2026-10-06T12:00:27Z）宣布 Mistral Large 4 公开预览：官方称 1 万亿参数、原生多模态、激活 520 亿参数，训练自 3,800 张 NVIDIA Grace Blackwell GPU（欧洲自建数据中心），预览版可当日在 Mistral Studio 走 API 试用，权重\"本月月底\"放出——即截至 10-10 尚无公开权重可自部署。10-10 直抓定价页（8,609 字符静态文本可全量检索）未见 Large 4/ML4/le Chonk 任何条目，故新模型 API 单价属未核实；基准侧同样只有 Large 3 一行，ML4 未进 Arena+ 榜，站内基准席位不改",
       access: { difficulty: 3.5, need: "海外信用卡", note: "国内直连可用性本轮未实测；开源权重（部分 Apache 2.0）可自部署绕开访问门槛" },
-      strengths: ["$14.99 订阅 + 学生 $5.99 在海外旗舰里偏便宜", "Large 3 $0.5/$1.5 的 API 价低，Batch 再对半", "Apache 2.0 权重可自部署，欧洲合规叙事"],
-      weaknesses: ["AAII 仅 16、编码分 5.3，能力榜位靠后", "Free 档与额度规则页面无静态条目", "国内可达性与生态入口弱于美系/国产"],
+      strengths: ["$14.99 订阅 + 学生 $5.99 在海外旗舰里偏便宜", "Pro 月费之外另含 $25.5/月 API credits（学生档 $15），抵扣后可用量高于名义月费", "Large 3 $0.5/$1.5 的 API 价低，Batch 再对半", "Apache 2.0 权重可自部署，欧洲合规叙事"],
+      weaknesses: ["AAII 仅 16、编码分 5.3，能力榜位靠后", "Free 档只有\"受限\"描述、无数字额度与价签", "Large 4 仍在公开预览、权重未落地且定价页无条目，买不到也核不到价", "国内可达性与生态入口弱于美系/国产"],
       sources: [
-        "https://mistral.ai/pricing/"
+        "https://mistral.ai/pricing/",
+        "https://mistral.ai/news/mistral-large-4/"
       ]
     }
   ],
@@ -589,7 +597,7 @@ window.AGENTS_DATA = {
   benchmarks: {
     source: "https://openlm.ai/chatbot-arena/",
     sourceName: "OpenLM · Chatbot Arena+",
-    verifiedAt: "2026-10-09",
+    verifiedAt: "2026-10-10",
     models: [
       { agent: "claude",   model: "Claude Opus 5.5",    elo: 1526, coding: 1575, aaii: 58 },
       { agent: "gemini",   model: "Gemini-4-Argon",     elo: 1525, coding: 1570, aaii: 53 },
@@ -617,7 +625,7 @@ window.AGENTS_DATA = {
   arena: {
     source: "https://openlm.ai/chatbot-arena/",
     sourceName: "OpenLM · Chatbot Arena+",
-    fetchedAt: "2026-10-09",
+    fetchedAt: "2026-10-10",
     cols: ["Model", "Arena Elo", "Coding", "Vision", "AAII", "MMLU-Pro", "ARC-AGI", "Organization", "License"],
     rows: [
       ["Claude Opus 5.5","1526","1575","1320","58","92.5","93.3","Anthropic","Proprietary"],
@@ -992,9 +1000,12 @@ window.AGENTS_DATA = {
 
   /* ---------------- 事件时间线（改变决策的事件） ---------------- */
   events: [
+    { date: "2026-10-09", tag: "产品", agents: ["claude"], title: "Claude 的 Docs/Slides/Design 去 beta 转正并向所有套餐开放（含免费版）；Dashboards beta 只到付费个人档，Motion beta 仍限 Team/Enterprise", summary: "财联社 10-09 电（科创板日报）与网易 10-09 稿两个独立来源一致：Anthropic 宣布当天起 Claude 的文档、幻灯片、设计三项能力结束测试、所有套餐均可使用包括免费版，同日 Dashboards 与 Motion 进入测试阶段。10-10 直抓官方订阅定价页 claude.com/pricing（1,242,021 字节，功能矩阵可静态读出）逐格核对个人档四列 Free/Pro/Max 5x/Max 20x：Claude Design、Claude Slides、Claude Docs 三行四列全为 Yes；Claude Dashboards (beta) 为 No/Yes/Yes/Yes，即 Free 用不上；Claude Motion (beta) 四列全为 No。团队与企业档三列（Team、Enterprise self-serve、Enterprise sales-assisted）则 Design/Slides/Docs/Dashboards/Motion 五项全为 Yes。判读要点：媒体所称\"所有套餐可用\"的准确范围只有 Docs/Slides/Design 三项，个人档无论 $20 还是 $200 都拿不到 Motion，要 Motion 必须买团队或企业档。官方新闻室页（10-10 直抓，429,419 字节，可读的最新条目日期为 Oct 8, 2026）没有 10-09 的独立公告稿，故可用性判定以定价页矩阵原值为准；网易稿另称 Docs/Slides/Design 上线以来已产出超过 4,500 万份文档/演示/设计、以及 Enterprise 侧 Artifacts 支持 CMEK 等细节，仅单一来源转述官方，标未核实。站内 claude 档案四档 note 已按矩阵逐档补写可用性，订阅价格一分未动。", source: "https://claude.com/pricing" },
+    { date: "2026-10-09", tag: "产品", agents: ["gemini"], title: "谷歌云发布 Gemini agent：单一入口的通用工作智能体，可在 Gemini 与 Claude 系列模型间动态选择，先向 Workspace 特定 Business/Enterprise 预览开放", summary: "A5站长网 10-09 20:18 与 CITNews 10-09 09:19（稿源 DoNews，正文写\"10月8日消息\"）两个独立来源一致：谷歌云 CEO Thomas Kurian 在 Gemini at Work 2026 年度活动上发布 Gemini agent，定位\"通用工作智能体\"——回答提问、处理知识型工作、生成图片和视频、编写并运行代码都走同一个提示框，官方给的使用原则是\"给它目标，而不是逐步指令\"。干活范围主要在谷歌自家 Workspace：可在 Gmail、Drive、Docs、Slides、Sheets、Chat、Calendar 里直接操作并共享同一套记忆、技能与管控策略；入口不限谷歌体系，官方列出 Web、iOS/Android 手机、Windows/Mac 桌面、命令行、微软365 与 Slack，也能以无独立界面的形式嵌入第三方应用。运行在云端、记忆跟账号不跟设备，官方把记忆分为会话/语义/程序性/情景四类，它还会自己写 Skills 把学到的方法留给后续任务。协作上可按任务临时拉起带各自身份的子 Agent，并行或串行跑几小时甚至几天；更特别的是\"同事 Agent\"——企业可给它长期企业身份、独立邮箱、日历与存储，让它进公司通讯录，能被拉进群聊或在文档里 @，操作留痕且可访问范围限于团队主动开放的部分。模型选择不绑自家：两源口径一致为可在 Gemini 系列与 Anthropic Claude 系列之间动态选择，未来支持更多闭源与开源模型，配 Smart Routing 按效果/速度/成本给任务派模型，管理员可在项目层设支出上限、到阈值自动暂停。可用性：DoNews 写\"私人预览\"、A5 写\"小范围预览\"，均称先向 Workspace 特定 Business 与 Enterprise 方案开放，金融与法律版本同步预览，政府/医疗/零售官方说后续推出。发布日两源相差一天（10-08 与 10-09 消息），站内按报道日 10-09 记；10-10 在谷歌官方域名未检索到可静态直抓的公告稿，故上述细节均标为媒体转述官方口径。该产品没有公开可核的订阅价签，站内 gemini 档案的个人订阅四档金额未动，只把这条企业线记进 apiNote。", source: "https://m.admin5.com/article/20261009/16704371.shtml" },
     { date: "2026-10-09", tag: "产品", agents: ["mimo", "longcat", "mistral"], title: "站内档案 23→26：小米 MiMo、美团 LongCat、Mistral 三家因官方定价页首次静态可核而收录，Arena+ 席位由 13 席扩至 16 席", summary: "三家均为自研模型厂商且在 Arena+ 榜上有行：MiMo-V2.6-Pro 页面第 13（Elo 1507、Coding 1560、MIT 开源），官方按量页 mimo.mi.com 直抓为输入 ¥3.00/输出 ¥6.00、命中缓存输入 ¥0.025、批量恰为实时价一半，海外区 $0.435/$0.87，同页公告 mimo-v2.5 系列将于 2026-10-21 10:00 下线；LongCat-Flash-Chat 第 94，美团 longcat.chat 平台按量页列 LongCat-2.5-Preview 与 LongCat-2.0 两个模型、限时折扣价输入 ¥2/命中缓存 ¥0.04/输出 ¥8，并写明可按已消费金额开电子发票；Mistral Large 3 第 84，mistral.ai/pricing 直抓为订阅 Pro $14.99（认证学生 $5.99）、Team $24.99/人，API 举例 $0.5/$1.5 每百万、Batch 降 50%、缓存输入最多降 90%。三家的 C 端会员档（MiMo、LongCat）与 Free 档额度（Mistral）官方页均无静态条目，档案内标未核实", source: "https://mimo.mi.com/docs/zh-CN/price/pay-as-you-go" },
     { date: "2026-10-09", tag: "定价", agents: ["chatgpt"], title: "GPT-6.1 Sol 新增 Ultrafast 极速档：官方定价页 $12/$60，逐项为标准档 6 倍，接入面为 Pro 500 与企业按量", summary: "官方定价页（platform.openai.com/docs/pricing，10-09 直抓 587,092 字节、价目 JSON 可静态读出）新增独立的 ultrafast 切换项，gpt-6.1-sol 该档输入 $12/缓存读 $0.60/缓存写 $15/输出 $60 每百万 tokens，与 standard 档（$2/$0.10/$2.50/$10）逐项恰为 6 倍关系。IT之家与 DoNews 两个独立来源（均 10-09）口径一致：速度最高约为标准版 8 倍、价格 6 倍，接入面为 API/Codex/ChatGPT Work 中的 Pro 500 档、按量计费的企业版与积分制教育版。判读要点：站内此前把\"速度翻 8 倍\"记为 10-03 澎湃的媒体口径，本轮由官方页的档位与两源报道确认该档真实存在且已上架；但\"8 倍\"是相对标准档的倍数、官方页未给绝对 tokens/秒，且该档不改变模型能力（仍是 gpt-6.1-sol）。官方页同一档位切换器共五项，逐值可核：batch 与 flex 均为标准价一半（$1/$0.05/$1.25/$5）、fast 为 2 倍（$4/$0.20/$5/$20）、ultrafast 为 6 倍；ultrafast 档只列 gpt-6-astra（$60/$6/$75/$300）与 gpt-6.1-sol 两项，gpt-6-luna 不在该档。档位说明文本对 Fast 写的是\"GPT-5.6 Sol 最高比 Standard 快 2.5 倍\"，对 Ultrafast 则为空白——即官方只给倍数口径于 Fast、不给 Ultrafast 的倍数。对 Plus/Pro 200 用户无可用水位——想买快档必须买 $500 档或走企业按量，这条与 10-02 网易截图\"最快 Codex/代理速度是 Pro Max 卖点\"相互印证。", source: "https://platform.openai.com/docs/pricing" },
     { date: "2026-10-08", tag: "定价", agents: ["claude"], title: "Anthropic 发布 Claude Haiku 5.5：短请求 $0.10/$0.50，较 Haiku 4.5 降九成，但改按 prompt 长度分档计价", summary: "官方定价页（10-08 直抓，937,743 字节静态可读）与网易科技、admin5 两个独立来源一致：Anthropic 于 2026-10-08 上线 Claude Haiku 5.5，输入 $0.10/输出 $0.50 每百万 tokens（prompt ≤10 万 token），超过 10 万 token 则升为输入 $0.50/输出 $2.50；缓存写 5 分钟 $0.125、1 小时 $0.20，缓存读 $0.01，批量 API 再减半（≤10 万 $0.05/$0.25、>10 万 $0.25/$1.25）。上一代 Haiku 4.5 为 $1/$5，故短请求单价降 90%；官方页另注明\"Claude 4.6 及之后模型（Haiku 5.5 除外）1M 上下文按标准价\"，长上下文加价只发生在 Haiku 5.5 上，这是本站在档首个分档计价的新模型。Arena+ 10-08 快照新增 Claude Haiku 5.5 一行（总榜第 31，Arena Elo 1501、Coding 1538、AAII 43、MMLU-Pro 87.5），编码维换算分 (1538-1300)/28.2 = 8.4；与 GPT-6 Luna（$0.10/$0.50）同档，小模型价格战由两家共同定在 1 毛。注意两家媒体均指出新分词器使同一请求 token 数增加约 25%-30%，名义降价的实际到手折扣更小——该比例属媒体口径、官方未给换算表，标未核实。", source: "https://docs.claude.com/en/docs/about-claude/pricing" },
+    { date: "2026-10-06", tag: "产品", agents: ["mistral"], title: "Mistral Large 4 进入公开预览（官方代号 le Chonk）：1 万亿参数、激活 520 亿、原生多模态，权重月底放出但定价页至今无条目——周五全量漏项补录", summary: "Mistral 官方博客 10-06 稿（mistral.ai/news/mistral-large-4，页面 datePublished 为 2026-10-06T12:00:27Z，10-10 直抓 299,586 字节、正文静态可读）：当天发布 Mistral Large 4 的公开预览，非官方简称 ML4、官方代号 le Chonk。官方给的规格是 1 万亿参数、原生多模态、激活 520 亿参数，从零开始在 3,800 张 NVIDIA Grace Blackwell GPU 上训练、数据中心在 Mistral 自有欧洲园区，公开预览也跑在同一套基础设施上；发布当天即可在 Mistral Studio 用 API 试用，权重计划本月月底放出，在此之前与网络安全负责人、经审核伙伴及国家机构以\"降低审核、扩展网络能力\"的同款模型做真实场景红队。官方还称其在编码（DeepSWE、Terminal Bench 4.0）、网络安全、agentic 行为、金融与法律等维度是开源模型里的最先进，视觉定位（grounding）甚至超过闭源前沿模型——但具体分数在博客图表里、静态文本无数值，故不收录不入榜。这条是周五全量（10-09 才收录 Mistral 档案）漏掉的更早官方条目：10-10 直抓 mistral.ai/pricing 并对静态文本全文检索，仍无 Large 4/ML4/le Chonk 任何字样，新模型 API 单价因此标未核实，站内基准席位继续取页面第 84 行的 Mistral Large 3（Elo 1428、Coding 1450、AAII 16）不改。同次直抓新读出的静态权益：Pro 卡标准态权益列表含 \"$25.5 /mo in API credits\"，同一卡片的学生切换态（Education plan，$5.99）写 \"$15 /mo in API credits\"；Free 卡只写 limited messages and web searches、limited coding sessions、basic image generation and editing、100+ connectors，没有数字额度也没有价签，免费档额度维持未核实。", source: "https://mistral.ai/news/mistral-large-4/" },
     { date: "2026-09-30", tag: "产品", agents: ["gemini"], title: "谷歌发布 Gemini 4 Argon：Arena+ 升至总榜第 2，但只经 Fairwind 计划向网络安全机构定向开放", summary: "网易科技与新浪科技两独立来源一致：当地时间 2026-09-30 谷歌发布新一代前沿模型 Gemini 4 Argon，API 初始报价输入 $2/输出 $10 每百万 tokens、缓存输入享 95% 折扣，单次响应输出上限自 6.4 万提到 100 万 token，报道列举 DeepSWE v1.1 77.9%、LVBench 91.7%、CWE-bench v1 68%；现阶段仅限参与 Google Fairwind 计划的受信任网络安全防御组织测试，广泛商用\"尚未公布\"。本站 10-02 直抓官方 API 定价文档（ai.google.dev/gemini-api/docs/pricing）未见 argon 条目，与\"未公开商用\"一致；Arena+ 10-02 快照把它列在总榜第 2（Arena Elo 1525、Coding 1570、AAII 53）。另搜狐\"别被单价坑了\"一文警示该报价或为推广期价（称推广期后涨至 $4/$20）、且其单任务平均输出 56.1 万 token 高于 GPT-6 Sol 的 28.2 万，总额外推口径为单源，标未核实。", source: "https://m.163.com/dy/article/L85Q4FTK0511BLFD.html" },
     { date: "2026-09-30", tag: "定价", agents: ["chatgpt"], title: "Pro 200 以原价重开但可购额度下调，另设 $500 顶层档——09-30 标注的未核实项已双源闭环", summary: "36 氪与软餐两个独立来源一致：OpenAI 于 09-30 以原价 $200 重新开放 Pro 订阅，同时把计费改为按 API 美元额度计量、可购额度总额下调（36 氪称\"砍半\"，社区概括\"20X 变 10X\"），官方未承诺已付费存量额度永久保留；另新增 $500/月的顶层档（报道名 Pro 500 与 Pro Max 500 不一），权益含独占最高优先级 Astra 算力、最大上下文窗口记忆与 100GB 专属存储；Astra API 单价一分未动（站内 09-30 直抓官方页仍为 $10/$50）。解释口径出自 OpenAI CPO Tibo Sottiaux 的公开发帖。10-02 二次直抓 chatgpt.com/pricing（1MB HTML）仍无静态价签，档位金额与额度数字以客户端渲染，具体数字标未核实。", source: "https://www.36kr.com/p/4005459400496771" },
     { date: "2026-09-30", tag: "产品", agents: ["chatgpt"], title: "DevDay：GPT-6.1 Sol 上线，官方价 $2/$10 为 Astra 的五分之一", summary: "OpenAI 官方定价页（2026-09-30 直抓）新增 gpt-6.1-sol：输入 $2/输出 $10 每百万 tokens，长上下文 $4/$15，缓存读 $0.10、缓存写 $2.50；gpt-6-sol 条目已下架，gpt-6-astra 维持 $10/$50（长上下文 $20/$75）。官方 chatgpt.com/pricing 模型矩阵显示 GPT-6.1 Sol 仅 Plus（Expanded）与 Pro 可用，Free/Go 不含。媒体多源另称 DevDay 新增 $500 档并收紧用量额度，但定价页金额为客户端渲染、无法直抓，标注未核实交周五处理。", source: "https://platform.openai.com/docs/pricing" },
@@ -1131,7 +1142,7 @@ window.AGENTS_DATA = {
       bltcy: { status: "verified", at: "2026-10-04", note: "官网 /api/pricing 直抓成功（2026-09-30，返回 default 分组倍率表约 418KB）；独立社区来源：少数派 sspai 论坛\"中转站实时比价工具\"帖有用户自述已用柏拉图一年多（https://meta.appinn.net/t/topic/79735）。两源一致仅证明\"站点存活、公开报价、有长期使用者\"，不构成质量或兑付背书。10-04 复核·重要纠正：本站公开公告接口 /api/status 直读到运营方 2026-05-11 公告原文——\"由于平台现阶段技术与运营资源有限…公司决定逐步调整当前业务方向，后续将聚焦企业级服务合作…即日起平台将关闭个人充值及新增开放接入功能，后续不再新增个人用户业务\"；另有 05-09 公告\"临时关闭新用户注册通道…绝非网传跑路、停运\"、05-30 公告引导个人账号转企业账号。第三方测评页 EggStriker（2026-09-07）同口径记\"已公告转向企业级服务：关闭个人充值与新注册\"。→ 对个人新用户而言本站实际不可入驻（存量用户额度与服务照常），09-30 那条结论不完整；但同一 /api/status 仍显示 enable_online_topup=true、pay_enabled=true、quota_for_new_user=100000，前端配置与公告口径并存，实际能否充值未核（未核实）。种子区为可再生内容未改，收缩信号记于此。10-09 周五抽查复核：/api/pricing 仍 200（436,730 字节，与 10-04 记录的 418KB 量级相符）；/api/status 公告 22 条，最新一条停在 06-02（发票事宜），05-09\"临时关闭个人用户注册…绝非跑路\"、05-11\"关闭个人充值及新增、聚焦企业级\"、05-30 引导个人转企业三条原文均仍在位，enable_online_topup 与 quota_for_new_user=100000 未变——与 10-04 结论一致，无新增暴雷信号，维持\"主动收缩\"定性。" },
       uiuiapi: { status: "verified", at: "2026-10-02", note: "双源：①种子仓库 awesome-ai-api-proxy 条目（type=official-relay、status=active、maintainer 于 2026-06-07 实测，并在 2026-08-16 快照抓到 666 条 high-confidence 报价）；②独立社区目录 frank36512/aiapi（GitHub，2026-10-02 直抓）自列\"300+ 大模型聚合、3.7 元/美元汇率、可开发票\"。10-02 实测站点 200、公开 new-api 价目接口 https://api1.uiuiapi.com/api/pricing 返回 366 个模型（default 分组），已收录 claude-opus-5-5 / gpt-6.1-sol（模型倍率 37.5），尚未收录 gemini-4-argon。注：社区目录属推广性质，\"官方倍率/汇率/可发票\"为自述口径未核；本次仅证明存活、报价公开可复核、被两份独立目录收录。" },
       "closeai-asia": { status: "verified", at: "2026-10-02", note: "双源：①种子仓库条目（type=official-relay、status=active、maintainer 于 2026-05-26 实测，entity_registered=true、支持企业发票）；②独立社区目录 frank36512/aiapi（2026-10-02 直抓）亦收录（\"亚洲最大企业级 AI 中转、支持企业发票\"）。10-02 实测站点 200、/pricing 页面 200（32KB 静态可读）。注：种子 2026-08-16 价格快照无本站记录，报价无法机器复核，\"100% 官转\"属自述；本次仅证明存活与公开价目页可读。" },
-      yunwu: { status: "verified", at: "2026-10-09", note: "10-09 复核（本窗口唯一有异动的已核站）：本站自家接口照常返回——首页 200、/api/pricing 200、/api/status 200（446,553 字节，system_name=\"云雾 API \"、版本 20260918-152544、enable_online_topup=true、email_verification=true），公告 340 条但最新一条停在 2026-08-16（\"同步官方价格：deepseek-v4-pro/flash\"），此后两个月无任何运营公告。同一时点，第三方监测 Help AIO「AI中转站可用性监测」页（快照 2026-10-09 09:19，自称自 2026 年 2 月起累计探测 276 万次、无赞助）把本站列为 24 小时综合可用率 0.00%、有效探测 560 次、最新探测 09:19——是页面所列 18 站中两个 0% 之一（另一个 Undying 亦 0.00%、560 次），而同期其余站点多在 84%-97%。判读：页面接口全 200 与\"模型调用 0% 可用\"并存，正是\"价目接口 200 不等于能用\"的形态，但 0% 属单一第三方来源，Help AIO 的探测模型、判定阈值与是否含维护时段均未公开可核，本站无法用第二个独立来源复现（检索未见 10 月内社区故障帖），故只记为收缩/故障观察项，不写成暴雷结论。10-02 双源依据仍成立（①本站 /api/pricing 直抓 384 条倍率表；②GitHub 社区目录 frank36512/aiapi + 测评页 EggStriker 2026-08-11\"适合测试不宜生产\"）；种子标 type=mixed，本站不作质量背书。V2EX 相关帖发在 promotions 节点属官方推广，不计入独立源；简书\"云雾 APP 诈骗\"为同名兼职资金盘，与本站无关（同名混淆，勿误判红旗）。10-09 周五抽查复核：/api/pricing 返回 data 382 条（站内 10-02 记 384 条，微降 2 条属价目正常滚动）；抽核倍率逐项对得上——qwen3.8-max x6、claude-fable-5 x5、deepseek-v4-pro x4.5，且价目表仍不含 gemini-4-argon，故本条维持 verified、不下调。" },
+      yunwu: { status: "verified", at: "2026-10-10", note: "10-09 复核（本窗口唯一有异动的已核站）：本站自家接口照常返回——首页 200、/api/pricing 200、/api/status 200（446,553 字节，system_name=\"云雾 API \"、版本 20260918-152544、enable_online_topup=true、email_verification=true），公告 340 条但最新一条停在 2026-08-16（\"同步官方价格：deepseek-v4-pro/flash\"），此后两个月无任何运营公告。同一时点，第三方监测 Help AIO「AI中转站可用性监测」页（快照 2026-10-09 09:19，自称自 2026 年 2 月起累计探测 276 万次、无赞助）把本站列为 24 小时综合可用率 0.00%、有效探测 560 次、最新探测 09:19——是页面所列 18 站中两个 0% 之一（另一个 Undying 亦 0.00%、560 次），而同期其余站点多在 84%-97%。判读：页面接口全 200 与\"模型调用 0% 可用\"并存，正是\"价目接口 200 不等于能用\"的形态，但 0% 属单一第三方来源，Help AIO 的探测模型、判定阈值与是否含维护时段均未公开可核，本站无法用第二个独立来源复现（检索未见 10 月内社区故障帖），故只记为收缩/故障观察项，不写成暴雷结论。10-02 双源依据仍成立（①本站 /api/pricing 直抓 384 条倍率表；②GitHub 社区目录 frank36512/aiapi + 测评页 EggStriker 2026-08-11\"适合测试不宜生产\"）；种子标 type=mixed，本站不作质量背书。V2EX 相关帖发在 promotions 节点属官方推广，不计入独立源；简书\"云雾 APP 诈骗\"为同名兼职资金盘，与本站无关（同名混淆，勿误判红旗）。10-09 周五抽查复核：/api/pricing 返回 data 382 条（站内 10-02 记 384 条，微降 2 条属价目正常滚动）；抽核倍率逐项对得上——qwen3.8-max x6、claude-fable-5 x5、deepseek-v4-pro x4.5，且价目表仍不含 gemini-4-argon，故本条维持 verified、不下调。10-10 次日复查：自家三接口仍全 200（/api/pricing 288,041 字节、/api/status 446,553 字节与 10-09 同尺寸），运营公告仍停在 08-16；同日 Help AIO 09:00 快照第二次把本站列为 24 小时综合可用率 0.00%（有效探测 552 次、最新探测 08:59）→ 连续两日单源 0% 而价目/状态接口照常，仍不满足双源、仍不下暴雷结论，但风险等级较昨日上升，接入前应先小额测试（本站不做兑付背书）。同页 10-10 另列 HongMaCC 43.84%、CPass 68.11%、Undying 0.00%，三家均不在本站种子目录内，不作收录依据。" },
       rcouyi: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开价目接口 https://api.rcouyi.com/api/pricing 返回 797 条（含 claude-opus-5-5 x2、claude-fable-5-1 x5、deepseek-v4-flash x0.5 等，供应商字段可读）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-16，\"一站式聚合中转、接口文档完善、可直连、价格中等\"）。未检索到跑路或退款纠纷，但社区讨论与 GitHub 曝光度都很低，独立佐证单薄，标\"单一第三方源\"持续观察。" },
       relaydance: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开价目接口 https://relaydance.com/api/pricing 返回 45 条（auto_groups=default；以 doubao-seedance 系列视频模型为主，如 seedance-2-0-480p x4.375，另有 claude-fable-5 x6.25）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-15，\"转战视频生成中转，Seedance 2.0/2.5 一站式，价格中等\"）。appinn 的中转站评测帖现已 404 无法复核，Linux.do/V2EX/论坛无用户讨论。价目可读证明存活，但覆盖面窄（45 条）且独立佐证单薄，持续观察。" },
       atlascloud: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开模型接口 https://api.atlascloud.ai/v1/models 返回 200（71KB，data 数组含 Qwen3-235B-A22B-Instruct-2507 等可复核条目）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-15，\"图像/视频生成聚合 300+ 模型、按秒计费、国内需代理\"）。未见跑路或退款投诉（搜索结果多为自家博客，不计）。注：本站定位偏图像/视频生成聚合，与文本中转目录不完全同类，比价时注意。" },
@@ -1142,6 +1153,7 @@ window.AGENTS_DATA = {
       gptgod: { status: "verified", at: "2026-10-08", note: "双源：①种子仓库条目（记 https://gptgod.online，type=reverse，riskFlags=reverse_channel + no_entity，种子注\"逆向；便宜，稳定性无保证\"）；②第三方测评页 EggStriker 专页（最后核实 2026-08-15）记\"gptgod.cloud，逆向工程型中转，汇率约 0.6¥/USD（相当于官方美元价的 8.3%），447 个模型但当时未覆盖最新旗舰，稳定性零保证，不建议用于 Claude Code 一类日常调用\"。10-08 实测：种子域名 gptgod.online 首页 200 但 /api/status 404，运营主域 gptgod.cloud 的 /api/status 返 200（one-api 系 v9.7.2-alpha.6，system_name=GPT-GOD API），RegisterEnabled=false 而 SMSRegisterEnabled 与 OnlineTopupEnabled 为 true、MaxTopUpLimit=10000；/api/pricing 返 200（36KB，ModelRatio 597 条、CompletionRatio 306 条、ModelFixedPrice 182 条），倍率可读：gpt-6.1-sol 输入倍率 1/补全倍率 5、gpt-6-luna 0.05/5、deepseek-v4-pro 1.5/2。红旗观察：claude-opus-5-5、fable-5、gemini-4、haiku-5 在档全部缺位（最新只到 gpt-6.1/deepseek-v4/glm-5.2 一档），Anthropic 新款不跟进，与 EggStriker 08-15 的\"覆盖滞后\"结论同向且至今未改善；倍率→美元的换算公式本站仍未核实，故不折算价格。属逆向渠道、无主体登记，稳定性无保证，仅证被收录与倍率公开可复核，绝不构成质量或兑付背书。" },
       aimlapi: { status: "verified", at: "2026-10-09", note: "双源新增（10-09）：①种子仓库 awesome-ai-api-proxy 条目（https://aimlapi.com，type=aggregator、status=active、entityRegistered=true、maintainer 核于 2026-05-26，注\"400+ 模型、$20 起预付、支持加密货币暗示绕支付障碍\"）；②第三方测评页 EggStriker 专页（最后核实 2026-08-15）记\"1000+ 模型统一端点、海外开发者的多模型聚合首选、价格档位中等、全覆盖(600+)、需代理\"。10-09 实测本站公开模型目录接口返 200（522,306 字节、929 个条目），并已收录 stepfun/step-5-preview（releasedAt 2026-10-08，info.docsJson 直指 api.aimlapi.com，contextLength 1000000、outputMax 64000、tags 含 tier:tier_2）——目录在跑且跟到最新国产旗舰，可作 Step 5 上线的第二旁证。口径出入：模型数种子记 400+、EggStriker 同时写 1000+ 与 600+、本站 10-09 实测目录 929 条，四说不一（统计范围不同：可路由端点 vs 模型名 vs 分组），故只写\"覆盖数百到上千量级\"、不取任一数字。该目录接口不含逐 token 价格，报价需登录后按 key 与分组下发，因此价目侧本站仅有其转售 Step-5 的存在性证据、无价格证据；个人能否注册充值未核（未核实）。海外站、需网络环境与外币卡，本站不作质量或兑付背书。" },
       teamorouter: { status: "verified", at: "2026-10-09", note: "双源（弱）新增：①本站 10-09 直抓 /pricing 308 转主页 #pricing 锚点，SSR 静态可读 6 张价目卡（其余模型客户端渲染）——GPT-5.6 Sol 输入官方 $5.00→现价 $0.53、输出 $30→$3.18，Claude Fable 5 $10→$2.42 / $50→$12.10，Claude Sonnet 5 $3→$0.50 / $15→$2.52，表内无 DeepSeek 静态卡；②独立来源一份——腾讯云开发者社区 2026-09-16《你那个 1 折的 AI 中转站……10 倍消耗 Tokens》点名 TeamoRouter（第三方分析文，非推广节点），另有 awesome-ai-api-proxy 社区目录收录但属 operator_submitted、权重低。CSDN/51cto/头条的\"一夜爆火/使用第 21 天\"系软文，不计入独立源。风险：现价约为官方的 1-2.4 折、倍率异常低；客服与证照截图挂在第三方域名 floatai.cn，主体信息不透明。仅证存活与报价可机器复核，不作质量或兑付背书。" },
+      helicone: { status: "verified", at: "2026-10-10", note: "双源新增（10-10，本窗口第一家观测型网关）：①种子仓库 awesome-ai-api-proxy 条目（https://helicone.ai，type=observability、status=active、entityRegistered=true、maintainer 核于 2026-05-26，注\"LLM 可观测性网关；日志/成本分析\"）；②第三方测评页 EggStriker 专页（最后核实 2026-08-11）记\"0% 加价直通、内置 LLM 可观测性、开源可自部署、免费层 1 万请求/月、付费 $79/月起、需代理\"，并写明其模式是用户自持 Anthropic/OpenAI 官方 Key、Helicone 只做代理层与日志计费、账单仍结算给官方、出问题可切回原 base_url。10-10 直抓官方定价页 helicone.ai/pricing（163,419 字节，档位静态可读）与两源逐项对得上：Hobby Free = 10,000 free requests + 1 GB storage + 1 seat/1 org；Pro = $79 per month（标 POPULAR，注明 usage-based pricing applies）；Team = $799 per month（5 organizations、SOC-2 & HIPAA、专属 Slack）；Enterprise 询价（Custom MSA、SAML SSO、On-prem deployment）。监测请求三档均写 \"10K free + usage-based\"，存储 1 GB free + usage-based。判读：这是目录里少数不靠转售差价赚钱的网关——它不代售额度，个人\"能不能用\"取决于是否已持有官方 Key，因此不能当作买不到官方额度时的替代品，与站内\"中转站是情报目录、不是推荐清单\"的口径一致；\"0% 加价\"由种子注与 EggStriker 同向、且官方页收的是平台服务费而非模型倍率，三点一致故记 verified。遗留：官方定价页顶栏横幅写 \"Helicone Joins Mintlify\"（10-10 原文），归属/并购含义与是否影响服务条款本站未核（未核实）；自部署版本的运维成本与合规责任属文档口径，未实测。" },
     },
     extra: [
       // 种子源之外、由本站用户提报/自行发现的条目；字段与 seed.providers 同构，双源核实后写入 relayVerify。日更/周更任务对此区只读不改。
@@ -2454,6 +2466,16 @@ window.AGENTS_DATA = {
 
   /* ---------------- 每周简报（自动核实任务每周五插入一条，最新在前） ---------------- */
   weekly: [
+    { date: "2026-10-10", note: "日更：基准重抓源页未刷新（327 行逐值零变动），内容侧三笔纠错/补录——TRAE 首月促销价按官方定价页改正、Mistral Large 4 预览补录（周五漏项）、Claude 功能矩阵逐档核实", items: [
+      "基准同步到 10-10：Arena+ 页面直抓 135,616 字节（与 10-09 同尺寸）、解析 327 行（表头行除外，达到 300+ 阈值），与站内快照逐行逐值比对零差异，✅ 标记照原样保留；16 个站内席位按模型名回查页面行号全部命中且严格递增，scores.coding 换算逐项复核通过、一律不动。页面自身标注的榜单日期标签两日均为 \"2026 Oct 7\"，即 OpenLM 侧快照尚未刷新，本轮属\"重抓确认未变\"而非新数据；按纪律 arena.fetchedAt 与 benchmarks.verifiedAt 仍同步改为 10-10（第 2b 步成功即须对齐核实日），meta.dataUpdatedAt 同日到 10-10",
+      "TRAE 档案两处价格纠错（10-10 直抓官方定价页 www.trae.cn/pricing，静态可逐档读）：会员 Lite 的首月促销由站内旧值\"首月 9.9\"改记官方页所标\"低至 ¥39\"，会员 Pro 由\"首月 59\"改记\"低至 ¥69\"——那两个旧值出自第三方 CSDN 转述（仍是档案里的兜底来源之一），本轮在官方页未能复现，按\"官方页优先\"改正；四档月费 ¥49/¥99/¥239/¥699 与站内原记一致未动。同日补记官方五档积分阶梯 500 / 2,000 / 4,000 / 12,000 / 40,000（免费版 500 起、Ultra 40,000）、会员签到另多得 3000 积分，以及四个会员档同写的\"模型折扣：Seed-2.1 2.5 折，GLM、DeepSeek-V4.1 5 折\"与高峰期优先响应。另一笔官方口径：docs.trae.cn 的 10-09 公告 TraeWork 与 TraeCode 融合升级为全新 TRAE（一个入口、Agent 模式与 IDE 模式切换、覆盖桌面/Web/移动三端），定价页档位与金额未见因合并变动；档案 sources 顺序改为官方定价页与官方文档在前",
+      "Claude 档案按官方功能矩阵补可用性（10-10 直抓 claude.com/pricing，1,242,021 字节，两张特性表可静态解析）：个人档 Free/Pro/Max 5x/Max 20x 四列里 Claude Design、Claude Slides、Claude Docs 三行全为 Yes，Claude Dashboards (beta) 为 No/Yes/Yes/Yes，Claude Motion (beta) 四列全为 No；Team/Enterprise (self-serve)/Enterprise (sales-assisted) 三列这五项全为 Yes。这条对应 10-09 财联社与网易两独立来源所称\"文档/幻灯片/设计结束测试、所有套餐含免费版可用，Dashboards 与 Motion 进入测试\"——即\"所有套餐\"只覆盖前三项，个人档无论 $20 还是 $200 都拿不到 Motion。官方新闻室页（10-10 直抓 429,419 字节）可读的最新条目日期停在 Oct 8, 2026、无 10-09 独立公告稿，故判定以定价页矩阵原值为准；订阅价格一分未动，只有四档 note 补写功能范围",
+      "Mistral 档案补录周五漏项（官方 10-06 博客 mistral.ai/news/mistral-large-4，datePublished 2026-10-06T12:00:27Z）：Mistral Large 4 公开预览，官方代号 le Chonk、非官方简称 ML4，1 万亿参数、原生多模态、激活 520 亿参数，训练自 3,800 张 NVIDIA Grace Blackwell GPU（欧洲自有数据中心），发布当天可在 Mistral Studio 走 API 试用，权重计划本月月底放出——即尚无权重可自部署、也未进 Arena+ 榜，站内基准席位维持第 84 行的 Mistral Large 3 不改。10-10 直抓定价页对静态文本全文检索仍无 Large 4/ML4/le Chonk 条目，新模型 API 单价标未核实。同次新读出两笔 Pro 档权益：标准 Pro 卡含 \"$25.5 /mo in API credits\"、同一卡的学生切换态（Education plan $5.99）含 \"$15 /mo in API credits\"；Free 卡有静态权益文本但只写 limited 而无数字额度，免费档维持未核实",
+      "Gemini 档案记企业线（A5站长网 10-09 20:18 与 CITNews 转 DoNews 10-09 09:19 两独立来源）：谷歌云在 Gemini at Work 2026 发布\"通用工作智能体\"Gemini agent，单一提示框走问答/知识工作/图文视频/写跑代码，可在 Gmail-Drive-Docs-Slides-Sheets-Chat-Calendar 内直接操作，入口含 Web/iOS/Android/Win/Mac/CLI 与微软365、Slack；模型不绑自家，可在 Gemini 系列与 Anthropic Claude 系列间动态选择并配 Smart Routing，企业可给\"同事 Agent\"配独立邮箱/日历/存储并进通讯录，当前为预览、先向 Workspace 特定 Business 与 Enterprise 开放。该产品无可核价签，站内 gemini 个人订阅四档金额未动；发布日两源相差一天（10-08 与 10-09），按报道日记并在 apiNote 里点明，10-10 未检索到谷歌官方域名可静态直抓的公告稿，细节标为媒体转述官方口径",
+      "中转站维护：种子未刷新（relay-seed/providers.yaml 的 last_reviewed 仍 2026-07-12、prices.latest.json 的 snapshot_date 仍 2026-08-16，与 relay.seed 现有 sourceLastReviewed/priceSnapshot 相同），故本轮不跑 gen-relay、种子区一字未改。双源新增 1 家（已核 14→15/36）：Helicone——种子条目（type=observability、entityRegistered=true、maintainer 核于 05-26）+ 第三方测评页 EggStriker（最后核实 08-11，\"0% 加价直通、免费层 1 万请求/月、付费 $79/月起、开源可自部署\"）两源认定，10-10 再直抓官方 helicone.ai/pricing（163,419 字节）逐档对上 Hobby Free 10,000 requests / Pro $79 / Team $799 / Enterprise 询价；判读要点已写进 note：它不代售额度、要自持官方 Key，不能当买不到官方额度时的替代品。已核站复查：云雾 API 的第三方 24h 可用率连续第二日 0.00%（10-10 08:59 快照、有效探测 552 次）而自家 /api/pricing 与 /api/status 仍 200（446,553 字节与昨日同尺寸），单源不成结论、维持异动观察，只把本条 at 更新到 10-10 并升风险措辞。未收录三家继续挂待核：玄枢 wappkit 与 Quicksilver Pro 今日仍只有 EggStriker 单页（最后核实 08-16/08-11）、无第二源；aiapipk 两源冲突（EggStriker 08-16 记\"已停运，apex 域名 NXDOMAIN\"，但 10-10 实测 www.aiapipk.com 返 200 且价目墙在前），冲突未解不写 verified。10-10 监测页另列 HongMaCC 43.84%、CPass 68.11%、Undying 0.00%，三家均不在种子目录内，不作收录依据；本窗口未检索到已核 15 家的暴雷/跑路/停服信号",
+      "纠错通道：/functions/v1/app?action=corrections 今日直读仍返 200，items 仅 1 条 2026-09-22 的 perplexity 旧建议（Enterprise 档标注年付口径），无新增待处理项",
+      "留给周五全量：STEPX Neo 智能体手机定档 10-13（阶跃系，单源）与卓建律所 10-09《API 中转站的刑事红线》分析稿是否入 relay.policy，均待官方或多源可核后再定；Mistral Large 4 的 API 单价与权重落地、Claude Motion 的团队/企业档价签、Helicone 顶栏 \"Helicone Joins Mintlify\" 的归属含义为下一轮待核项；站内既有未核实清单（Grok Lite/Free、Poe、元器、GLM/豆包/讯飞客户端渲染价签、Perplexity、Devin、Kimi）本轮无一取得静态可核来源，维持原状"
+    ] },
     { date: "2026-10-09", note: "日更补 GPT-6.1 Sol 的 Ultrafast 档，周五全量换席扩席：Step-5 顶下 Step-3.5-Flash、档案 23→26", items: [
       "基准同步到 10-09：Arena+ 重抓 327 行（较 10-08 +1），新增行 Step-5 ✅ 按页面原序列第 17（Arena Elo 1506、Coding 1560、AAII 44、MMLU-Pro 87.5，Vision 与 ARC-AGI 源页无值即留空串），编码维换算 (1560-1300)/28.2=9.2；除这一新行外，其余 326 行逐行逐值与 10-08 完全一致（榜首 Claude Opus 5.5 仍 1526/1575/58），✅ 标记照原样保留；因插入一行，其后的页面行序整体后移一位（站内 13 席中 7 席行号 +1：GLM-5.3 20→21、DeepSeek-V4.1-Flash 25→26、ERNIE-5.1 43→44、Seed2.0 Pro 47→48、Minimax-M3 63→64、Hunyuan-Hy3 89→90、Step-3.5-Flash 118→119），数值未变故 scores.coding 一律不动；meta.dataUpdatedAt / arena.fetchedAt / benchmarks.verifiedAt 三戳今日一并对齐到 10-09",
       "本窗口最大一笔（10-09 官方定价页 + IT之家/DoNews 两独立来源）：OpenAI 给 gpt-6.1-sol 加开 Ultrafast 极速吞吐档，官方定价页该档输入 $12/缓存读 $0.60/缓存写 $15/输出 $60 每百万 tokens，逐项恰为标准档（$2/$0.10/$2.50/$10）的 6 倍。本轮把整页静态价目 JSON 逐档拉出来核了一遍，档位切换器实为五项：standard $2/$0.10/$2.50/$10、batch 与 flex 均半价（$1/$0.05/$1.25/$5）、fast 2 倍（$4/$0.20/$5/$20）、ultrafast 6 倍；ultrafast 只列 gpt-6-astra（$60/$6/$75/$300，同为其标准价 6 倍）与 gpt-6.1-sol 两项，gpt-6-luna 不在该档。判读要点：站内 10-03 曾把\"速度翻 8 倍\"记为澎湃的媒体口径，本轮确认该档真实存在且已上架，但官方页对 Fast 档写明\"最高比 Standard 快 2.5 倍\"、对 Ultrafast 档的说明文本是空的——即官方只给价、不给这一档的倍数，\"8 倍\"仍是媒体口径（未核实）；档位不改变模型能力，仍是同一个 gpt-6.1-sol",

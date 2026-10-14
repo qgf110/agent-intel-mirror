@@ -125,7 +125,7 @@
 </div>
 <footer id="foot"></footer>
 
-<script src="data.js?v=20261010"></script>
+<script src="data.js?v=20261014"></script>
 <script>
 const D = window.AGENTS_DATA;
 const EVENTS = [...D.events].sort((a,b)=>b.date.localeCompare(a.date)); // 页面上始终按日期倒序，data.js 插入顺序不限
@@ -392,7 +392,7 @@ function viewArena(){
   ${idx.length?'':'<tr><td colspan="11" style="text-align:center;color:var(--muted)">没有匹配的模型</td></tr>'}
   </table>
   ${idx.length>shown.length?`<div style="text-align:center;padding:12px"><button class="btn ghost" onclick="arenaShown+=120;render()">显示更多（已显 ${shown.length} / 共 ${idx.length} 行）</button></div>`:`${idx.length>60?'<div class="ev-sum" style="text-align:center;padding:8px">已显示全部 '+idx.length+' 行</div>':''}`}</div>
-  <div class="note">"—" 表示源页面该行该列无数据（多为榜尾旧视觉模型）。本站榜单页的默认顺序与"编码"维度分即取自本表（每产品取旗舰模型一行；编码分 = (Coding Elo − 1300) ÷ 28.2）。</div>`;
+  <div class="note">"—" 表示源页面该行该列无数据（多为榜尾旧视觉模型）。本站榜单页的默认顺序与"编码"维度分即取自本表（每产品取旗舰模型一行；编码分 = (Coding Elo − 1300) ÷ 28.2）。</div>${A.note?`<div class="note">⚠ ${A.note}</div>`:''}`;
 }
 
 /* 适合谁/不适合谁：由七维编辑分自动推导（前二/后二），非手工文案 */
@@ -822,7 +822,7 @@ function route(){
 const SEO = {
   home:     ["AI 智能体排行·对比·价格情报","决定用哪个智能体之前，先来这查一下。最新定价、榜单与事件，条条有来源。"],
   rank:     ["智能体榜单 - 编码·执行·性价比·可达性","按场景给主流 AI 智能体排座次的编辑部榜单。"],
-  arena:    ["OpenLM Chatbot Arena+ 全量快照 - 基准榜","322 个模型的 Arena Elo / Coding / Vision / AAII / MMLU-Pro / ARC-AGI 完整排行快照，行序与源页面一致。"],
+  arena:    ["OpenLM Chatbot Arena+ 全量快照 - 基准榜","源页面全量模型行的 Arena Elo / Coding / Vision / AAII / MMLU-Pro / ARC-AGI 快照，行序与源页面一致，抓取日期见页内标注。"],
   pick:     ["帮我选 - 三问推荐智能体","按用途、预算和国内可达性三个问题，从 26 个已核实档案中给出推荐及理由。"],
   compare:  ["智能体对比 - 价格·额度·能力横评","任选 2-3 个智能体横向对比订阅价格、免费额度、能力评分与国内使用门槛。"],
   price:    ["智能体价格情报 - 订阅矩阵·API价格·充值行情","26 个主流智能体的订阅价、API 每百万 token 报价与国内支付/代充行情，全部标注核实日期。"],

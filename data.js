@@ -9,7 +9,7 @@ window.AGENTS_DATA = {
   meta: {
     siteName: "Agent 情报局",
     slogan: "决定用哪个智能体之前，先来这查一下。",
-    dataUpdatedAt: "2026-10-18",
+    dataUpdatedAt: "2026-10-19",
     exchangeRate: "1 USD ≈ 7.1 CNY（折算参考）",
     disclaimer: "价格与额度变动频繁，一切以官网为准；本页信息核实于 dataUpdatedAt 标注日期。"
   },
@@ -600,7 +600,7 @@ window.AGENTS_DATA = {
   benchmarks: {
     source: "https://openlm.ai/chatbot-arena/",
     sourceName: "OpenLM · Chatbot Arena+",
-    verifiedAt: "2026-10-18",
+    verifiedAt: "2026-10-19",
     models: [
       { agent: "claude",   model: "Claude Opus 5.5",    elo: 1526, coding: 1575, aaii: 58 },
       { agent: "gemini",   model: "Gemini-4-Argon",     elo: 1525, coding: 1570, aaii: 53 },
@@ -628,9 +628,9 @@ window.AGENTS_DATA = {
   arena: {
     source: "https://openlm.ai/chatbot-arena/",
     sourceName: "OpenLM · Chatbot Arena+",
-    fetchedAt: "2026-10-18",
+    fetchedAt: "2026-10-19",
     cols: ["Model", "Arena Elo", "Coding", "Vision", "AAII", "MMLU-Pro", "ARC-AGI", "Organization", "License"],
-    note: "10-13 抓取件起源页删除 MMLU-Pro 整列（10-14、10-16 重抓仍是 9 列）：为守住本表 9 字段契约，MMLU-Pro 一律留空串（此前 238 个非空值随源页消失，不回填旧值）。10-18 抓取件再起一处结构变化——源页把 AAII 列换成 MII，页内榜单说明同步改写为 \"MII — Model Intelligence Index, combining Arena Elo and Agent Intelligence (scored on real-world, multi-step workflows and coding tasks)\"，而 10-16 那份说明仍写 \"AAII — Artificial Analysis Intelligence Index aggregating 10 challenging evaluations\"：两者不是同一个指标，按 329 个同名模型逐行比对，149 行数值不同（差值区间 −13～+3，多数低 1～3，如 Claude Opus 5.5 由 58 变 56、Claude Sonnet 5.5 由 56 变 54、GPT-6 Astra 由 53 变 52）、81 行恰好相同、95 行两皆空、另 4 行旧列有值而新列为空，故不作同名延续处理。本轮沿用 MMLU-Pro 那条既有口径：AAII 位一律留空串、不把 MII 数值灌进 AAII 列（产品榜的 AAII 表头写死在 public/index.html 与 dev/gen-landing.mjs 里，改列名属结构变更，交周五全量决定），MII 的 235 个非空数值另存 dev/_mii_2026-10-18.json 备查；产品榜 benchmarks.models 的 aaii 保留 10-16 的末次 AAII 读数（不代表今日核实）。今日行数由 329 增至 334（新增 5 行：Ling-3.1-flash 1485/1500、Hunyuan-Hy4 1464/1468、Mistral Large 4 1448/1478、K2-Horizon-375B-A23B 1420/1462、Nemotron-3.5-Super-VL-120B-A12B 1416/1459），Arena Elo／Coding／Vision 三列对全部同名行零变动，ARC-AGI 仅 Gemini-4-Argon 由空补出 91.3，许可列 11 行为 \"Apache-2.0\"→\"Apache 2.0\" 写法规范化加 Hunyuan-Hy3 由 Tencent 改 Apache 2.0。",
+    note: "10-13 抓取件起源页删除 MMLU-Pro 整列（10-14、10-16 重抓仍是 9 列）：为守住本表 9 字段契约，MMLU-Pro 一律留空串（此前 238 个非空值随源页消失，不回填旧值）。10-18 抓取件再起一处结构变化——源页把 AAII 列换成 MII，页内榜单说明同步改写为 \"MII — Model Intelligence Index, combining Arena Elo and Agent Intelligence (scored on real-world, multi-step workflows and coding tasks)\"，而 10-16 那份说明仍写 \"AAII — Artificial Analysis Intelligence Index aggregating 10 challenging evaluations\"：两者不是同一个指标，按 329 个同名模型逐行比对，149 行数值不同（差值区间 −13～+3，多数低 1～3，如 Claude Opus 5.5 由 58 变 56、Claude Sonnet 5.5 由 56 变 54、GPT-6 Astra 由 53 变 52）、81 行恰好相同、95 行两皆空、另 4 行旧列有值而新列为空，故不作同名延续处理。本轮沿用 MMLU-Pro 那条既有口径：AAII 位一律留空串、不把 MII 数值灌进 AAII 列（产品榜的 AAII 表头写死在 public/index.html 与 dev/gen-landing.mjs 里，改列名属结构变更，交周五全量决定），MII 的 235 个非空数值另存 dev/_mii_2026-10-18.json 备查；产品榜 benchmarks.models 的 aaii 保留 10-16 的末次 AAII 读数（不代表今日核实）。10-18 行数由 329 增至 334（新增 5 行：Ling-3.1-flash 1485/1500、Hunyuan-Hy4 1464/1468、Mistral Large 4 1448/1478、K2-Horizon-375B-A23B 1420/1462、Nemotron-3.5-Super-VL-120B-A12B 1416/1459），Arena Elo／Coding／Vision 三列对全部同名行零变动，ARC-AGI 仅 Gemini-4-Argon 由空补出 91.3，许可列 11 行为 \"Apache-2.0\"→\"Apache 2.0\" 写法规范化加 Hunyuan-Hy3 由 Tencent 改 Apache 2.0。10-19 早间重抓：抓取件 131,410 字节、md5 与 10-18 那份完全相同，335 个 tr／334 行逐行零变动（源页表头仍 8 列、MII 非空值仍 235 个），故本表内容一字未改，仅 fetchedAt 按核实日同步提 10-19。",
     rows: [
       ["Claude Opus 5.5","1526","1575","1320","","","93.3","Anthropic","Proprietary"],
       ["Gemini-4-Argon","1525","1570","1318","","","91.3","Google","Proprietary"],
@@ -2493,6 +2493,13 @@ window.AGENTS_DATA = {
 
   /* ---------------- 每周简报（自动核实任务每周五插入一条，最新在前） ---------------- */
   weekly: [
+    { date: "2026-10-19", note: "周一早间轻量轮。基准重抓成功且与昨傍晚抓取件逐字节相同（335 个 tr／334 行、逐行零变动），纠错接口连续第二轮返 200 且无新增项，中转站种子两文件 md5 与本地相同、今晨扫描 3 轮没有一项过两源门槛，故本轮不产生内容改动，只按纪律把三戳同步到 10-19 并完成发布——10-18 傍晚那轮已核实与编辑完毕但当天没有提交，主站自 10-15 晚件起已连欠 10-16 与 10-18 两版，本轮一并追平", items: [
+      "基准同步到 10-19：curl 一次拉通，抓取件 131,410 字节、md5 1e46a800c31b1e2a7d9768499ea6e26f 与 10-18 17:01 那份完全相同，解析 335 个 tr、334 行、列形校验通过且未落入“不是 300+”的拒写区间；源页表头仍是 8 列（Model／Arena Elo／Coding／Vision／MII／ARC-AGI／Organization／License），逐行与 10-18 快照比对 0 变动，MII 非空值仍 235 个，16 席席位与 elo／coding 逐值不动、scores.coding 一律不改（榜首仍 Claude Opus 5.5 1526／1575／1320，Gemini-4-Argon 的 ARC-AGI 仍为昨补出的 91.3）。重抓成功即按纪律提 arena.fetchedAt 与 benchmarks.verifiedAt 到 10-19，meta.dataUpdatedAt 随本轮核实同步；benchmarks.models 的 aaii 仍是 10-16 末次读数且不代表今日核实（该列已于 10-18 被定义不同的 MII 取代，改名与是否并入七维是周五首项）。",
+      "纠错通道连续第二轮可直读且零新增：/functions/v1/app?action=corrections 返 200（161 字节），表内仍只有 2026-09-22 那条 perplexity 旧建议（Enterprise 档标注年付口径），距 10-18 傍晚读取零新增，第 1 步无需改条目。这条同时是发布可行性判据——10-16 主站两次发布失败与该接口当时的 500（平台侧函数运行时 /tmp No space left on device, os error 28）同根因，接口连续回 200 说明运行时已恢复，故本轮可以新建 action 全参数发布，不必再走静态发布或只靠镜像顶班。",
+      "中转站维护结果：种子两个上游文件重抓后与本地 md5 完全相同（providers.yaml 6b5e583d55f0dd2e9def2896085722ff／28,572 字节，prices.latest.json d42fa4b6e34463b09d99d72150a510b9／1,706,113 字节），last_reviewed 仍 2026-07-12、snapshot_date 仍 2026-08-16，故不跑 gen-relay、种子区一字未改。第 2c② 的双源核实名额已在 10-18 用完（云雾第四次复核与柏拉图公告缩列，两家 relayVerify 的 at 均已提 10-18），今晨扫描未见新的暴雷／停服信号，故不新开家数；relayVerify 维持 15/36，extra 三条（omwai／yiqinuo／rvrcc）属用户提报区、对本任务只读未动。",
+      "每日信号扫描 3 轮无一项过入库门槛（窗口＝10-18 傍晚至今约 16 小时）：① 腾讯元器 2026-11-09 停服与退款（搜狐 10-18 12:22）是已入库旧公告的复述，不重复建事件；② “刺心 AI 中转站”企业向软文（UC 号 10-18 09:07，自述支持人民币充值、对公转账与增值税发票、高峰期抗限流）属站点自我宣传且不在本站种子与提报目录内，按铁律既不作独立来源也不建档，只列观察项；③ DeepSeek V4.1-Flash-1017 与自研搜索 API 在今日多份日报（CSDN 10-18 08:53 等）转述，与站内已入库的官方定价页直读一致，不重复入 events；④ 商务部与科技部 2026 年第 48 号公告征求意见稿把“利用限制类大模型对外提供 API 调用”纳入管制口径，仍是草案且各稿列数不一（AI 23 项／共 40 项），不改任何价签与席位，继续列政策观察交周五判断是否单列。另：同页出现的“GrokCode 天梯／性价比榜”类站点属比价 aggregator 自我推广，不引为基准来源。",
+      "发布状态（本轮）：10-18 傍晚的核实与编辑当日未提交，故 10-19 上午先以“daily-verify 2026-10-18：变更 7 项”落盘（镜像 post-commit 已推，见本会话简报），再按当期源码新建 action 全参数发布（webDirectory=public、functionDirectory=functions、databaseAccess=read_write、requiredSchemaVersion=2、不传 spa）；发布与上线逐项核验的实际结果（actionId、release、线上三戳与静态页状态）在本条随后的补记中入档，本会话简报同步给出。",
+    ] },
     { date: "2026-10-18", note: "周日日更，补 10-17/10-18 两日窗口（10-17 未跑）。基准重抓成功且抓到源页第二次结构变化——Arena+ 把 AAII 列整体换成 MII（榜单说明同步改写，定义不同），按 MMLU-Pro 那条既有口径处理：AAII 位留空、不把 MII 灌进去，同时逐值比对坐实 Arena Elo／Coding／Vision 三列对 329 个同名行零变动、行数 329→334（新增 5 行全在第 44 名之后，不动 16 席）；内容侧两笔官方可核——DeepSeek 定价页把模型版本改为 V4.1-Flash-1017 并首次列出 Search／Fetch 独立按次计费（5 元／千次，官宣 11-01 00:00 起对 Harness/Claude Code/Codex 的服务端调用收费），OpenAI 官方 changelog 记 prompt-to-voice 于 10-16 面向全部 API 客户转正；中转站无暴雷，但云雾第八次被第三方列 0.00% 且自家站名由占位符\"x\"改回\"云雾 API\"、柏拉图公开公告由 22 条缩为 16 条；纠错后端今晨已恢复 200 且无新增项（10-16 那笔 500 属平台侧磁盘耗尽，已自愈）", items: [
       "基准同步到 10-18：curl 一次拉通（131,410 字节原始件，比 10-16 的 130,022 多 1,388 字节），解析 335 个 tr、334 行、列形校验通过、未落入\"不是 300+\"的拒写区间。源页表头本轮为 8 列（Model／Arena Elo／Coding／Vision／MII／ARC-AGI／Organization／License），即 AAII 列被 MII 取代，页内说明同步改写为 \"MII — Model Intelligence Index, combining Arena Elo and Agent Intelligence (scored on real-world, multi-step workflows and coding tasks)\"，而 10-16 那份写的是 \"AAII — Artificial Analysis Intelligence Index aggregating 10 challenging evaluations\"——定义不同、不是改名。按 329 个同名行比对：149 行数值不同（差值 −13～+3，多数低 1～3，如 Claude Opus 5.5 由 58 变 56、Claude Sonnet 5.5 由 56 变 54）、81 行恰好相同、95 行两皆空、4 行旧列有值而新列为空，故不作同名延续，沿用 MMLU-Pro 缺席时的处理：AAII 位一律留空串，MII 的 235 个非空值另存 dev/_mii_2026-10-18.json 备查，产品榜 benchmarks.models 的 aaii 保留 10-16 末次读数并写明不代表今日核实。行数 329→334，新增 5 行按页面行序插入：Ling-3.1-flash（1485/1500，Ant/MIT）、Hunyuan-Hy4（1464/1468，Tencent/Apache 2.0）、Mistral Large 4（1448/1478）、K2-Horizon-375B-A23B（1420/1462）、Nemotron-3.5-Super-VL-120B-A12B（1416/1459），全部落在第 44 名之后，16 席席位与 elo/coding/aaii 逐值零变动、scores.coding 一律不动（榜首仍 Claude Opus 5.5 1526/1575/1320）；三列分数按名逐行比对为全等，唯一数值变动是 Gemini-4-Argon 的 ARC-AGI 由空补出 91.3，另有 11 行许可列写法规范化（10 行 Apache-2.0→Apache 2.0 加 Hunyuan-Hy3 由 Tencent 改 Apache 2.0）。三戳齐动：arena.fetchedAt 与 benchmarks.verifiedAt 因重抓成功提 10-18，meta.dataUpdatedAt 随内容核实提 10-18。",
       "DeepSeek 官方定价页 10-18 直读（26,182 字节，表格静态可读）三处结论：① 模型版本栏首次写 DeepSeek-V4.1-Flash-1017（V4 Pro 侧 DeepSeek-V4-Pro-0813），脚注原句为\"旧模型名 deepseek-v4-flash、deepseek-v4-flash-vision-exp 仍可调用，但对应模型已下线，请求将由 DeepSeek-V4.1-Flash-1017 模型提供服务，并按 Flash 价格计费\"——换底层不改名不改价，调用侧零改动；② 三档标价与 10-09/10-15 两次抓取逐值一致（Flash 缓存命中 ¥0.02 闲时／¥0.04 峰时、未命中 ¥1／¥2、输出 ¥4／¥8；V4 Pro ¥0.15／¥0.30、¥4.5／¥9.0、¥13.5／¥27.0，并发 2500／500），故 apiPrices 两行、plans 三档与 priceHistory 一律不动，本次不是调价事件；③ 首次把 Search 与 Fetch 列为独立 API 各 5 元／1,000 次成功请求（失败／空结果／超时不计费），并写明当前经 DeepSeek Harness／Claude Code／Codex 的服务端工具调用\"目前未计费，并将于北京时间 2026 年 11 月 1 日 00:00 起按次收取调用费用\"——这是已官宣日期的新增成本项，按次与按 token 不同轨故只入档案 apiNote 与 events，媒体所称\"单任务成本 3~4 元降至 1~2 元\"与 DeepSWE 77.0%／Terminal-Bench 42.3 属第三方实测与官方基准混合口径，不采为数据。档案动作：deepseek.verifiedAt 提 10-18、apiNote 补上述三项，events +1（2026-10-17）。",

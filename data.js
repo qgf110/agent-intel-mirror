@@ -9,7 +9,7 @@ window.AGENTS_DATA = {
   meta: {
     siteName: "Agent 情报局",
     slogan: "决定用哪个智能体之前，先来这查一下。",
-    dataUpdatedAt: "2026-10-19",
+    dataUpdatedAt: "2026-10-20",
     exchangeRate: "1 USD ≈ 7.1 CNY（折算参考）",
     disclaimer: "价格与额度变动频繁，一切以官网为准；本页信息核实于 dataUpdatedAt 标注日期。"
   },
@@ -600,7 +600,7 @@ window.AGENTS_DATA = {
   benchmarks: {
     source: "https://openlm.ai/chatbot-arena/",
     sourceName: "OpenLM · Chatbot Arena+",
-    verifiedAt: "2026-10-19",
+    verifiedAt: "2026-10-20",
     models: [
       { agent: "claude",   model: "Claude Opus 5.5",    elo: 1526, coding: 1575, aaii: 58 },
       { agent: "gemini",   model: "Gemini-4-Argon",     elo: 1525, coding: 1570, aaii: 53 },
@@ -628,9 +628,9 @@ window.AGENTS_DATA = {
   arena: {
     source: "https://openlm.ai/chatbot-arena/",
     sourceName: "OpenLM · Chatbot Arena+",
-    fetchedAt: "2026-10-19",
+    fetchedAt: "2026-10-20",
     cols: ["Model", "Arena Elo", "Coding", "Vision", "AAII", "MMLU-Pro", "ARC-AGI", "Organization", "License"],
-    note: "10-13 抓取件起源页删除 MMLU-Pro 整列（10-14、10-16 重抓仍是 9 列）：为守住本表 9 字段契约，MMLU-Pro 一律留空串（此前 238 个非空值随源页消失，不回填旧值）。10-18 抓取件再起一处结构变化——源页把 AAII 列换成 MII，页内榜单说明同步改写为 \"MII — Model Intelligence Index, combining Arena Elo and Agent Intelligence (scored on real-world, multi-step workflows and coding tasks)\"，而 10-16 那份说明仍写 \"AAII — Artificial Analysis Intelligence Index aggregating 10 challenging evaluations\"：两者不是同一个指标，按 329 个同名模型逐行比对，149 行数值不同（差值区间 −13～+3，多数低 1～3，如 Claude Opus 5.5 由 58 变 56、Claude Sonnet 5.5 由 56 变 54、GPT-6 Astra 由 53 变 52）、81 行恰好相同、95 行两皆空、另 4 行旧列有值而新列为空，故不作同名延续处理。本轮沿用 MMLU-Pro 那条既有口径：AAII 位一律留空串、不把 MII 数值灌进 AAII 列（产品榜的 AAII 表头写死在 public/index.html 与 dev/gen-landing.mjs 里，改列名属结构变更，交周五全量决定），MII 的 235 个非空数值另存 dev/_mii_2026-10-18.json 备查；产品榜 benchmarks.models 的 aaii 保留 10-16 的末次 AAII 读数（不代表今日核实）。10-18 行数由 329 增至 334（新增 5 行：Ling-3.1-flash 1485/1500、Hunyuan-Hy4 1464/1468、Mistral Large 4 1448/1478、K2-Horizon-375B-A23B 1420/1462、Nemotron-3.5-Super-VL-120B-A12B 1416/1459），Arena Elo／Coding／Vision 三列对全部同名行零变动，ARC-AGI 仅 Gemini-4-Argon 由空补出 91.3，许可列 11 行为 \"Apache-2.0\"→\"Apache 2.0\" 写法规范化加 Hunyuan-Hy3 由 Tencent 改 Apache 2.0。10-19 两次重抓（09:39 与 17:02）：两份抓取件均 131,410 字节、md5 与 10-18 那份完全相同，335 个 tr／334 行逐行零变动（源页表头仍 8 列、MII 非空值按列位重数仍 235 个），故本表内容一字未改，仅 fetchedAt 按核实日同步提 10-19。",
+    note: "10-13 抓取件起源页删除 MMLU-Pro 整列（10-14、10-16 重抓仍是 9 列）：为守住本表 9 字段契约，MMLU-Pro 一律留空串（此前 238 个非空值随源页消失，不回填旧值）。10-18 抓取件再起一处结构变化——源页把 AAII 列换成 MII，页内榜单说明同步改写为 \"MII — Model Intelligence Index, combining Arena Elo and Agent Intelligence (scored on real-world, multi-step workflows and coding tasks)\"，而 10-16 那份说明仍写 \"AAII — Artificial Analysis Intelligence Index aggregating 10 challenging evaluations\"：两者不是同一个指标，按 329 个同名模型逐行比对，149 行数值不同（差值区间 −13～+3，多数低 1～3，如 Claude Opus 5.5 由 58 变 56、Claude Sonnet 5.5 由 56 变 54、GPT-6 Astra 由 53 变 52）、81 行恰好相同、95 行两皆空、另 4 行旧列有值而新列为空，故不作同名延续处理。本轮沿用 MMLU-Pro 那条既有口径：AAII 位一律留空串、不把 MII 数值灌进 AAII 列（产品榜的 AAII 表头写死在 public/index.html 与 dev/gen-landing.mjs 里，改列名属结构变更，交周五全量决定），MII 的 235 个非空数值另存 dev/_mii_2026-10-18.json 备查；产品榜 benchmarks.models 的 aaii 保留 10-16 的末次 AAII 读数（不代表今日核实）。10-18 行数由 329 增至 334（新增 5 行：Ling-3.1-flash 1485/1500、Hunyuan-Hy4 1464/1468、Mistral Large 4 1448/1478、K2-Horizon-375B-A23B 1420/1462、Nemotron-3.5-Super-VL-120B-A12B 1416/1459），Arena Elo／Coding／Vision 三列对全部同名行零变动，ARC-AGI 仅 Gemini-4-Argon 由空补出 91.3，许可列 11 行为 \"Apache-2.0\"→\"Apache 2.0\" 写法规范化加 Hunyuan-Hy3 由 Tencent 改 Apache 2.0。10-19 两次重抓（09:39 与 17:02）：两份抓取件均 131,410 字节、md5 与 10-18 那份完全相同，335 个 tr／334 行逐行零变动（源页表头仍 8 列、MII 非空值按列位重数仍 235 个），故本表内容一字未改，仅 fetchedAt 按核实日同步提 10-19。10-20 重抓抓取件 132,049 字节（md5 与昨两枚均不同），行数由 334 增至 336、删 0 行，变化只有三处：① 第 33 行插入 GLM-5.3-Flash 🥈 1501/1538/1296（Z.ai·MIT），② 第 36 行插入 Minimax-M3.1-Flash 🥈 1500/1539（MiniMax·Non-commercial，Vision 栏源页即为空），两处均按页面行序入位、未做任何按显示 Elo 的重排，其余 334 行的 Arena Elo／Coding／Vision／ARC-AGI／Organization／License 逐列零变动（含唯一一处补值：MiMo-V2.6-Pro ✅ 的 Vision 由空补出 1311，Elo/Coding 仍 1507/1560）；③ MII 非空值由 235 增至 237，全部增量即这两行新增（各 42），既有行的 MII 无一改动，AAII 位仍一律留空串。产品榜是否给 GLM-5.3-Flash 与 Minimax-M3.1-Flash 开档案／席位属结构变更，交周五全量决定（前者 1501 高于现榜第 5 席 MiMo-V2.6-Pro 的 1507 之下、后者基座 Minimax-M3 已在本表 69 行但不在产品榜内）。" ,
     rows: [
       ["Claude Opus 5.5","1526","1575","1320","","","93.3","Anthropic","Proprietary"],
       ["Gemini-4-Argon","1525","1570","1318","","","91.3","Google","Proprietary"],
@@ -646,7 +646,7 @@ window.AGENTS_DATA = {
       ["GPT-5.6 Sol","1508","1567","1312","","","92.5","OpenAI","Proprietary"],
       ["Grok-4.7","1507","1563","1310","","","75","xAI","Proprietary"],
       ["Muse Spark 1.3","1507","1562","1310","","","","Meta","Proprietary"],
-      ["MiMo-V2.6-Pro ✅","1507","1560","","","","","Xiaomi","MIT"],
+      ["MiMo-V2.6-Pro ✅","1507","1560","1311","","","","Xiaomi","MIT"],
       ["Kimi-K3 ✅","1506","1562","1311","","","60.4","Moonshot","Kimi K3"],
       ["Claude Opus 4.8 Thinking","1506","1562","1310","","","78","Anthropic","Proprietary"],
       ["Qwen3.8-Max ✅","1506","1560","1312","","","","Alibaba","Qwen3"],
@@ -665,8 +665,10 @@ window.AGENTS_DATA = {
       ["DeepSeek-V4-Pro","1502","1550","","","","61.5","DeepSeek","MIT"],
       ["Claude Opus 4.6 Thinking","1502","1545","1304","","","69.2","Anthropic","Proprietary"],
       ["Muse Spark 1.2","1502","1540","1300","","","","Meta","Proprietary"],
+      ["GLM-5.3-Flash","1501","1538","1296","","","","Z.ai","MIT"],
       ["Claude Haiku 5.5","1501","1538","","","","61.3","Anthropic","Proprietary"],
       ["Gemini-3.6-Flash","1501","1535","1301","","","72.1","Google","Proprietary"],
+      ["Minimax-M3.1-Flash","1500","1539","","","","","MiniMax","Non-commercial"],
       ["GPT-5.4-high","1496","1538","1290","","","74","OpenAI","Proprietary"],
       ["Muse Spark 1.1","1496","1521","1298","","","","Meta","Proprietary"],
       ["Grok-4.20","1495","1518","1279","","","65.1","xAI","Proprietary"],
@@ -2493,6 +2495,18 @@ window.AGENTS_DATA = {
 
   /* ---------------- 每周简报（自动核实任务每周五插入一条，最新在前） ---------------- */
   weekly: [
+    { date: "2026-10-20", note: "周二轻量轮（窗口＝10-19 傍晚 17:00 至今约 16 小时）。本轮最大变化在基准：Arena+ 抓取件与昨两枚 md5 不同，行数由 334 增至 336、删 0 行，全部差异是两行按页面行序插入加一处 Vision 补值，三戳随重抓成功齐提 10-20。内容侧无一条过入库门槛：DeepSeek 定价页与昨傍晚件逐字节相同，OpenAI changelog 只是导航项改写、日期集合 23 项一字未动，五轮扫描的候选全部落在窗口外、单源或不在目录内。中转站双源名额用在本轮新选的两家用户提报条目上，两家都拿不到独立第二源，故 relayVerify 一条未写、extra 区一字未动，只把运营方自证的风险事实记入简报并挂红旗", items: [
+      "基准同步到 10-20：curl 一次拉通 132,049 字节（昨两枚均 131,410），md5 6f6ce6e60980c934bbed9004c24a0177 与 10-19 早／晚两份都不同，解析 337 个 tr、336 行，列形校验通过且未落入“不是 300+”的拒写区间。源页表头仍 8 列（Model／Arena Elo／Coding／Vision／MII／ARC-AGI／Organization／License），逐行按模型名比对只三处变化：① 第 33 行插入 GLM-5.3-Flash 🥈 1501／1538／1296（Z.ai·MIT，MII 42）；② 第 36 行插入 Minimax-M3.1-Flash 🥈 1500／1539（MiniMax·Non-commercial，Vision 与 ARC-AGI 源页即空，MII 42）；③ 既有行唯一数值变动是 MiMo-V2.6-Pro ✅ 的 Vision 由空补出 1311，Elo／Coding 仍 1507／1560。其余 334 行的 Elo／Coding／Vision／ARC-AGI／Organization／License 逐列零变动，删除 0 行，两次插入之后行序仍是纯插入（新索引 33 与 36，无重排）；MII 非空值由 235 增至 237，增量全部来自这两行，既有行的 MII 无一改动，AAII 位继续留空串、不灌 MII 值。16 席的 elo／coding 逐值不动，scores.coding 一律不改（榜首仍 Claude Opus 5.5 1526／1575／1320）；新入场的两行是否开档案／席位属结构变更，交周五全量。三戳按纪律齐动：arena.fetchedAt 与 benchmarks.verifiedAt 因重抓成功提 10-20，meta.dataUpdatedAt 随本轮核实同步。",
+      "纠错通道第四轮可直读且零新增：/functions/v1/app?action=corrections 返 200（161 字节），表内仍只有 2026-09-22 那条 perplexity 旧建议（Enterprise 档标注年付口径），第 1 步无需改条目。这条同时继续充当发布可行性判据——接口回 200 说明平台侧函数运行时（10-16 那次 /tmp No space left on device）正常，可新建 action 全参数发布。",
+      "中转站种子维护：两个上游文件重抓后与本地 md5 完全相同（providers.yaml 6b5e583d55f0dd2e9def2896085722ff／28,572 字节，prices.latest.json d42fa4b6e34463b09d99d72150a510b9／1,706,113 字节），last_reviewed 仍 2026-07-12、snapshot_date 仍 2026-08-16，故不跑 gen-relay、种子区一字未改。本日双源核实名额 2 家全部用给用户提报条目（Omwai、yiqinuo），两家都缺独立第二源，故 relayVerify 一条未写、维持 15/36，extra 三条（omwai／yiqinuo／rvrcc）只读未动。",
+      "提报条目 Omwai API（https://www.omwai.xyz）自家接口直读实录：/api/status 200（28,289 字节、72 键）——system_name“OmwAI”、version 字段为占位 v0.0.0、start_time 1791632568＝2026-10-10 19:42 北京（本站首次抓本站，故只能读到这个进程起点，无法判断此后是否重启过）、register_enabled 与 password_register_enabled 均 true、email_verification true、price 1／usd_exchange_rate 1／quota_per_unit 500000、passkey_login true、api_info 列 www／hk／us 三个 .omwai.xyz 端点、docs_link 指向 doc.omwai.xyz 的 Cherry Studio 接入文档；/api/pricing 200（35,185 字节、58 条在售），分组名含 aws-bedrock 与 Kiro，抽读 claude-opus-5-5 倍率 2／5、claude-fable-5-1 5／5、claude-opus-4-7 2.5／5。要紧的是它的 100 条公告最新四条自证供货方式：2026-10-13“晚上12点更新服务器：解决连接到号池时，延迟过高的问题”、10-09“GPT 不降智分组倍率调整：0.3 降低为 0.25”、09-23 sub2api 升级以支持 gpt-6-sol／gpt-6-luna、09-22“不降智分组资源耗尽，正在补号”——即“号池＋sub2api 拼接＋按分组补号”是运营方写在公开公告里的，属目录级风险情报。判读：这些全部来自本站自己的接口与公告，按铁律属运营方自证、不构成独立来源；检索“omwai 评测／中转站”只回到一篇 2026-08-12 的 CSDN 接入教程（指向 omwai.com，无实测数据、无故障记录）与无关软文，无任何社区实测、媒体报道或第三方监测可作第二源，且 Help AIO 与 lmspeed.net 的可用率页均未列本站。故本轮不写 relayVerify.omwai、不给 status，只把上述自证事实入档并挂红旗：已使用者宜按“供货方式不透明、分组倍率随时重排”对待，先小额测试、勿存大额余额（本站不做兑付背书，也不推荐注册）。",
+      "提报条目 模型聚合 yiqinuo（https://www.yiqinuo.cn）本轮探到一处异动：/api/status 今日返 404 page not found（18 字节纯文本），即当初据以入档的 new-api 状态接口已不可直读；该区对本任务只读，故不改条目字段、不删条目，只记事实并列为观察——单凭一次 404 不能判停运（也可能是换域名或关掉公开接口），检索未见任何独立来源谈本站，故同样不写 relayVerify；下一轮补一次首页与 /api/pricing 的读数以区分“接口下线”与“整站停运”。",
+      "第三方监测第十个读数（只记不入 relayVerify，因本日双源名额已用于两家提报条目）：Help AIO「AI中转站可用性监测」2026-10-20 09:04 快照把云雾 Yunwu 第十次列为 24 小时综合可用率 0.00%（有效探测 554 次；十次分别为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554、10-15 09:04/554、10-15 17:04/554、10-16 09:04/554、10-18 17:17/558、10-19 17:00/552、10-20 09:04/554），同页 19 站里 0% 的仍是 Yunwu、IKun Code（1,108 次）与 Undying（554 次）三家，其余 16 站在 73.83%—98.38%（榜首 Muze 98.38%，最低 CPass 73.83%；HongMaCC 82.49%、SSSAiCode 88.90%、Yes Code 82.22% 较昨回升或持平）。云雾 relayVerify 的 at 因此仍留 10-19，判定“暴雷／收缩级、不以接口 200 作可入驻依据”不变。",
+      "官方页复核：DeepSeek 定价页（api-docs.deepseek.com/zh-cn/quick_start/pricing，须跟随结尾斜杠重定向）今日 200、26,182 字节，md5 1b8a07842866cbac520d6c4e77f584c1 与 10-19 傍晚那份完全相同，即三档标价、V4.1-Flash-1017 版本名与 Search／Fetch 各 5 元／千次（11-01 00:00 起计费）的表述一字未变；OpenAI changelog（developers.openai.com/api/docs/changelog）200、544,021 字节，去标签文本仅由 61,546 增至 61,560 字符，差异落在 Codex Security 的导航项改写（“Run scans in CI”→“CI/CD Overview GitHub Actions”），页内 23 个日期标记集合与昨完全相同、无任何新条目。故 apiPrices、plans 与 priceHistory 一律不动，两站 verifiedAt 不同提（本轮未核实其内容变化，只确认无变）。",
+      "每日信号扫描 5 轮（窗口＝10-19 傍晚至今）无一项过入库门槛，未入库理由逐条记：① “2026年10月20日 API 定价 公告”与“10月19日 价格下调 官方”两路检索均 0 结果，即窗口内没有官方价签类新闻可查；② 云服务平台 Zeabur 10-17 宣布整体停运（网易／云头条，AI Hub 早在 09-22 已永久关闭，两起安全事件叠加，12-01 起陆续停服、12-31 全关，已开放余额退款）——它是部署托管平台而非 API 中转商，不在本站种子与提报目录内，且本轮只查到该家媒体报道链，是否单列平台侧观察交周五；③ lmspeed.net 的比价页把 Alanco／DeadlySignal API／Koru API／Kterna／情酱的API站 等标为“跑路中转站”，属单一比价站口径且这些站均不在本站目录内，一律只作观察不建档；④ GLM-5.3-Flash 与 GLM-5.3-FlashX 的提价报道全部落在 2026-09-18～10-13（FlashX 定价为 Flash 的 2.5 倍、最高 200 tokens/s），在窗口之外且站内智谱档案已有 10-13 的渠道比价记录，不重复入库；⑤ voyai／hvoyai 一类“中转站实测榜”页正文自带 ?aff= 联盟注册链接，属推荐清单性质，按“本站是情报目录不是推荐清单、不接中转类联盟返佣”的铁律不作来源也不引链接；⑥ 腾讯元器 11-09 停服仍是旧公告复述。",
+      "字段结论与周五待办：本轮 apiPrices／plans／events／priceHistory 与 relay 种子区、extra 区一律未动（events 维持 62、relayVerified 维持 15/36、relaySeed 33、relayExtra 3），改动仅 arena.rows／fetchedAt／note、benchmarks.verifiedAt、meta.dataUpdatedAt 与本条简报。周五全量继续处理：AAII→MII 表头改名与是否并入七维、GLM-5.3-Flash 与 Minimax-M3.1-Flash（以及 Mistral Large 4／Hunyuan-Hy4／Ling-3.1-flash）是否开档案或席位、柏拉图是否因版本升级＋滚动改价改判、OpenLux／IKun Code／Undying 是否收录、Perplexity 决策模型与 09-22 那条 Enterprise 年付纠错、Grok 厂商更名口径、GLM-5.5 传闻、DeepSeek Search／Fetch 11-01 计费生效后的价签落地、Kimi K3 第三方任务成本口径是否单列、Zeabur 是否单列平台侧观察、yiqinuo 状态接口 404 的性质判定。",
+      "发布状态（待补记）：本轮拟按当期源码新建 action 全参数发布（八参数原样、不传 spa），连通性判据用 get_site，发布前以纠错接口回 200 为门；发布结果、release ID 与上线逐项实读在本条补记。",
+    ] },
     { date: "2026-10-19", note: "周一两轮轻量轮（早间＋傍晚）。早间那轮：基准重抓成功且与昨傍晚抓取件逐字节相同（335 个 tr／334 行、逐行零变动），纠错接口连续第二轮返 200 且无新增项，中转站种子两文件 md5 与本地相同、扫描 3 轮没有一项过两源门槛，故不产生内容改动，只按纪律把三戳同步到 10-19 并完成发布——10-18 傍晚那轮已核实与编辑完毕但当天没有提交，主站自 10-15 晚件起已连欠 10-16 与 10-18 两版，一并追平。傍晚那轮（17:00 起）：基准第二次重抓仍与早间件逐字节相同，种子两上游仍逐字节相同，但中转站双源名额用掉的两家都读到了新事实（云雾第五次直抓见到注册验证码切换与 o1-pro 下架、柏拉图读到版本升级与 11 条自证报价重排），两家 relayVerify 的 at 提到 10-19；DeepSeek 定价页与 OpenAI changelog 文本层逐字未变；扫描累计 5 轮仍无一项过入库门槛", items: [
       "基准同步到 10-19：curl 一次拉通，抓取件 131,410 字节、md5 1e46a800c31b1e2a7d9768499ea6e26f 与 10-18 17:01 那份完全相同，解析 335 个 tr、334 行、列形校验通过且未落入“不是 300+”的拒写区间；源页表头仍是 8 列（Model／Arena Elo／Coding／Vision／MII／ARC-AGI／Organization／License），逐行与 10-18 快照比对 0 变动，MII 非空值仍 235 个，16 席席位与 elo／coding 逐值不动、scores.coding 一律不改（榜首仍 Claude Opus 5.5 1526／1575／1320，Gemini-4-Argon 的 ARC-AGI 仍为昨补出的 91.3）。重抓成功即按纪律提 arena.fetchedAt 与 benchmarks.verifiedAt 到 10-19，meta.dataUpdatedAt 随本轮核实同步；benchmarks.models 的 aaii 仍是 10-16 末次读数且不代表今日核实（该列已于 10-18 被定义不同的 MII 取代，改名与是否并入七维是周五首项）。",
       "纠错通道连续第二轮可直读且零新增：/functions/v1/app?action=corrections 返 200（161 字节），表内仍只有 2026-09-22 那条 perplexity 旧建议（Enterprise 档标注年付口径），距 10-18 傍晚读取零新增，第 1 步无需改条目。这条同时是发布可行性判据——10-16 主站两次发布失败与该接口当时的 500（平台侧函数运行时 /tmp No space left on device, os error 28）同根因，接口连续回 200 说明运行时已恢复，故本轮可以新建 action 全参数发布，不必再走静态发布或只靠镜像顶班。",

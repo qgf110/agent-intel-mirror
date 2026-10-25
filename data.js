@@ -9,7 +9,7 @@ window.AGENTS_DATA = {
   meta: {
     siteName: "Agent 情报局",
     slogan: "决定用哪个智能体之前，先来这查一下。",
-    dataUpdatedAt: "2026-10-22",
+    dataUpdatedAt: "2026-10-25",
     exchangeRate: "1 USD ≈ 7.1 CNY（折算参考）",
     disclaimer: "价格与额度变动频繁，一切以官网为准；本页信息核实于 dataUpdatedAt 标注日期。"
   },
@@ -20,7 +20,7 @@ window.AGENTS_DATA = {
       id: "chatgpt", name: "ChatGPT", vendor: "OpenAI", region: "海外",
       tagline: "综合最强的通用智能体，Agent 生态最全",
       models: ["GPT-6 (Astra)（现役旗舰：下一代 GPT-6.1 Astra 已于 09-29 取消）", "GPT-6.1 Sol（2026-09-30 上线，取代 GPT-6 Sol；10-09 新增 Ultrafast 极速档）", "GPT-6 Luna", "GPT-5.3"],
-      verifiedAt: "2026-10-22",
+      verifiedAt: "2026-10-25",
       plans: [
         { name: "Free", price: "$0", note: "基础模型额度受限；桌面客户端可用 GPT-6 Luna（2026-09-23 起，网页版暂不开放）" },
         { name: "Go", price: "$8/月", note: "轻量付费档；桌面端可用 Luna" },
@@ -28,7 +28,7 @@ window.AGENTS_DATA = {
         { name: "Pro", price: "$200/月", note: "2026-09 曾因需求暂停新订阅；2026-09-30 以原价重新开放，但计费改为按 API 美元额度计量、可购额度总额下调（媒体口径\"砍半\"，社区概括\"20X 变 10X\"），官方未承诺存量额度永久保留" },
         { name: "Pro 500", price: "$500/月", note: "DevDay 新增顶层档（媒体报道名 Pro 500 / Pro Max 500 不一）：独占最高优先级 Astra 算力、最大上下文与记忆、100GB 专属存储；官方 chatgpt.com/pricing 金额为客户端渲染，10-02 直抓未静态输出，具体额度待核。10-02 网易实测界面截图标注为 Pro Max、$500（含税约 $600），并把\"最快的 Codex/代理速度\"列为主要卖点；同一截图显示 200 美元档的升级入口暂停，与 36 氪\"原价重开\"口径存在出入，两说并存、待官方页可核（未核实）。10-03 澎湃新闻另记该档含\"速度翻 8 倍\"的 Ultrafast 档位（当时媒体口径）。10-09 该口径已官方面向：OpenAI 推出 GPT-6.1 Sol Ultrafast，官方定价页出现独立切换项，媒体两源记为最高 8 倍速度、6 倍价格，接入面记为 Pro 500 档、按量计费的企业版与积分制教育版" }
       ],
-      apiNote: "2026-09-23 发布 GPT-6 轻量版 API 价：Sol 输入 $2/输出 $10、Luna 输入 $0.10/输出 $0.50 每百万 tokens，较 GPT-5.6 系列降约 50%；官方称 Sol 错误率约为 GPT-5.6 Sol 一半，DeepSWE 得分 Sol 68.8%/Luna 66.6%。09-30 复核官方定价页（platform.openai.com/docs/pricing）：新条目 gpt-6.1-sol 输入 $2/输出 $10（长上下文 $4/$15、缓存读 $0.10、缓存写 $2.50），gpt-6-sol 条目已下架；gpt-6-astra 仍为 $10/$50（长上下文 $20/$75）。10-09 再抓同一页（587,092 字节，价目 JSON 可静态读出）：档位切换器共列 Standard/Batch/Flex/Fast/Ultrafast 五项，gpt-6.1-sol 各档逐值为 standard $2/$0.10/$2.50/$10、batch 与 flex 均为 $1/$0.05/$1.25/$5（半价）、fast $4/$0.20/$5/$20（2 倍）、新增 ultrafast $12/$0.60/$15/$60（6 倍），与媒体\"6 倍价格、最高 8 倍速度\"两源口径一致；ultrafast 档只有 gpt-6-astra（$60/$6/$75/$300，同为其 standard 档 6 倍）与 gpt-6.1-sol 两个条目，gpt-6-luna 不在该档。官方页对 Fast 档的说明文本是\"GPT-5.6 Sol 最高比 Standard 快 2.5 倍\"，而 Ultrafast 档的说明为空——即官方只给价不给倍数，\"8 倍\"纯属媒体口径（未核实）。10-15 直抓单模型页 platform.openai.com/docs/models/gpt-6.1-sol（449,084 字节）补三处此前站内没有的确值：上下文窗口 1,050,000、最大输出 128,000、知识截止 2026-04-30；价目逐值与 09-30/10-09 两次定价页抓取一致（输入 $2.00、缓存输入 $0.10 即未缓存价的 5%、缓存写 $2.50 即 1.25 倍、输出 $10.00，Fast 2 倍、Batch/Flex 半价、Ultrafast 6 倍、区域处理加 10%）；关键是页面把长上下文加价的规则写成了原文——\"Prompts with more than 272K input tokens are priced at 2x input and cache rates and 1.5x output for the full request\"，即超过 272K 输入的请求整单按 2 倍输入/缓存价与 1.5 倍输出价计，站内此前只记了换算结果 $4/$15、未记阈值与整单适用；同日两源媒体（新智元稿 10-12/13 与 36 氪 10-13 转载）所称\"默认窗口 272k→500k、订阅额度免长上下文附加费\"发生在产品与订阅层（ChatGPT Work/Codex 的默认值与额度加收规则），与本页 API 侧仍在的 272K 加价并不矛盾，本站据此把两侧口径分开记录，不把它当成 API 降价。10-18 直抓官方 API changelog（platform.openai.com/docs/changelog 已 301 到 developers.openai.com/api/docs/changelog，540,112 字节）补两条与语音/实时线有关的官方口径：10-16 条目 Released prompt-to-voice for all API customers，创建自定义音色免费、语音生成仍按常规 GPT-Live 会话计费（“speech generation uses regular GPT-Live session billing”，模型 gpt-live-1、端点 v1/audio/voices 与 v1/live/sessions），同条新增九款自然音色（Nuri/Juni/Flitz 德、Brise/Sillage 法、Nira 印地、Harema/Shida 日、Noeul 韩）；10-15 条目在 GPT-Live 里加入原生 Decisions 集成，即 10-06 上线的 Decisions API（gpt-6-luna）现在可被 Live 直接调用。两者都只给计价规则不给价签，故本页 token 档位价与 Ultrafast 档结论一律不动，语音侧不做分钟价（与 xAI Grok Voice 3.0 的 $0.08/分属不同计价轨道，不可横向换算）。同页 10-14 至 10-18 没有任何“GPT-5.6 Sol 再降 20%/优惠维持至 11-21”的条目，该说法继续按单源媒体口径搁置。10-21 直抓官方提示缓存文档两处可读（platform.openai.com/docs/guides/prompt-caching，817,169 字节、md5 030cbbe5f8a75c917aa708710caa82fd；同页 .md 版本 55,725 字节纯文本），补上站内此前完全缺失的缓存计费形状：GPT-5.6 及之后模型按未缓存输入价的倍数计——默认 \"30m\" 档写价 1.25×、Responses API 可选的 \"12h\" 档写价 2.5×（官方原句 \"These are total write rates, not surcharges on top of ordinary input. Cache-read rates are the same for both lifetimes.\"，即写价是总价而非附加费、且读价不随 TTL 变），读价 0.1×、唯独 GPT-6.1 Sol 为 0.05×；最小可缓存前缀 1,024 个可见输入 token（OpenAI 自家隐藏系统提示不计入），\"12h\" 只是最短保留期、不是删除期限，官方还可能保留更久。按该倍数对站内已核标价直算：Sol 输入 $2 ⇒ 30 分钟写 $2.50（与 09-30、10-15、10-18 三次定价页/单模型页读数完全相同，倍数口径因此可自证）、12 小时写 $5.00、读 $0.10；Astra 输入 $10 ⇒ 12 小时写 $25.00。判读：输入与输出标价一字未动，故本档案 plans 与 priceHistory 一律不改、不加点，只新增 apiPrices 的 TTL 两档一行。这笔的实际意义在成本结构而非降价——日内多次复用的固定前缀（系统提示、工具定义、长文档）原先每 30 分钟过期就要按 1.25× 重写，现在可用一次 2.5× 换 12 小时覆盖，官方自算的对照是 30m 档「写一次＋完整复用一次」＝未缓存成本的 1.35 倍；12h 档是否更省，取决于覆盖到期后要不要重写，需按调用间隔现场核算。同页另有 prewarm（预热缓存不产出输出）与 prompt_cache_breakpoint 显式断点两项能力站内未记，两者不含价签、属端点级功能，是否进档案功能项交周五。10-22 晨再按官方页逐值复核（改抓静态可读的 markdown 版 developers.openai.com/api/docs/pricing.md，22,634 字节；HTML 版 576,451 字节里检索不到条目正文与 2026-10-21，日更抓 OpenAI 文档须加 .md 后缀）：标准档 gpt-6.1-sol 输入 $2.00／输出 $10.00／缓存读 $0.10／30m 写 $2.50／12h 写 $5.00、gpt-6-astra $10／$50、gpt-6-luna $0.10／$0.50（该行此前只有媒体源，今由官方页同档证实）、gpt-6-sol 与 gpt-5.6 两档标价原样；五档倍率关系为 Batch 与 Flex 同 0.5×、Fast 2×、Ultrafast 6×，站内 Ultrafast 两行 $12／$60 与 $60／$300 逐值相符。故本档案 priceHistory 不加点、plans 不改、apiPrices 既有行金额不动；同页官方 changelog 新增 10-21 条目（可按项目与组织限制可用服务档位）已入 events，该功能不含价签",
+      apiNote: "10-25 复核官方 changelog：10-22 那条 Decisions API 正式可用（绑定 gpt-6-luna、单请求上限 400 题、可跨请求共享提示缓存）与 10-21 那条按项目限制服务档位是同一族的能力与治理条目，五档价格表逐值复核仍与站内一致，本档案价签零变动；Decisions 是否单列进功能项交周五。2026-09-23 发布 GPT-6 轻量版 API 价：Sol 输入 $2/输出 $10、Luna 输入 $0.10/输出 $0.50 每百万 tokens，较 GPT-5.6 系列降约 50%；官方称 Sol 错误率约为 GPT-5.6 Sol 一半，DeepSWE 得分 Sol 68.8%/Luna 66.6%。09-30 复核官方定价页（platform.openai.com/docs/pricing）：新条目 gpt-6.1-sol 输入 $2/输出 $10（长上下文 $4/$15、缓存读 $0.10、缓存写 $2.50），gpt-6-sol 条目已下架；gpt-6-astra 仍为 $10/$50（长上下文 $20/$75）。10-09 再抓同一页（587,092 字节，价目 JSON 可静态读出）：档位切换器共列 Standard/Batch/Flex/Fast/Ultrafast 五项，gpt-6.1-sol 各档逐值为 standard $2/$0.10/$2.50/$10、batch 与 flex 均为 $1/$0.05/$1.25/$5（半价）、fast $4/$0.20/$5/$20（2 倍）、新增 ultrafast $12/$0.60/$15/$60（6 倍），与媒体\\\"6 倍价格、最高 8 倍速度\\\"两源口径一致；ultrafast 档只有 gpt-6-astra（$60/$6/$75/$300，同为其 standard 档 6 倍）与 gpt-6.1-sol 两个条目，gpt-6-luna 不在该档。官方页对 Fast 档的说明文本是\\\"GPT-5.6 Sol 最高比 Standard 快 2.5 倍\\\"，而 Ultrafast 档的说明为空——即官方只给价不给倍数，\\\"8 倍\\\"纯属媒体口径（未核实）。10-15 直抓单模型页 platform.openai.com/docs/models/gpt-6.1-sol（449,084 字节）补三处此前站内没有的确值：上下文窗口 1,050,000、最大输出 128,000、知识截止 2026-04-30；价目逐值与 09-30/10-09 两次定价页抓取一致（输入 $2.00、缓存输入 $0.10 即未缓存价的 5%、缓存写 $2.50 即 1.25 倍、输出 $10.00，Fast 2 倍、Batch/Flex 半价、Ultrafast 6 倍、区域处理加 10%）；关键是页面把长上下文加价的规则写成了原文——\\\"Prompts with more than 272K input tokens are priced at 2x input and cache rates and 1.5x output for the full request\\\"，即超过 272K 输入的请求整单按 2 倍输入/缓存价与 1.5 倍输出价计，站内此前只记了换算结果 $4/$15、未记阈值与整单适用；同日两源媒体（新智元稿 10-12/13 与 36 氪 10-13 转载）所称\\\"默认窗口 272k→500k、订阅额度免长上下文附加费\\\"发生在产品与订阅层（ChatGPT Work/Codex 的默认值与额度加收规则），与本页 API 侧仍在的 272K 加价并不矛盾，本站据此把两侧口径分开记录，不把它当成 API 降价。10-18 直抓官方 API changelog（platform.openai.com/docs/changelog 已 301 到 developers.openai.com/api/docs/changelog，540,112 字节）补两条与语音/实时线有关的官方口径：10-16 条目 Released prompt-to-voice for all API customers，创建自定义音色免费、语音生成仍按常规 GPT-Live 会话计费（“speech generation uses regular GPT-Live session billing”，模型 gpt-live-1、端点 v1/audio/voices 与 v1/live/sessions），同条新增九款自然音色（Nuri/Juni/Flitz 德、Brise/Sillage 法、Nira 印地、Harema/Shida 日、Noeul 韩）；10-15 条目在 GPT-Live 里加入原生 Decisions 集成，即 10-06 上线的 Decisions API（gpt-6-luna）现在可被 Live 直接调用。两者都只给计价规则不给价签，故本页 token 档位价与 Ultrafast 档结论一律不动，语音侧不做分钟价（与 xAI Grok Voice 3.0 的 $0.08/分属不同计价轨道，不可横向换算）。同页 10-14 至 10-18 没有任何“GPT-5.6 Sol 再降 20%/优惠维持至 11-21”的条目，该说法继续按单源媒体口径搁置。10-21 直抓官方提示缓存文档两处可读（platform.openai.com/docs/guides/prompt-caching，817,169 字节、md5 030cbbe5f8a75c917aa708710caa82fd；同页 .md 版本 55,725 字节纯文本），补上站内此前完全缺失的缓存计费形状：GPT-5.6 及之后模型按未缓存输入价的倍数计——默认 \\\"30m\\\" 档写价 1.25×、Responses API 可选的 \\\"12h\\\" 档写价 2.5×（官方原句 \\\"These are total write rates, not surcharges on top of ordinary input. Cache-read rates are the same for both lifetimes.\\\"，即写价是总价而非附加费、且读价不随 TTL 变），读价 0.1×、唯独 GPT-6.1 Sol 为 0.05×；最小可缓存前缀 1,024 个可见输入 token（OpenAI 自家隐藏系统提示不计入），\\\"12h\\\" 只是最短保留期、不是删除期限，官方还可能保留更久。按该倍数对站内已核标价直算：Sol 输入 $2 ⇒ 30 分钟写 $2.50（与 09-30、10-15、10-18 三次定价页/单模型页读数完全相同，倍数口径因此可自证）、12 小时写 $5.00、读 $0.10；Astra 输入 $10 ⇒ 12 小时写 $25.00。判读：输入与输出标价一字未动，故本档案 plans 与 priceHistory 一律不改、不加点，只新增 apiPrices 的 TTL 两档一行。这笔的实际意义在成本结构而非降价——日内多次复用的固定前缀（系统提示、工具定义、长文档）原先每 30 分钟过期就要按 1.25× 重写，现在可用一次 2.5× 换 12 小时覆盖，官方自算的对照是 30m 档「写一次＋完整复用一次」＝未缓存成本的 1.35 倍；12h 档是否更省，取决于覆盖到期后要不要重写，需按调用间隔现场核算。同页另有 prewarm（预热缓存不产出输出）与 prompt_cache_breakpoint 显式断点两项能力站内未记，两者不含价签、属端点级功能，是否进档案功能项交周五。10-22 晨再按官方页逐值复核（改抓静态可读的 markdown 版 developers.openai.com/api/docs/pricing.md，22,634 字节；HTML 版 576,451 字节里检索不到条目正文与 2026-10-21，日更抓 OpenAI 文档须加 .md 后缀）：标准档 gpt-6.1-sol 输入 $2.00／输出 $10.00／缓存读 $0.10／30m 写 $2.50／12h 写 $5.00、gpt-6-astra $10／$50、gpt-6-luna $0.10／$0.50（该行此前只有媒体源，今由官方页同档证实）、gpt-6-sol 与 gpt-5.6 两档标价原样；五档倍率关系为 Batch 与 Flex 同 0.5×、Fast 2×、Ultrafast 6×，站内 Ultrafast 两行 $12／$60 与 $60／$300 逐值相符。故本档案 priceHistory 不加点、plans 不改、apiPrices 既有行金额不动；同页官方 changelog 新增 10-21 条目（可按项目与组织限制可用服务档位）已入 events，该功能不含价签",
       access: { difficulty: 5, need: "网络环境 + 海外支付卡（或代充渠道）", note: "有封号风险记录，低价代充需警惕。常驻智能体 Dots（09-30 DevDay 发布）即日起向 Pro、Business Premium、Enterprise 开放，费用含在现有订阅、对话不计基础用量；Plus 及以下不在范围（澎湃/搜狐 10-03 两源）" },
       strengths: ["Agent/自动化生态最成熟", "软件工程与推理实测强", "GPT-6 已向 Plus/Pro 推送", "Sol/Luna 降价后低档 API 性价比追近国产", "Dots 常驻智能体含在订阅内、对话不计量，长期委托场景已产品化"],
       weaknesses: ["Pro 重开但额度收紧（\"20X 变 10X\"口径），旗舰 Astra 未降价、重度用量有效消耗腰斩", "下一代旗舰 GPT-6.1 Astra 已在发布前一周取消，旗舰换代时间线不确定", "国内支付门槛高", "免费档限制多"],
@@ -137,18 +137,20 @@ window.AGENTS_DATA = {
     {
       id: "kimi", name: "Kimi", vendor: "月之暗面", region: "国内",
       tagline: "Agent 能力突出的国产选手，已推出 Token Plan",
-      models: ["Kimi K3 系列", "Kimi K2.7 Code", "Kimi K2.6"],
-      verifiedAt: "2026-10-09",
+      models: ["Kimi K3.1 Pro（文本，10-24 发布，另有高速版）", "Kimi K3 系列", "Kimi K2.7 Code", "Kimi K2.6"],
+      verifiedAt: "2026-10-25",
       plans: [
         { name: "Free", price: "免费", note: "聊天免费" },
         { name: "会员", price: "约 $19/月等值", note: "2026 年套餐拆分，含更高 Agent 额度" },
         { name: "Token Plan", price: "编程订阅档", note: "面向编码场景的包月计划；10-09 官方文档明确\"模型推理服务按量计费，不提供订阅制方案\"，并提示与 Kimi 会员、Kimi Code 区分——即包月只覆盖 C 端与 Code 产品，API 侧无订阅入口" }
       ],
-      apiNote: "10-09 复核官方帮助页：国内注册并完成实名认证的用户赠 ¥15 代金券（3 个月有效），但该券明确不可用于 Kimi K3，K3 需充值后解锁——新用户免费额度不覆盖当前旗舰行。开放平台\"模型推理价格说明\"页（platform.kimi.com/docs/pricing/chat）本轮直抓：文字口径完整可读，但 K3/K2 价格表格由客户端渲染，逐模型金额仍未静态复核，故价目维持 09-22 已核数值；该页另确证 K3 系列的缓存计费规则——缓存写入按 TTL 分 5min 与 1h 两档单独计费，有效期内命中缓存只按\"输入价格（缓存命中）\"计并自动续期、不再重复收缓存写入费；文件内容抽取/文件存储接口标\"限时免费\"",
+      apiNote: "10-25 复核：官方定价页 platform.kimi.ai/docs/pricing/chat 的逐模型价格表虽为客户端渲染，但服务端 payload 内以 rows 数组静态可读（300,661 字节），本站首次拿到美元逐值——K3.1 Pro 输入 $2.00／输出 $10.00／缓存读 $0.20／5m 写 $2.00／1h 写 $4.00，高速版逐值翻倍 $4.00／$20.00，K3 仍 $3.00／$15.00，故新旗舰比上一代便宜三分之一，价目改按官方美元表入 apiPrices 两行，09-22 那轮\"表格客户端渲染、逐模型金额未静态复核\"的缺口就此闭合。国内媒体（网易／新京报 10-24）转述的 ¥13（缓存命中 ¥1.3）／¥68 与官方美元表不同源、且官方页本轮未给人民币表，人民币现价记为未核实。另记一条使用约束：Kimi Code 文档称 K3.1 Pro 系列仅支持思考模式，关闭思考的请求会被直接拒绝——对按 token 计费的调用方意味着额度消耗口径比 K3 更吃紧。10-09 复核官方帮助页：国内注册并完成实名认证的用户赠 ¥15 代金券（3 个月有效），但该券明确不可用于 Kimi K3，K3 需充值后解锁——新用户免费额度不覆盖当前旗舰行。开放平台\\\"模型推理价格说明\\\"页（platform.kimi.com/docs/pricing/chat）本轮直抓：文字口径完整可读，但 K3/K2 价格表格由客户端渲染，逐模型金额仍未静态复核，故价目维持 09-22 已核数值；该页另确证 K3 系列的缓存计费规则——缓存写入按 TTL 分 5min 与 1h 两档单独计费，有效期内命中缓存只按\\\"输入价格（缓存命中）\\\"计并自动续期、不再重复收缓存写入费；文件内容抽取/文件存储接口标\\\"限时免费\\\"",
       access: { difficulty: 1, need: "手机号直接注册", note: "国内直连无障碍" },
       strengths: ["K3/K2.7 Code 的 Agent 与工具调用能力国产领先", "长上下文", "正在启动 IPO（估值目标 500 亿美元）"],
       weaknesses: ["会员与 Token Plan 规则调整频繁", "多模态生成弱于大厂", "¥15 代金券不可用于 K3，试用旗舰要充值"],
       sources: [
+        "https://www.kimi.ai/blog/kimi-k3-1-pro",
+        "https://platform.kimi.ai/docs/pricing/chat",
         "https://platform.kimi.com/docs/pricing/chat",
         "https://omidsaffari.com/zh-cn/blog/kimi-pricing-zh-cn",
         "https://tokenplan.vip/kimi-token-plan/",
@@ -377,19 +379,22 @@ window.AGENTS_DATA = {
     {
       id: "hailuo", name: "海螺 AI", vendor: "MiniMax（稀宇科技）", region: "国内",
       tagline: "视频生成按秒明码标价，但 6·1 计费改革砍掉了低价档",
-      models: ["MiniMax M3.1 Flash（文本，10-19 发布）", "MiniMax M3（文本）", "海螺 H3 / H3-Max（视频）", "speech-2.8（语音）"],
-      verifiedAt: "2026-10-21",
+      models: ["MiniMax M3.1 Flash（文本，10-19 发布、10-23 开放权重）", "MiniMax M3（文本）", "海螺 H3 / H3-Max（视频）", "speech-2.8（语音）"],
+      verifiedAt: "2026-10-25",
       plans: [
         { name: "Free", price: "免费", note: "国内版免费额度规则仍未公开：10-09 直抓官方按量页，页内\"免费\"只出现在视频生成的素材豁免项（音频免费、图片 5 张内免费），文本模型无免费额度条目，故维持未核实" },
         { name: "订阅（国内）", price: "底档 ¥49/月起", note: "2026-06-01 起取消 ¥29 Starter 档；国内官网会员页不可直接抓取，更高档价未核实" },
         { name: "国际版会员", price: "$7.99 - $199.99/月（限时价）", note: "Standard 14.99→7.99（1,000 积分）到 Max 199.99（20,000 积分），仅美元月付（hailuoai.video 确证）" },
         { name: "API 按量", price: "M3.1-Flash 输入 ¥1/输出 ¥4 每百万", note: "10-20 直抓官方按量页：语言模型表首行即 MiniMax-M3.1-Flash，输入 ¥1.00／输出 ¥4.00／缓存读 ¥0.10 每百万 tokens；M3 行仍列 ≤512k ¥2.10/¥8.40/缓存 ¥0.42、>512k ¥4.20/¥16.80/¥0.84，优先服务按标准价 1.5 倍（M3 ≤512k ¥3.15/¥12.60/¥0.63）；视频 H3 每秒 ¥0.5(768P)-0.8(2K)" }
       ],
-      apiNote: "10-20 直抓官方按量页（platform.minimax.cn/docs/guides/pricing-paygo，709,335 字节、文本层 27,846 字符）：页顶横幅即\"🎉 新一代 MiniMax M3.1 Flash 全新发布！\"，语言模型表首行新增 MiniMax-M3.1-Flash 输入 ¥1.00／输出 ¥4.00／缓存读取 ¥0.10 每百万 tokens；MiniMax-M3 两档标价原样在位（≤512k 输入 ¥2.10／输出 ¥8.40／缓存 ¥0.42，>512k ¥4.20／¥16.80／¥0.84），优先服务仍按标准价 1.5 倍（M3 ≤512k 折算 ¥3.15／¥12.60／¥0.63），语音 speech-2.8-hd ¥3.50、turbo ¥2.00 每万字符与音乐 Music-3 等条目未变。对比口径（按官方两档标价直算）：M3.1-Flash 相对 M3 的 ≤512k 实收价，输入 ¥2.10→¥1.00（−52%）、输出 ¥8.40→¥4.00（−52%）、缓存读 ¥0.42→¥0.10（−76%），与各家媒体 10-20 所述\"输入输出均降 50% 以上、缓存降超 70%\"相符。一处标注差异：今日页面文本层已不再出现 10-09 读到的\"永久五折\"字样与划线原价，M3 的 ¥2.10/¥8.40 直接作为标价列出——本站只记当日可读到的标价，不据此推断促销口径是否变更。10-09 那次记录留档：M3 标\"永久五折\"、≤512k 划线 ¥4.20 实收 ¥2.10、输出 ¥16.80 实收 ¥8.40、缓存 ¥0.84 实收 ¥0.42；>512k ¥4.20/¥16.80（翻倍前 ¥8.40/¥33.60）。10-21 再直抓官方海外博客原文（www.minimax.io/blog/minimax-m31f，80,666 字节、文本 4,519 字符、页面标注 2026-10-19）三处结论：① 定价段原句 \"Flat pricing per 1M tokens: $0.15 input · $0.60 output · $0.015 cached input\"，并附三列表格 MiniMax-M3.1-Flash $0.15／$0.60／$0.015——昨日因\"官方页未同页给出\"而搁置的美元价，今日由官方博客同页证实，按站内汇率 7.1 折算约 ¥1.07／¥4.28／¥0.11，与国内按量页 ¥1.00／¥4.00／¥0.10 同档但不逐值相等，属两区各自标价而非换算误差，本站两侧分开记录、不做互相校正；② 开源口径官方只写 \"Model weights will be released later.\" 与 \"Pro, which pushes the boundaries of intelligence, will also arrive later.\"，全篇无 10-23、无许可条款、无参数规模，故社区所称\"10 月 23 日放出权重\"（亿邦问答稿与转述官方推文的聚合稿）按未证实预告处理，不写进事件与档案；③ 页内基准全为厂商自报（AutomationBench-AA 名列前茅、BankerToolBench 76.2、DeepSWE v1.1 73.7%、OSWorld V2 61.7、ALE 29.6、CyberGym 82%、输出 200+ TPS 且 P50 170+、推理速度较上代近 3 倍、整体用量成本较上代低 70%、Space Bunny 匿名期处理超 200 万亿 token），无第三方复测，按纪律不进产品榜七维、不改 scores，只在此记为官方宣传口径。另两处本轮无法静态复核：MiniMax Code 限时权益（10-25 前订阅用户不限量用 M3.1 Flash、10-31 前新订或升级 M Plan 首月五折）只见于腾讯新闻转 APPSO 单源，本站直抓 www.minimax.io/m-plan 为客户端渲染（文本仅 558 字符），故 plans 不写；国内平台页 platform.minimax.cn 与海外博客分属两套标价体系，横向比价时不可混用",
+      apiNote: "10-25 复核开源侧：权重宿主页 Hugging Face MiniMaxAI/MiniMax-M3.1-Flash 与 raw/main/LICENSE 全文直读，许可为 MiniMax Community License（HF 标签 license:other，即非 MIT／非 Apache）——非商用用途免费，商用须在相关网站／界面／文档显著标注 \"Built with MiniMax M3.1-Flash\"，年营收超 2,000 万美元者另需向 api@minimax.io 取得事前书面授权、未超者一次性通知即可；许可第 3 条把\"对外收费的服务、商业化 API、改后训练版本的商业部署\"都定义为商用，附录另禁军事用途等。对只想按量调 API 的用户本条不改价签（¥1／¥4 与海外 $0.15／$0.60 在档），需要自部署的才受上述门槛。10-20 直抓官方按量页（platform.minimax.cn/docs/guides/pricing-paygo，709,335 字节、文本层 27,846 字符）：页顶横幅即\\\"🎉 新一代 MiniMax M3.1 Flash 全新发布！\\\"，语言模型表首行新增 MiniMax-M3.1-Flash 输入 ¥1.00／输出 ¥4.00／缓存读取 ¥0.10 每百万 tokens；MiniMax-M3 两档标价原样在位（≤512k 输入 ¥2.10／输出 ¥8.40／缓存 ¥0.42，>512k ¥4.20／¥16.80／¥0.84），优先服务仍按标准价 1.5 倍（M3 ≤512k 折算 ¥3.15／¥12.60／¥0.63），语音 speech-2.8-hd ¥3.50、turbo ¥2.00 每万字符与音乐 Music-3 等条目未变。对比口径（按官方两档标价直算）：M3.1-Flash 相对 M3 的 ≤512k 实收价，输入 ¥2.10→¥1.00（−52%）、输出 ¥8.40→¥4.00（−52%）、缓存读 ¥0.42→¥0.10（−76%），与各家媒体 10-20 所述\\\"输入输出均降 50% 以上、缓存降超 70%\\\"相符。一处标注差异：今日页面文本层已不再出现 10-09 读到的\\\"永久五折\\\"字样与划线原价，M3 的 ¥2.10/¥8.40 直接作为标价列出——本站只记当日可读到的标价，不据此推断促销口径是否变更。10-09 那次记录留档：M3 标\\\"永久五折\\\"、≤512k 划线 ¥4.20 实收 ¥2.10、输出 ¥16.80 实收 ¥8.40、缓存 ¥0.84 实收 ¥0.42；>512k ¥4.20/¥16.80（翻倍前 ¥8.40/¥33.60）。10-21 再直抓官方海外博客原文（www.minimax.io/blog/minimax-m31f，80,666 字节、文本 4,519 字符、页面标注 2026-10-19）三处结论：① 定价段原句 \\\"Flat pricing per 1M tokens: $0.15 input · $0.60 output · $0.015 cached input\\\"，并附三列表格 MiniMax-M3.1-Flash $0.15／$0.60／$0.015——昨日因\\\"官方页未同页给出\\\"而搁置的美元价，今日由官方博客同页证实，按站内汇率 7.1 折算约 ¥1.07／¥4.28／¥0.11，与国内按量页 ¥1.00／¥4.00／¥0.10 同档但不逐值相等，属两区各自标价而非换算误差，本站两侧分开记录、不做互相校正；② 开源口径官方只写 \\\"Model weights will be released later.\\\" 与 \\\"Pro, which pushes the boundaries of intelligence, will also arrive later.\\\"，全篇无 10-23、无许可条款、无参数规模，故社区所称\\\"10 月 23 日放出权重\\\"（亿邦问答稿与转述官方推文的聚合稿）按未证实预告处理，不写进事件与档案；③ 页内基准全为厂商自报（AutomationBench-AA 名列前茅、BankerToolBench 76.2、DeepSWE v1.1 73.7%、OSWorld V2 61.7、ALE 29.6、CyberGym 82%、输出 200+ TPS 且 P50 170+、推理速度较上代近 3 倍、整体用量成本较上代低 70%、Space Bunny 匿名期处理超 200 万亿 token），无第三方复测，按纪律不进产品榜七维、不改 scores，只在此记为官方宣传口径。另两处本轮无法静态复核：MiniMax Code 限时权益（10-25 前订阅用户不限量用 M3.1 Flash、10-31 前新订或升级 M Plan 首月五折）只见于腾讯新闻转 APPSO 单源，本站直抓 www.minimax.io/m-plan 为客户端渲染（文本仅 558 字符），故 plans 不写；国内平台页 platform.minimax.cn 与海外博客分属两套标价体系，横向比价时不可混用",
       access: { difficulty: 2, need: "手机号注册、支付宝/微信可付", note: "国际版需外币卡；开发者平台需实名" },
       strengths: ["视频生成定价按秒公开、可精确核算", "M3 长上下文分档明确（1M）", "调价后单价仍低于海外旗舰一个数量级"],
       weaknesses: ["6·1 按 token 计费改革砍掉低价档、老用户成本上移（官方致歉+补偿，股价当日收跌 15.71%）", "国内会员档位官网不公开", "公司资源倾斜 B 端与海外（Talkie/国际版）"],
       sources: [
+        "https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash",
+        "https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash/raw/main/LICENSE",
+        "https://modelscope.cn/models/MiniMax/MiniMax-M3.1-Flash",
         "https://platform.minimax.cn/docs/guides/pricing-paygo",
         "https://www.minimax.io/blog/minimax-m31f",
         "https://hailuoai.video/",
@@ -605,7 +610,7 @@ window.AGENTS_DATA = {
   benchmarks: {
     source: "https://openlm.ai/chatbot-arena/",
     sourceName: "OpenLM · Chatbot Arena+",
-    verifiedAt: "2026-10-22",
+    verifiedAt: "2026-10-25",
     models: [
       { agent: "claude",   model: "Claude Opus 5.5",    elo: 1526, coding: 1575, aaii: 58 },
       { agent: "gemini",   model: "Gemini-4-Argon",     elo: 1525, coding: 1570, aaii: 53 },
@@ -633,15 +638,16 @@ window.AGENTS_DATA = {
   arena: {
     source: "https://openlm.ai/chatbot-arena/",
     sourceName: "OpenLM · Chatbot Arena+",
-    fetchedAt: "2026-10-22",
+    fetchedAt: "2026-10-25",
     cols: ["Model", "Arena Elo", "Coding", "Vision", "AAII", "MMLU-Pro", "ARC-AGI", "Organization", "License"],
-    note: "10-13 抓取件起源页删除 MMLU-Pro 整列（10-14、10-16 重抓仍是 9 列）：为守住本表 9 字段契约，MMLU-Pro 一律留空串（此前 238 个非空值随源页消失，不回填旧值）。10-18 抓取件再起一处结构变化——源页把 AAII 列换成 MII，页内榜单说明同步改写为 \"MII — Model Intelligence Index, combining Arena Elo and Agent Intelligence (scored on real-world, multi-step workflows and coding tasks)\"，而 10-16 那份说明仍写 \"AAII — Artificial Analysis Intelligence Index aggregating 10 challenging evaluations\"：两者不是同一个指标，按 329 个同名模型逐行比对，149 行数值不同（差值区间 −13～+3，多数低 1～3，如 Claude Opus 5.5 由 58 变 56、Claude Sonnet 5.5 由 56 变 54、GPT-6 Astra 由 53 变 52）、81 行恰好相同、95 行两皆空、另 4 行旧列有值而新列为空，故不作同名延续处理。本轮沿用 MMLU-Pro 那条既有口径：AAII 位一律留空串、不把 MII 数值灌进 AAII 列（产品榜的 AAII 表头写死在 public/index.html 与 dev/gen-landing.mjs 里，改列名属结构变更，交周五全量决定），MII 的 235 个非空数值另存 dev/_mii_2026-10-18.json 备查；产品榜 benchmarks.models 的 aaii 保留 10-16 的末次 AAII 读数（不代表今日核实）。10-18 行数由 329 增至 334（新增 5 行：Ling-3.1-flash 1485/1500、Hunyuan-Hy4 1464/1468、Mistral Large 4 1448/1478、K2-Horizon-375B-A23B 1420/1462、Nemotron-3.5-Super-VL-120B-A12B 1416/1459），Arena Elo／Coding／Vision 三列对全部同名行零变动，ARC-AGI 仅 Gemini-4-Argon 由空补出 91.3，许可列 11 行为 \"Apache-2.0\"→\"Apache 2.0\" 写法规范化加 Hunyuan-Hy3 由 Tencent 改 Apache 2.0。10-19 两次重抓（09:39 与 17:02）：两份抓取件均 131,410 字节、md5 与 10-18 那份完全相同，335 个 tr／334 行逐行零变动（源页表头仍 8 列、MII 非空值按列位重数仍 235 个），故本表内容一字未改，仅 fetchedAt 按核实日同步提 10-19。10-20 重抓抓取件 132,049 字节（md5 与昨两枚均不同），行数由 334 增至 336、删 0 行，变化只有三处：① 第 33 行插入 GLM-5.3-Flash 🥈 1501/1538/1296（Z.ai·MIT），② 第 36 行插入 Minimax-M3.1-Flash 🥈 1500/1539（MiniMax·Non-commercial，Vision 栏源页即为空），两处均按页面行序入位、未做任何按显示 Elo 的重排，其余 334 行的 Arena Elo／Coding／Vision／ARC-AGI／Organization／License 逐列零变动（含唯一一处补值：MiMo-V2.6-Pro ✅ 的 Vision 由空补出 1311，Elo/Coding 仍 1507/1560）；③ MII 非空值由 235 增至 237，全部增量即这两行新增（各 42），既有行的 MII 无一改动，AAII 位仍一律留空串。产品榜是否给 GLM-5.3-Flash 与 Minimax-M3.1-Flash 开档案／席位属结构变更，交周五全量决定（前者 1501 高于现榜第 5 席 MiMo-V2.6-Pro 的 1507 之下、后者基座 Minimax-M3 已在本表 69 行但不在产品榜内）。10-21 重抓成功（132,046 字节、md5 d82d0221e257e974b6781642cd7462e4）：解析 337 个 tr／336 行，与 10-20 17:00 那份（132,049 字节、md5 6f6ce6e60980c934bbed9004c24a0177）按模型名建 Map 逐格比对，新增 0、删除 0、格值差异 0、行位移 0，8 列表头与 9 格行形制不变，MII 非空值仍 237；两枚抓取件的唯一差异是页脚 <meta property=article:published_time／modified_time> 由 2026-10-19 滚到 2026-10-20，即源页自身的快照日期标签前移一天而榜单内容一字未改，故本表 rows 与 16 席 elo／coding 一律不动，只按纪律把 fetchedAt 与 benchmarks.verifiedAt 提到 10-21。本轮记一处工具坑防误判：dev/_parse_arena.cjs 与 dev/apply-arena.cjs 仍按\"10 格源页＋切掉奖牌列＝9 字段\"的旧契约写死，拿它解析当前 9 格页得 0 行并输出 REFUSE WRITE: rows<300，极易被误读成\"抓取失败\"，实际页面完好且与站内快照零差异——日更须沿用 10-20 起的 9 格口径脚本；本表 cols 声明里的 AAII／MMLU-Pro 两列（源页已删、站内恒为空串）与 dev/check-data.cjs 的列断言一并交周五迁移。10-22 晨重抓第三次成功且与前两份逐字节全等（132,046 字节、md5 d82d0221e257e974b6781642cd7462e4 与 10-21 早／晚两件相同、解析 337 个 tr／336 行、td 计数 3,024、8 列表头与 9 格行形制不变），按模型名建 Map 比对新增 0／删除 0／格值差异 0／行位移 0，MII 非空仍 237，页脚 article:published_time／modified_time 仍停在 2026-10-20——即同一份榜单连续三日（10-21 早、10-21 傍晚、10-22 晨）零变动，本表 rows 与 16 席 elo／coding 继续一字不动，仅按重抓成功即提两戳的纪律把 fetchedAt 与 benchmarks.verifiedAt 提到 10-22；10-22 17:00 傍晚第 4 次重抓仍与上述三件逐字节全等（同日第二轮不再动戳，rows 与 16 席分数继续不动）",
+    note: "10-13 抓取件起源页删除 MMLU-Pro 整列（10-14、10-16 重抓仍是 9 列）：为守住本表 9 字段契约，MMLU-Pro 一律留空串（此前 238 个非空值随源页消失，不回填旧值）。10-18 抓取件再起一处结构变化——源页把 AAII 列换成 MII，页内榜单说明同步改写为 \"MII — Model Intelligence Index, combining Arena Elo and Agent Intelligence (scored on real-world, multi-step workflows and coding tasks)\"，而 10-16 那份说明仍写 \"AAII — Artificial Analysis Intelligence Index aggregating 10 challenging evaluations\"：两者不是同一个指标，按 329 个同名模型逐行比对，149 行数值不同（差值区间 −13～+3，多数低 1～3，如 Claude Opus 5.5 由 58 变 56、Claude Sonnet 5.5 由 56 变 54、GPT-6 Astra 由 53 变 52）、81 行恰好相同、95 行两皆空、另 4 行旧列有值而新列为空，故不作同名延续处理。本轮沿用 MMLU-Pro 那条既有口径：AAII 位一律留空串、不把 MII 数值灌进 AAII 列（产品榜的 AAII 表头写死在 public/index.html 与 dev/gen-landing.mjs 里，改列名属结构变更，交周五全量决定），MII 的 235 个非空数值另存 dev/_mii_2026-10-18.json 备查；产品榜 benchmarks.models 的 aaii 保留 10-16 的末次 AAII 读数（不代表今日核实）。10-18 行数由 329 增至 334（新增 5 行：Ling-3.1-flash 1485/1500、Hunyuan-Hy4 1464/1468、Mistral Large 4 1448/1478、K2-Horizon-375B-A23B 1420/1462、Nemotron-3.5-Super-VL-120B-A12B 1416/1459），Arena Elo／Coding／Vision 三列对全部同名行零变动，ARC-AGI 仅 Gemini-4-Argon 由空补出 91.3，许可列 11 行为 \"Apache-2.0\"→\"Apache 2.0\" 写法规范化加 Hunyuan-Hy3 由 Tencent 改 Apache 2.0。10-19 两次重抓（09:39 与 17:02）：两份抓取件均 131,410 字节、md5 与 10-18 那份完全相同，335 个 tr／334 行逐行零变动（源页表头仍 8 列、MII 非空值按列位重数仍 235 个），故本表内容一字未改，仅 fetchedAt 按核实日同步提 10-19。10-20 重抓抓取件 132,049 字节（md5 与昨两枚均不同），行数由 334 增至 336、删 0 行，变化只有三处：① 第 33 行插入 GLM-5.3-Flash 🥈 1501/1538/1296（Z.ai·MIT），② 第 36 行插入 Minimax-M3.1-Flash 🥈 1500/1539（MiniMax·Non-commercial，Vision 栏源页即为空），两处均按页面行序入位、未做任何按显示 Elo 的重排，其余 334 行的 Arena Elo／Coding／Vision／ARC-AGI／Organization／License 逐列零变动（含唯一一处补值：MiMo-V2.6-Pro ✅ 的 Vision 由空补出 1311，Elo/Coding 仍 1507/1560）；③ MII 非空值由 235 增至 237，全部增量即这两行新增（各 42），既有行的 MII 无一改动，AAII 位仍一律留空串。产品榜是否给 GLM-5.3-Flash 与 Minimax-M3.1-Flash 开档案／席位属结构变更，交周五全量决定（前者 1501 高于现榜第 5 席 MiMo-V2.6-Pro 的 1507 之下、后者基座 Minimax-M3 已在本表 69 行但不在产品榜内）。10-21 重抓成功（132,046 字节、md5 d82d0221e257e974b6781642cd7462e4）：解析 337 个 tr／336 行，与 10-20 17:00 那份（132,049 字节、md5 6f6ce6e60980c934bbed9004c24a0177）按模型名建 Map 逐格比对，新增 0、删除 0、格值差异 0、行位移 0，8 列表头与 9 格行形制不变，MII 非空值仍 237；两枚抓取件的唯一差异是页脚 <meta property=article:published_time／modified_time> 由 2026-10-19 滚到 2026-10-20，即源页自身的快照日期标签前移一天而榜单内容一字未改，故本表 rows 与 16 席 elo／coding 一律不动，只按纪律把 fetchedAt 与 benchmarks.verifiedAt 提到 10-21。本轮记一处工具坑防误判：dev/_parse_arena.cjs 与 dev/apply-arena.cjs 仍按\"10 格源页＋切掉奖牌列＝9 字段\"的旧契约写死，拿它解析当前 9 格页得 0 行并输出 REFUSE WRITE: rows<300，极易被误读成\"抓取失败\"，实际页面完好且与站内快照零差异——日更须沿用 10-20 起的 9 格口径脚本；本表 cols 声明里的 AAII／MMLU-Pro 两列（源页已删、站内恒为空串）与 dev/check-data.cjs 的列断言一并交周五迁移。10-22 晨重抓第三次成功且与前两份逐字节全等（132,046 字节、md5 d82d0221e257e974b6781642cd7462e4 与 10-21 早／晚两件相同、解析 337 个 tr／336 行、td 计数 3,024、8 列表头与 9 格行形制不变），按模型名建 Map 比对新增 0／删除 0／格值差异 0／行位移 0，MII 非空仍 237，页脚 article:published_time／modified_time 仍停在 2026-10-20——即同一份榜单连续三日（10-21 早、10-21 傍晚、10-22 晨）零变动，本表 rows 与 16 席 elo／coding 继续一字不动，仅按重抓成功即提两戳的纪律把 fetchedAt 与 benchmarks.verifiedAt 提到 10-22；10-22 17:00 傍晚第 4 次重抓仍与上述三件逐字节全等（同日第二轮不再动戳，rows 与 16 席分数继续不动）10-25 重抓成功且榜单自 10-20 起首次变动：抓取件 132,381 字节、md5 188d8c645e92d7346957ce62c2a23b37（与 10-21／10-22 四件的 d82d0221… 不同），解析 338 个 tr／337 行、td 计数 3,033、页脚 article:published_time 与 modified_time 由 2026-10-20 滚到 2026-10-23T00:00:00+00:00。与 10-22 傍晚那份按模型名建 Map 比对＝新增 1／删除 0／格值差异 0／行位移 330，且 330 处位移全由同一次插入引起：新增行是 Kimi-K3.1-Pro ✅（1519/1568/1315，ARC-AGI 源页为空，Moonshot·Modified MIT），落在页面第 6 行（索引 5）、插在 Muse Wonder Full 之前，按页面行序入位、未做任何按显示 Elo 的重排；另一处变化是 Kimi-K3 的新增标记由页面自行摘掉（✅→无，Elo／Coding／Vision／ARC-AGI 仍 1506/1562/1311/60.4 一字未动），本表同名行同步摘标——标记属源页口径，不自行加删。MII 非空值由 237 增至 238，增量即新行本身。16 席 benchmarks 与页面逐值相符、行号严格递增成立，故 benchmarks.models 与各档案 scores.coding 一律不动；K3.1 Pro 是否顶替产品榜席位属结构变更，交周五全量。工具侧一条：dev/apply-arena.cjs 与 dev/_parse_arena.cjs 已于本轮由\"10 格源页＋切奖牌列\"迁到当前 9 格契约（输入为去掉奖牌列的 8 格页面行，站内 9 字段里 AAII／MMLU-Pro 两位仍写空串，MII 逐行另存 dev/_mii_2026-10-25.json 备查），此前\"解析得 0 行并报 REFUSE WRITE: rows<300\"的坑就此闭合；dev/check-data.cjs 的列断言经本轮实跑对空串位天然容错（r[4]!=='' 短路），无需迁移。",
     rows: [
       ["Claude Opus 5.5","1526","1575","1320","","","93.3","Anthropic","Proprietary"],
       ["Gemini-4-Argon","1525","1570","1318","","","91.3","Google","Proprietary"],
       ["Claude Sonnet 5.5","1521","1568","1315","","","","Anthropic","Proprietary"],
       ["Claude Fable 5.1","1520","1570","1315","","","90","Anthropic","Proprietary"],
       ["GPT-6 Astra","1520","1568","1316","","","95","OpenAI","Proprietary"],
+      ["Kimi-K3.1-Pro ✅","1519","1568","1315","","","","Moonshot","Modified MIT"],
       ["Muse Wonder Full","1518","1567","1316","","","","Meta","Proprietary"],
       ["GPT-6.1 Sol","1516","1568","1315","","","94.2","OpenAI","Proprietary"],
       ["Claude Opus 5","1511","1566","1314","","","90.4","Anthropic","Proprietary"],
@@ -652,7 +658,7 @@ window.AGENTS_DATA = {
       ["Grok-4.7","1507","1563","1310","","","75","xAI","Proprietary"],
       ["Muse Spark 1.3","1507","1562","1310","","","","Meta","Proprietary"],
       ["MiMo-V2.6-Pro ✅","1507","1560","1311","","","","Xiaomi","MIT"],
-      ["Kimi-K3 ✅","1506","1562","1311","","","60.4","Moonshot","Kimi K3"],
+      ["Kimi-K3","1506","1562","1311","","","60.4","Moonshot","Kimi K3"],
       ["Claude Opus 4.8 Thinking","1506","1562","1310","","","78","Anthropic","Proprietary"],
       ["Qwen3.8-Max ✅","1506","1560","1312","","","","Alibaba","Qwen3"],
       ["GLM-5.3 ✅","1506","1560","","","","65.8","Z.ai","MIT"],
@@ -1018,6 +1024,9 @@ window.AGENTS_DATA = {
 
   /* ---------------- 事件时间线（改变决策的事件） ---------------- */
   events: [
+    { date: "2026-10-24", tag: "产品", agents: ["kimi"], title: "月之暗面 10-24 凌晨发布 Kimi K3.1 Pro 并同步高速版：官方定价页逐值为输入 $2.00／输出 $10.00 每百万 token（缓存读 $0.20），比上一代 K3 的 $3.00／$15.00 低三分之一，高速版 kimi-k3.1-pro-highspeed 逐值翻倍到 $4.00／$20.00；完整权重称 11 月 4 日前开放，但许可条款与商用限制未说明", summary: "官方定价页直读：platform.kimi.ai/docs/pricing/chat（10-25 抓 300,661 字节）的价格表在 HTML 里是客户端渲染，但 SSR payload 内以 rows 数组静态可读，逐行拿到 kimi-k3.1-pro（$2.00 输入／$10.00 输出／$0.20 缓存读／$2.00 五分钟缓存写／$4.00 一小时缓存写）、kimi-k3.1-pro-highspeed（$4.00／$20.00／$0.20／$4.00／$8.00）与 kimi-k3（$3.00／$15.00／$0.30／$3.00／$6.00）三行，页面横幅同日改为 \"Kimi K3.1 Pro has launched!\" 并指向 /docs/guide/kimi-k3-1-pro-quickstart。官方发布页 https://www.kimi.ai/blog/kimi-k3-1-pro 同轮直抓（390,358 字节）。媒体侧（网易／新京报贝壳财经／cnBeta 均 10-24）补的参数与评测口径为 3 万亿级参数（2.8T 总参、104B 激活的 MoE）、1M 上下文、Terminal-Bench 4.0 65.7% 超 GPT-6 Astra、OfficeQA Pro v2 64.4，并称高速版输出速度约 2～3 倍；国内媒体另转述人民币价 ¥13（缓存命中 ¥1.3）／¥68，与官方美元表不同源，站内只按官方美元价入 apiPrices，人民币现行价未由官方页直读（未核实）。落库＝events +1、apiPrices +2 行（K3.1 Pro 与 K3 对照）、kimi 档案 verifiedAt 10-09→10-25 且 apiNote 重写、sources 补两条官方页；plans 不动（官方文档同日仍写\"模型推理服务按量计费，不提供订阅制方案\"）。K3.1 Pro 是否进产品榜属结构变更，交周五全量。", source: "https://platform.kimi.ai/docs/pricing/chat" },
+    { date: "2026-10-23", tag: "产品", agents: ["hailuo"], title: "MiniMax 开放 M3.1 Flash 模型权重（Hugging Face 与魔搭可下载，428B 总参数／每 token 激活 23B／1M 上下文／文本+图像+视频输入）；官方 LICENSE 全文直读为 MiniMax Community License：非商用免费，商用须显著标注 \"Built with MiniMax M3.1-Flash\"，年营收超 2,000 万美元另需 api@minimax.io 事前书面授权", summary: "一手来源为权重宿主页本身：https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash（10-25 直抓 321,444 字节，元数据 created 2026-10-17T06:37Z、lastModified 2026-10-23T03:37Z、license 标签 other 即非 MIT／非 Apache、下载 5,789、点赞 317，模型卡写明 428B 总参 23B 激活、上下文至 1,000,000 token、MiniMax Sparse Attention）与 raw/main/LICENSE（3,363 字节全文）——许可第 2 条要求商用产品在相关网站／界面／文档显著标注 \"Built with MiniMax M3.1-Flash\"，年营收超 2,000 万美元须事前书面授权、未超只需一次性通知，第 3 条把\"第三方付费服务、商业化 API、微调或改后训练版本的商业部署\"都算作 Commercial Use，附录另禁军事用途、伤害未成年人、生成违法内容等。魔搭同步 https://modelscope.cn/models/MiniMax/MiniMax-M3.1-Flash。媒体侧（新浪 10-23、36氪转智东西 10-23、网易 10-23）记芯片与云平台首日接入名单（华为昇腾、平头哥、昆仑芯、摩尔线程、壁仞、海光、沐曦、天数、NVIDIA、AMD 及 Together AI、Fireworks、Nebius、Baseten、Modal、DigitalOcean）、匿名期累计处理超 200T token 的 Space Bunny 即其早期版本。判读：开放的是权重而非 API 价签，本条不动 plans／apiPrices／priceHistory（¥1／¥4 与海外 $0.15／$0.60 均在档）；对自部署用户新增\"商用门槛与禁止用途\"这一约束，落库＝events +1、hailuo 档案 verifiedAt 10-21→10-25、models 行注记与 apiNote 补开源条款、sources 补 HF 两页。", source: "https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash" },
+    { date: "2026-10-22", tag: "产品", agents: ["chatgpt"], title: "OpenAI 官方 changelog 10-22：Decisions API 正式可用并绑定 gpt-6-luna——单次请求上限由公测期 200 题提到 400 题，可跨请求共享提示缓存、题目内可带图、并支持 input_json 直传结构化数据", summary: "官方来源直读 developers.openai.com/api/docs/changelog.md（10-25 抓 77,952 字节、md5 5639cf16…）首条即 \"### Oct 22 — Update · Model: gpt-6-luna · API: v1/decisions：The Decisions API is now generally available with gpt-6-luna. … Each request now supports up to 400 questions, increased from 200 in public beta.\"，而 10-22 17:04 抓的同一页是 77,409 字节、md5 8b84246c…且最新条目停在 Oct 21，即该条确系昨傍晚之后新发（本轮为补跑 10-23／10-24 空窗，故按事件自身日期 10-22 记）。本条不含价签：gpt-6-luna 站内 apiPrices 行 $0.10／$0.50 与官方 pricing.md 逐值相符，媒体所称\"每百万 token 输入 0.1 美元\"（IT之家 10-24）与官方 Luna 标价同值，属\"按输入计费\"的口径说明而非降价；priceHistory 不加点、plans 不改。是否把 Decisions API 写进 chatgpt 档案功能项交周五全量，本轮只提 verifiedAt 并在 apiNote 记一句能力变化。", source: "https://developers.openai.com/api/docs/changelog.md" },
     { date: "2026-10-21", tag: "产品", agents: ["chatgpt"], title: "OpenAI 官方 changelog 10-21：Platform 设置里可按项目选择可用的服务档位（service tier），组织级设置可统一限制全部项目——站内五档价差（标准 1×、Batch／Flex 0.5×、Fast 2×、Ultrafast 6×）自此变成可由管理员锁死的成本开关，本条不含任何价签变动", summary: "官方来源单页直读：本站 10-22 晨直抓官方 changelog 的 markdown 版 developers.openai.com/api/docs/changelog.md（77,409 字节）首条即 \"### Oct 21 — Feature: You can now choose which service tiers projects can use in Platform settings. Organization settings can restrict service tiers for all projects.\"（原文指向 error-codes 指南），而 10-21 早间抓的同一页最新条目还是 10-20 的 12 小时提示缓存，即确系昨夜之后新发。同日直抓官方定价页 pricing.md 逐值复核，五档价格表齐全且标价与站内 apiPrices 三行全等，本条不新增价签、不改 plans／priceHistory；官方 HTML 版（550,980 字节）条目为客户端渲染、全文检索不到 2026-10-21 与 Oct 21 正文，故日更抓 OpenAI 文档一律加 .md 后缀。判读：这档设置管的是\"谁能用哪一档\"而非\"哪一档多少钱\"——Ultrafast 标准价 6 倍、Fast 2 倍的成本形状早已存在，今起组织可把极速档从项目层面关掉，属企业侧治理与成本管控能力，是否进 chatgpt 档案功能项交周五全量决定。", source: "https://developers.openai.com/api/docs/changelog" },
     { date: "2026-10-20", tag: "计费", agents: ["chatgpt"], title: "OpenAI 新增 12 小时提示缓存档：Responses API 可用 prompt_cache_options.ttl 选 \"30m\"（默认，写价＝未缓存输入价的 1.25 倍）或 \"12h\"（2.5 倍），缓存读价两档相同且不随 TTL 变（多数模型 0.1×、GPT-6.1 Sol 0.05×）；输入与输出标价一分未动", summary: "官方来源两处且互相印证：本站 10-21 直抓官方 changelog（developers.openai.com/api/docs/changelog，550,244 字节、md5 493a72dd…）10-20 条目原文 \"You can now choose 12-hour prompt caching in the API. 12-hour prompt caching keeps shared instructions, tools, and context cached longer to benefit from lower cached-input pricing, even when requests are hours apart. 12-hour cache writes cost 2.5x the input token price.\"——昨日 17:00 抓的同一页（544,021 字节）最新条目还是 10-16，即这条确系昨夜之后新发，昨日\"changelog 无新条目\"的结论按当时读数成立、今日被新读数推翻。该条目 \"Read more\" 指向 platform.openai.com/docs/guides/prompt-caching（10-21 直抓 817,169 字节、md5 030cbbe5f8a75c917aa708710caa82fd，另有 .md 纯文本版 55,725 字节），其 Cache lifetime 表逐值给出 \"30m\"（default）＝1.25× the uncached input-token rate、\"12h\"＝2.5×，并原文注明 \"These are total write rates, not surcharges on top of ordinary input. Cache-read rates are the same for both lifetimes.\"，以及 \"\\\"12h\\\" does not set a deletion deadline\"；同页 Summary of model differences 另给出读价 0.1× uncached input（0.05× for GPT-6.1 Sol）、最小可缓存前缀 1,024 个可见输入 token、控制参数 prompt_cache_options.ttl（旧模型仍走 prompt_cache_retention，只支持 \"24h\"/\"in_memory\"）。换算（按官方倍数对站内已核标价直算，官方页没有金额行）：Sol 输入 $2 ⇒ 30 分钟写 $2.50、12 小时写 $5.00、读 $0.10；其中 $2.50 与 09-30/10-09/10-15/10-18 四次官方定价页直读值完全相同，可反证倍数口径读对了。Astra 输入 $10 ⇒ 12 小时写 $25.00。判读与限制：① 这不是调价——输入/输出标价逐值未动，故 priceHistory 不加点、plans 不改、apiPrices 既有 Sol/Ultrafast/Astra 三行金额不动，只新增一行记 TTL 两档倍数；② 变的是长上下文复用的成本形状：日内多次复用的固定前缀（系统提示、工具定义、长文档）原先每 30 分钟过期就要重付 1.25×，现可用一次 2.5× 换 12 小时覆盖，官方自算 30m 档「写一次＋完整读一次」＝未缓存成本的 1.35 倍，12h 档能否跑赢取决于覆盖到期后是否重写，属结构优化而非降价，本站不写\"省钱 50%\"类结论；③ 同页的 prewarm 与 prompt_cache_breakpoint 两项能力站内此前没有记录，因不含价签、需端点级核实，交周五决定是否进功能项；④ 官方文档给出的是\"最短保留期\"，实际保留可能更久，且不改变数据留存政策，故不能把它当成长期存储来用。落库位置：本条事件、apiPrices +1 行（21→22）、chatgpt.verifiedAt 10-18→10-21 与 apiNote/sources 同步。", source: "https://platform.openai.com/docs/guides/prompt-caching" },
     { date: "2026-10-19", tag: "定价", agents: ["hailuo"], title: "MiniMax 发布 M3.1 Flash 并下调 API 价：官方按量页列输入 ¥1.00／输出 ¥4.00／缓存读取 ¥0.10 每百万 tokens，较 M3 的 ≤512k 实收价（¥2.10／¥8.40／¥0.42）分别降约 52%／52%／76%", summary: "官方来源为准：本站 10-20 直抓 platform.minimax.cn/docs/guides/pricing-paygo（709,335 字节，表格静态可读），页顶横幅写\"🎉 新一代 MiniMax M3.1 Flash 全新发布！\"，语言模型表首行即 MiniMax-M3.1-Flash 1.00／4.00／0.10 元每百万 tokens，M3 两档标价原样保留（≤512k 2.10／8.40／0.42，>512k 4.20／16.80／0.84），优先服务仍按标准价 1.5 倍计——站内降幅是按这两行官方标价直算的，不引媒体口径。发布事实的第二、第三源：品玩 10-20 稿记\"已上线 MiniMax API、MPlan 及 MiniMax Code，输入 1 元、输出 4 元、缓存读取 0.1 元，稍后将开放权重\"（https://www.pingwest.com/w/318541），中国基金报（新浪财经 10-20 转载）记 10-19 发布并预告 Pro 版本、称输入输出单价降 50% 以上、缓存读降超 70%（https://finance.sina.cn/2026-10-20/detail-inivvxcp7598869.d.html），少数派早报 10-20 与 36 氪 10-20 两稿同口径（https://ios.sspai.com/post/116758、https://36kr.com/p/4033370959795331）——多家互不引用的独立来源与官方价签一致，满足入库门槛。基准侧同日均被源页抓到：OpenLM Chatbot Arena+ 10-20 抓取件新增 Minimax-M3.1-Flash 一行（1500／1539，Non-commercial，页面第 36 行），本站已按页面行序入 arena.rows。不取为数据的部分：亿邦动力稿给的美元价（$0.15／$0.6／$0.015）为折算口径、官方页今日未同页给出该组数字；\"匿名模型 Space Bunny 累计处理超 200 万亿 Token\"、DeepSWE 73.7%／OSWorld V2 61.7%／ALE 29.6% 与\"单任务成本 0.22 美元、比 Claude Opus 5.5 便宜 87 倍\"等属官方宣传与第三方实测混合，本站不入库；产品榜是否把海螺席位由 Minimax-M3（页面第 69 行 1452／1485）换到更强的 M3.1-Flash（第 36 行 1500／1539）属榜单结构调整，交周五全量决定，日更不擅自换旗舰行。", source: "https://platform.minimax.cn/docs/guides/pricing-paygo" },
@@ -1140,6 +1149,8 @@ window.AGENTS_DATA = {
     { vendor: "百度", model: "ERNIE 5.1（千帆按量后付费，页内文档更新时间 2026-10-09）", input: "¥4（输入 ≤32k）/ ¥6（32k-128k）", output: "¥18 / ¥22（批量推理列\"-\"未开放）", source: "https://cloud.baidu.com/doc/qianfan/s/wmh4sv6ya" },
     { vendor: "MiniMax", model: "MiniMax-M3.1-Flash（10-19 发布，10-20 直抓官方页；海外区价由 10-21 直抓的官方博客同页证实）", input: "¥1.00（缓存读 ¥0.10；海外区官方博客标 $0.15／缓存 $0.015，美元价来源见海螺档案）", output: "¥4.00（海外区 $0.60）", source: "https://platform.minimax.cn/docs/guides/pricing-paygo" },
     { vendor: "MiniMax", model: "MiniMax-M3（≤512k 档）", input: "¥2.10（>512k 档 ¥4.20；缓存读 ¥0.42／¥0.84）", output: "¥8.40（>512k ¥16.80；优先服务按标准价 1.5 倍计 ¥12.60）", source: "https://platform.minimax.cn/docs/guides/pricing-paygo" },
+    { vendor: "月之暗面", model: "Kimi K3.1 Pro（10-24 发布，10-25 直抓官方定价页逐值）", input: "$2.00（缓存读 $0.20；五分钟缓存写 $2.00、一小时写 $4.00）", output: "$10.00（高速版 kimi-k3.1-pro-highspeed 逐值翻倍：输入 $4.00／输出 $20.00、缓存写 $4.00／$8.00）", source: "https://platform.kimi.ai/docs/pricing/chat" },
+    { vendor: "月之暗面", model: "Kimi K3（同页对照行）", input: "$3.00（缓存读 $0.30；5m 写 $3.00、1h 写 $6.00）", output: "$15.00——即新旗舰 K3.1 Pro 反而比上一代 K3 便宜三分之一，站内此前无 Kimi 价目行，本轮补齐", source: "https://platform.kimi.ai/docs/pricing/chat" },
     { vendor: "小米", model: "MiMo-V2.6-Pro（10-09 新增档案）", input: "¥3.00（命中缓存 ¥0.025；批量 ¥1.50；ultraspeed ¥30）", output: "¥6.00（批量 ¥3.00；ultraspeed ¥60；海外区 $0.435/$0.87）", source: "https://mimo.mi.com/docs/zh-CN/price/pay-as-you-go" },
     { vendor: "美团", model: "LongCat-2.5-Preview / 2.0（限时折扣价）", input: "¥2（命中缓存 ¥0.04；海外区 $0.30/$0.006）", output: "¥8（海外区 $1.20）", source: "https://longcat.chat/platform/pricing" },
     { vendor: "Mistral", model: "Mistral Large 3（10-09 新增档案）", input: "$0.5（缓存输入最多降 90%）", output: "$1.5（Batch 处理降 50%）", source: "https://mistral.ai/pricing/" },
@@ -1178,10 +1189,10 @@ window.AGENTS_DATA = {
     ],
     relayVerify: {
       // 本站自行双源核实后的状态（id → {status:"verified", at:"YYYY-MM-DD", note:"…"}）。留空 = 待核，由日更任务逐家补实。
-      bltcy: { status: "verified", at: "2026-10-19", note: "官网 /api/pricing 直抓成功（2026-09-30，返回 default 分组倍率表约 418KB）；独立社区来源：少数派 sspai 论坛\"中转站实时比价工具\"帖有用户自述已用柏拉图一年多（https://meta.appinn.net/t/topic/79735）。两源一致仅证明\"站点存活、公开报价、有长期使用者\"，不构成质量或兑付背书。10-04 复核·重要纠正：本站公开公告接口 /api/status 直读到运营方 2026-05-11 公告原文——\"由于平台现阶段技术与运营资源有限…公司决定逐步调整当前业务方向，后续将聚焦企业级服务合作…即日起平台将关闭个人充值及新增开放接入功能，后续不再新增个人用户业务\"；另有 05-09 公告\"临时关闭新用户注册通道…绝非网传跑路、停运\"、05-30 公告引导个人账号转企业账号。第三方测评页 EggStriker（2026-09-07）同口径记\"已公告转向企业级服务：关闭个人充值与新注册\"。→ 对个人新用户而言本站实际不可入驻（存量用户额度与服务照常），09-30 那条结论不完整；但同一 /api/status 仍显示 enable_online_topup=true、pay_enabled=true、quota_for_new_user=100000，前端配置与公告口径并存，实际能否充值未核（未核实）。种子区为可再生内容未改，收缩信号记于此。10-09 周五抽查复核：/api/pricing 仍 200（436,730 字节，与 10-04 记录的 418KB 量级相符）；/api/status 公告 22 条，最新一条停在 06-02（发票事宜），05-09\"临时关闭个人用户注册…绝非跑路\"、05-11\"关闭个人充值及新增、聚焦企业级\"、05-30 引导个人转企业三条原文均仍在位，enable_online_topup 与 quota_for_new_user=100000 未变——与 10-04 结论一致，无新增暴雷信号，维持\"主动收缩\"定性。10-18 双源复核（本轮第二家）出现本站依据本身的变化：自家 /api/status 仍 200（14,086 字节、83 键、版本 v4.9.56-v2），但公告由 10-09 读到的 22 条缩为 16 条（两轮的 /api/status 尺寸接近，本站未见到删除说明，故不排除返回条数口径或前端分页变化，只按读到的记），且最新一条从 06-02（发票事宜）退回 04-24——那条公告原文为\"因不可抗力因素影响，平台将停止运营…从今日起，停止新用户注册、充值及新套餐购买；自 2026 年 5 月 1 日起，全部 API 接口停止服务\"，而本站 10-04/10-09 所引的 05-09\"临时关闭个人注册、绝非跑路\"、05-11\"关闭个人充值及新增接入、聚焦企业级\"、05-30\"个人账号转企业账号\"三条今日已不在接口返回里，无法再逐字复核；同期 enable_online_topup 仍 true、quota_for_new_user 仍 100000、migration_api_enabled 与 agent_transfer_quota_enabled 均 false，/api/pricing 也仍 200（440,885 字节、data 1,131 条，较 10-09 的 436,730 字节略增），首页与价目墙照常。判读：公告被删与\"5 月 1 日起全部 API 停止服务\"那句并未兑现并存，两种解读（清理旧公告 / 改口重开个人业务）都无第二源支撑——本轮检索未见 10 月内任何社区实测、媒体报道或第三方监测把本站列入异动（种子仓库条目标注仍为 active·2026-06-07，比价站 lmspeed.net 的本站页最新一条记录停在 05-02），故 status 维持 verified（仅表示双源核实动作完成）、定性维持\"对个人新用户实际不可入驻的主动收缩\"，并把\"10-04 所引公告原文今日已不可直读\"这一取证缺口如实标注，交周五全量决定是否改判；已持有额度者仍按公告口径走企业通道。10-19 傍晚同日再抓（/api/status 14,087 字节、83 键；/api/pricing 440,882 字节）读到三处：① 版本串由 v4.9.56-v2 升到 v4.9.61-v2（上游 new-api 版本号），start_time 1792340951＝今日 00:29 北京，即凌晨重启过一次；② system_name 仍“柏拉图AI”、enable_online_topup 仍 true，公告仍 16 条且最新一条照旧停在 04-24——10-18 那次 22→16 的缩列没有回滚，05-09“临时关闭个人注册、绝非跑路”、05-11“关闭个人充值及新增接入”、05-30“个人转企业”三条今日仍不在接口返回里，取证缺口原样保留；③ 价目清单仍 1,131 条、按模型名逐条比对无新增无下架，但 11 条的计价字段变了：grok-4 的 model_ratio 由 1.5 翻到 3；gpt-image-2.5-flare-4k 单次价 0.15→0.3、gpt-image-2.5-sunburst 0.3→0.08、grok-imagine-image-2.0 1→0.06、grok-imagine-video-1.5 0.6→1、grok-video-3 0.15→0.5、gpt-4-all 0.11→0.1；另 4 条在“按倍率”与“按次”两种计价模式之间切换（gpt-image-2.5-sunburst-4k 与 -2k、gpt-4-32k 由倍率转按次，gpt-4-1106-preview 由按次转回倍率 5／2）；enable_groups 有 326 条看似变动，逐项做集合比对后确认全部只是逗号顺序不同（0 处集合真变动）。判读：本轮变化集中在图片／视频类与 grok 线的自证报价重排，既有公告口径（关闭个人业务）与 enable_online_topup=true 的矛盾仍未解，本站不据此新开暴雷结论，定性维持“对个人新用户实际不可入驻的主动收缩”，是否因“重新滚动改价＋版本升级”改判留周五全量决定。relayVerify 的 at 提到 10-19。" },
+      bltcy: { status: "verified", at: "2026-10-25", note: "官网 /api/pricing 直抓成功（2026-09-30，返回 default 分组倍率表约 418KB）；独立社区来源：少数派 sspai 论坛\"中转站实时比价工具\"帖有用户自述已用柏拉图一年多（https://meta.appinn.net/t/topic/79735）。两源一致仅证明\"站点存活、公开报价、有长期使用者\"，不构成质量或兑付背书。10-04 复核·重要纠正：本站公开公告接口 /api/status 直读到运营方 2026-05-11 公告原文——\"由于平台现阶段技术与运营资源有限…公司决定逐步调整当前业务方向，后续将聚焦企业级服务合作…即日起平台将关闭个人充值及新增开放接入功能，后续不再新增个人用户业务\"；另有 05-09 公告\"临时关闭新用户注册通道…绝非网传跑路、停运\"、05-30 公告引导个人账号转企业账号。第三方测评页 EggStriker（2026-09-07）同口径记\"已公告转向企业级服务：关闭个人充值与新注册\"。→ 对个人新用户而言本站实际不可入驻（存量用户额度与服务照常），09-30 那条结论不完整；但同一 /api/status 仍显示 enable_online_topup=true、pay_enabled=true、quota_for_new_user=100000，前端配置与公告口径并存，实际能否充值未核（未核实）。种子区为可再生内容未改，收缩信号记于此。10-09 周五抽查复核：/api/pricing 仍 200（436,730 字节，与 10-04 记录的 418KB 量级相符）；/api/status 公告 22 条，最新一条停在 06-02（发票事宜），05-09\"临时关闭个人用户注册…绝非跑路\"、05-11\"关闭个人充值及新增、聚焦企业级\"、05-30 引导个人转企业三条原文均仍在位，enable_online_topup 与 quota_for_new_user=100000 未变——与 10-04 结论一致，无新增暴雷信号，维持\"主动收缩\"定性。10-18 双源复核（本轮第二家）出现本站依据本身的变化：自家 /api/status 仍 200（14,086 字节、83 键、版本 v4.9.56-v2），但公告由 10-09 读到的 22 条缩为 16 条（两轮的 /api/status 尺寸接近，本站未见到删除说明，故不排除返回条数口径或前端分页变化，只按读到的记），且最新一条从 06-02（发票事宜）退回 04-24——那条公告原文为\"因不可抗力因素影响，平台将停止运营…从今日起，停止新用户注册、充值及新套餐购买；自 2026 年 5 月 1 日起，全部 API 接口停止服务\"，而本站 10-04/10-09 所引的 05-09\"临时关闭个人注册、绝非跑路\"、05-11\"关闭个人充值及新增接入、聚焦企业级\"、05-30\"个人账号转企业账号\"三条今日已不在接口返回里，无法再逐字复核；同期 enable_online_topup 仍 true、quota_for_new_user 仍 100000、migration_api_enabled 与 agent_transfer_quota_enabled 均 false，/api/pricing 也仍 200（440,885 字节、data 1,131 条，较 10-09 的 436,730 字节略增），首页与价目墙照常。判读：公告被删与\"5 月 1 日起全部 API 停止服务\"那句并未兑现并存，两种解读（清理旧公告 / 改口重开个人业务）都无第二源支撑——本轮检索未见 10 月内任何社区实测、媒体报道或第三方监测把本站列入异动（种子仓库条目标注仍为 active·2026-06-07，比价站 lmspeed.net 的本站页最新一条记录停在 05-02），故 status 维持 verified（仅表示双源核实动作完成）、定性维持\"对个人新用户实际不可入驻的主动收缩\"，并把\"10-04 所引公告原文今日已不可直读\"这一取证缺口如实标注，交周五全量决定是否改判；已持有额度者仍按公告口径走企业通道。10-19 傍晚同日再抓（/api/status 14,087 字节、83 键；/api/pricing 440,882 字节）读到三处：① 版本串由 v4.9.56-v2 升到 v4.9.61-v2（上游 new-api 版本号），start_time 1792340951＝今日 00:29 北京，即凌晨重启过一次；② system_name 仍“柏拉图AI”、enable_online_topup 仍 true，公告仍 16 条且最新一条照旧停在 04-24——10-18 那次 22→16 的缩列没有回滚，05-09“临时关闭个人注册、绝非跑路”、05-11“关闭个人充值及新增接入”、05-30“个人转企业”三条今日仍不在接口返回里，取证缺口原样保留；③ 价目清单仍 1,131 条、按模型名逐条比对无新增无下架，但 11 条的计价字段变了：grok-4 的 model_ratio 由 1.5 翻到 3；gpt-image-2.5-flare-4k 单次价 0.15→0.3、gpt-image-2.5-sunburst 0.3→0.08、grok-imagine-image-2.0 1→0.06、grok-imagine-video-1.5 0.6→1、grok-video-3 0.15→0.5、gpt-4-all 0.11→0.1；另 4 条在“按倍率”与“按次”两种计价模式之间切换（gpt-image-2.5-sunburst-4k 与 -2k、gpt-4-32k 由倍率转按次，gpt-4-1106-preview 由按次转回倍率 5／2）；enable_groups 有 326 条看似变动，逐项做集合比对后确认全部只是逗号顺序不同（0 处集合真变动）。判读：本轮变化集中在图片／视频类与 grok 线的自证报价重排，既有公告口径（关闭个人业务）与 enable_online_topup=true 的矛盾仍未解，本站不据此新开暴雷结论，定性维持“对个人新用户实际不可入驻的主动收缩”，是否因“重新滚动改价＋版本升级”改判留周五全量决定。relayVerify 的 at 提到 10-19。10-25 复核出现\"上游改判与本站自证相互矛盾\"的一件：种子仓库本轮把本站由 active 改标 inactive（10-25 跑 gen-relay 重生成种子区时带入，上游注记称 2026-10-23 标记、依据仍是那条 04-24 停运营公告），但本站自家接口读到的仍是营业状态——/api/status 200（14,176 字节、86 键，较 10-19 的 83 键新增 ticket_enabled=true、ticket_attachment_max_count=5、ticket_attachment_max_size_mb=20 三项工单配置）、版本串 v4.9.61-v2→v4.9.71-v2、start_time 1792748090＝10-23 17:34 北京（10-23 重启过一次）、last_get_pricing_time 2026-10-25 08:59:36，公告仍 16 条且最新照旧停在 04-24；/api/pricing 200（445,357 字节）在售由 1,131 条增至 1,135 条、vendors 仍 27 家，新增四条全部是别家的新模型：kimi-k3.1-pro（倍率 6.5／补全 5.23）、kimi-k3.1-pro-highspeed（13／5.23）、deepseek-v4.1-flash-1017（1／4）、muse-wonder-1.0（14／5），另 13 条计价字段重排——gpt-6-luna 倍率 0.5→0.05、gpt-5.6-luna 0.5→0.1、grok-4 由倍率 3／5 转按次 0.02、gpt-4 与 gpt-4-32k 在倍率与按次之间互换、gpt-image-2.5 四条（flare／flare-4k／sunburst／sunburst-2k）同族来回切换。判读：第三方种子的 inactive 与本站自证的\"今日仍在上新模型并重排报价\"直接冲突，且 04-24 那句\"自 2026 年 5 月 1 日起全部 API 停止服务\"到今日仍未兑现；种子区属上游可再生内容（gen-relay 带入即照抄，本站不改），故 status 维持 verified（仅表示核实动作完成），定性从\"对个人新用户不可入驻的主动收缩\"改为\"公告与在售自相矛盾、余额不宜过夜\"，冲突本身作为情报入本周简报——普通用户能执行的是既不要按公告日期假设它已关门，也不要在里面存放余额。" },
       uiuiapi: { status: "verified", at: "2026-10-02", note: "双源：①种子仓库 awesome-ai-api-proxy 条目（type=official-relay、status=active、maintainer 于 2026-06-07 实测，并在 2026-08-16 快照抓到 666 条 high-confidence 报价）；②独立社区目录 frank36512/aiapi（GitHub，2026-10-02 直抓）自列\"300+ 大模型聚合、3.7 元/美元汇率、可开发票\"。10-02 实测站点 200、公开 new-api 价目接口 https://api1.uiuiapi.com/api/pricing 返回 366 个模型（default 分组），已收录 claude-opus-5-5 / gpt-6.1-sol（模型倍率 37.5），尚未收录 gemini-4-argon。注：社区目录属推广性质，\"官方倍率/汇率/可发票\"为自述口径未核；本次仅证明存活、报价公开可复核、被两份独立目录收录。" },
       "closeai-asia": { status: "verified", at: "2026-10-02", note: "双源：①种子仓库条目（type=official-relay、status=active、maintainer 于 2026-05-26 实测，entity_registered=true、支持企业发票）；②独立社区目录 frank36512/aiapi（2026-10-02 直抓）亦收录（\"亚洲最大企业级 AI 中转、支持企业发票\"）。10-02 实测站点 200、/pricing 页面 200（32KB 静态可读）。注：种子 2026-08-16 价格快照无本站记录，报价无法机器复核，\"100% 官转\"属自述；本次仅证明存活与公开价目页可读。" },
-      yunwu: { status: "verified", at: "2026-10-22", note: "10-09 复核（本窗口唯一有异动的已核站）：本站自家接口照常返回——首页 200、/api/pricing 200、/api/status 200（446,553 字节，system_name=\"云雾 API \"、版本 20260918-152544、enable_online_topup=true、email_verification=true），公告 340 条但最新一条停在 2026-08-16（\"同步官方价格：deepseek-v4-pro/flash\"），此后两个月无任何运营公告。同一时点，第三方监测 Help AIO「AI中转站可用性监测」页（快照 2026-10-09 09:19，自称自 2026 年 2 月起累计探测 276 万次、无赞助）把本站列为 24 小时综合可用率 0.00%、有效探测 560 次、最新探测 09:19——是页面所列 18 站中两个 0% 之一（另一个 Undying 亦 0.00%、560 次），而同期其余站点多在 84%-97%。判读：页面接口全 200 与\"模型调用 0% 可用\"并存，正是\"价目接口 200 不等于能用\"的形态，但 0% 属单一第三方来源，Help AIO 的探测模型、判定阈值与是否含维护时段均未公开可核，本站无法用第二个独立来源复现（检索未见 10 月内社区故障帖），故只记为收缩/故障观察项，不写成暴雷结论。10-02 双源依据仍成立（①本站 /api/pricing 直抓 384 条倍率表；②GitHub 社区目录 frank36512/aiapi + 测评页 EggStriker 2026-08-11\"适合测试不宜生产\"）；种子标 type=mixed，本站不作质量背书。V2EX 相关帖发在 promotions 节点属官方推广，不计入独立源；简书\"云雾 APP 诈骗\"为同名兼职资金盘，与本站无关（同名混淆，勿误判红旗）。10-09 周五抽查复核：/api/pricing 返回 data 382 条（站内 10-02 记 384 条，微降 2 条属价目正常滚动）；抽核倍率逐项对得上——qwen3.8-max x6、claude-fable-5 x5、deepseek-v4-pro x4.5，且价目表仍不含 gemini-4-argon，故本条维持 verified、不下调。10-10 次日复查：自家三接口仍全 200（/api/pricing 288,041 字节、/api/status 446,553 字节与 10-09 同尺寸），运营公告仍停在 08-16；同日 Help AIO 09:00 快照第二次把本站列为 24 小时综合可用率 0.00%（有效探测 552 次、最新探测 08:59）→ 连续两日单源 0% 而价目/状态接口照常，仍不满足双源、仍不下暴雷结论，但风险等级较昨日上升，接入前应先小额测试（本站不做兑付背书）。同页 10-10 另列 HongMaCC 43.84%、CPass 68.11%、Undying 0.00%，三家均不在本站种子目录内，不作收录依据。10-13 出现决定性异动，改判为\"运营方主动冻结并迁移\"：本站 /api/status 返回体中 system_name 已由\"云雾 API \"变成\"x\"、版本 20260918-152544 → 20261013-022518，并新增 freeze=true、migration_target_url=\"https://api.openlux.ai\"、migration_exchange_rate=13.6、server_address_arr=[{\"URL\":\"https://api.zhongzhuan.chat\",\"Description\":\"空白反代地址\"}]——即运营方自己把账号与余额指向 OpenLux（兑换率 13.6）并冻结本站，而公告仍 340 条、最新一条依旧停在 08-16，冻结动作没有任何配套公告；同轮 /api/pricing 仍 200（289,028 字节）、首页 200，正是\"接口活着、账号被冻结迁移\"的形态。第三方 Help AIO 快照 2026-10-13 17:14 第三次把本站列为 24 小时综合可用率 0.00%（有效探测 558 次；前两次为 10-09 09:19 与 10-10 08:59），同页其余 17 站在 74%-97% 区间（Packy Code 97.49%、Yes Code 97.22%、4Router 94.98%、Micu 89.34%、TimiCC 90.86%、APINebula 74.73%、SSSAiCode 76.07%）。判读升级：运营方自证的 freeze+迁移目标与第三方连续三次 0% 属两条互不引用的独立来源，本站据此把 yunwu 视为暴雷/收缩级风险——已持有余额者应尽快导出数据并停止充值，未接入者不得以价目接口 200 作为可入驻依据（本条 status 仍写 verified 只表示\"双源核实动作已完成\"，不代表可用性背书）。迁移目标 OpenLux 自身 /api/status 200（509,149 字节、system_name=\"OpenLux\"、版本 20261013-022127、公告 382 条、最新 2026-10-13 03:00 称 Cli/Anti-Gemini 分组把 gemini-3.6/3.7-flash 自动路由至 gemini-3.8-flash 且价格不变，10-10 另有 wan3.0-video 恢复与 MiniMax-H3 上线）仅能证明目标站活着且由同一 new-api 栈运营；OpenLux 不在本站种子与用户提报目录内，是否新开条目交周五全量。10-14 晨二次直抓：/api/status 仍 200（446,543 字节）但构建版本由昨日的 20261013-022518 变为 20261013-200904，且 **freeze 字段已读不到**，而 migration_target_url=https://api.openlux.ai 与 migration_exchange_rate=13.6、server_address_arr 指向\"空白反代地址\" api.zhongzhuan.chat 三项照旧，system_name 仍是\"x\"、公告仍 340 条最新停在 08-16——一次改版把冻结标记摘掉而迁移参数保留，可能是解冻、也可能是隐藏字段，两条路都开放，本站不作二选一结论；能确定的是 Help AIO 快照 2026-10-14 09:07 第四次把本站列为 24 小时综合可用率 0.00%（有效探测 554 次；四次分别为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554），同页 19 站里只有本站与 Undying 两个 0%，其余 68.79%-97.84%（HongMaCC 已从 10-10 的 43.84% 回到 95.50%、CPass 84.80%）。结论不变且更硬：无论冻结字段在不在，连续四天的第三方 0% 加运营方自证的迁移参数，都足以把本站列为\"暴雷/收缩级\"，持有余额先导出数据并停止充值，未接入者不得以 /api/pricing 200 作为可入驻依据。10-15 第三次复查并自纠字段误读：把 10-09/10-13/10-14/10-15 四份 /api/status 快照（446,553 / 446,543 / 446,543 / 446,543 字节）按键逐项回读，migration_freeze_enabled=true、migration_target_url=https://api.openlux.ai、migration_exchange_rate=13.6、server_address_arr 指向\"空白反代\"api.zhongzhuan.chat、migration_repopup_hours=24 这五项自 10-09 那次抓取起就一直都在，而返回体顶层从来没有名为 freeze 的键——本条 10-13 所写\"新增 freeze=true\"与 10-14 所写\"freeze 字段已读不到\"都属字段名读错，据此撤销\"改版把冻结标记摘掉\"的猜测（同批事件条目已同步更正），10-13 的真实变化只有 system_name 由\"云雾 API \"改成\"x\"、构建版本 20260918-152544→20261013-022518、进程 start_time 重置三项。今日构建版本仍 20261013-200904（与 10-14 抓到的同值、快照字节数亦同）、公告仍 340 条且最新停在 08-16、/api/pricing 仍 200（289,034 字节、384 条倍率，表内仍无 gemini-4-argon 与 gemini-3.8-flash 条目，抽核 qwen3.8-max/claude-fable-5/deepseek-v4-pro 三条模型名均能读到）。第三方 Help AIO 快照 2026-10-15 09:04 第五次把本站列为 24 小时综合可用率 0.00%（有效探测 554 次；五次分别为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554、10-15 09:04/554），同页 19 站里仍只有本站与 Undying 两个 0%，其余 17 站在 59.55%-97.03% 区间（Packy Code 97.03%、Neko Code 95.50%、HongMaCC 92.80%，而 SSSAiCode 自 10-13 的 76.07% 再降到 64.01%、IKun Code 59.55%）。迁移目标 OpenLux 今日 /api/status 仍 200（510,406 字节、system_name=\"OpenLux\"、构建版本由昨日 20261013-022127 变为 20261014-182244、公告 383 条，最新一条标题为\"模型上架：gemini-4-argon\"）——目标站仍在滚动更新且已上架谷歌新旗舰，但它既不在本站种子也不在用户提报目录，是否新开条目仍交周五全量。结论：暴雷/收缩级判定不变，但依据改写在更稳的基础上——不再是\"字段忽在忽不在\"，而是运营方自证的冻结+迁移参数连续七日在场、叠加第三方连续五次 0%。10-15 傍晚同日第二轮复查出两处新事实：① 自家 /api/pricing 的模型条目由上午 384 条减为 378 条，减掉的正是整条可灵视频线（kling-video、kling-omni-video、kling-motion-control、kling-advanced-custom-elements、kling-video-extend）加一个 deepseek-v4-flash-0731，新增 0 条，gemini-4-argon 到傍晚仍不在表内——这是运营方接口自证的当日在售清单收缩，方向与\"聚焦迁移\"一致；② /api/status 的 119 个键里只有 start_time 变了，由 1791893476（10-13 20:11 北京）跳到 1792038105（10-15 12:21 北京），即今日 12:21 服务重启过一次而构建版本仍 20261013-200904，冻结与迁移三参数逐字未变、公告仍 340 条且最新停在 08-16。Help AIO 17:04 快照第六次把本站列为 0.00%（554 次探测；六次为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554、10-15 09:04/554、10-15 17:04/554）。迁移目标 OpenLux 傍晚仍 200（510,457 字节），119 键里只有 oauth_allowed_origins 与 start_time 变（10-14 20:28→10-15 12:40 北京，即它也在今日中午重启过一次），构建版本仍 20261014-182244、公告仍 383 条且最新一条仍是 10-14 01:37 的\"模型上架：gemini-4-argon\"——两站同日相继重启与迁移切换的叙事相符，但接口与公告本身不构成暴雷证据。同页傍晚另一处异动留给下轮盯：IKun Code 由上午 59.55% 跌到 29.58%（1,109 次探测）为今日最大跌幅，SSSAiCode 64.01%→66.02%、4Router 78.91%→92.60%、Yes Code 83.64%→96.39% 回升。判定不变而依据继续加固：冻结+迁移参数连续七日在场、当日在售模型反减 6 条、第三方连续六次 0%。10-16 晨三次直抓（/api/status 446,428 字节、/api/pricing 285,341 字节）出现本轮最要紧的一处反向变化，且这次不是读错键名：先把新旧两份返回体的键逐项对过——旧 119 键、新 116 键，差的正是 migration_freeze_enabled、migration_target_url、migration_exchange_rate、migration_repopup_hours、migration_retention_date 五条，新件里多出 organization_enabled 与 skills_hub_enabled 两条，且整份 446,428 字节原文里连 migration、freeze、openlux 三个字符串都不出现（只有 zhongzhuan 仍在），所以是随构建 20261016-072806（start_time 1792107246＝今晨 07:34 北京）整体摘掉这组前端配置，而非本站上轮那种键名误读。怎么读这条：① 不能读成解冻——公告仍 340 条、最新一条照旧停在 08-16，两个月的运营空窗里没有任何一条说明冻结、迁移或解除，server_address_arr 仍写\"空白反代地址\"api.zhongzhuan.chat、server_status_url 仍指向 status.zhongzhuan.chat；② 也不能读成迁移完成，因为第三方 Help AIO 09:06 快照第七次把本站列为 24 小时综合可用率 0.00%（有效探测 554 次，七次为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554、10-15 09:04/554、10-15 17:04/554、10-16 09:04/554），19 站里 0% 的仍是本站、Undying（555 次）与 IKun Code（1,109 次，昨傍晚 29.58%→今晨彻底归零，为连续第二日恶化）三家；③ 在售清单侧今日无反续证据——/api/pricing 仍 378 条、与昨晚逐条相同（新增 0、下架 0），gemini-4-argon 到今晨仍不在表内，SSSAiCode 由 66.02% 回升到 68.84%、榜首 Muze 99.19%。结论：暴雷/收缩级判定维持不变，但把\"参数连续七日在场\"这条依据换成更中性也更硬的表述——运营方曾在无公告情况下自证冻结与迁移目标，又在无公告情况下把该组配置从状态接口里整体摘除，两次动作都没有配套公告，配合第三方连续七次 0% 与同页 IKun/Undying 归零，普通用户可执行的结论只有一条：不以接口 200 作为可入驻依据、已持有余额者停止充值并导出记录。是否给 OpenLux 或 IKun 开条目仍交周五全量。10-18 周日第四次直抓（/api/status 446,437 字节、/api/pricing 285,307 字节）读到一处此前没有的反向信号：system_name 由 10-13 起的占位符\"x\"改回\"云雾 API\"（10-09 那份是带尾空格的\"云雾 API \"），即站名自我标识被恢复；同时构建版本 20261016-072806 → 20261018-160411、start_time 1792312747（今日 16:39 北京，即下午重启过一次）。除 start_time、system_name、version 三项外其余 113 键逐值未变，migration_freeze_enabled 等五参数仍不在返回体里（116 键与 10-16 同集合，整份原文仍不出现 migration/freeze/openlux 三串，zhongzhuan 依旧只在 server_address_arr 与 server_status_url），公告仍 340 条且最新一条照旧停在 08-16，在售清单仍 378 条与 10-16 逐条相同（新增 0、下架 0、gemini-4-argon 仍不在表内）。第三方 Help AIO 17:17 快照第八次把本站列为 24 小时综合可用率 0.00%（有效探测 558 次；八次为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554、10-15 09:04/554、10-15 17:04/554、10-16 09:04/554、10-18 17:17/558）。判读：改回本名与摘除迁移参数一样属运营方自证，既没有配套公告也没有任何兑付或可用性证据，故不能读成解冻或迁移完成，也不能读成恢复营业——第三方 0% 已连续八次跨十天。relayVerify 的 at 提到 10-18，判定与可执行结论不变：不以接口 200 作可入驻依据、已持有余额者停止充值并导出记录。10-19 傍晚第五次直抓（/api/status 446,469 字节、/api/pricing 284,135 字节）读到三处新事实：① 构建版本 20261018-160411 → 20261019-114428、start_time 由 1792312747（昨 16:39 北京）跳到 1792382550（今日 12:02 北京），即正午又重启过一次；② 键集合由 116 增至 117，多出来的那条是 tencent_captcha_app_id（取值属对方配置，本站不抄），同期 captcha_type 由 click-shape 改为 tencent、captcha_register_enabled 由 false 改为 true——注册环节的图形验证码被打开并换成腾讯云验证码；而 system_name 仍为“云雾 API”、enable_online_topup 与 stripe 充值开关仍 true、invite_reward_rate 仍 10、公告仍 340 条且最新一条照旧停在 08-16、migration_freeze_enabled 等五参数仍不在返回体里；③ 在售清单由 378 条减为 376 条，减掉的正是 o1-pro 与 o1-pro-2025-03-19 两行（新增 0 条），全部计价字段（model_ratio／completion_ratio／quota_type）逐条比对零变动，内容级变化另有三条模型失去“优质官转”类分组（gemini-embedding-001 去掉“官转gemini”、gpt-4o-transcribe 与 gpt-4o-mini-transcribe 去掉“优质官转OpenAI”），usage_count 有 198 条被重算且普遍下降，属对方调用统计口径，本站不据此推断流量。第三方 Help AIO「AI中转站可用性监测」17:00 快照第九次把本站列为 24 小时综合可用率 0.00%（有效探测 552 次；九次分别为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554、10-15 09:04/554、10-15 17:04/554、10-16 09:04/554、10-18 17:17/558、10-19 17:00/552），同页 19 站里 0% 的仍是本站、Undying（553 次）与 IKun Code（1,105 次）三家，其余 16 站在 78.88%—99.73%（榜首 Muze 99.73%，最低 Yes Code 78.88%）。判读：换验证码与下架 OpenAI 老代际都是运营方自证的配置动作，既没有配套公告，也没有兑付或可用性证据；今日检索“云雾 迁移／冻结”仍 0 条结果，即本站拿不到独立第二源，故不能读成解冻、也不能读成恢复接单。relayVerify 的 at 提到 10-19，判定与可执行结论自 10-13 起第十一天不变：不以接口 200 作可入驻依据、已持有余额者停止充值并导出记录。10-22 晨直抓读到本项自 10-09 起最硬的一条证据：/api/pricing 仍 200 但返回体的在售模型清单 data 由 10-19 的 376 条变成空数组、vendors 由 21 家变 0 家，整份只有 17,141 字节且三次抓取条数一致（09:03:52／09:04:29／09:04:32 三件的 data 均为 0 条、vendors 均为 0 家、supported_endpoint 均为 178 项；md5 全等的那一对是相隔 3 秒的 09:04:29 与 09:04:32 两件（各 17,150 字节、218ca0b91565ee8b8703e68a0f6185bd），09:03:52 件与它们只差\"对口型\"一处路由值——早间所记\"09:03／09:05 两次 md5 相同\"经傍晚复核属误记，逐字节相同的一对其实是相隔 3 秒的 09:04:29／09:04:32 两件），而 group_ratio 36 组与 supported_endpoint 178 项、usable_group 36 组全部照常返回（早间所记\"group_ratio 33 组\"经傍晚复核更正为 36，且 10-19 那份 376 条的抓取件本就是 36 组，即本数字全天未变）——即运营方自家接口自证当前没有任何在售模型，接口活着而货已下架；同轮其状态接口自述的空白反代地址 api.zhongzhuan.chat/api/pricing 同样 data 0 条／vendors 0 家（17,143 字节），两域名互证而非两个独立来源。/api/status 与 10-19 傍晚那份抓取件逐字节全等（446,469 字节、md5 f27c2dc0dad505446061e83cd265bbf2、117 键零变动、start_time 仍 1792382550＝10-19 12:02 北京、system_name 仍是云雾 API、公告仍 340 条且最新一条照旧停在 08-16），即 /api/status 这一份件子三日内没重启也没改过一次配置；但这条不能外推到 /api/pricing——同一天内它的路由表动过两次（见下傍晚读数）。第三方 Help AIO 快照 2026-10-22 09:02（09:04 读取）第十三次把本站列为 24 小时综合可用率 0.00%（有效探测 552 次；十三次依次为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554、10-15 09:04/554、10-15 17:04/554、10-16 09:04/554、10-18 17:17/558、10-19 17:00/552、10-21 09:04/554、10-21 17:04/553、10-22 09:02/552），同页 19 站里 0% 的仍是本站与 Undying（553 次）、IKun Code（1,105 次）三家。判读升级：自家价目清单清零属运营方自证、第三方连续十三次 0% 属独立监测，两条互不引用的来源今日起指向同一结论——本站当前无可售模型，故本项由收缩观察升为不可入驻级；已持有余额者停止充值并导出记录，未接入者不得以首页或接口 200 作为任何入驻依据。是否把 seed 的 status 由 active 改判或整条下架属种子区／手工区结构变更，交周五全量决定，日更不改 status 字段；本条 relayVerify 的 at 提 10-22 只表示双源核实动作已完成，不代表可用性背书。10-22 17:00:59 傍晚复核（抓取件 17,152 字节；分钟归属由 10-23 09:2x 按 stat 全精度 mtime 审计更正）：/api/pricing 仍 200且在售清单照旧空置——data 0 条／vendors 0 家，即\"接口活着、货已下架\"已持续约 8 小时、非一次抓取抖动；同日两处路由改值可定位到分钟：09:03:52→09:04:29 把\"对口型\"由 /kling/v1/videos/lip-sync 换成 /kling/v1/videos/advanced-lip-sync，09:04:32→17:00:59 把 geminitts 由 /v1beta/models/gemini-2.5-pro-preview-tts:generateContent 换成 /v1beta/models/gemini-3.1-flash-tts-preview:generateContent，而 group_ratio／usable_group／supported_endpoint 计数（36／36／178）逐键未变，即运营方仍在改上游路由而始终没把任何模型挂回价目清单。第三方 Help AIO 快照 2026-10-22 17:02（17:03 读取）第十四次列本站 0.00%（有效探测 552 次，与晨间同计数＝本轮未新增有效探测，最新探测时间戳 16:59；十四次序列末两项为 10-22 09:02/552、10-22 17:02/552），同页 19 站／68 渠道模型／18,811 次探测／总体请求可用率 79.42%（晨间 18,807 次／79.85%），0% 仍是本站与 Undying、IKun Code 三家，非零最低仍是 Muze 75.45%（晨 75.36%），次低 CPass 77.40%（晨 81.55% 回落）。傍晚侧结论不变：不可入驻级、停止充值并导出记录；at 保持 10-22 不再提。" },
+      yunwu: { status: "verified", at: "2026-10-25", note: "10-09 复核（本窗口唯一有异动的已核站）：本站自家接口照常返回——首页 200、/api/pricing 200、/api/status 200（446,553 字节，system_name=\"云雾 API \"、版本 20260918-152544、enable_online_topup=true、email_verification=true），公告 340 条但最新一条停在 2026-08-16（\"同步官方价格：deepseek-v4-pro/flash\"），此后两个月无任何运营公告。同一时点，第三方监测 Help AIO「AI中转站可用性监测」页（快照 2026-10-09 09:19，自称自 2026 年 2 月起累计探测 276 万次、无赞助）把本站列为 24 小时综合可用率 0.00%、有效探测 560 次、最新探测 09:19——是页面所列 18 站中两个 0% 之一（另一个 Undying 亦 0.00%、560 次），而同期其余站点多在 84%-97%。判读：页面接口全 200 与\"模型调用 0% 可用\"并存，正是\"价目接口 200 不等于能用\"的形态，但 0% 属单一第三方来源，Help AIO 的探测模型、判定阈值与是否含维护时段均未公开可核，本站无法用第二个独立来源复现（检索未见 10 月内社区故障帖），故只记为收缩/故障观察项，不写成暴雷结论。10-02 双源依据仍成立（①本站 /api/pricing 直抓 384 条倍率表；②GitHub 社区目录 frank36512/aiapi + 测评页 EggStriker 2026-08-11\"适合测试不宜生产\"）；种子标 type=mixed，本站不作质量背书。V2EX 相关帖发在 promotions 节点属官方推广，不计入独立源；简书\"云雾 APP 诈骗\"为同名兼职资金盘，与本站无关（同名混淆，勿误判红旗）。10-09 周五抽查复核：/api/pricing 返回 data 382 条（站内 10-02 记 384 条，微降 2 条属价目正常滚动）；抽核倍率逐项对得上——qwen3.8-max x6、claude-fable-5 x5、deepseek-v4-pro x4.5，且价目表仍不含 gemini-4-argon，故本条维持 verified、不下调。10-10 次日复查：自家三接口仍全 200（/api/pricing 288,041 字节、/api/status 446,553 字节与 10-09 同尺寸），运营公告仍停在 08-16；同日 Help AIO 09:00 快照第二次把本站列为 24 小时综合可用率 0.00%（有效探测 552 次、最新探测 08:59）→ 连续两日单源 0% 而价目/状态接口照常，仍不满足双源、仍不下暴雷结论，但风险等级较昨日上升，接入前应先小额测试（本站不做兑付背书）。同页 10-10 另列 HongMaCC 43.84%、CPass 68.11%、Undying 0.00%，三家均不在本站种子目录内，不作收录依据。10-13 出现决定性异动，改判为\"运营方主动冻结并迁移\"：本站 /api/status 返回体中 system_name 已由\"云雾 API \"变成\"x\"、版本 20260918-152544 → 20261013-022518，并新增 freeze=true、migration_target_url=\"https://api.openlux.ai\"、migration_exchange_rate=13.6、server_address_arr=[{\"URL\":\"https://api.zhongzhuan.chat\",\"Description\":\"空白反代地址\"}]——即运营方自己把账号与余额指向 OpenLux（兑换率 13.6）并冻结本站，而公告仍 340 条、最新一条依旧停在 08-16，冻结动作没有任何配套公告；同轮 /api/pricing 仍 200（289,028 字节）、首页 200，正是\"接口活着、账号被冻结迁移\"的形态。第三方 Help AIO 快照 2026-10-13 17:14 第三次把本站列为 24 小时综合可用率 0.00%（有效探测 558 次；前两次为 10-09 09:19 与 10-10 08:59），同页其余 17 站在 74%-97% 区间（Packy Code 97.49%、Yes Code 97.22%、4Router 94.98%、Micu 89.34%、TimiCC 90.86%、APINebula 74.73%、SSSAiCode 76.07%）。判读升级：运营方自证的 freeze+迁移目标与第三方连续三次 0% 属两条互不引用的独立来源，本站据此把 yunwu 视为暴雷/收缩级风险——已持有余额者应尽快导出数据并停止充值，未接入者不得以价目接口 200 作为可入驻依据（本条 status 仍写 verified 只表示\"双源核实动作已完成\"，不代表可用性背书）。迁移目标 OpenLux 自身 /api/status 200（509,149 字节、system_name=\"OpenLux\"、版本 20261013-022127、公告 382 条、最新 2026-10-13 03:00 称 Cli/Anti-Gemini 分组把 gemini-3.6/3.7-flash 自动路由至 gemini-3.8-flash 且价格不变，10-10 另有 wan3.0-video 恢复与 MiniMax-H3 上线）仅能证明目标站活着且由同一 new-api 栈运营；OpenLux 不在本站种子与用户提报目录内，是否新开条目交周五全量。10-14 晨二次直抓：/api/status 仍 200（446,543 字节）但构建版本由昨日的 20261013-022518 变为 20261013-200904，且 **freeze 字段已读不到**，而 migration_target_url=https://api.openlux.ai 与 migration_exchange_rate=13.6、server_address_arr 指向\"空白反代地址\" api.zhongzhuan.chat 三项照旧，system_name 仍是\"x\"、公告仍 340 条最新停在 08-16——一次改版把冻结标记摘掉而迁移参数保留，可能是解冻、也可能是隐藏字段，两条路都开放，本站不作二选一结论；能确定的是 Help AIO 快照 2026-10-14 09:07 第四次把本站列为 24 小时综合可用率 0.00%（有效探测 554 次；四次分别为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554），同页 19 站里只有本站与 Undying 两个 0%，其余 68.79%-97.84%（HongMaCC 已从 10-10 的 43.84% 回到 95.50%、CPass 84.80%）。结论不变且更硬：无论冻结字段在不在，连续四天的第三方 0% 加运营方自证的迁移参数，都足以把本站列为\"暴雷/收缩级\"，持有余额先导出数据并停止充值，未接入者不得以 /api/pricing 200 作为可入驻依据。10-15 第三次复查并自纠字段误读：把 10-09/10-13/10-14/10-15 四份 /api/status 快照（446,553 / 446,543 / 446,543 / 446,543 字节）按键逐项回读，migration_freeze_enabled=true、migration_target_url=https://api.openlux.ai、migration_exchange_rate=13.6、server_address_arr 指向\"空白反代\"api.zhongzhuan.chat、migration_repopup_hours=24 这五项自 10-09 那次抓取起就一直都在，而返回体顶层从来没有名为 freeze 的键——本条 10-13 所写\"新增 freeze=true\"与 10-14 所写\"freeze 字段已读不到\"都属字段名读错，据此撤销\"改版把冻结标记摘掉\"的猜测（同批事件条目已同步更正），10-13 的真实变化只有 system_name 由\"云雾 API \"改成\"x\"、构建版本 20260918-152544→20261013-022518、进程 start_time 重置三项。今日构建版本仍 20261013-200904（与 10-14 抓到的同值、快照字节数亦同）、公告仍 340 条且最新停在 08-16、/api/pricing 仍 200（289,034 字节、384 条倍率，表内仍无 gemini-4-argon 与 gemini-3.8-flash 条目，抽核 qwen3.8-max/claude-fable-5/deepseek-v4-pro 三条模型名均能读到）。第三方 Help AIO 快照 2026-10-15 09:04 第五次把本站列为 24 小时综合可用率 0.00%（有效探测 554 次；五次分别为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554、10-15 09:04/554），同页 19 站里仍只有本站与 Undying 两个 0%，其余 17 站在 59.55%-97.03% 区间（Packy Code 97.03%、Neko Code 95.50%、HongMaCC 92.80%，而 SSSAiCode 自 10-13 的 76.07% 再降到 64.01%、IKun Code 59.55%）。迁移目标 OpenLux 今日 /api/status 仍 200（510,406 字节、system_name=\"OpenLux\"、构建版本由昨日 20261013-022127 变为 20261014-182244、公告 383 条，最新一条标题为\"模型上架：gemini-4-argon\"）——目标站仍在滚动更新且已上架谷歌新旗舰，但它既不在本站种子也不在用户提报目录，是否新开条目仍交周五全量。结论：暴雷/收缩级判定不变，但依据改写在更稳的基础上——不再是\"字段忽在忽不在\"，而是运营方自证的冻结+迁移参数连续七日在场、叠加第三方连续五次 0%。10-15 傍晚同日第二轮复查出两处新事实：① 自家 /api/pricing 的模型条目由上午 384 条减为 378 条，减掉的正是整条可灵视频线（kling-video、kling-omni-video、kling-motion-control、kling-advanced-custom-elements、kling-video-extend）加一个 deepseek-v4-flash-0731，新增 0 条，gemini-4-argon 到傍晚仍不在表内——这是运营方接口自证的当日在售清单收缩，方向与\"聚焦迁移\"一致；② /api/status 的 119 个键里只有 start_time 变了，由 1791893476（10-13 20:11 北京）跳到 1792038105（10-15 12:21 北京），即今日 12:21 服务重启过一次而构建版本仍 20261013-200904，冻结与迁移三参数逐字未变、公告仍 340 条且最新停在 08-16。Help AIO 17:04 快照第六次把本站列为 0.00%（554 次探测；六次为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554、10-15 09:04/554、10-15 17:04/554）。迁移目标 OpenLux 傍晚仍 200（510,457 字节），119 键里只有 oauth_allowed_origins 与 start_time 变（10-14 20:28→10-15 12:40 北京，即它也在今日中午重启过一次），构建版本仍 20261014-182244、公告仍 383 条且最新一条仍是 10-14 01:37 的\"模型上架：gemini-4-argon\"——两站同日相继重启与迁移切换的叙事相符，但接口与公告本身不构成暴雷证据。同页傍晚另一处异动留给下轮盯：IKun Code 由上午 59.55% 跌到 29.58%（1,109 次探测）为今日最大跌幅，SSSAiCode 64.01%→66.02%、4Router 78.91%→92.60%、Yes Code 83.64%→96.39% 回升。判定不变而依据继续加固：冻结+迁移参数连续七日在场、当日在售模型反减 6 条、第三方连续六次 0%。10-16 晨三次直抓（/api/status 446,428 字节、/api/pricing 285,341 字节）出现本轮最要紧的一处反向变化，且这次不是读错键名：先把新旧两份返回体的键逐项对过——旧 119 键、新 116 键，差的正是 migration_freeze_enabled、migration_target_url、migration_exchange_rate、migration_repopup_hours、migration_retention_date 五条，新件里多出 organization_enabled 与 skills_hub_enabled 两条，且整份 446,428 字节原文里连 migration、freeze、openlux 三个字符串都不出现（只有 zhongzhuan 仍在），所以是随构建 20261016-072806（start_time 1792107246＝今晨 07:34 北京）整体摘掉这组前端配置，而非本站上轮那种键名误读。怎么读这条：① 不能读成解冻——公告仍 340 条、最新一条照旧停在 08-16，两个月的运营空窗里没有任何一条说明冻结、迁移或解除，server_address_arr 仍写\"空白反代地址\"api.zhongzhuan.chat、server_status_url 仍指向 status.zhongzhuan.chat；② 也不能读成迁移完成，因为第三方 Help AIO 09:06 快照第七次把本站列为 24 小时综合可用率 0.00%（有效探测 554 次，七次为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554、10-15 09:04/554、10-15 17:04/554、10-16 09:04/554），19 站里 0% 的仍是本站、Undying（555 次）与 IKun Code（1,109 次，昨傍晚 29.58%→今晨彻底归零，为连续第二日恶化）三家；③ 在售清单侧今日无反续证据——/api/pricing 仍 378 条、与昨晚逐条相同（新增 0、下架 0），gemini-4-argon 到今晨仍不在表内，SSSAiCode 由 66.02% 回升到 68.84%、榜首 Muze 99.19%。结论：暴雷/收缩级判定维持不变，但把\"参数连续七日在场\"这条依据换成更中性也更硬的表述——运营方曾在无公告情况下自证冻结与迁移目标，又在无公告情况下把该组配置从状态接口里整体摘除，两次动作都没有配套公告，配合第三方连续七次 0% 与同页 IKun/Undying 归零，普通用户可执行的结论只有一条：不以接口 200 作为可入驻依据、已持有余额者停止充值并导出记录。是否给 OpenLux 或 IKun 开条目仍交周五全量。10-18 周日第四次直抓（/api/status 446,437 字节、/api/pricing 285,307 字节）读到一处此前没有的反向信号：system_name 由 10-13 起的占位符\"x\"改回\"云雾 API\"（10-09 那份是带尾空格的\"云雾 API \"），即站名自我标识被恢复；同时构建版本 20261016-072806 → 20261018-160411、start_time 1792312747（今日 16:39 北京，即下午重启过一次）。除 start_time、system_name、version 三项外其余 113 键逐值未变，migration_freeze_enabled 等五参数仍不在返回体里（116 键与 10-16 同集合，整份原文仍不出现 migration/freeze/openlux 三串，zhongzhuan 依旧只在 server_address_arr 与 server_status_url），公告仍 340 条且最新一条照旧停在 08-16，在售清单仍 378 条与 10-16 逐条相同（新增 0、下架 0、gemini-4-argon 仍不在表内）。第三方 Help AIO 17:17 快照第八次把本站列为 24 小时综合可用率 0.00%（有效探测 558 次；八次为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554、10-15 09:04/554、10-15 17:04/554、10-16 09:04/554、10-18 17:17/558）。判读：改回本名与摘除迁移参数一样属运营方自证，既没有配套公告也没有任何兑付或可用性证据，故不能读成解冻或迁移完成，也不能读成恢复营业——第三方 0% 已连续八次跨十天。relayVerify 的 at 提到 10-18，判定与可执行结论不变：不以接口 200 作可入驻依据、已持有余额者停止充值并导出记录。10-19 傍晚第五次直抓（/api/status 446,469 字节、/api/pricing 284,135 字节）读到三处新事实：① 构建版本 20261018-160411 → 20261019-114428、start_time 由 1792312747（昨 16:39 北京）跳到 1792382550（今日 12:02 北京），即正午又重启过一次；② 键集合由 116 增至 117，多出来的那条是 tencent_captcha_app_id（取值属对方配置，本站不抄），同期 captcha_type 由 click-shape 改为 tencent、captcha_register_enabled 由 false 改为 true——注册环节的图形验证码被打开并换成腾讯云验证码；而 system_name 仍为“云雾 API”、enable_online_topup 与 stripe 充值开关仍 true、invite_reward_rate 仍 10、公告仍 340 条且最新一条照旧停在 08-16、migration_freeze_enabled 等五参数仍不在返回体里；③ 在售清单由 378 条减为 376 条，减掉的正是 o1-pro 与 o1-pro-2025-03-19 两行（新增 0 条），全部计价字段（model_ratio／completion_ratio／quota_type）逐条比对零变动，内容级变化另有三条模型失去“优质官转”类分组（gemini-embedding-001 去掉“官转gemini”、gpt-4o-transcribe 与 gpt-4o-mini-transcribe 去掉“优质官转OpenAI”），usage_count 有 198 条被重算且普遍下降，属对方调用统计口径，本站不据此推断流量。第三方 Help AIO「AI中转站可用性监测」17:00 快照第九次把本站列为 24 小时综合可用率 0.00%（有效探测 552 次；九次分别为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554、10-15 09:04/554、10-15 17:04/554、10-16 09:04/554、10-18 17:17/558、10-19 17:00/552），同页 19 站里 0% 的仍是本站、Undying（553 次）与 IKun Code（1,105 次）三家，其余 16 站在 78.88%—99.73%（榜首 Muze 99.73%，最低 Yes Code 78.88%）。判读：换验证码与下架 OpenAI 老代际都是运营方自证的配置动作，既没有配套公告，也没有兑付或可用性证据；今日检索“云雾 迁移／冻结”仍 0 条结果，即本站拿不到独立第二源，故不能读成解冻、也不能读成恢复接单。relayVerify 的 at 提到 10-19，判定与可执行结论自 10-13 起第十一天不变：不以接口 200 作可入驻依据、已持有余额者停止充值并导出记录。10-22 晨直抓读到本项自 10-09 起最硬的一条证据：/api/pricing 仍 200 但返回体的在售模型清单 data 由 10-19 的 376 条变成空数组、vendors 由 21 家变 0 家，整份只有 17,141 字节且三次抓取条数一致（09:03:52／09:04:29／09:04:32 三件的 data 均为 0 条、vendors 均为 0 家、supported_endpoint 均为 178 项；md5 全等的那一对是相隔 3 秒的 09:04:29 与 09:04:32 两件（各 17,150 字节、218ca0b91565ee8b8703e68a0f6185bd），09:03:52 件与它们只差\"对口型\"一处路由值——早间所记\"09:03／09:05 两次 md5 相同\"经傍晚复核属误记，逐字节相同的一对其实是相隔 3 秒的 09:04:29／09:04:32 两件），而 group_ratio 36 组与 supported_endpoint 178 项、usable_group 36 组全部照常返回（早间所记\"group_ratio 33 组\"经傍晚复核更正为 36，且 10-19 那份 376 条的抓取件本就是 36 组，即本数字全天未变）——即运营方自家接口自证当前没有任何在售模型，接口活着而货已下架；同轮其状态接口自述的空白反代地址 api.zhongzhuan.chat/api/pricing 同样 data 0 条／vendors 0 家（17,143 字节），两域名互证而非两个独立来源。/api/status 与 10-19 傍晚那份抓取件逐字节全等（446,469 字节、md5 f27c2dc0dad505446061e83cd265bbf2、117 键零变动、start_time 仍 1792382550＝10-19 12:02 北京、system_name 仍是云雾 API、公告仍 340 条且最新一条照旧停在 08-16），即 /api/status 这一份件子三日内没重启也没改过一次配置；但这条不能外推到 /api/pricing——同一天内它的路由表动过两次（见下傍晚读数）。第三方 Help AIO 快照 2026-10-22 09:02（09:04 读取）第十三次把本站列为 24 小时综合可用率 0.00%（有效探测 552 次；十三次依次为 10-09 09:19/560、10-10 08:59/552、10-13 17:14/558、10-14 09:07/554、10-15 09:04/554、10-15 17:04/554、10-16 09:04/554、10-18 17:17/558、10-19 17:00/552、10-21 09:04/554、10-21 17:04/553、10-22 09:02/552），同页 19 站里 0% 的仍是本站与 Undying（553 次）、IKun Code（1,105 次）三家。判读升级：自家价目清单清零属运营方自证、第三方连续十三次 0% 属独立监测，两条互不引用的来源今日起指向同一结论——本站当前无可售模型，故本项由收缩观察升为不可入驻级；已持有余额者停止充值并导出记录，未接入者不得以首页或接口 200 作为任何入驻依据。是否把 seed 的 status 由 active 改判或整条下架属种子区／手工区结构变更，交周五全量决定，日更不改 status 字段；本条 relayVerify 的 at 提 10-22 只表示双源核实动作已完成，不代表可用性背书。10-22 17:00:59 傍晚复核（抓取件 17,152 字节；分钟归属由 10-23 09:2x 按 stat 全精度 mtime 审计更正）：/api/pricing 仍 200且在售清单照旧空置——data 0 条／vendors 0 家，即\"接口活着、货已下架\"已持续约 8 小时、非一次抓取抖动；同日两处路由改值可定位到分钟：09:03:52→09:04:29 把\"对口型\"由 /kling/v1/videos/lip-sync 换成 /kling/v1/videos/advanced-lip-sync，09:04:32→17:00:59 把 geminitts 由 /v1beta/models/gemini-2.5-pro-preview-tts:generateContent 换成 /v1beta/models/gemini-3.1-flash-tts-preview:generateContent，而 group_ratio／usable_group／supported_endpoint 计数（36／36／178）逐键未变，即运营方仍在改上游路由而始终没把任何模型挂回价目清单。第三方 Help AIO 快照 2026-10-22 17:02（17:03 读取）第十四次列本站 0.00%（有效探测 552 次，与晨间同计数＝本轮未新增有效探测，最新探测时间戳 16:59；十四次序列末两项为 10-22 09:02/552、10-22 17:02/552），同页 19 站／68 渠道模型／18,811 次探测／总体请求可用率 79.42%（晨间 18,807 次／79.85%），0% 仍是本站与 Undying、IKun Code 三家，非零最低仍是 Muze 75.45%（晨 75.36%），次低 CPass 77.40%（晨 81.55% 回落）。傍晚侧结论不变：不可入驻级、停止充值并导出记录；at 保持 10-22 不再提。10-25 晨复核读到本窗口最硬的一条：自 10-19 起逐字节全等的 /api/status 静默被打破——抓取件 446,552 字节（昨 446,469）、键数 117→119、version 由 20261019-114428 升到 20261025-080901、start_time 1792886988＝今晨 08:09 北京，即今晨重新部署过一次实例；同轮返回里新增五个迁移字段：migration_target_url=\"https://api.openlux.ai\"、migration_exchange_rate=13.6、migration_freeze_enabled=true、migration_repopup_hours=24、migration_retention_date 空——运营方自家接口把\"引导用户迁往 OpenLux、按 13.6 折算、迁移窗口冻结中\"写进了配置；验证码由 tencent 换 slide-basic、tencent_captcha_app_id 与 organization_enabled、skills_hub_enabled 三项从返回里消失。同轮 /api/pricing 仍 200 而在售清单照旧 data 0 条／vendors 0 家（17,141 字节、md5 63adef25… 与 10-22 09:03:52 那份逐字节全等，即自昨晨起价目接口一字未动），公告仍 340 条且最新停在 08-16，本轮仍无任何一条停服或迁移公告。判读：重启实例并挂出迁移目标，却没有把任何模型挂回价目清单，形态由\"下架观望\"更靠近\"把存量用户导向别家\"；判定维持不可入驻级，可执行提示加一句——账户内若有余额，涉及按 13.6 折算迁移到 OpenLux 前先自行核对折算是否等价与费率（本站未验证，且该折算只写在配置字段里、无公告原文佐证）；OpenLux 既不在种子 41 家也不在 extra 3 条，本轮检索未取得它的独立第二源（只有一条 10-18 的 Dify 接入教程帖提及站名），是否收录交周五全量。" },
       rcouyi: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开价目接口 https://api.rcouyi.com/api/pricing 返回 797 条（含 claude-opus-5-5 x2、claude-fable-5-1 x5、deepseek-v4-flash x0.5 等，供应商字段可读）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-16，\"一站式聚合中转、接口文档完善、可直连、价格中等\"）。未检索到跑路或退款纠纷，但社区讨论与 GitHub 曝光度都很低，独立佐证单薄，标\"单一第三方源\"持续观察。" },
       relaydance: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开价目接口 https://relaydance.com/api/pricing 返回 45 条（auto_groups=default；以 doubao-seedance 系列视频模型为主，如 seedance-2-0-480p x4.375，另有 claude-fable-5 x6.25）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-15，\"转战视频生成中转，Seedance 2.0/2.5 一站式，价格中等\"）。appinn 的中转站评测帖现已 404 无法复核，Linux.do/V2EX/论坛无用户讨论。价目可读证明存活，但覆盖面窄（45 条）且独立佐证单薄，持续观察。" },
       atlascloud: { status: "verified", at: "2026-10-02", note: "双源：①本站 10-02 直抓公开模型接口 https://api.atlascloud.ai/v1/models 返回 200（71KB，data 数组含 Qwen3-235B-A22B-Instruct-2507 等可复核条目）；②独立来源仅一份——第三方测评页 EggStriker（2026-08-15，\"图像/视频生成聚合 300+ 模型、按秒计费、国内需代理\"）。未见跑路或退款投诉（搜索结果多为自家博客，不计）。注：本站定位偏图像/视频生成聚合，与文本中转目录不完全同类，比价时注意。" },
@@ -1229,9 +1240,9 @@ window.AGENTS_DATA = {
       "prices": "https://raw.githubusercontent.com/howardpen9/awesome-ai-api-proxy/main/data/prices.latest.json"
      },
      "sourceLastReviewed": "2026-07-12",
-     "priceSnapshot": "2026-08-16",
-     "priceRecordCount": 3464,
-     "fetchedAt": "2026-09-28",
+     "priceSnapshot": "2026-10-22",
+     "priceRecordCount": 3956,
+     "fetchedAt": "2026-10-25",
      "providers": [
       {
        "id": "bltcy",
@@ -1239,7 +1250,7 @@ window.AGENTS_DATA = {
        "url": "https://api.bltcy.ai",
        "section": "china",
        "type": "mixed",
-       "status": "active",
+       "status": "inactive",
        "payment": [
         "alipay",
         "wechat"
@@ -1263,13 +1274,13 @@ window.AGENTS_DATA = {
        "seedLastVerified": "2026-06-07",
        "seedVerifiedBy": "maintainer",
        "riskFlags": [],
-       "note": "Azure 通道；主打最低价。new-api fork，1000+ 模型横跨 25+ 分组；`/api/pricing` 公开 default 分组倍率。",
+       "note": "已停止服务（2026-10-23 标记）：官方公告（api.bltcy.ai/api/status，2026-04-24T16:00Z 发布）停止注册与充值，2026-05-01 起全部 API 停止服务；退款走账户内入口，售后保留至 2026-12-31。原为 Azure 通道 new-api fork，1000+ 模型。",
        "pricingApi": "https://api.bltcy.ai/api/pricing",
        "pricePid": "bltcy",
        "priceStats": {
-        "records": 1375,
-        "models": 5,
-        "capturedAt": "2026-08-16"
+        "records": 1469,
+        "models": 6,
+        "capturedAt": "2026-10-22"
        }
       },
       {
@@ -1301,8 +1312,8 @@ window.AGENTS_DATA = {
        "pricePid": "uiuiapi",
        "priceStats": {
         "records": 666,
-        "models": 6,
-        "capturedAt": "2026-08-16"
+        "models": 3,
+        "capturedAt": "2026-10-22"
        }
       },
       {
@@ -1459,6 +1470,39 @@ window.AGENTS_DATA = {
        "priceStats": null
       },
       {
+       "id": "dshapi",
+       "name": "DSH API",
+       "url": "https://api.dshapi.icu",
+       "section": "china",
+       "type": "mixed",
+       "status": "unverified",
+       "payment": [
+        "alipay",
+        "wechat"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "google",
+        "xai"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": true,
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted",
+        "no_entity"
+       ],
+       "note": "OpenAI 与 Anthropic 双协议兼容网关；QQ 邮箱注册、支付宝/微信支付、按量计费。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
        "id": "gptgod",
        "name": "GPTGOD",
        "url": "https://gptgod.online",
@@ -1527,7 +1571,9 @@ window.AGENTS_DATA = {
        "status": "unverified",
        "payment": [
         "alipay",
-        "wechat"
+        "wechat",
+        "card",
+        "crypto"
        ],
        "models": [
         "openai",
@@ -1545,8 +1591,45 @@ window.AGENTS_DATA = {
        "riskFlags": [
         "operator_submitted"
        ],
-       "note": "兼容 OpenAI／Anthropic／Gemini 的网关；支付宝与微信支付；运营方宣称多上游路由，并有 Claude Code／Codex 配置教程与 gpt-6-astra 支持。",
+       "note": "兼容 OpenAI／Anthropic／Gemini 的网关；支付宝、微信支付、信用卡与 USDT（BEP20／TRC20／ERC20）；同一个 key 可用 /v1/images/generations 调用 GPT Image 2／2.5 与 Gemini 生图模型；运营方宣称多上游路由，并有 Claude Code／Codex 配置教程与 gpt-6-astra 支持。",
        "pricingApi": "https://teamorouter.com/pricing",
+       "pricePid": "teamorouter",
+       "priceStats": {
+        "records": 12,
+        "models": 1,
+        "capturedAt": "2026-10-22"
+       }
+      },
+      {
+       "id": "tokendos",
+       "name": "TokenDos",
+       "url": "https://www.tokendos.com",
+       "section": "china",
+       "type": "aggregator",
+       "status": "unverified",
+       "payment": [],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "deepseek",
+        "qwen",
+        "kimi",
+        "glm",
+        "grok"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "连接供应节点与调用方的 Token 共享市场；提供 OpenAI /v1 与 Anthropic 端点，以及公开查价与可用率页面。",
+       "pricingApi": null,
        "pricePid": null,
        "priceStats": null
       },
@@ -1574,8 +1657,12 @@ window.AGENTS_DATA = {
        ],
        "note": "new-api OpenAI 兼容网关，公开 `/api/pricing`；分组为 Codex／Claude-Code 号池（无扁平 default 组）。",
        "pricingApi": "https://api.wappkit.com/api/pricing",
-       "pricePid": null,
-       "priceStats": null
+       "pricePid": "wappkit",
+       "priceStats": {
+        "records": 12,
+        "models": 1,
+        "capturedAt": "2026-10-22"
+       }
       },
       {
        "id": "wawazz",
@@ -1642,9 +1729,9 @@ window.AGENTS_DATA = {
        "pricingApi": "https://api.atlascloud.ai/v1/models",
        "pricePid": "atlascloud",
        "priceStats": {
-        "records": 404,
+        "records": 374,
         "models": 5,
-        "capturedAt": "2026-08-16"
+        "capturedAt": "2026-10-22"
        }
       },
       {
@@ -1677,9 +1764,9 @@ window.AGENTS_DATA = {
        "pricingApi": "https://openrouter.ai/api/v1/models",
        "pricePid": "openrouter",
        "priceStats": {
-        "records": 807,
-        "models": 8,
-        "capturedAt": "2026-08-16"
+        "records": 907,
+        "models": 7,
+        "capturedAt": "2026-10-22"
        }
       },
       {
@@ -1711,9 +1798,9 @@ window.AGENTS_DATA = {
        "pricingApi": "https://relaydance.com/api/pricing",
        "pricePid": "relaydance",
        "priceStats": {
-        "records": 68,
+        "records": 78,
         "models": 1,
-        "capturedAt": "2026-08-16"
+        "capturedAt": "2026-10-22"
        }
       },
       {
@@ -1865,6 +1952,76 @@ window.AGENTS_DATA = {
        "priceStats": null
       },
       {
+       "id": "apiclaw",
+       "name": "APIClaw",
+       "url": "https://apiclaw.biz",
+       "section": "global",
+       "type": "aggregator",
+       "status": "unverified",
+       "payment": [
+        "crypto"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "deepseek",
+        "mistral",
+        "meta",
+        "cohere",
+        "xai"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "OpenAI-compatible gateway routing Anthropic, OpenAI, Gemini, DeepSeek and other providers on one key; paid plans are billed monthly in crypto.",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "bettertoken",
+       "name": "BetterToken",
+       "url": "https://bettertoken.ai",
+       "section": "global",
+       "type": "aggregator",
+       "status": "unverified",
+       "payment": [
+        "card"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "deepseek",
+        "moonshot",
+        "zhipu",
+        "minimax",
+        "qwen"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "OpenAI- and Anthropic-compatible gateway (chat/completions, responses, messages) for Claude, GPT, Gemini, DeepSeek, Kimi, GLM, MiniMax and Qwen; prepaid pay-as-you-go; public pricing JSON at /api/pricing, with each model's access-group ratio applied.",
+       "pricingApi": "https://bettertoken.ai/api/pricing",
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
        "id": "aiapi-pro",
        "name": "NovAI",
        "url": "https://aiapi-pro.com",
@@ -1896,6 +2053,41 @@ window.AGENTS_DATA = {
         "operator_submitted"
        ],
        "note": "OpenAI 兼容聚合网关，整合中国前沿模型（DeepSeek、Qwen、GLM、Kimi、MiniMax、Doubao、Hunyuan），同一 `/v1` 端点另含图像与视频生成；`/v1/models` 公开模型清单，定价页列每 token 价格。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "ourtoken",
+       "name": "OurToken",
+       "url": "https://ourtoken.ai",
+       "section": "global",
+       "type": "aggregator",
+       "status": "unverified",
+       "payment": [
+        "card"
+       ],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "zhipu",
+        "minimax",
+        "deepseek",
+        "moonshot",
+        "hunyuan"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": true,
+       "supportsStream": true,
+       "supportsTools": true,
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "OpenAI 兼容网关，统一聚合 OpenAI、Anthropic Claude、Gemini、DeepSeek、MiniMax、GLM、Kimi 与腾讯混元模型，一个 API key 与一个计费账户。",
        "pricingApi": null,
        "pricePid": null,
        "priceStats": null
@@ -1934,8 +2126,12 @@ window.AGENTS_DATA = {
        ],
        "note": "OpenAI 兼容网关；单一密钥涵盖前沿与开源模型（Claude、GPT、Gemini、DeepSeek、Qwen、Kimi、GLM）。按量计费。公开 `/pricing.json`。运营方自称 MachineFi Labs。",
        "pricingApi": "https://quicksilverpro.io/pricing.json",
-       "pricePid": null,
-       "priceStats": null
+       "pricePid": "quicksilverpro",
+       "priceStats": {
+        "records": 200,
+        "models": 1,
+        "capturedAt": "2026-10-22"
+       }
       },
       {
        "id": "routescope",
@@ -2062,10 +2258,38 @@ window.AGENTS_DATA = {
        "pricingApi": "https://api.unorouter.ai/api/pricing",
        "pricePid": "unorouter",
        "priceStats": {
-        "records": 144,
-        "models": 5,
-        "capturedAt": "2026-08-16"
+        "records": 238,
+        "models": 6,
+        "capturedAt": "2026-10-22"
        }
+      },
+      {
+       "id": "router",
+       "name": "XiuRouter",
+       "url": "https://router.xiu.ai",
+       "section": "global",
+       "type": "aggregator",
+       "status": "unverified",
+       "payment": [],
+       "models": [
+        "openai",
+        "anthropic",
+        "gemini"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": true,
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "托管的按量计费网关，提供 OpenAI Chat Completions 与 Responses、Anthropic Messages 和 Gemini GenerateContent，并支持受限 API Key 及逐请求用量与费用记录。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
       },
       {
        "id": "new-api",
@@ -2140,6 +2364,38 @@ window.AGENTS_DATA = {
         "operator_submitted"
        ],
        "note": "MIT TypeScript OpenAI-compatible multi-provider router (parallel ensemble); self-hosted — you supply keys. npm: adaptive-memory-multi-model-router.",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
+      },
+      {
+       "id": "bifrost",
+       "name": "Bifrost",
+       "url": "https://github.com/maximhq/bifrost",
+       "section": "selfhost",
+       "type": "gateway-oss",
+       "status": "unverified",
+       "payment": [],
+       "models": [
+        "openai",
+        "anthropic",
+        "google",
+        "azure",
+        "bedrock",
+        "groq",
+        "mistral"
+       ],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": true,
+       "supportsTools": true,
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "Go-based self-hosted AI gateway with an OpenAI-compatible API, multi-provider routing, fallbacks, load balancing, and observability; users supply their own provider keys.",
        "pricingApi": null,
        "pricePid": null,
        "priceStats": null
@@ -2245,6 +2501,30 @@ window.AGENTS_DATA = {
        "pricingApi": null,
        "pricePid": null,
        "priceStats": null
+      },
+      {
+       "id": "cli",
+       "name": "gateway-price-check (CLI)",
+       "url": "https://github.com/happy520ai/gateway-price-check",
+       "section": "tools",
+       "type": "comparison",
+       "status": "unverified",
+       "payment": [],
+       "models": [],
+       "modelCount": null,
+       "providerCount": null,
+       "entityRegistered": "unknown",
+       "supportsStream": "unknown",
+       "supportsTools": "unknown",
+       "seedLastVerified": null,
+       "seedVerifiedBy": "community",
+       "riskFlags": [
+        "operator_submitted"
+       ],
+       "note": "零依赖 CLI：对每个端点发一次免验证的 GET /v1/models，五档判定（YES/NO/AUTH/ERR/UNKNOWN）把「没有公布价格」与「我读不到」分开；CI 每日量 11 家并归档原始读数。",
+       "pricingApi": null,
+       "pricePid": null,
+       "priceStats": null
       }
      ],
      "anchorModels": [
@@ -2256,21 +2536,28 @@ window.AGENTS_DATA = {
          "in": 5,
          "out": 25,
          "cacheRead": 0.5,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         },
         {
          "pid": "openrouter",
          "in": 2.5,
          "out": 12.5,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
+        },
+        {
+         "pid": "teamorouter",
+         "in": 1.33,
+         "out": 6.65,
+         "cacheRead": null,
+         "captured": "2026-10-22"
         },
         {
          "pid": "unorouter",
          "in": 5,
          "out": 25,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         }
        ]
       },
@@ -2282,42 +2569,42 @@ window.AGENTS_DATA = {
          "in": 3,
          "out": 15,
          "cacheRead": 0.3,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         },
         {
          "pid": "bltcy",
          "in": 3,
          "out": 15,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         },
         {
          "pid": "openrouter",
          "in": 1.5,
          "out": 7.5,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         },
         {
          "pid": "relaydance",
          "in": 3.75,
          "out": 18.75,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         },
         {
          "pid": "uiuiapi",
          "in": 3,
          "out": 15,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         },
         {
          "pid": "unorouter",
          "in": 3,
          "out": 15,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         }
        ]
       },
@@ -2329,21 +2616,35 @@ window.AGENTS_DATA = {
          "in": 2.5,
          "out": 15,
          "cacheRead": 0.25,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         },
         {
          "pid": "bltcy",
          "in": 2.5,
          "out": 15,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         },
         {
          "pid": "openrouter",
          "in": 1.25,
          "out": 7.5,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
+        },
+        {
+         "pid": "uiuiapi",
+         "in": 75,
+         "out": 450,
+         "cacheRead": null,
+         "captured": "2026-10-22"
+        },
+        {
+         "pid": "wappkit",
+         "in": 0.11027999999999999,
+         "out": 0.6616799999999999,
+         "cacheRead": null,
+         "captured": "2026-10-22"
         }
        ]
       },
@@ -2355,7 +2656,7 @@ window.AGENTS_DATA = {
          "in": 15,
          "out": 90,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         }
        ]
       },
@@ -2367,28 +2668,42 @@ window.AGENTS_DATA = {
          "in": 1.5,
          "out": 9,
          "cacheRead": 0.15,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
+        },
+        {
+         "pid": "bltcy",
+         "in": 75,
+         "out": 300,
+         "cacheRead": null,
+         "captured": "2026-10-22"
         },
         {
          "pid": "openrouter",
          "in": 0.75,
          "out": 4.5,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
+        },
+        {
+         "pid": "quicksilverpro",
+         "in": 1.275,
+         "out": 7.65,
+         "cacheRead": null,
+         "captured": "2026-10-22"
         },
         {
          "pid": "uiuiapi",
-         "in": 0.5,
-         "out": 3,
+         "in": 1.5,
+         "out": 9,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         },
         {
          "pid": "unorouter",
-         "in": 0.5,
-         "out": 3,
+         "in": 1.5,
+         "out": 9,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         }
        ]
       },
@@ -2400,28 +2715,21 @@ window.AGENTS_DATA = {
          "in": 2,
          "out": 2,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         },
         {
          "pid": "openrouter",
          "in": 0.2574,
          "out": 1.0287,
          "cacheRead": null,
-         "captured": "2026-08-16"
-        },
-        {
-         "pid": "uiuiapi",
-         "in": 2,
-         "out": 8,
-         "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         },
         {
          "pid": "unorouter",
-         "in": 2,
-         "out": 8,
+         "in": 1.14,
+         "out": 4.56,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         }
        ]
       },
@@ -2433,28 +2741,14 @@ window.AGENTS_DATA = {
          "in": 4,
          "out": 16,
          "cacheRead": null,
-         "captured": "2026-08-16"
-        },
-        {
-         "pid": "openrouter",
-         "in": 0.7,
-         "out": 2.5,
-         "cacheRead": null,
-         "captured": "2026-08-16"
-        },
-        {
-         "pid": "uiuiapi",
-         "in": 4,
-         "out": 16,
-         "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         },
         {
          "pid": "unorouter",
-         "in": 4,
-         "out": 16,
+         "in": 0.7,
+         "out": 2.4000199999999996,
          "cacheRead": null,
-         "captured": "2026-08-16"
+         "captured": "2026-10-22"
         }
        ]
       }
@@ -2511,6 +2805,18 @@ window.AGENTS_DATA = {
 
   /* ---------------- 每周简报（自动核实任务每周五插入一条，最新在前） ---------------- */
   weekly: [
+    { date: "2026-10-25", note: "周日轮·补跑（窗口＝10-22 傍晚轮 17:05 收尾至今约 40 小时）：诚实交代在前——10-23 与 10-24 两天日更未跑，本轮不是那两天的当日轮，而是把空窗内发生的事实一并核实、按各自事件日期入档、把三个日期戳提到 10-25。变更 6 项入库：① Kimi K3.1 Pro 发布（events +1、apiPrices +2 行、kimi 档案提日并重写 apiNote）；② MiniMax 开放 M3.1 Flash 权重与 MiniMax Community License 商用门槛（events +1、hailuo 档案）；③ OpenAI Decisions API 正式可用（events +1、chatgpt 档案提日）；④ 云雾自家接口挂出迁移指向 api.openlux.ai 与折算率 13.6，而在售清单仍 0 条；⑤ 柏拉图被上游种子改标 inactive 而自家接口当日仍在上新模型与重排报价；⑥ 基准重抓自 10-20 起首次变动＝Kimi-K3.1-Pro 入榜页面第 6 行。种子区由 gen-relay 整体重生成（33→41 家、报价快照 08-16→10-22）。双源名额本日两家分别用在云雾与柏拉图复核；纠错接口零新增，线上／镜像／本地三方 md5 本轮发布前后各测一次。", items: [
+      "基准同步到 10-25：curl 拉通 132,381 字节、md5 188d8c645e92d7346957ce62c2a23b37，解析 338 个 tr／337 行、td 3,033，页脚 article:published_time／modified_time 由 2026-10-20 滚到 2026-10-23——即源页自 10-20 以来首次真正改榜。与 10-22 傍晚件按模型名建 Map 比对＝新增 1（Kimi-K3.1-Pro ✅ 1519/1568/1315，Moonshot·Modified MIT，页面第 6 行插在 Muse Wonder Full 之前）、删除 0、其余 335 行逐格零变动、MII 非空由 237 增至 238；Kimi-K3 的页面新增标记被源页摘掉（分数 1506/1562/1311/60.4 未动），站内同名行同步摘标。16 席 elo／coding 与页面逐值相符且行号严格递增成立，故 benchmarks 与各档案 scores.coding 不动，只把 arena.rows 整体重写为 337 行并按\"重抓成功即提两戳\"把 arena.fetchedAt 与 benchmarks.verifiedAt 提 10-25（meta.dataUpdatedAt 因本日内容核实同步）。K3.1 Pro 是否进产品榜交周五。工具侧同步：dev/apply-arena.cjs 与 dev/_parse_arena.cjs 由 10 格旧契约迁到 9 格现契约（输入为去掉奖牌列的 8 格页面行，AAII／MMLU-Pro 两位仍写空串，MII 逐行另存 dev/_mii_2026-10-25.json），日更写表不再需要临时脚本；本轮用迁移后的脚本复跑一遍，与站内 337 行零差异（ADDED 无／REMOVED 无／value diffs 0／16 席不符 0）。",
+      "过门槛的官方变更第一条并入库：月之暗面 10-24 凌晨发布 Kimi K3.1 Pro 与高速版。官方定价页 platform.kimi.ai/docs/pricing/chat（300,661 字节）的价格表在 HTML 里是客户端渲染、但服务端 payload 以 rows 数组静态可读，逐行拿到 kimi-k3.1-pro $2.00 输入／$10.00 输出／$0.20 缓存读／$2.00 五分钟写／$4.00 一小时写，kimi-k3.1-pro-highspeed 逐值翻倍 $4.00／$20.00（缓存写 $4.00／$8.00），kimi-k3 仍 $3.00／$15.00——即新旗舰比上一代便宜三分之一，高速版则两倍价换 2～3 倍速度。落库＝events +1（date 10-24、tag 产品、agents kimi）、apiPrices +2 行（此前站内根本没有 Kimi 价目行）、kimi.verifiedAt 10-09→10-25、models 首位加 K3.1 Pro、apiNote 重写并闭合 09-22 那轮\"逐模型金额未静态复核\"的缺口、sources 补官方定价页与发布页两条。不作的事：媒体转述的人民币 ¥13（缓存 ¥1.3）／¥68 与官方美元表不同源且官方页本轮无人民币表，记为未核实不入 apiPrices；plans 不动（官方文档同日仍写\"模型推理服务按量计费，不提供订阅制方案\"）。参数与评测（2.8T 总参／104B 激活、1M 上下文、Terminal-Bench 4.0 65.7% 超 GPT-6 Astra）按多家 10-24 独立报道并入 summary，标注媒体口径。",
+      "过门槛的官方变更第二条并入库：MiniMax 10-23 开放 M3.1 Flash 权重。一手来源是权重宿主页本身——Hugging Face 仓库 MiniMaxAI/MiniMax-M3.1-Flash（321,444 字节，元数据 created 2026-10-17T06:37Z／lastModified 2026-10-23T03:37Z／license 标签 other、下载 5,789）与 raw/main/LICENSE 全文 3,363 字节：许可名为 MiniMax Community License，非商用免费，商用须在相关网站／界面／文档显著标注 \"Built with MiniMax M3.1-Flash\"，年营收超 2,000 万美元须 api@minimax.io 事前书面授权、未超只需一次性通知；第 3 条把\"向第三方收费的服务、商业化 API、微调或改后训练版本的商业部署\"都定义为商用，附录另禁军事用途等。这正好补掉此前一直挂在周五清单上的\"权重发布日期／许可条款／参数规模\"三项：428B 总参数、每 token 激活 23B、上下文至 1M、文本+图像+视频输入全部由模型卡自证。落库＝events +1（date 10-23、tag 产品、agents hailuo）、hailuo.verifiedAt 10-21→10-25、models 行注记加\"10-23 开放权重\"、apiNote 补开源条款、sources 补 HF 页与 LICENSE 与魔搭页。不含价签：开放的是权重不是 API 折扣，¥1／¥4 与海外 $0.15／$0.60 逐值未动，priceHistory 不加点。",
+      "过门槛的官方变更第三条并入库：OpenAI 官方 changelog 10-22 条目 Decisions API 正式可用（GA）并绑定 gpt-6-luna——单请求上限由公测 200 题提到 400 题、跨请求共享提示缓存、题目内带图、input_json 直传结构化数据。据 developers.openai.com/api/docs/changelog.md 直读原句（10-25 件 77,952 字节、md5 5639cf16…；10-22 17:04 件 77,409 字节、md5 8b84246c… 最新条目还是 Oct 21），即该条确系昨傍晚之后新发，因 10-23／10-24 空窗未跑，本轮按事件自身日期 10-22 补记、不提假日期。本条不含价签：gpt-6-luna 站内 $0.10／$0.50 与官方 pricing.md 逐值相符，媒体所称\"每百万 token 输入 0.1 美元\"与官方 Luna 标价同值，属计费口径说明而非降价，priceHistory 不加点、plans 不改。落库＝events +1（date 10-22、tag 产品、agents chatgpt）、chatgpt.verifiedAt 10-22→10-25、apiNote 记一句能力变化；Decisions 是否单列进功能项交周五。",
+      "中转站本窗口最硬的一条并入库：云雾 /api/status 自 10-19 起逐字节全等的静默在本晨被打破——446,552 字节（昨 446,469）、键数 117→119、version 20261019-114428→20261025-080901、start_time 1792886988＝今晨 08:09 北京（今晨重新部署过一次实例），且新增五个迁移字段把去向与折算写进配置：migration_target_url=\"https://api.openlux.ai\"、migration_exchange_rate=13.6、migration_freeze_enabled=true、migration_repopup_hours=24、migration_retention_date 空；同轮 /api/pricing 仍 200 而在售清单照旧 data 0 条／vendors 0 家（17,141 字节、md5 63adef25… 与 10-22 09:03:52 那份逐字节全等），公告仍 340 条、最新停在 08-16，即至今没有一条停服或迁移公告。判读：重启实例并挂出迁移目标却没把任何模型挂回价目清单，形态由\"下架观望\"更靠近\"把存量用户导向别家\"；判定维持不可入驻级，可执行提示加一句——若账户有余额，涉及按 13.6 折算迁移到 OpenLux 前先自行核对折算是否等价（该数字只出现在配置字段、无公告原文佐证，本站未验证）。OpenLux 既不在种子 41 家也不在 extra 3 条，本轮检索只有一条 10-18 的 Dify 接入教程帖提到站名、未取得独立第二源，是否收录交周五。落库＝relayVerify.yunwu 的 at 提 10-25 并追加本轮读数，seed 的 status 仍不动（种子区由 gen-relay 生成）。",
+      "柏拉图（bltcy）读到一件\"上游改判与本站自证相互矛盾\"的事：种子仓库本轮把本站由 active 改标 inactive（10-25 跑 gen-relay 时带入，上游注记称 2026-10-23 标记、依据仍是那条 04-24 停运营公告），但本站自家接口读到的仍是营业状态——/api/status 200（14,176 字节、86 键，新增 ticket_enabled=true／ticket_attachment_max_count=5／ticket_attachment_max_size_mb=20）、版本 v4.9.61-v2→v4.9.71-v2、start_time 1792748090＝10-23 17:34 北京、last_get_pricing_time 2026-10-25 08:59:36，公告仍 16 条且最新停在 04-24；/api/pricing 200（445,357 字节）在售由 1,131 条增至 1,135 条、vendors 仍 27 家，新增四条全是别家新模型（kimi-k3.1-pro 6.5／5.23、kimi-k3.1-pro-highspeed 13／5.23、deepseek-v4.1-flash-1017 1／4、muse-wonder-1.0 14／5），另 13 条计价字段重排（gpt-6-luna 倍率 0.5→0.05、gpt-5.6-luna 0.5→0.1、grok-4 由倍率 3／5 转按次 0.02、gpt-4 与 gpt-4-32k 互换计价模式、gpt-image-2.5 四条同族来回切换）。判读：04-24 那句\"自 2026 年 5 月 1 日起全部 API 停止服务\"到今日仍未兑现，第三方种子的 inactive 与本站自证的\"今日仍在上新模型并重排报价\"直接冲突；status 维持 verified（只表示核实动作完成），定性由\"对个人新用户不可入驻的主动收缩\"改为\"公告与在售自相矛盾、余额不宜过夜\"。落库＝relayVerify.bltcy 的 at 提 10-25 并追加读数；种子区照抄上游的 inactive 不手改，是否人工改判交周五。",
+      "第 2c 步种子整体重生成（本轮变化最大的结构性一步）：两枚上游文件自 08-16 起首次变动——providers.yaml 28,572→36,512 字节（md5 6b5e583d…→f805d219…，line 26 last_reviewed 仍 2026-07-12，即条目层新增而复审标签未动），prices.latest.json 1,706,113→1,950,487 字节、snapshot_date 2026-08-16→2026-10-22、record_count 3,464→3,956，两个条件都满足门槛，故跑 node dev/gen-relay.cjs 2026-10-25 重写种子区：条目由 33 家增至 41 家（新增 8 家全部带 risk_flags: [operator_submitted] 与 status: unverified——DSH API、TokenDos、APIClaw、BetterToken、OurToken、XiuRouter、Bifrost、gateway-price-check CLI，其中 Bifrost 与比价 CLI 属自托管网关／工具而非中转站，仍按上游分类带入），既有 33 家零移除、9 家字段变化：柏拉图改 inactive（见上一条）、Atlas Cloud／OpenRouter／UnoRouter／Relaydance／UiUiAPI／TeamoRouter／Wappkit／QuickSilver Pro 的 priceStats 快照统一到 10-22（UiUiAPI 命中模型数由 6 降 3、Atlas 记录 404→374、OpenRouter 807→907、UnoRouter 144→238），TeamoRouter 支付方式由支付宝／微信扩为另含信用卡与 USDT。手工区零变动（policy／typeLabels／guide／relayVerify 与 extra 三条由 gen-relay 明确排除，本轮逐字段比对确认 extra 与 policy 全等）。新增 8 家一律 unverified、未跑双源核实，只作收录不作背书；页面条目数由 36 条增至 44 条。",
+      "Help AIO 可用性第十五次读数（数据 2026-10-25 09:10、快照读取 09:11，须走 www 域）：19 站／68 渠道模型／18,923 次探测／总体请求可用率 82.78%（10-22 傍晚为 18,811 次／79.42%），自 2026 年 2 月起累计监测由 3,024,371 次增至 3,076,595 次；本站关联项 Yunwu 仍 0.00%（有效探测 556 次，最新探测 09:0x；十五次序列末三项 10-22 09:02/552、10-22 17:02/552、10-25 09:10/556），0% 仍是云雾、IKun Code（1,113 次）、Undying（557 次）三家；非零最低由 10-22 傍晚 75.45% 的 Muze 换为 HongMaCC 81.68%（Muze 回升到 87.25%、CPass 86.33%、SSSAiCode 由 79.30% 回到 99.10% 为今日最大回升）。该页仍只是触发器与旁证：Help AIO 的探测模型、判定阈值与是否剔除维护时段未公开，故不据此改任何 seed 状态。",
+      "第 1 步与第 3b 步：纠错接口 200／161 字节，表内仍只 09-22 那条 perplexity Enterprise 年付口径建议、零新增；?action=tally 200／59 字节（claude|overall 1、claude|coding 1），后端在本轮新 schemaRef 发布链下继续健康。发布前 09:0x 实测线上／镜像／本地三方 /data.js md5 全等 5658fa8d9485b3cb2b1cfb83785734e4／464,531 字节、三戳 10-22，即 10-22 跨午夜补记件已顶到线上、无历史积压，本轮按当期源码发布；发布链与发布后三方 md5 一致性记于项目记忆与本会话简报，条目内不自证以免自指循环。",
+      "扫描六轮（含本轮全部检索）零项再过硬门槛，逐条记不入库理由：① \"云雾 迁移 OpenLux\"检索只回一堆中转站选型广告稿与一条 10-18 的 Dify 接入教程帖，无独立第二源，故只按云雾自家接口的配置字段记（见上一条），不写成\"已迁往 OpenLux\"；② Vercel AI Gateway 对 M3.1 Flash 的限免原句仍未取得——10-25 直抓 vercel.com/docs/ai-gateway/models.md（15,549 字节、last_updated 仍 2026-10-02）全文零命中 minimax 与 free，vercel.com/changelog.md 只回 2,500 字节壳、docs/ai-gateway/changelog.md 404，而转述稿彼此矛盾（掘金／知乎说免到 10-22 且须用 providerOptions.gateway.order 钉住 minimax，头条微头条说只免到 10-20），限免窗又早已过去，故不写 plans／apiPrices，继续列周五向 Vercel 核实；③ \"OpenAI 模型进入 Google Cloud Model Garden\"（10-21）与\"Claude 模型由 Anthropic 自营方式登陆 Google Cloud\"（10-23）两条渠道动态，本轮只见聚合日报与 CSDN 周报转述、未取得任一官方原句，按铁律不入库并列入周五；④ 中转站停服／退款检索今日仅回一条无关的\"菜菜中转站 rapi.asia\"配置文档（不在种子 41 家、不在 Help AIO 19 站清单，无任何异动证据），今日最硬信号照旧来自两家站点自家接口；⑤ Anthropic Q3 营收 168 亿美元、H 轮估值 9,650 亿美元与 OpenAI 目标估值 1.4 万亿等数字仅见于二手周报转述，非价签亦非产品能力，不入库；⑥ 英国 AI 生物安全实验室（10-24，OpenAI／Anthropic 各最高 1 亿英镑额度）属政策与算力捐赠，不改任何档案价签与 plans，不入库；⑦ MiniMax 大摩研报（10-22\"定价具竞争力、目标价 900 港元\"）是股市评级转述，不入库；⑧ DeepSeek V4.1 Flash 1017 与\"Harness 按次收费 11-01 落地\"本轮无官方新页可直读，站内已有条目不动，柏拉图今日新增 deepseek-v4.1-flash-1017 一行只作中转站在售证据记入其 note。"
+    ] },
     { date: "2026-10-22", note: "周四轻量轮（窗口＝10-21 傍晚轮 17:15 收尾至今约 16 小时）：变更 2 项入库——① OpenAI 官方 changelog 10-21 的服务档位治理条目（events +1、chatgpt 档案，含五档倍率逐值复核与 OpenAI 文档须加 .md 的抓取坑）；② 云雾价目接口在售清单清零（relayVerify.yunwu 提日并由收缩观察升为不可入驻）。基准第三次重抓逐字节全等，两戳按纪律提日；种子与纠错零变更，双源名额第二家用在 omwai 而未取得独立第二源，故 relayVerify 仍 15 家。另记一处观察：昨榜首 Muze 可用率由 99.37% 跌到 75.36%。第 1–8 条为晨间轮（窗口＝10-21 傍晚轮 17:15 至今约 16 小时）、第 9 条起为 17:00 傍晚轮（窗口＝今晨 09:14 第四次发布收尾至今约 7 小时 45 分），晨间各条里的\"本轮\"指晨间轮；傍晚轮事实侧零入库，只做云雾空置复核与路由改值定位、Help AIO 第 14 次读数、第 2b／2c 步第二次读数，并就地更正晨间两处误记（group_ratio 33→36 组、md5 全等的那一对是相隔 3 秒的 09:04:29／09:04:32 两件而非 09:03 与 09:05）；三戳按\"同日第二轮不再动戳\"保持 10-22。第 15 条为 10-23 09:2x 的跨午夜补记与逐件审计更正（读数日仍是 10-22，不借发布日提戳）。", items: [
       "基准第三次重抓成功且逐字节全等，两戳按纪律提日：curl 拉通 132,046 字节、md5 d82d0221e257e974b6781642cd7462e4，与 10-21 早、晚两件字节级相同（连页脚 article:published_time／modified_time 都仍是 2026-10-20），解析 337 个 tr／336 行、td 3,024、9 格行形制不变，按模型名建 Map 比对＝新增 0／删除 0／格值差异 0／行位移 0，MII 非空仍 237；本轮改用 dev/_cmp_1022.cjs 做 9 格口径比对，页面行与站内 336 行零不符（页有站无 0／站点多余行 0／字段不符行 0），16 席 elo／coding 与页面逐值相符、行号严格递增成立，故 arena.rows、benchmarks.models 与各档案 scores.coding 一律不动，只把 arena.fetchedAt 与 benchmarks.verifiedAt 提 10-22（meta.dataUpdatedAt 因本日内容核实同步）。",
       "唯一过门槛的官方变更并入库：OpenAI 官方 changelog 新增 10-21 条目——Platform 设置可按项目选择可用服务档位（service tier）、组织级设置可统一限制全部项目。直抓 .md 版 developers.openai.com/api/docs/changelog.md（77,409 字节）读到原句，昨晨同页最新条目还是 10-20，故确系昨夜之后新发；落库 events +1（64→65，date 2026-10-21、tag 产品、agents chatgpt）、chatgpt.verifiedAt 10-21→10-22、apiNote 记五档倍率与逐值复核、sources 补 pricing.md 与 changelog.md 两条。判读只写\"成本开关可被管理员锁死\"而非任何降价或涨价：本条不含价签，输入／输出标价一分未动，priceHistory 不加点、plans 不改、apiPrices 既有行金额不动。",
